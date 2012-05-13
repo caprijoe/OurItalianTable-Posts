@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="Xxx-oO-I4m">
+    <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
+        <development version="4300" defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="8Ou-6C-Lp8">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CAJ-bI-onW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="cia-Rv-9XE" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ADH-uS-39B">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Z5v-Ca-Kct" kind="relationship" relationship="rootViewController" id="Bdh-zO-dbQ"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="3996" y="-770"/>
+        </scene>
+        <!--Splash Screen Controller-->
+        <scene sceneID="abX-ZU-KdH">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcx-S1-ho7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="nbh-0g-5oO" customClass="SplashScreenController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XJA-qb-DDx">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ouritaliantable-original-crop.jpg" id="6OM-je-M7J">
+                                <rect key="frame" x="0.0" y="42" width="768" height="962"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Hjg-sk-MvE">
+                                <rect key="frame" x="0.0" y="0.0" width="899" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items/>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Food, wine and wanderings from our beloved Italy" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="rtV-6r-riM">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="22"/>
+                                <color key="textColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="toolbar" destination="Hjg-sk-MvE" id="PfJ-mx-iql"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="4022" y="401"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="SEt-dQ-CQn">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gql-p7-S3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <splitViewController id="Xxx-oO-I4m" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="cia-Rv-9XE" kind="relationship" relationship="masterViewController" id="3hR-9j-Vk1"/>
+                        <segue destination="nbh-0g-5oO" kind="relationship" relationship="detailViewController" id="WWG-eN-8GU"/>
+                    </connections>
+                </splitViewController>
+            </objects>
+            <point key="canvasLocation" x="2882" y="-380"/>
+        </scene>
+        <!--Launch View Controller - Our Italian Table-->
+        <scene sceneID="LWn-5I-HbW">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sRQ-CO-PYu" sceneMemberID="firstResponder"/>
+                <viewController title="Our Italian Table" id="Z5v-Ca-Kct" customClass="OITLaunchViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JfT-mP-p1a">
+                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="w8a-Da-vgc">
+                                <rect key="frame" x="48" y="100" width="225" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="28"/>
+                                <state key="normal" title="Food" backgroundImage="OITLaunchButtonBackground.png">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="I1J-KD-AZL" kind="push" identifier="Push Food" id="7FR-G5-OUU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Nt-bH-NmZ">
+                                <rect key="frame" x="48" y="250" width="225" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="28"/>
+                                <state key="normal" title="Wanderings" backgroundImage="OITLaunchButtonBackground.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ua4-gW-DO5" kind="replace" identifier="Push Travel" splitViewControllerTargetIndex="1" id="t9t-Wv-uMi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gev-oG-uiu">
+                                <rect key="frame" x="48" y="172" width="225" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="28"/>
+                                <state key="normal" title="Wine" backgroundImage="OITLaunchButtonBackground.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="I1J-KD-AZL" kind="push" identifier="Push Wine" id="D4C-AH-xX9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fH6-4r-OAW">
+                                <rect key="frame" x="48" y="623" width="225" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="28"/>
+                                <state key="normal" title="The Family" backgroundImage="OITLaunchButtonBackground.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="efU-7f-UBu" kind="replace" identifier="Push Family" splitViewControllerTargetIndex="1" id="mkl-k0-aGM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fRl-0G-7eF">
+                                <rect key="frame" x="90" y="405" width="141" height="166"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="30"/>
+                                <state key="normal" title="Favorites" backgroundImage="italy-map-icon20.gif">
+                                    <color key="titleColor" red="0.66247085346086954" green="0.84239130434782605" blue="0.1208905539458856" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="I1J-KD-AZL" kind="push" identifier="Push Favorites" id="Q8M-qC-hNw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UG2-wU-3qT">
+                                <rect key="frame" x="5" y="628" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="information-icon.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jzS-2w-9Hr" kind="popover" popoverAnchorView="UG2-wU-3qT" id="va7-fr-V5Z">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Our Italian Table" id="XGE-Ij-duq"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <connections>
+                        <outlet property="foodButtonOutlet" destination="w8a-Da-vgc" id="cPt-J6-9zC"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="4572" y="-770"/>
+        </scene>
+        <!--Posts Table View Controller-->
+        <scene sceneID="5rK-aF-Qvg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YpF-Eq-Obe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="I1J-KD-AZL" customClass="PostsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xta-SR-3Ql">
+                        <rect key="frame" x="0.0" y="64" width="320" height="744"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" showsScopeBar="YES" id="Tjg-Ah-tci">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>All</string>
+                                <string>Title</string>
+                                <string>Article</string>
+                                <string>Tags</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="I1J-KD-AZL" id="59H-C6-SDt"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Post Description" textLabel="zwg-J3-KxW" style="IBUITableViewCellStyleDefault" id="6Yv-Ht-PUl">
+                                <rect key="frame" x="0.0" y="110" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" id="zwg-J3-KxW">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="DNG-Wr-sV2" kind="replace" identifier="Push Web View" splitViewControllerTargetIndex="1" id="WDe-9L-aTF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="I1J-KD-AZL" id="RNC-eV-42H"/>
+                            <outlet property="delegate" destination="I1J-KD-AZL" id="v4z-TE-jhd"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Pz2-aU-lf7">
+                        <barButtonItem key="rightBarButtonItem" title="Table of Contents" id="XjO-mS-Mec">
+                            <connections>
+                                <segue destination="yVV-GC-Nzx" kind="popover" identifier="Show TOC Picker" popoverAnchorBarButtonItem="XjO-mS-Mec" id="N7y-WT-18t">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="0Mr-ch-lkv" id="Ih1-BJ-dB6"/>
+                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="ai6-RC-oW0"/>
+                    </connections>
+                </tableViewController>
+                <searchDisplayController id="0Mr-ch-lkv">
+                    <connections>
+                        <outlet property="delegate" destination="I1J-KD-AZL" id="02I-mi-Q1A"/>
+                        <outlet property="searchBar" destination="Tjg-Ah-tci" id="3ub-14-HvE"/>
+                        <outlet property="searchContentsController" destination="I1J-KD-AZL" id="LVy-cl-7i4"/>
+                        <outlet property="searchResultsDataSource" destination="I1J-KD-AZL" id="OQ1-Hj-TkY"/>
+                        <outlet property="searchResultsDelegate" destination="I1J-KD-AZL" id="IJX-Zl-d8G"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="5328" y="-778"/>
+        </scene>
+        <!--Web View Controller - Web Post-->
+        <scene sceneID="9QH-Vh-bge">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LXF-Jg-bEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Web Post" id="DNG-Wr-sV2" customClass="WebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="unM-Mb-ojo">
+                        <rect key="frame" x="0.0" y="20" width="768" height="955"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="FTZ-mk-h6R">
+                                <rect key="frame" x="0.0" y="44" width="768" height="867"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="aYb-PT-7Ua">
+                                <rect key="frame" x="0.0" y="911" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Details" id="yOr-eC-5mD">
+                                        <connections>
+                                            <segue destination="rjg-hJ-4cF" kind="popover" identifier="Push Post Detail" popoverAnchorBarButtonItem="yOr-eC-5mD" id="NNh-aV-baV">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5b5-nE-ysU"/>
+                                    <barButtonItem title="Add to Favorites" id="6RI-aX-WBE">
+                                        <connections>
+                                            <action selector="addToFavorites:" destination="DNG-Wr-sV2" id="bzm-2K-ber"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" red="0.36642987729999998" green="0.52156862749999999" blue="0.1126465555" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="rHS-Vc-paL">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items/>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Food, wine and wanderings from our beloved Italy" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="XNU-09-zTv">
+                                <rect key="frame" x="52" y="0.0" width="664" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="22"/>
+                                <color key="textColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Web Post" id="geP-oR-Mf1">
+                        <barButtonItem key="rightBarButtonItem" title="Details >" id="SXP-pP-6Xi"/>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="favoritesButton" destination="6RI-aX-WBE" id="hAp-Ig-saW"/>
+                        <outlet property="toolbar" destination="rHS-Vc-paL" id="VJl-uf-KD1"/>
+                        <outlet property="webView" destination="FTZ-mk-h6R" id="jlt-cw-aje"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="6250" y="-864"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="eE1-h3-Aja">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l22-H2-I6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="ua4-gW-DO5" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wZv-NY-CKX">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="GQa-W1-LDv">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="LgC-mi-7WC">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Food, wine and wanderings from our beloved Italy" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="KvT-Tq-7pi">
+                                <rect key="frame" x="52" y="0.0" width="664" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="22"/>
+                                <color key="textColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Iy1-w2-2U0"/>
+                    <connections>
+                        <outlet property="mapView" destination="GQa-W1-LDv" id="LKd-JS-djP"/>
+                        <outlet property="toolbar" destination="LgC-mi-7WC" id="WRq-8O-Zu6"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="5344" y="401"/>
+        </scene>
+        <!--Post Detail View Controller-->
+        <scene sceneID="nmd-bc-SLg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ts-VD-zGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="rjg-hJ-4cF" customClass="PostDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XII-ym-nnW">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="awn-Q4-7yh">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="UHy-DB-Dkg">
+                                        <rect key="frame" x="104" y="330" width="160" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Published" lineBreakMode="tailTruncation" minimumFontSize="10" id="1dt-bb-1Q5">
+                                        <rect key="frame" x="20" y="330" width="76" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tags" lineBreakMode="tailTruncation" minimumFontSize="10" id="oaX-z7-gDT">
+                                        <rect key="frame" x="20" y="359" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="aoA-G1-mfT">
+                                        <rect key="frame" x="79" y="191" width="610" height="131"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" id="UMa-BM-9Q2">
+                                        <rect key="frame" x="20" y="405" width="728" height="335"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" id="DCS-QA-D3a">
+                                        <rect key="frame" x="20" y="32" width="728" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Click a tag button to select recipes with this tag:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="hyA-yp-rdn">
+                                        <rect key="frame" x="20" y="388" width="606" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ukY-ls-voF"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <connections>
+                        <outlet property="authorPicture" destination="aoA-G1-mfT" id="tGu-Q9-55s"/>
+                        <outlet property="datePublished" destination="UHy-DB-Dkg" id="yHg-N0-IgG"/>
+                        <outlet property="postTitle" destination="DCS-QA-D3a" id="4sh-6s-GQp"/>
+                        <outlet property="tagsView" destination="UMa-BM-9Q2" id="sHf-Bw-OLE"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="7207" y="-864"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="j7S-GD-Ep3">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pz2-FB-MRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="yVV-GC-Nzx" customClass="TOCViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A5n-aS-Pwz">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T0K-nG-qPS">
+                                <rect key="frame" x="20" y="298" width="728" height="37"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goSearch:" destination="yVV-GC-Nzx" eventType="touchUpInside" id="y3F-Ls-1wl"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="nha-DD-1Ch">
+                                <rect key="frame" x="20" y="20" width="728" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectCategorySegment:" destination="yVV-GC-Nzx" eventType="valueChanged" id="d9d-rH-H4u"/>
+                                </connections>
+                            </segmentedControl>
+                            <pickerView contentMode="scaleToFill" id="s0K-La-4zf">
+                                <rect key="frame" x="20" y="66" width="728" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yVV-GC-Nzx" id="OWA-wM-uQx"/>
+                                    <outlet property="delegate" destination="yVV-GC-Nzx" id="ENs-gI-g1y"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="400"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <connections>
+                        <outlet property="categorySegmentedController" destination="nha-DD-1Ch" id="w5Z-tH-Kzp"/>
+                        <outlet property="detailPicker" destination="s0K-La-4zf" id="fSB-8X-gin"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="6256" y="-2165"/>
+        </scene>
+        <!--Photo Scroller-->
+        <scene sceneID="XQM-aP-RdW">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hZd-Wk-U1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="efU-7f-UBu" customClass="PhotoScroller" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YgA-vy-uLF">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" id="thE-ao-XJj">
+                                <rect key="frame" x="0.0" y="44" width="768" height="887"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="efU-7f-UBu" id="67M-4v-83w"/>
+                                </connections>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="m3Q-JI-eDY">
+                                <rect key="frame" x="20" y="968" width="728" height="36"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </pageControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="83V-I2-ciY">
+                                <rect key="frame" x="20" y="939" width="728" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="rpo-6A-oI1">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Food, wine and wanderings from our beloved Italy" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="bsU-eH-fWE">
+                                <rect key="frame" x="52" y="0.0" width="664" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="22"/>
+                                <color key="textColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tEu-Oh-eZt"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <connections>
+                        <outlet property="pageControl" destination="m3Q-JI-eDY" id="Td3-An-Wtv"/>
+                        <outlet property="photoName" destination="83V-I2-ciY" id="kgg-4c-dj8"/>
+                        <outlet property="scrollView" destination="thE-ao-XJj" id="PDf-4b-Wm5"/>
+                        <outlet property="toolbar" destination="rpo-6A-oI1" id="MES-bj-HSH"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="5272" y="1652"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="jc8-4B-QCt">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GPi-D0-89G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="jzS-2w-9Hr" customClass="aboutViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PSp-d1-qYS">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Our Italian Table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="A1h-2U-IXS">
+                                <rect key="frame" x="20" y="20" width="280" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-BoldItalic" family="Palatino" pointSize="24"/>
+                                <color key="textColor" red="0.66247085350000001" green="0.84239130429999998" blue="0.1208905539" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mbecci.jpg" id="cbX-9m-yWw">
+                                <rect key="frame" x="20" y="60" width="125" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="jcbecci.jpg" id="mBA-5q-jFm">
+                                <rect key="frame" x="175" y="60" width="125" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="6jE-Wz-5gn">
+                                <rect key="frame" x="20" y="196" width="280" height="215"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="460"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
+                    <connections>
+                        <outlet property="txtDisplay" destination="6jE-Wz-5gn" id="8aa-TJ-azP"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="4998" y="-2148"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="OITLaunchButtonBackground.png" width="250" height="50"/>
+        <image name="information-icon.png" width="48" height="48"/>
+        <image name="italy-map-icon20.gif" width="96" height="114"/>
+        <image name="jcbecci.jpg" width="115" height="116"/>
+        <image name="mbecci.jpg" width="180" height="166"/>
+        <image name="ouritaliantable-original-crop.jpg" width="454" height="451"/>
+    </resources>
+    <classes>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="OITLaunchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OITLaunchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="foodButtonOutlet" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="PhotoScroller" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoScroller.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="photoName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="PostDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeButton:"/>
+                <relationship kind="outlet" name="authorPicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="datePublished" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="postTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="PostsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostsTableViewController.h"/>
+        </class>
+        <class className="SplashScreenController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashScreenController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="TOCViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOCViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goSearch:"/>
+                <relationship kind="action" name="selectCategorySegment:"/>
+                <relationship kind="outlet" name="categorySegmentedController" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="detailPicker" candidateClass="UIPickerView"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="favoritesButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="aboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/aboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneButton:"/>
+                <relationship kind="outlet" name="txtDisplay" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Q8M-qC-hNw"/>
+        <segue reference="ai6-RC-oW0"/>
+    </inferredMetricsTieBreakers>
+</document>
