@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Recipes</key>
+	<array>
+		<string>Antipasti</string>
+		<string>Beverages</string>
+		<string>Dolci</string>
+		<string>Main Courses</string>
+		<string>Pasta, Risotto, Breads</string>
+		<string>Salads</string>
+		<string>Soups, Stews</string>
+		<string>Vegetables, Side Dishes</string>
+	</array>
+	<key>Regions of Italy</key>
+	<array>
+		<string>Campania</string>
+		<string>Emilia-Romagna</string>
+		<string>Friuli Venezia-Giulia</string>
+		<string>Sardinia</string>
+		<string>Sicily</string>
+		<string>Piedmont</string>
+		<string>Puglia</string>
+		<string>Sardinia</string>
+		<string>Sicily</string>
+		<string>Tuscany</string>
+		<string>Valle d&apos;Aosta</string>
+		<string>Veneto</string>
+	</array>
+	<key>Islands</key>
+	<array>
+		<string>Capri</string>
+		<string>Pantelleria</string>
+		<string>Sardinia</string>
+		<string>Sicily</string>
+	</array>
+</dict>
+</plist>
