@@ -3,7 +3,7 @@
 //  oitPosts
 //
 //  Created by Joseph Becci on 2/4/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 OurItalianTable. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
