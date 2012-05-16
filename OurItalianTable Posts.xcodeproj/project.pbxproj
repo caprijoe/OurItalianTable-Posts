@@ -13,6 +13,59 @@
 		69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69AD4897156054C9009976B8 /* InfoPlist.strings */; };
 		69AD489B156054C9009976B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD489A156054C9009976B8 /* main.m */; };
 		69AD489F156054C9009976B8 /* oitPostsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD489E156054C9009976B8 /* oitPostsAppDelegate.m */; };
+		69AD48AB1560560C009976B8 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48A91560560C009976B8 /* iPhone.storyboard */; };
+		69AD48AC1560560C009976B8 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48AA1560560C009976B8 /* iPad.storyboard */; };
+		69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48AE156056A9009976B8 /* OITLaunchViewController.m */; };
+		69AD48CD156056A9009976B8 /* OITBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48B0156056A9009976B8 /* OITBrain.m */; };
+		69AD48CE156056A9009976B8 /* ParseXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48B2156056A9009976B8 /* ParseXML.m */; };
+		69AD48CF156056A9009976B8 /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48B4156056A9009976B8 /* ParseOperation.m */; };
+		69AD48D0156056A9009976B8 /* aboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48B6156056A9009976B8 /* aboutViewController.m */; };
+		69AD48D1156056A9009976B8 /* PhotoScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48B8156056A9009976B8 /* PhotoScroller.m */; };
+		69AD48D3156056A9009976B8 /* TOCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48BC156056A9009976B8 /* TOCViewController.m */; };
+		69AD48D4156056A9009976B8 /* MapNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48BE156056A9009976B8 /* MapNavigationController.m */; };
+		69AD48D5156056A9009976B8 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C0156056A9009976B8 /* MapViewController.m */; };
+		69AD48D6156056A9009976B8 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C2156056A9009976B8 /* MapAnnotation.m */; };
+		69AD48D7156056A9009976B8 /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C4156056A9009976B8 /* SplashScreenController.m */; };
+		69AD48D8156056A9009976B8 /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C7156056A9009976B8 /* webViewController.m */; };
+		69AD48D9156056A9009976B8 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C9156056A9009976B8 /* PostDetailViewController.m */; };
+		69AD48E0156056FC009976B8 /* oitWPExport.xml in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48DB156056FC009976B8 /* oitWPExport.xml */; };
+		69AD48E1156056FC009976B8 /* oitHTMLStyles.html in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48DC156056FC009976B8 /* oitHTMLStyles.html */; };
+		69AD48E2156056FC009976B8 /* NextImage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48DD156056FC009976B8 /* NextImage.plist */; };
+		69AD48E3156056FC009976B8 /* CategoryDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48DE156056FC009976B8 /* CategoryDictionary.plist */; };
+		69AD48E4156056FC009976B8 /* bios.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48DF156056FC009976B8 /* bios.txt */; };
+		69AD491815605805009976B8 /* information-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD490D15605805009976B8 /* information-icon.png */; };
+		69AD491915605805009976B8 /* mbecci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD490E15605805009976B8 /* mbecci.jpg */; };
+		69AD491A15605805009976B8 /* jcbecci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD490F15605805009976B8 /* jcbecci.jpg */; };
+		69AD491B15605805009976B8 /* italy-map-icon20.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491015605805009976B8 /* italy-map-icon20.gif */; };
+		69AD491C15605805009976B8 /* OITLaunchButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491115605805009976B8 /* OITLaunchButtonBackground.png */; };
+		69AD491D15605805009976B8 /* Lemons.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491215605805009976B8 /* Lemons.png */; };
+		69AD491E15605805009976B8 /* ouritaliantable-original-crop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */; };
+		69AD491F15605805009976B8 /* oitIconiPad-72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491415605805009976B8 /* oitIconiPad-72x72.png */; };
+		69AD492015605805009976B8 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491515605805009976B8 /* Default-Landscape~ipad.png */; };
+		69AD492115605805009976B8 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491615605805009976B8 /* Default-Portrait~ipad.png */; };
+		69AD492215605805009976B8 /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491715605805009976B8 /* Placeholder.png */; };
+		69AD492415605A8C009976B8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492315605A8C009976B8 /* CoreLocation.framework */; };
+		69AD492615605A96009976B8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492515605A96009976B8 /* MapKit.framework */; };
+		69AD49421560877F009976B8 /* The whole Drago family.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49301560877B009976B8 /* The whole Drago family.jpg */; };
+		69AD49431560877F009976B8 /* Popop and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49311560877B009976B8 /* Popop and Joey.jpg */; };
+		69AD49441560877F009976B8 /* Momom and Popop with Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49321560877B009976B8 /* Momom and Popop with Joey.jpg */; };
+		69AD49451560877F009976B8 /* Mom and Dad Honeymoon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49331560877C009976B8 /* Mom and Dad Honeymoon.jpg */; };
+		69AD49461560877F009976B8 /* Mom's wedding dress.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49341560877C009976B8 /* Mom's wedding dress.jpg */; };
+		69AD49471560877F009976B8 /* Little Joey and Michele.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49351560877C009976B8 /* Little Joey and Michele.jpg */; };
+		69AD49481560877F009976B8 /* In the snow.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49361560877D009976B8 /* In the snow.jpg */; };
+		69AD49491560877F009976B8 /* Baby Joe and Michele.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49371560877D009976B8 /* Baby Joe and Michele.jpg */; };
+		69AD494B1560877F009976B8 /* Young mom.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49391560877D009976B8 /* Young mom.jpg */; };
+		69AD494C1560877F009976B8 /* Popop, Dad and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD493A1560877E009976B8 /* Popop, Dad and Joey.jpg */; };
+		69AD494D1560877F009976B8 /* Dragos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD493B1560877E009976B8 /* Dragos.jpg */; };
+		69AD494E1560877F009976B8 /* Baby Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD493C1560877E009976B8 /* Baby Joey.jpg */; };
+		69AD494F1560877F009976B8 /* Lenny and Annie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD493D1560877E009976B8 /* Lenny and Annie.jpg */; };
+		69AD49501560877F009976B8 /* Mom, Dad and Annie with the cake.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 69AD493E1560877F009976B8 /* Mom, Dad and Annie with the cake.JPG */; };
+		69AD49511560877F009976B8 /* After the wedding.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 69AD493F1560877F009976B8 /* After the wedding.JPG */; };
+		69AD49521560877F009976B8 /* Aunt Mary, Joey and Michele.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */; };
+		69AD49531560877F009976B8 /* Aunt Mary.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49411560877F009976B8 /* Aunt Mary.JPG */; };
+		69AD495715622546009976B8 /* PostRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD495615622546009976B8 /* PostRecord.m */; };
+		69AD495A156226CF009976B8 /* PostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD4959156226CF009976B8 /* PostsTableViewController.m */; };
+		69AD495C15622719009976B8 /* Dad and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD495B15622718009976B8 /* Dad and Joey.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +73,82 @@
 		69AD488E156054C9009976B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69AD4890156054C9009976B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		69AD4892156054C9009976B8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		69AD4896156054C9009976B8 /* OurItalianTable Posts-Info.plist */ = {isa = PBXFileReference; path = "OurItalianTable Posts-Info.plist"; sourceTree = "<group>"; };
+		69AD4896156054C9009976B8 /* OurItalianTable Posts-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OurItalianTable Posts-Info.plist"; sourceTree = "<group>"; };
 		69AD4898156054C9009976B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		69AD489A156054C9009976B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */ = {isa = PBXFileReference; path = "OurItalianTable Posts-Prefix.pch"; sourceTree = "<group>"; };
-		69AD489D156054C9009976B8 /* oitPostsAppDelegate.h */ = {isa = PBXFileReference; path = oitPostsAppDelegate.h; sourceTree = "<group>"; };
+		69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OurItalianTable Posts-Prefix.pch"; sourceTree = "<group>"; };
+		69AD489D156054C9009976B8 /* oitPostsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oitPostsAppDelegate.h; sourceTree = "<group>"; };
 		69AD489E156054C9009976B8 /* oitPostsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = oitPostsAppDelegate.m; sourceTree = "<group>"; };
+		69AD48A91560560C009976B8 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		69AD48AA1560560C009976B8 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		69AD48AD156056A9009976B8 /* OITLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITLaunchViewController.h; sourceTree = "<group>"; };
+		69AD48AE156056A9009976B8 /* OITLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITLaunchViewController.m; sourceTree = "<group>"; };
+		69AD48AF156056A9009976B8 /* OITBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITBrain.h; sourceTree = "<group>"; };
+		69AD48B0156056A9009976B8 /* OITBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITBrain.m; sourceTree = "<group>"; };
+		69AD48B1156056A9009976B8 /* ParseXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseXML.h; sourceTree = "<group>"; };
+		69AD48B2156056A9009976B8 /* ParseXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseXML.m; sourceTree = "<group>"; };
+		69AD48B3156056A9009976B8 /* ParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseOperation.h; sourceTree = "<group>"; };
+		69AD48B4156056A9009976B8 /* ParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseOperation.m; sourceTree = "<group>"; };
+		69AD48B5156056A9009976B8 /* aboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aboutViewController.h; sourceTree = "<group>"; };
+		69AD48B6156056A9009976B8 /* aboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aboutViewController.m; sourceTree = "<group>"; };
+		69AD48B7156056A9009976B8 /* PhotoScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoScroller.h; sourceTree = "<group>"; };
+		69AD48B8156056A9009976B8 /* PhotoScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoScroller.m; sourceTree = "<group>"; };
+		69AD48BB156056A9009976B8 /* TOCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCViewController.h; sourceTree = "<group>"; };
+		69AD48BC156056A9009976B8 /* TOCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCViewController.m; sourceTree = "<group>"; };
+		69AD48BD156056A9009976B8 /* MapNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigationController.h; sourceTree = "<group>"; };
+		69AD48BE156056A9009976B8 /* MapNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNavigationController.m; sourceTree = "<group>"; };
+		69AD48BF156056A9009976B8 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		69AD48C0156056A9009976B8 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		69AD48C1156056A9009976B8 /* MapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotation.h; sourceTree = "<group>"; };
+		69AD48C2156056A9009976B8 /* MapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotation.m; sourceTree = "<group>"; };
+		69AD48C3156056A9009976B8 /* SplashScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenController.h; sourceTree = "<group>"; };
+		69AD48C4156056A9009976B8 /* SplashScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenController.m; sourceTree = "<group>"; };
+		69AD48C5156056A9009976B8 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
+		69AD48C6156056A9009976B8 /* webViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webViewController.h; sourceTree = "<group>"; };
+		69AD48C7156056A9009976B8 /* webViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = webViewController.m; sourceTree = "<group>"; };
+		69AD48C8156056A9009976B8 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		69AD48C9156056A9009976B8 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
+		69AD48DB156056FC009976B8 /* oitWPExport.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = oitWPExport.xml; sourceTree = "<group>"; };
+		69AD48DC156056FC009976B8 /* oitHTMLStyles.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = oitHTMLStyles.html; sourceTree = "<group>"; };
+		69AD48DD156056FC009976B8 /* NextImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NextImage.plist; sourceTree = "<group>"; };
+		69AD48DE156056FC009976B8 /* CategoryDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CategoryDictionary.plist; sourceTree = "<group>"; };
+		69AD48DF156056FC009976B8 /* bios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bios.txt; sourceTree = "<group>"; };
+		69AD490D15605805009976B8 /* information-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "information-icon.png"; path = "OurItalianTable Posts/information-icon.png"; sourceTree = "<group>"; };
+		69AD490E15605805009976B8 /* mbecci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mbecci.jpg; path = "OurItalianTable Posts/mbecci.jpg"; sourceTree = "<group>"; };
+		69AD490F15605805009976B8 /* jcbecci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = jcbecci.jpg; path = "OurItalianTable Posts/jcbecci.jpg"; sourceTree = "<group>"; };
+		69AD491015605805009976B8 /* italy-map-icon20.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "italy-map-icon20.gif"; path = "OurItalianTable Posts/italy-map-icon20.gif"; sourceTree = "<group>"; };
+		69AD491115605805009976B8 /* OITLaunchButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OITLaunchButtonBackground.png; path = "OurItalianTable Posts/OITLaunchButtonBackground.png"; sourceTree = "<group>"; };
+		69AD491215605805009976B8 /* Lemons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Lemons.png; path = "OurItalianTable Posts/Lemons.png"; sourceTree = "<group>"; };
+		69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ouritaliantable-original-crop.jpg"; path = "OurItalianTable Posts/ouritaliantable-original-crop.jpg"; sourceTree = "<group>"; };
+		69AD491415605805009976B8 /* oitIconiPad-72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "oitIconiPad-72x72.png"; path = "OurItalianTable Posts/oitIconiPad-72x72.png"; sourceTree = "<group>"; };
+		69AD491515605805009976B8 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "OurItalianTable Posts/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		69AD491615605805009976B8 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "OurItalianTable Posts/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		69AD491715605805009976B8 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Placeholder.png; path = "OurItalianTable Posts/Placeholder.png"; sourceTree = "<group>"; };
+		69AD492315605A8C009976B8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		69AD492515605A96009976B8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		69AD49301560877B009976B8 /* The whole Drago family.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "The whole Drago family.jpg"; path = "OurItalianTable Posts/The whole Drago family.jpg"; sourceTree = "<group>"; };
+		69AD49311560877B009976B8 /* Popop and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Popop and Joey.jpg"; path = "OurItalianTable Posts/Popop and Joey.jpg"; sourceTree = "<group>"; };
+		69AD49321560877B009976B8 /* Momom and Popop with Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Momom and Popop with Joey.jpg"; path = "OurItalianTable Posts/Momom and Popop with Joey.jpg"; sourceTree = "<group>"; };
+		69AD49331560877C009976B8 /* Mom and Dad Honeymoon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Mom and Dad Honeymoon.jpg"; path = "OurItalianTable Posts/Mom and Dad Honeymoon.jpg"; sourceTree = "<group>"; };
+		69AD49341560877C009976B8 /* Mom's wedding dress.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Mom's wedding dress.jpg"; path = "OurItalianTable Posts/Mom's wedding dress.jpg"; sourceTree = "<group>"; };
+		69AD49351560877C009976B8 /* Little Joey and Michele.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Little Joey and Michele.jpg"; path = "OurItalianTable Posts/Little Joey and Michele.jpg"; sourceTree = "<group>"; };
+		69AD49361560877D009976B8 /* In the snow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "In the snow.jpg"; path = "OurItalianTable Posts/In the snow.jpg"; sourceTree = "<group>"; };
+		69AD49371560877D009976B8 /* Baby Joe and Michele.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Baby Joe and Michele.jpg"; path = "OurItalianTable Posts/Baby Joe and Michele.jpg"; sourceTree = "<group>"; };
+		69AD49381560877D009976B8 /* Dragos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Dragos.jpg; path = "OurItalianTable Posts/Dragos.jpg"; sourceTree = "<group>"; };
+		69AD49391560877D009976B8 /* Young mom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Young mom.jpg"; path = "OurItalianTable Posts/Young mom.jpg"; sourceTree = "<group>"; };
+		69AD493A1560877E009976B8 /* Popop, Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Popop, Dad and Joey.jpg"; path = "OurItalianTable Posts/Popop, Dad and Joey.jpg"; sourceTree = "<group>"; };
+		69AD493B1560877E009976B8 /* Dragos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Dragos.jpg; path = "OurItalianTable Posts/Dragos.jpg"; sourceTree = "<group>"; };
+		69AD493C1560877E009976B8 /* Baby Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Baby Joey.jpg"; path = "OurItalianTable Posts/Baby Joey.jpg"; sourceTree = "<group>"; };
+		69AD493D1560877E009976B8 /* Lenny and Annie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Lenny and Annie.jpg"; path = "OurItalianTable Posts/Lenny and Annie.jpg"; sourceTree = "<group>"; };
+		69AD493E1560877F009976B8 /* Mom, Dad and Annie with the cake.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Mom, Dad and Annie with the cake.JPG"; path = "OurItalianTable Posts/Mom, Dad and Annie with the cake.JPG"; sourceTree = "<group>"; };
+		69AD493F1560877F009976B8 /* After the wedding.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "After the wedding.JPG"; path = "OurItalianTable Posts/After the wedding.JPG"; sourceTree = "<group>"; };
+		69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Aunt Mary, Joey and Michele.JPG"; path = "OurItalianTable Posts/Aunt Mary, Joey and Michele.JPG"; sourceTree = "<group>"; };
+		69AD49411560877F009976B8 /* Aunt Mary.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Aunt Mary.JPG"; path = "OurItalianTable Posts/Aunt Mary.JPG"; sourceTree = "<group>"; };
+		69AD495515622546009976B8 /* PostRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRecord.h; sourceTree = "<group>"; };
+		69AD495615622546009976B8 /* PostRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostRecord.m; sourceTree = "<group>"; };
+		69AD4958156226CF009976B8 /* PostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewController.h; sourceTree = "<group>"; };
+		69AD4959156226CF009976B8 /* PostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewController.m; sourceTree = "<group>"; };
+		69AD495B15622718009976B8 /* Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Dad and Joey.jpg"; path = "OurItalianTable Posts/Dad and Joey.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +156,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69AD492615605A96009976B8 /* MapKit.framework in Frameworks */,
+				69AD492415605A8C009976B8 /* CoreLocation.framework in Frameworks */,
 				69AD488F156054C9009976B8 /* UIKit.framework in Frameworks */,
 				69AD4891156054C9009976B8 /* Foundation.framework in Frameworks */,
 				69AD4893156054C9009976B8 /* CoreGraphics.framework in Frameworks */,
@@ -45,6 +170,8 @@
 		69AD487F156054C9009976B8 = {
 			isa = PBXGroup;
 			children = (
+				69AD492515605A96009976B8 /* MapKit.framework */,
+				69AD492315605A8C009976B8 /* CoreLocation.framework */,
 				69AD4894156054C9009976B8 /* OurItalianTable Posts */,
 				69AD488D156054C9009976B8 /* Frameworks */,
 				69AD488B156054C9009976B8 /* Products */,
@@ -74,6 +201,40 @@
 			children = (
 				69AD489D156054C9009976B8 /* oitPostsAppDelegate.h */,
 				69AD489E156054C9009976B8 /* oitPostsAppDelegate.m */,
+				69AD48A91560560C009976B8 /* iPhone.storyboard */,
+				69AD48AA1560560C009976B8 /* iPad.storyboard */,
+				69AD48AD156056A9009976B8 /* OITLaunchViewController.h */,
+				69AD48AE156056A9009976B8 /* OITLaunchViewController.m */,
+				69AD48AF156056A9009976B8 /* OITBrain.h */,
+				69AD48B0156056A9009976B8 /* OITBrain.m */,
+				69AD48B1156056A9009976B8 /* ParseXML.h */,
+				69AD48B2156056A9009976B8 /* ParseXML.m */,
+				69AD48B3156056A9009976B8 /* ParseOperation.h */,
+				69AD48B4156056A9009976B8 /* ParseOperation.m */,
+				69AD48B5156056A9009976B8 /* aboutViewController.h */,
+				69AD48B6156056A9009976B8 /* aboutViewController.m */,
+				69AD48B7156056A9009976B8 /* PhotoScroller.h */,
+				69AD48B8156056A9009976B8 /* PhotoScroller.m */,
+				69AD4958156226CF009976B8 /* PostsTableViewController.h */,
+				69AD4959156226CF009976B8 /* PostsTableViewController.m */,
+				69AD48BB156056A9009976B8 /* TOCViewController.h */,
+				69AD48BC156056A9009976B8 /* TOCViewController.m */,
+				69AD48BD156056A9009976B8 /* MapNavigationController.h */,
+				69AD48BE156056A9009976B8 /* MapNavigationController.m */,
+				69AD48BF156056A9009976B8 /* MapViewController.h */,
+				69AD48C0156056A9009976B8 /* MapViewController.m */,
+				69AD48C1156056A9009976B8 /* MapAnnotation.h */,
+				69AD48C2156056A9009976B8 /* MapAnnotation.m */,
+				69AD48C3156056A9009976B8 /* SplashScreenController.h */,
+				69AD48C4156056A9009976B8 /* SplashScreenController.m */,
+				69AD48C5156056A9009976B8 /* SplitViewBarButtonItemPresenter.h */,
+				69AD48C6156056A9009976B8 /* webViewController.h */,
+				69AD48C7156056A9009976B8 /* webViewController.m */,
+				69AD48C8156056A9009976B8 /* PostDetailViewController.h */,
+				69AD48C9156056A9009976B8 /* PostDetailViewController.m */,
+				69AD495515622546009976B8 /* PostRecord.h */,
+				69AD495615622546009976B8 /* PostRecord.m */,
+				69AD48E6156057B5009976B8 /* Images */,
 				69AD4895156054C9009976B8 /* Supporting Files */,
 			);
 			path = "OurItalianTable Posts";
@@ -86,8 +247,51 @@
 				69AD4897156054C9009976B8 /* InfoPlist.strings */,
 				69AD489A156054C9009976B8 /* main.m */,
 				69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */,
+				69AD48DB156056FC009976B8 /* oitWPExport.xml */,
+				69AD48DC156056FC009976B8 /* oitHTMLStyles.html */,
+				69AD48DD156056FC009976B8 /* NextImage.plist */,
+				69AD48DE156056FC009976B8 /* CategoryDictionary.plist */,
+				69AD48DF156056FC009976B8 /* bios.txt */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		69AD48E6156057B5009976B8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				69AD490D15605805009976B8 /* information-icon.png */,
+				69AD490E15605805009976B8 /* mbecci.jpg */,
+				69AD490F15605805009976B8 /* jcbecci.jpg */,
+				69AD491015605805009976B8 /* italy-map-icon20.gif */,
+				69AD491115605805009976B8 /* OITLaunchButtonBackground.png */,
+				69AD491215605805009976B8 /* Lemons.png */,
+				69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */,
+				69AD491415605805009976B8 /* oitIconiPad-72x72.png */,
+				69AD491515605805009976B8 /* Default-Landscape~ipad.png */,
+				69AD491615605805009976B8 /* Default-Portrait~ipad.png */,
+				69AD491715605805009976B8 /* Placeholder.png */,
+				69AD493F1560877F009976B8 /* After the wedding.JPG */,
+				69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */,
+				69AD49301560877B009976B8 /* The whole Drago family.jpg */,
+				69AD49311560877B009976B8 /* Popop and Joey.jpg */,
+				69AD49321560877B009976B8 /* Momom and Popop with Joey.jpg */,
+				69AD49331560877C009976B8 /* Mom and Dad Honeymoon.jpg */,
+				69AD49341560877C009976B8 /* Mom's wedding dress.jpg */,
+				69AD49351560877C009976B8 /* Little Joey and Michele.jpg */,
+				69AD49361560877D009976B8 /* In the snow.jpg */,
+				69AD49371560877D009976B8 /* Baby Joe and Michele.jpg */,
+				69AD49381560877D009976B8 /* Dragos.jpg */,
+				69AD49391560877D009976B8 /* Young mom.jpg */,
+				69AD493A1560877E009976B8 /* Popop, Dad and Joey.jpg */,
+				69AD493B1560877E009976B8 /* Dragos.jpg */,
+				69AD493C1560877E009976B8 /* Baby Joey.jpg */,
+				69AD493D1560877E009976B8 /* Lenny and Annie.jpg */,
+				69AD493E1560877F009976B8 /* Mom, Dad and Annie with the cake.JPG */,
+				69AD49411560877F009976B8 /* Aunt Mary.JPG */,
+				69AD495B15622718009976B8 /* Dad and Joey.jpg */,
+			);
+			name = Images;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +347,42 @@
 			buildActionMask = 2147483647;
 			files = (
 				69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */,
+				69AD48AB1560560C009976B8 /* iPhone.storyboard in Resources */,
+				69AD48AC1560560C009976B8 /* iPad.storyboard in Resources */,
+				69AD48E0156056FC009976B8 /* oitWPExport.xml in Resources */,
+				69AD48E1156056FC009976B8 /* oitHTMLStyles.html in Resources */,
+				69AD48E2156056FC009976B8 /* NextImage.plist in Resources */,
+				69AD48E3156056FC009976B8 /* CategoryDictionary.plist in Resources */,
+				69AD48E4156056FC009976B8 /* bios.txt in Resources */,
+				69AD491815605805009976B8 /* information-icon.png in Resources */,
+				69AD491915605805009976B8 /* mbecci.jpg in Resources */,
+				69AD491A15605805009976B8 /* jcbecci.jpg in Resources */,
+				69AD491B15605805009976B8 /* italy-map-icon20.gif in Resources */,
+				69AD491C15605805009976B8 /* OITLaunchButtonBackground.png in Resources */,
+				69AD491D15605805009976B8 /* Lemons.png in Resources */,
+				69AD491E15605805009976B8 /* ouritaliantable-original-crop.jpg in Resources */,
+				69AD491F15605805009976B8 /* oitIconiPad-72x72.png in Resources */,
+				69AD492015605805009976B8 /* Default-Landscape~ipad.png in Resources */,
+				69AD492115605805009976B8 /* Default-Portrait~ipad.png in Resources */,
+				69AD492215605805009976B8 /* Placeholder.png in Resources */,
+				69AD49421560877F009976B8 /* The whole Drago family.jpg in Resources */,
+				69AD49431560877F009976B8 /* Popop and Joey.jpg in Resources */,
+				69AD49441560877F009976B8 /* Momom and Popop with Joey.jpg in Resources */,
+				69AD49451560877F009976B8 /* Mom and Dad Honeymoon.jpg in Resources */,
+				69AD49461560877F009976B8 /* Mom's wedding dress.jpg in Resources */,
+				69AD49471560877F009976B8 /* Little Joey and Michele.jpg in Resources */,
+				69AD49481560877F009976B8 /* In the snow.jpg in Resources */,
+				69AD49491560877F009976B8 /* Baby Joe and Michele.jpg in Resources */,
+				69AD494B1560877F009976B8 /* Young mom.jpg in Resources */,
+				69AD494C1560877F009976B8 /* Popop, Dad and Joey.jpg in Resources */,
+				69AD494D1560877F009976B8 /* Dragos.jpg in Resources */,
+				69AD494E1560877F009976B8 /* Baby Joey.jpg in Resources */,
+				69AD494F1560877F009976B8 /* Lenny and Annie.jpg in Resources */,
+				69AD49501560877F009976B8 /* Mom, Dad and Annie with the cake.JPG in Resources */,
+				69AD49511560877F009976B8 /* After the wedding.JPG in Resources */,
+				69AD49521560877F009976B8 /* Aunt Mary, Joey and Michele.JPG in Resources */,
+				69AD49531560877F009976B8 /* Aunt Mary.JPG in Resources */,
+				69AD495C15622719009976B8 /* Dad and Joey.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +395,21 @@
 			files = (
 				69AD489B156054C9009976B8 /* main.m in Sources */,
 				69AD489F156054C9009976B8 /* oitPostsAppDelegate.m in Sources */,
+				69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */,
+				69AD48CD156056A9009976B8 /* OITBrain.m in Sources */,
+				69AD48CE156056A9009976B8 /* ParseXML.m in Sources */,
+				69AD48CF156056A9009976B8 /* ParseOperation.m in Sources */,
+				69AD48D0156056A9009976B8 /* aboutViewController.m in Sources */,
+				69AD48D1156056A9009976B8 /* PhotoScroller.m in Sources */,
+				69AD48D3156056A9009976B8 /* TOCViewController.m in Sources */,
+				69AD48D4156056A9009976B8 /* MapNavigationController.m in Sources */,
+				69AD48D5156056A9009976B8 /* MapViewController.m in Sources */,
+				69AD48D6156056A9009976B8 /* MapAnnotation.m in Sources */,
+				69AD48D7156056A9009976B8 /* SplashScreenController.m in Sources */,
+				69AD48D8156056A9009976B8 /* webViewController.m in Sources */,
+				69AD48D9156056A9009976B8 /* PostDetailViewController.m in Sources */,
+				69AD495715622546009976B8 /* PostRecord.m in Sources */,
+				69AD495A156226CF009976B8 /* PostsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +515,7 @@
 				69AD48A4156054C9009976B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
