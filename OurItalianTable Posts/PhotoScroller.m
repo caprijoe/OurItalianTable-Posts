@@ -10,12 +10,7 @@
 
 @interface PhotoScroller () 
 @property (nonatomic, strong) NSArray *imagePaths;              // holds photos loaded from PLIST
-@property (nonatomic, strong) NSMutableArray *pageImages;       // holds images load from disk
 @property (nonatomic, strong) NSMutableArray *pageViews;        // holds created views (only those visible)
-
-- (void)loadVisiblePages;
-- (void)loadPage:(NSInteger)page;
-- (void)purgePage:(NSInteger)page;
 @end
 
 @implementation PhotoScroller
@@ -23,7 +18,6 @@
 @synthesize scrollView = _scrollView;
 @synthesize pageControl = _pageControl;
 @synthesize photoName = _photoName;
-@synthesize pageImages = _pageImages;
 @synthesize pageViews = _pageViews;
 @synthesize imagePaths = _imagePaths;
 @synthesize toolbar = _toolbar;
@@ -49,59 +43,30 @@
     
     // Update the page control
     self.pageControl.currentPage = page;
-        
-    // Work out which pages we want to load
-    NSInteger firstPage = page - 1;
-    NSInteger lastPage = page + 1;
     
-    // Purge anything before the first page
-    for (NSInteger i=0; i<firstPage; i++) {
-        [self purgePage:i];
-    }
-    for (NSInteger i=firstPage; i<=lastPage; i++) {
-        [self loadPage:i];
-    }
-    for (NSInteger i=lastPage+1; i<self.pageImages.count; i++) {
-        [self purgePage:i];
-    }
+    // Update photo name
+    self.photoName.text = [[self.imagePaths objectAtIndex:page] stringByDeletingPathExtension];
+
 }
 
-- (void)loadPage:(NSInteger)page {
+- (void)loadPage:(NSInteger)page
+        withPath:(NSString *)path {
+/*    
     if (page < 0 || page >= self.pageImages.count) {
         // If it's outside the range of what we have to display, then do nothing
         return;
-    }
+    } */
     
     // Load an individual page, first seeing if we've already loaded it
-    UIView *pageView = [self.pageViews objectAtIndex:page];
-    if ((NSNull*)pageView == [NSNull null]) {
-        CGRect frame = self.scrollView.bounds;
-        frame.origin.x = frame.size.width * page;
-        frame.origin.y = 0.0f;
-        
-        UIImageView *newPageView = [[UIImageView alloc] initWithImage:[self.pageImages objectAtIndex:page]];
-        newPageView.contentMode = UIViewContentModeScaleAspectFit;
-        newPageView.frame = frame;
-        [self.scrollView addSubview:newPageView];
-        [self.pageViews replaceObjectAtIndex:page withObject:newPageView];
-    }
+    CGRect frame = self.scrollView.bounds;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0.0f;
     
-    // update photo name
-    self.photoName.text = [[self.imagePaths objectAtIndex:page] stringByDeletingPathExtension];
-}
-
-- (void)purgePage:(NSInteger)page {
-    if (page < 0 || page >= self.pageImages.count) {
-        // If it's outside the range of what we have to display, then do nothing
-        return;
-    }
-    
-    // Remove a page from the scroll view and reset the container array
-    UIView *pageView = [self.pageViews objectAtIndex:page];
-    if ((NSNull*)pageView != [NSNull null]) {
-        [pageView removeFromSuperview];
-        [self.pageViews replaceObjectAtIndex:page withObject:[NSNull null]];
-    }
+    UIImageView *newPageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:path]];
+    newPageView.contentMode = UIViewContentModeScaleAspectFit;
+    newPageView.frame = frame;
+    [self.scrollView addSubview:newPageView];
+    [self.pageViews addObject:newPageView];
 }
 
 #pragma mark - View lifecycle
@@ -117,23 +82,17 @@
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     self.imagePaths = [NSArray arrayWithArray:[dict objectForKey:@"Root"]];
     
-    // Set up the image we want to scroll & zoom and add it to the scroll view
-    self.pageImages = [[NSMutableArray alloc] init];
-    
-    for (int i=0; i<self.imagePaths.count;i++) {
-        [self.pageImages addObject:[UIImage imageNamed:[self.imagePaths objectAtIndex:i]]];
-    }
-    
-    NSInteger pageCount = self.pageImages.count;
+    // load number of pages
+    NSInteger pageCount = self.imagePaths.count;
     
     // Set up the page control
     self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = self.pageImages.count;
+    self.pageControl.numberOfPages = self.imagePaths.count;
     
-    // Set up the array to hold the views for each page
+    // Set up the array with views for each page
     self.pageViews = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < pageCount; ++i) {
-        [self.pageViews addObject:[NSNull null]];
+        [self loadPage:i withPath:[self.imagePaths objectAtIndex:i]];
     }
 }
 
@@ -142,7 +101,7 @@
     
     // Set up the content size of the scroll view
     CGSize pagesScrollViewSize = self.scrollView.frame.size;
-    self.scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * self.pageImages.count, pagesScrollViewSize.height);
+    self.scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * self.imagePaths.count, pagesScrollViewSize.height);
     
     // Load the initial set of pages that are on screen
     [self loadVisiblePages];
@@ -154,7 +113,6 @@
     
     self.scrollView = nil;
     self.pageControl = nil;
-    self.pageImages = nil;
     self.pageViews = nil;
 }
 
