@@ -57,7 +57,6 @@
     // Present "2D tag cloud"
     UIFont *font = self.datePublished.font;
     CGFloat maxX = self.tagsView.bounds.size.width;
-//    CGFloat maxY = self.tagsView.bounds.size.height;
     CGFloat x = 0;
     CGFloat y = 0;
     CGFloat buttonHeight = 30;
