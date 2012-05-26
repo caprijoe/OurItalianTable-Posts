@@ -225,9 +225,6 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="DNG-Wr-sV2" kind="replace" identifier="Push Web View" splitViewControllerTargetIndex="1" id="WDe-9L-aTF"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -250,6 +247,7 @@
                     <connections>
                         <outlet property="searchDisplayController" destination="0Mr-ch-lkv" id="Ih1-BJ-dB6"/>
                         <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="ai6-RC-oW0"/>
+                        <segue destination="DNG-Wr-sV2" kind="replace" identifier="Push Web View" splitViewControllerTargetIndex="1" id="Z7d-sq-HTK"/>
                     </connections>
                 </tableViewController>
                 <searchDisplayController id="0Mr-ch-lkv">
