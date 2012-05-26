@@ -23,6 +23,13 @@
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 @synthesize myBrain = _myBrain;
 
+#pragma mark Private methods
+
+-(void)resetDetailPanel {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [self performSegueWithIdentifier:@"Reset Splash View" sender:self];        
+}
+
 #pragma mark - View lifecycle support
 
 -(void)awakeFromNib {
@@ -51,6 +58,10 @@
     self.navigationItem.titleView = OITTitleView;
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [self resetDetailPanel];
+}
+
 - (void)viewDidUnload {
     [self setFoodButtonOutlet:nil];
     [super viewDidUnload];
@@ -64,11 +75,13 @@
         [segue.destinationViewController setCategory:FOOD_CATEGORY];
         [segue.destinationViewController setFavs:NO];
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
+        [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Wine"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:WINE_CATEGORY];
         [segue.destinationViewController setFavs:NO];
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
+        [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Travel"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
@@ -76,6 +89,7 @@
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setFavs:YES];
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
+        [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Family"]) {
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
     }
