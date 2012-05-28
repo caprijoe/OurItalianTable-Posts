@@ -12,6 +12,7 @@
 
 // outlets
 @property (nonatomic, weak) IBOutlet UITextView *txtDisplay;    // box for displaying about text
+@property (weak, nonatomic) IBOutlet UILabel *versionBuildDisplay;
 
 // actions
 - (IBAction)doneButton:(id)sender;
