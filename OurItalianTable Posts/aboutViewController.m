@@ -24,7 +24,6 @@
     return [NSString stringWithFormat:@"v%@ (build %@)", version, build];
 }
 
-
 #pragma mark - View lifecycle support
 
 -(void)viewDidLoad {
