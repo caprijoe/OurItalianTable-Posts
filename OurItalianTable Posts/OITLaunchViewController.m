@@ -58,8 +58,13 @@
     self.navigationItem.titleView = OITTitleView;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+       self.navigationController.toolbarHidden = YES; 
+}
+
 -(void)viewDidAppear:(BOOL)animated {
     [self resetDetailPanel];
+    
 }
 
 - (void)viewDidUnload {
