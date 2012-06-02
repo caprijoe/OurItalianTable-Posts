@@ -3,7 +3,7 @@
 //  oitPosts
 //
 //  Created by Joseph Becci on 4/27/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
 #import "TOCViewController.h"
@@ -24,6 +24,22 @@
 @synthesize delegate = _delegate;
 @synthesize categorySegmentedController = _categorySegmentedController;
 @synthesize detailPicker = _detailPicker;
+
+#pragma mark Private methods
+
+-(void)resetPickerWhenSegmentSelected {
+    
+    // load pickedCategory based on selectedSegmentIndex
+    self.pickedCategory = [self fixCategory:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]];    
+    
+    // set initial position of picker wheel to row 1 and load into pickedDetail variable
+    [self.detailPicker selectRow:0 inComponent:0 animated:NO];
+    self.pickedDetail = [self fixCategory:[[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:0]];
+    
+    // reload picker
+    [self.detailPicker reloadAllComponents];
+}
+
 
 #pragma mark -
 #pragma view lifecycle support
@@ -49,14 +65,7 @@
 
     // initialize segmented control to first item and load into category variable
     self.categorySegmentedController.selectedSegmentIndex = 0;
-    self.pickedCategory = [self fixCategory:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]];    
-
-    // set initial position of picker wheel to row 1 and load into detailed variable
-    [self.detailPicker selectRow:1 inComponent:0 animated:NO];
-    self.pickedDetail = [self fixCategory:[[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:0]];
-    
-    // reload picker
-    [self.detailPicker reloadAllComponents];
+    [self resetPickerWhenSegmentSelected];
 
 }
 
@@ -82,7 +91,6 @@
     else  
         return YES;
 }
-
 
 #pragma mark - 
 #pragma mark UIPicker methods
@@ -127,7 +135,7 @@
 #pragma IBActions
 
 - (IBAction)selectCategorySegment:(id)sender {
-    [self.detailPicker reloadAllComponents];
+    [self resetPickerWhenSegmentSelected];
 }
 
 - (IBAction)goSearch:(id)sender {
