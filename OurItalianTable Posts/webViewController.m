@@ -43,24 +43,33 @@
 }
 
 #pragma mark - Private methods
--(void)eatAttributeWithScannerAndSaveValue:(NSScanner *)withScanner
-                             withAttribute:(NSString *)attributeNamed
-                               depositInto:(NSString **)string
-{
-    NSString *lookingFor = [attributeNamed stringByAppendingString:@"=\""];
-    [withScanner scanUpToString:lookingFor intoString:NULL];
-    [withScanner scanString:lookingFor intoString:NULL];
-    [withScanner scanUpToString:DOUBLE_QUOTE_CHAR intoString:string];
+
+-(NSString *)grabTextFrom:(NSString *)incomingText
+ viaRegularExpression:(NSString *)regexString {
+    
+    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:nil];
+    NSTextCheckingResult *result = [regex firstMatchInString:incomingText options:NSRegularExpressionCaseInsensitive range:NSMakeRange(0, [incomingText length])];
+    return [incomingText substringWithRange:result.range];
 }
 
--(NSString *)eatTagWithScannerAndReturn:(NSScanner *)withScanner
-                        withTag:(NSString *)tag
-{
-    [withScanner scanUpToString:[@"<" stringByAppendingString:tag] intoString:NULL];
-    [withScanner scanUpToString:@"/>" intoString:&tag];
-    [withScanner scanString:@">" intoString:NULL];
-    return [tag stringByAppendingString:@"/>"];
+-(NSString *)modifyCaptionBlock:(NSString *)originalCaptionBlock {
+    
+    NSString *alignmentAttributeText;                                                   // location for storing "align=" value
+    NSString *widthAttributeText;                                                       // location for storing "width=" value
+    NSString *captionAttributeText;                                                     // location for storing "caption=" value
+    NSString *captionText;                                                              // location for storing -></a>text[/caption]
+    NSString *imageTag;                                                                 // location for storing "<img ... />" tag
+    
+    imageTag = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"<img[^>]*>"];
+    alignmentAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= align=\").*?(?=\")"];
+    widthAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= width=\").*?(?=\")"];
+    captionAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= caption=\").*?(?=\")"];
+    captionText =[self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
+    
+    
+    return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, captionAttributeText,imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
 }
+
 
 #pragma mark - View lifecycle support
 - (void)viewDidLoad
@@ -90,28 +99,22 @@
     NSScanner *captionScanner = [NSScanner scannerWithString:edittedHTMLstring];
     NSString *accumulatedHTML = [[NSString alloc] init];                            // location for building new html with replaced [catpion] structure
     NSString *foundString;                                                          // location for text between "[caption]" blocks
-    NSString *alignment;                                                            // location for storing "align=" value
-    NSString *captionWidth;                                                         // location for storing "width=" value
-    NSString *captionText;                                                          // location for storing "caption=" value
-    NSString *imageTag;                                                             // location for storing "<img ... />" tag
+    NSString *captionBlock;
     
     [captionScanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@""]];
     
     [captionScanner scanUpToString:@"[caption" intoString:&accumulatedHTML];
     while(![captionScanner isAtEnd]) {
-        if([captionScanner scanString:@"[caption" intoString:NULL]) 
-            [self eatAttributeWithScannerAndSaveValue:captionScanner withAttribute:@"align" depositInto:&alignment];
-        [self eatAttributeWithScannerAndSaveValue:captionScanner withAttribute:@"width" depositInto:&captionWidth];
-        [self eatAttributeWithScannerAndSaveValue:captionScanner withAttribute:@"caption" depositInto:&captionText];
-        imageTag = [self eatTagWithScannerAndReturn:captionScanner withTag:@"img"];
-        
-        [captionScanner scanUpToString:@"[/caption]" intoString:NULL];
+
+        [captionScanner scanUpToString:@"[/caption]" intoString:&captionBlock];        
         [captionScanner scanString:@"[/caption]" intoString:NULL];
+        captionBlock = [captionBlock stringByAppendingString:@"[/caption]"];
         
-        accumulatedHTML = [accumulatedHTML stringByAppendingFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignment, captionWidth,imageTag,captionText];
+        accumulatedHTML = [accumulatedHTML stringByAppendingString:[self modifyCaptionBlock:captionBlock]];
         
         [captionScanner scanUpToString:@"[caption" intoString:&foundString];
         accumulatedHTML = [accumulatedHTML stringByAppendingString:foundString];
+        
     }
     
     // img tag width and height if picture too big (usually for iPhone)
