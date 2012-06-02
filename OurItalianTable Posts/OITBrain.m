@@ -42,11 +42,18 @@
 #pragma mark -
 #pragma mark Search methods
 
--(NSArray *)withTags:(NSString *)tag 
-      withCategories:(NSString *)category {
+-(NSMutableArray *)isFavs:(BOOL)fav
+                 withTags:(NSString *)tag
+           withCategories:(NSString *)category {
+    
+    NSEnumerator *postRecordReverseObjectEnumerator;
     
     // create reverse enumerator for FOR statement
-    NSEnumerator *postRecordReverseObjectEnumerator = [self.brainEntries reverseObjectEnumerator];
+    if (!fav) {
+        postRecordReverseObjectEnumerator = [self.brainEntries reverseObjectEnumerator];
+    } else {
+        postRecordReverseObjectEnumerator = [[self getFavorites] reverseObjectEnumerator];
+    }
     
     // create target
     NSMutableArray *filtered = [[NSMutableArray alloc] init];

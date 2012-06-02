@@ -16,8 +16,9 @@
 // always returns posts in descending order
 
 // returns NSArray of posts matching the tag and category; tag or category = nil means all
--(NSMutableArray *)withTags:(NSString *)tag
-      withCategories:(NSString *)category;
+-(NSMutableArray *)isFavs:(BOOL)fav
+                 withTags:(NSString *)tag
+           withCategories:(NSString *)category;
 
 // returns NSArray for scope of search with searchText
 -(NSMutableArray *)searchScope:(NSString *)scope           // scope must be "All" | "Title" | "Article" | "Tags"
