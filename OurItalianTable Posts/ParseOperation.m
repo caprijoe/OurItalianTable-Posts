@@ -91,7 +91,7 @@
 
 
 #pragma mark -
-#pragma mark RSS processing
+#pragma mark XML processing
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
                                         namespaceURI:(NSString *)namespaceURI
