@@ -36,19 +36,50 @@
 @synthesize favs = _favs;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 
+#pragma mark Private methods
+
+-(void)updateContext:(NSString *)topLevel
+          withDetail:(NSString *)detail {
+    
+    NSString *context = [NSString alloc];
+    
+    if (self.favs)
+        topLevel = @"favorites";
+    
+    if (!detail)
+        context = topLevel;
+    else 
+        context = [NSString stringWithFormat:@"%@ > %@",topLevel, detail];
+    
+    NSArray *toolbarItems = [NSArray arrayWithObjects:
+                             [[UIBarButtonItem alloc] initWithTitle:context style:UIBarButtonItemStylePlain target:self action:nil],
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil], 
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(resetToAllEntries:)], nil];
+    self.toolbarItems  = toolbarItems;
+    self.navigationController.toolbarHidden = NO;    
+}
+
+-(void)resetToAllEntries:(id)sender {
+    [self viewDidLoad];
+    [self.tableView reloadData];
+}
+
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.inSearchFlag = NO;
     
-    if (self.favs)
-        self.entries = [self.myBrain getFavorites];
-    else
-        self.entries = [self.myBrain withTags:nil withCategories:self.category];
+    self.entries = [self.myBrain isFavs:self.favs withTags:nil withCategories:self.category];
 
+    if (self.favs) {
+        [self updateContext:@"favorites" withDetail:nil];
+    }
+    else {
+        [self updateContext:self.category withDetail:nil];
+    }
     
     self.tableView.rowHeight = CUSTOM_ROW_HIEGHT;
     
@@ -142,7 +173,8 @@
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
 
     NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
-    self.filteredListContent = [self.myBrain searchScope:scope withString:searchString withCategory:self.category];
+    self.filteredListContent = [self.myBrain searchScope:scope withString:searchString isFavs:self.favs withCategory:self.category];
+    [self updateContext:self.category withDetail:searchString];
     
     return YES;
 }
@@ -150,7 +182,7 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
     
     NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
-    self.filteredListContent = [self.myBrain searchScope:scope withString:[self.searchDisplayController.searchBar text] withCategory:self.category];
+    self.filteredListContent = [self.myBrain searchScope:scope withString:[self.searchDisplayController.searchBar text] isFavs:self.favs withCategory:self.category];
     
     return YES;
 }
@@ -170,7 +202,8 @@
 -(void)webViewController:(WebViewController *)sender chosetag:(id)tag
 {
     // reset memory array with only items that match tag selected in details pop up
-    [self setEntries:[self.myBrain withTags:tag withCategories:self.category]];
+    [self setEntries:[self.myBrain isFavs:self.favs withTags:tag withCategories:self.category]];
+    [self updateContext:self.category withDetail:tag];
      
     // force the root controller on screen (should not be on screen now because last selection was detailed popover)
     // suppress ARC warning about memory leak - not an issue
@@ -191,14 +224,15 @@
 }
 
 -(void)TOCViewController:(TOCViewController *)sender
-          categoryPicked:(NSString *)category
+          categoryPicked:(NSString *)masterCategory
     detailCategoryPicked:(NSString *)detailCategory; 
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [[(UIStoryboardPopoverSegue*)self.categoryPickerSegue popoverController] dismissPopoverAnimated:YES];
     else    
         [self.categoryPickerSegue.destinationViewController dismissModalViewControllerAnimated:YES];
-    self.entries = [self.myBrain withTags:nil withCategories:detailCategory];
+    self.entries = [self.myBrain isFavs:self.favs withTags:nil withCategories:detailCategory];
+    [self updateContext:self.category withDetail:detailCategory];
     [self.tableView reloadData];
 }
 
