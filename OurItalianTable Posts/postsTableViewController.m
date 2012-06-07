@@ -72,7 +72,7 @@
     
     self.inSearchFlag = NO;
     
-    self.entries = [self.myBrain isFavs:self.favs withTags:nil withCategories:self.category];
+    self.entries = [self.myBrain isFav:self.favs withTag:nil withCategory:self.category];
 
     if (self.favs) {
         [self updateContext:@"favorites" withDetail:nil];
@@ -202,7 +202,7 @@
 -(void)webViewController:(WebViewController *)sender chosetag:(id)tag
 {
     // reset memory array with only items that match tag selected in details pop up
-    [self setEntries:[self.myBrain isFavs:self.favs withTags:tag withCategories:self.category]];
+    [self setEntries:[self.myBrain isFav:self.favs withTag:tag withCategory:self.category]];
     [self updateContext:self.category withDetail:tag];
      
     // force the root controller on screen (should not be on screen now because last selection was detailed popover)
@@ -231,7 +231,7 @@
         [[(UIStoryboardPopoverSegue*)self.categoryPickerSegue popoverController] dismissPopoverAnimated:YES];
     else    
         [self.categoryPickerSegue.destinationViewController dismissModalViewControllerAnimated:YES];
-    self.entries = [self.myBrain isFavs:self.favs withTags:nil withCategories:detailCategory];
+    self.entries = [self.myBrain isFav:self.favs withTag:nil withCategory:detailCategory];
     [self updateContext:self.category withDetail:detailCategory];
     [self.tableView reloadData];
 }

@@ -42,9 +42,9 @@
 #pragma mark -
 #pragma mark Search methods
 
--(NSMutableArray *)isFavs:(BOOL)fav
-                 withTags:(NSString *)tag
-           withCategories:(NSString *)category {
+-(NSMutableArray *)isFav:(BOOL)fav
+                 withTag:(NSString *)tag
+           withCategory:(NSString *)category {
     
     NSEnumerator *postRecordReverseObjectEnumerator;
     
@@ -91,7 +91,7 @@
            withCategory:(NSString *)category {
     
     // set objectEmumerator from private methods
-    NSEnumerator *objectEnumerator = [[self isFavs:fav withTags:nil withCategories:category] reverseObjectEnumerator];
+    NSEnumerator *objectEnumerator = [[self isFav:fav withTag:nil withCategory:category] reverseObjectEnumerator];
 
     // create target
     NSMutableArray *filtered = [[NSMutableArray alloc] init]; 

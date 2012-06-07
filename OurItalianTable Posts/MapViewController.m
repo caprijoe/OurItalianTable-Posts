@@ -52,7 +52,7 @@
     self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid    
     self.mapView.delegate = self;
     self.webRecord = [[PostRecord alloc] init];
-    self.entries = [self.myBrain isFavs:NO withTags:nil withCategories:@"wanderings"];
+    self.entries = [self.myBrain isFav:NO withTag:nil withCategory:@"wanderings"];
     self.annotations = [[NSMutableArray alloc] init];
     for (PostRecord *entry in self.entries)
     {
