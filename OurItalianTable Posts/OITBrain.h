@@ -23,6 +23,7 @@
 // returns NSArray for scope of search with searchText
 -(NSMutableArray *)searchScope:(NSString *)scope           // scope must be "All" | "Title" | "Article" | "Tags"
                     withString:(NSString *)searchText
+                        isFavs:(BOOL)fav
                   withCategory:(NSString *)category;
 
 // returns favorites list

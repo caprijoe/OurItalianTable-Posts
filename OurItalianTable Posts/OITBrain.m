@@ -87,43 +87,42 @@
 
 -(NSArray *)searchScope:(NSString *)scope 
              withString:(NSString *)searchText
+                 isFavs:(BOOL)fav
            withCategory:(NSString *)category {
     
-    // create reverse enumerator for FOR statement
-    NSEnumerator *postRecordReverseObjectEnumerator = [self.brainEntries reverseObjectEnumerator];
-    
+    // set objectEmumerator from private methods
+    NSEnumerator *objectEnumerator = [[self isFavs:fav withTags:nil withCategories:category] reverseObjectEnumerator];
+
     // create target
     NSMutableArray *filtered = [[NSMutableArray alloc] init]; 
     
     // create predicates
     NSPredicate *tagPredicate = [NSPredicate predicateWithFormat:@"SELF == %@", searchText];
-    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"SELF == %@", category];
     NSPredicate *allPredicate = [NSPredicate predicateWithFormat:@"SELF == %@", searchText];
     
     // loop thru parsed entries in reserve
-    for (PostRecord *postRecord in postRecordReverseObjectEnumerator)
-    {
-        if ([[postRecord.postCategories filteredArrayUsingPredicate:categoryPredicate] count]) {
-            if ([scope isEqualToString:@"Title"]) {         // if "Title" button clicked, search postName only
-                NSRange searchResult = [postRecord.postName rangeOfString:searchText options:NSCaseInsensitiveSearch];
-                if (searchResult.location != NSNotFound) 
-                    [filtered addObject:postRecord];
-            } else if ([scope isEqualToString:@"Article"]) {// if "Article" button clicked, search entire HTML
-                NSRange searchResult = [postRecord.postHTML rangeOfString:searchText options:NSCaseInsensitiveSearch];
-                if (searchResult.location != NSNotFound) 
-                    [filtered addObject:postRecord]; 
-            } else if ([scope isEqualToString:@"Tags"]) {   // if "Tags" button clicked, search just tags
-                NSArray *results = [postRecord.postTags filteredArrayUsingPredicate:tagPredicate];
-                if (results.count !=0 )
-                    [filtered addObject:postRecord]; 
-            } else if ([scope isEqualToString:@"All"]) {    // if "All" clicked, search postName, HTML and tags
-                NSRange searchResult1 = [postRecord.postName rangeOfString:searchText options:NSCaseInsensitiveSearch];
-                NSRange searchResult2 = [postRecord.postHTML rangeOfString:searchText options:NSCaseInsensitiveSearch];
-                NSArray *results = [postRecord.postTags filteredArrayUsingPredicate:allPredicate];
-                if ((searchResult1.location != NSNotFound) || (searchResult2.location != NSNotFound) || (results.count != 0))
-                    [filtered addObject:postRecord];
-            }
+    for (PostRecord *postRecord in objectEnumerator)
+    {        
+        if ([scope isEqualToString:@"Title"]) {         // if "Title" button clicked, search postName only
+            NSRange searchResult = [postRecord.postName rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (searchResult.location != NSNotFound) 
+                [filtered addObject:postRecord];
+        } else if ([scope isEqualToString:@"Article"]) {// if "Article" button clicked, search entire HTML
+            NSRange searchResult = [postRecord.postHTML rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (searchResult.location != NSNotFound) 
+                [filtered addObject:postRecord]; 
+        } else if ([scope isEqualToString:@"Tags"]) {   // if "Tags" button clicked, search just tags
+            NSArray *results = [postRecord.postTags filteredArrayUsingPredicate:tagPredicate];
+            if (results.count !=0 )
+                [filtered addObject:postRecord]; 
+        } else if ([scope isEqualToString:@"All"]) {    // if "All" clicked, search postName, HTML and tags
+            NSRange searchResult1 = [postRecord.postName rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            NSRange searchResult2 = [postRecord.postHTML rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            NSArray *results = [postRecord.postTags filteredArrayUsingPredicate:allPredicate];
+            if ((searchResult1.location != NSNotFound) || (searchResult2.location != NSNotFound) || (results.count != 0))
+                [filtered addObject:postRecord];
         }
+        
     }
     return filtered;
 }
