@@ -61,6 +61,7 @@
 
 -(void)resetToAllEntries:(id)sender {
     [self viewDidLoad];
+    [self.searchDisplayController setActive:NO animated:YES];
     [self.tableView reloadData];
 }
 
@@ -198,6 +199,7 @@
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [self resetToAllEntries:self];
 }
+
 
 #pragma mark -
 #pragma mark Delegate responders
