@@ -57,8 +57,7 @@
     }
     
     // create target
-    NSMutableArray *filtered = [[NSMutableArray alloc] init];
-    
+    NSMutableArray *filtered = [[NSMutableArray alloc] init];    
     
     if ((!tag) && (!category)) {    // if tag AND category are nil   
         for (PostRecord *postReocrd in postRecordReverseObjectEnumerator) 
@@ -83,7 +82,17 @@
                 [filtered addObject:postRecord];
         }  
     }
-    return filtered;
+    
+    if (!detailCategory)
+        return filtered;
+    else {
+        NSMutableArray *filtered2 = [[NSMutableArray alloc] init];
+        for (PostRecord *postRecord in filtered) {
+            if ([postRecord.postCategories containsObject:detailCategory])
+                [filtered2 addObject:postRecord];
+        }
+        return filtered2;
+    }
 }
 
 -(NSArray *)searchScope:(NSString *)scope 
