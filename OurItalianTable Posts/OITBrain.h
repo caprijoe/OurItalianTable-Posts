@@ -18,7 +18,8 @@
 // returns NSArray of posts matching the tag and category; tag or category = nil means all
 -(NSMutableArray *)isFav:(BOOL)fav
                  withTag:(NSString *)tag
-           withCategory:(NSString *)category;
+            withCategory:(NSString *)category
+      withDetailCategory:(NSString*)detailCategory;
 
 // returns NSArray for scope of search with searchText
 -(NSMutableArray *)searchScope:(NSString *)scope           // scope must be "All" | "Title" | "Article" | "Tags"

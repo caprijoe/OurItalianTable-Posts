@@ -44,7 +44,8 @@
 
 -(NSMutableArray *)isFav:(BOOL)fav
                  withTag:(NSString *)tag
-           withCategory:(NSString *)category {
+            withCategory:(NSString *)category
+      withDetailCategory:(NSString *)detailCategory {
     
     NSEnumerator *postRecordReverseObjectEnumerator;
     
@@ -91,7 +92,7 @@
            withCategory:(NSString *)category {
     
     // set objectEmumerator from private methods
-    NSEnumerator *objectEnumerator = [[self isFav:fav withTag:nil withCategory:category] reverseObjectEnumerator];
+    NSEnumerator *objectEnumerator = [[self isFav:fav withTag:nil withCategory:category withDetailCategory:nil] reverseObjectEnumerator];
 
     // create target
     NSMutableArray *filtered = [[NSMutableArray alloc] init]; 
