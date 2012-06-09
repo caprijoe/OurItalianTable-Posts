@@ -85,7 +85,6 @@
      self.clicked = button.tag;
      id tag = [self.postDetail.postTags objectAtIndex:button.tag];
      [self.delegate postsDetailViewController:self choseTag:tag];
-
 }
 
 - (void)viewDidUnload
