@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIView *tagsView;
 
 // Actions
-- (IBAction)closeButton:(id)sender;
+- (IBAction)doneButton:(id)sender;
 
 
 @end

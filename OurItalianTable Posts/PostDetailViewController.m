@@ -103,7 +103,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)closeButton:(id)sender {
+- (IBAction)doneButton:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
 @end
