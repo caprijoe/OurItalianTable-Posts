@@ -3,7 +3,7 @@
 //  oitPosts
 //
 //  Created by Joseph Becci on 1/7/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 OurItalianTable. All rights reserved.
 //
 
 #import "PostsTableViewController.h"
@@ -133,6 +133,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        cell.textLabel.numberOfLines = 0;
     }
 	
     // Configure cell
@@ -149,7 +151,7 @@
     }
     
     cell.textLabel.text = postRecord.postName;
-    
+
     [self.myBrain populateIcon:postRecord forCell:cell forTableView:tableView forIndexPath:indexPath];
     return cell;   
 } 
@@ -170,6 +172,10 @@
 
 #pragma mark -
 #pragma mark - UISearchDelegate
+
+-(void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
+    tableView.rowHeight = CUSTOM_ROW_HIEGHT;
+}
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
 
