@@ -105,6 +105,6 @@
 }
 
 - (IBAction)closeButton:(id)sender {
-    [self.delegate postsDetailViewController:self choseTag:Nil];
+    [self dismissModalViewControllerAnimated:YES];
 }
 @end
