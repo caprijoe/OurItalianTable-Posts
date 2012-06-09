@@ -101,7 +101,7 @@
            withCategory:(NSString *)category {
     
     // set objectEmumerator from private methods
-    NSEnumerator *objectEnumerator = [[self isFav:fav withTag:nil withCategory:category withDetailCategory:nil] reverseObjectEnumerator];
+    NSEnumerator *objectEnumerator = [[self isFav:fav withTag:nil withCategory:category withDetailCategory:nil] objectEnumerator];
 
     // create target
     NSMutableArray *filtered = [[NSMutableArray alloc] init]; 
