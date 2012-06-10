@@ -51,8 +51,13 @@
     else 
         context = [NSString stringWithFormat:@"%@ > %@",topLevel, detail];
     
+    UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,250,15)];
+    customLabel.text = context;
+    customLabel.backgroundColor =  [UIColor clearColor];
+    customLabel.font = [UIFont systemFontOfSize:14.0];
+    
     NSArray *toolbarItems = [NSArray arrayWithObjects:
-                             [[UIBarButtonItem alloc] initWithTitle:context style:UIBarButtonItemStylePlain target:self action:nil],
+                             [[UIBarButtonItem alloc] initWithCustomView:customLabel],
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil], 
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(resetToAllEntries:)], nil];
     self.toolbarItems  = toolbarItems;
@@ -62,6 +67,8 @@
 -(void)resetToAllEntries:(id)sender {
     [self viewDidLoad];
     [self.searchDisplayController setActive:NO animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
     [self.tableView reloadData];
 }
 
