@@ -65,11 +65,42 @@
     widthAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= width=\").*?(?=\")"];
     captionAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= caption=\").*?(?=\")"];
     captionText =[self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
-    
-    
+        
     return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, captionAttributeText,imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
 }
 
+-(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
+    return [incomingText stringByReplacingOccurrencesOfString:@"\x0D\x0A\x0D\x0A" withString:@"<p>\x0D\x0A"];
+}
+
+-(NSString *)modifyAllCaptionBlocks:(NSString *)incomingText {
+    // captionScanner - edit the caption to true <div> structures; change WP to div. see example below
+    
+    /* [caption id="attachment_156" align="alignleft" width="300" caption="Zuppa Gallurese"]<a href="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" /></a>[/caption] */
+    
+    /* <div class="alignleft" style="width:300 px;font-size:80%;text-align:center;"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" />Zuppa Gallurese</div> */
+    
+    NSScanner *captionScanner = [NSScanner scannerWithString:incomingText];
+    NSString *accumulatedHTML = [[NSString alloc] init];                            // location for building new html with replaced [catpion] structure
+    NSString *foundString;                                                          // location for text between "[caption]" blocks
+    NSString *captionBlock;
+    
+    [captionScanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@""]];
+    
+    [captionScanner scanUpToString:@"[caption" intoString:&accumulatedHTML];
+    while(![captionScanner isAtEnd]) {
+        
+        [captionScanner scanUpToString:@"[/caption]" intoString:&captionBlock];        
+        [captionScanner scanString:@"[/caption]" intoString:NULL];
+        captionBlock = [captionBlock stringByAppendingString:@"[/caption]"];
+        
+        accumulatedHTML = [accumulatedHTML stringByAppendingString:[self modifyCaptionBlock:captionBlock]];
+        
+        [captionScanner scanUpToString:@"[caption" intoString:&foundString];
+        accumulatedHTML = [accumulatedHTML stringByAppendingString:foundString];        
+    }
+    return accumulatedHTML;
+}
 
 #pragma mark - View lifecycle support
 - (void)viewDidLoad
@@ -86,36 +117,8 @@
     
     // self button for detail splitViewController when in portrait
     [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
-    
-    // convert two CRLFs to a <p> tag    
-    NSString *edittedHTMLstring = [self.postRecord.postHTML stringByReplacingOccurrencesOfString:@"\x0D\x0A\x0D\x0A" withString:@"<p>\x0D\x0A"];
-    
-    // captionScanner - edit the caption to true <div> structures; change WP to div. see example below
-    
-    /* [caption id="attachment_156" align="alignleft" width="300" caption="Zuppa Gallurese"]<a href="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" /></a>[/caption] */
-    
-    /* <div class="alignleft" style="width:300 px;font-size:80%;text-align:center;"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" />Zuppa Gallurese</div> */
-    
-    NSScanner *captionScanner = [NSScanner scannerWithString:edittedHTMLstring];
-    NSString *accumulatedHTML = [[NSString alloc] init];                            // location for building new html with replaced [catpion] structure
-    NSString *foundString;                                                          // location for text between "[caption]" blocks
-    NSString *captionBlock;
-    
-    [captionScanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@""]];
-    
-    [captionScanner scanUpToString:@"[caption" intoString:&accumulatedHTML];
-    while(![captionScanner isAtEnd]) {
 
-        [captionScanner scanUpToString:@"[/caption]" intoString:&captionBlock];        
-        [captionScanner scanString:@"[/caption]" intoString:NULL];
-        captionBlock = [captionBlock stringByAppendingString:@"[/caption]"];
-        
-        accumulatedHTML = [accumulatedHTML stringByAppendingString:[self modifyCaptionBlock:captionBlock]];
-        
-        [captionScanner scanUpToString:@"[caption" intoString:&foundString];
-        accumulatedHTML = [accumulatedHTML stringByAppendingString:foundString];
-        
-    }
+    NSString *accumulatedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]];
     
     // img tag width and height if picture too big (usually for iPhone)
     // <img .... width="300" height="199" .. />
