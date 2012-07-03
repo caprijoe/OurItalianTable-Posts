@@ -21,7 +21,6 @@
 @end
 
 @implementation WebViewController
-@synthesize favoritesButton = _favoritesButton;
 @synthesize webView = _webView;
 @synthesize postRecord = _postRecord;
 @synthesize cssHTMLHeader =_cssHTMLHeader;
@@ -45,6 +44,10 @@
 }
 
 #pragma mark - Private methods
+
+-(void)detailsPressed:(UIButton *) button {
+    [self performSegueWithIdentifier:@"Push Post Detail" sender:self];
+}
 
 -(NSString *)grabTextFrom:(NSString *)incomingText
  viaRegularExpression:(NSString *)regexString {
@@ -109,16 +112,17 @@
 {
     [super viewDidLoad];
     
-    // load if this is a "favorities" post from NSUserDefaults
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
-    if ([favorites containsObject:self.postRecord.postID]) 
-        self.favoritesButton.title = @"Remove from Favorites";
-    else 
-        self.favoritesButton.title = @"Add to Favorities";
-    
     // self button for detail splitViewController when in portrait
     [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
+    
+    // update toolbar with info button
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [infoButton addTarget:self action:@selector(detailsPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+    
+    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+    [toolbarItems replaceObjectAtIndex:0 withObject:barButton];
+    self.toolbar.items = [toolbarItems copy];
 
     NSString *accumulatedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]];
     
@@ -190,7 +194,6 @@
 }
 
 - (void)viewDidUnload {
-    [self setFavoritesButton:nil];
     [super viewDidUnload];
 }
 
@@ -233,10 +236,8 @@
     NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
     if (!favorites) favorites = [NSMutableArray array];
     if ([favorites containsObject:self.postRecord.postID]) {
-        self.favoritesButton.title = @"Add to Favorities";
         [favorites removeObject:self.postRecord.postID];
     } else {
-        self.favoritesButton.title = @"Remove from Favorites";
         [favorites addObject:self.postRecord.postID];
     }
     [defaults setObject:favorites forKey:FAVORITES_KEY];
