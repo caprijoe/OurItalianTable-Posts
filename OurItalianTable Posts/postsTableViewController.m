@@ -53,8 +53,9 @@
     
     UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,250,15)];
     customLabel.text = context;
+    customLabel.textColor = [UIColor whiteColor];
     customLabel.backgroundColor =  [UIColor clearColor];
-    customLabel.font = [UIFont systemFontOfSize:14.0];
+    customLabel.font = [UIFont boldSystemFontOfSize:16.0];
     
     NSArray *toolbarItems = [NSArray arrayWithObjects:
                              [[UIBarButtonItem alloc] initWithCustomView:customLabel],
