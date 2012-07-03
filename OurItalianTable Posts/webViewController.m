@@ -115,7 +115,12 @@
     // self button for detail splitViewController when in portrait
     [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
     
-    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    UIButton *infoButton;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    else 
+        infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    
     [infoButton addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
     
