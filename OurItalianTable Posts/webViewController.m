@@ -45,10 +45,6 @@
 
 #pragma mark - Private methods
 
--(void)detailsPressed:(UIButton *) button {
-    [self performSegueWithIdentifier:@"Push Post Detail" sender:self];
-}
-
 -(NSString *)grabTextFrom:(NSString *)incomingText
  viaRegularExpression:(NSString *)regexString {
     
@@ -107,6 +103,10 @@
     return accumulatedHTML;
 }
 
+-(void)infoPressed:(UIButton *)button {
+    [self performSegueWithIdentifier:@"Push Post Detail" sender:self];
+}
+
 #pragma mark - View lifecycle support
 - (void)viewDidLoad
 {
@@ -115,14 +115,14 @@
     // self button for detail splitViewController when in portrait
     [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
     
-    // update toolbar with info button
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    [infoButton addTarget:self action:@selector(detailsPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+    [infoButton addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
     
-    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
-    [toolbarItems replaceObjectAtIndex:0 withObject:barButton];
-    self.toolbar.items = [toolbarItems copy];
+    NSMutableArray *toolbar = [self.toolbar.items mutableCopy];
+    [toolbar replaceObjectAtIndex:0 withObject:infoBarButton];
+    self.toolbar.items = [toolbar copy];
+    
 
     // fix CRLFs and caption blocks in incoming HTML
     NSString *accumulatedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]];

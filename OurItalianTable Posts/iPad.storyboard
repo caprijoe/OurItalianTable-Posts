@@ -282,26 +282,19 @@
                                 <rect key="frame" x="0.0" y="911" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Details" id="yOr-eC-5mD">
-                                        <connections>
-                                            <segue destination="rjg-hJ-4cF" kind="popover" identifier="Push Post Detail" popoverAnchorBarButtonItem="yOr-eC-5mD" id="NNh-aV-baV">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="add" id="yOr-eC-5mD"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="5b5-nE-ysU"/>
-                                    <barButtonItem systemItem="action" id="S9h-Ja-7To">
+                                    <barButtonItem style="plain" systemItem="action" id="S9h-Ja-7To">
                                         <connections>
                                             <action selector="forwardPost:" destination="DNG-Wr-sV2" id="HX4-pf-AOc"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Add to Favorites" id="6RI-aX-WBE">
+                                    <barButtonItem style="plain" systemItem="bookmarks" id="6RI-aX-WBE">
                                         <connections>
                                             <action selector="addToFavorites:" destination="DNG-Wr-sV2" id="bzm-2K-ber"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
-                                <color key="tintColor" red="0.36642987729999998" green="0.52156862749999999" blue="0.1126465555" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="rHS-Vc-paL">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -324,9 +317,11 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="favoritesButton" destination="6RI-aX-WBE" id="hAp-Ig-saW"/>
-                        <outlet property="toolbar" destination="rHS-Vc-paL" id="VJl-uf-KD1"/>
+                        <outlet property="toolbar" destination="aYb-PT-7Ua" id="G4H-hr-AgB"/>
                         <outlet property="webView" destination="FTZ-mk-h6R" id="jlt-cw-aje"/>
+                        <segue destination="rjg-hJ-4cF" kind="popover" identifier="Push Post Detail" popoverAnchorView="FTZ-mk-h6R" id="uwZ-5V-Hwd">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
             </objects>
@@ -621,6 +616,73 @@
         <image name="mbecci.jpg" width="420" height="420"/>
         <image name="ouritaliantable-original-crop.jpg" width="454" height="451"/>
     </resources>
+    <classes>
+        <class className="MapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="OITLaunchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OITLaunchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="foodButtonOutlet" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="PhotoScroller" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoScroller.h"/>
+            <relationships>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="photoName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="PostDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneButton:"/>
+                <relationship kind="outlet" name="authorPicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="datePublished" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="postTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="PostsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostsTableViewController.h"/>
+        </class>
+        <class className="SplashScreenController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashScreenController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="TOCViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOCViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goSearch:"/>
+                <relationship kind="action" name="selectCategorySegment:"/>
+                <relationship kind="outlet" name="categorySegmentedController" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="detailPicker" candidateClass="UIPickerView"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="aboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/aboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneButton:"/>
+                <relationship kind="outlet" name="txtDisplay" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="versionBuildDisplay" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

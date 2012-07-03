@@ -342,58 +342,11 @@
                     <connections>
                         <outlet property="mapView" destination="NqE-r2-1jc" id="Ecd-LQ-whf"/>
                         <outlet property="toolbar" destination="Nvb-ay-byC" id="31j-h7-I1d"/>
-                        <segue destination="z5Q-Hl-sCM" kind="push" identifier="Push Travel Post" id="Ey0-9z-xTa"/>
+                        <segue destination="NOz-J9-eoe" kind="push" identifier="Push Travel Post" id="b7w-bY-Kkz"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1068" y="858"/>
-        </scene>
-        <!--Web View Controller - Web Post-->
-        <scene sceneID="0it-zU-BOE">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iJx-IP-COZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController title="Web Post" id="z5Q-Hl-sCM" customClass="WebViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="XUr-5t-QAh">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView contentMode="left" scalesPageToFit="YES" id="Kq4-Na-jp9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="328"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Gyo-Cg-n4C">
-                                <rect key="frame" x="0.0" y="328" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Item" id="Scm-d1-YXz"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uvg-M6-tnU"/>
-                                    <barButtonItem style="plain" systemItem="action" id="Bjf-Hb-Qso">
-                                        <connections>
-                                            <action selector="forwardPost:" destination="z5Q-Hl-sCM" id="aAO-Zp-lq5"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="bookmarks" id="rQe-Ol-vVz">
-                                        <connections>
-                                            <action selector="addToFavorites:" destination="z5Q-Hl-sCM" id="mA0-Va-BKx"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="i5Z-Bo-hq4"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="toolbar" destination="Gyo-Cg-n4C" id="Pjc-or-wXB"/>
-                        <outlet property="webView" destination="Kq4-Na-jp9" id="tqv-EF-1o9"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1525" y="858"/>
+            <point key="canvasLocation" x="1594" y="712"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wkJ-l1-PqP">
@@ -675,5 +628,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Qqa-cv-zDt"/>
+        <segue reference="b7w-bY-Kkz"/>
     </inferredMetricsTieBreakers>
 </document>

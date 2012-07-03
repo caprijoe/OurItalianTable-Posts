@@ -28,14 +28,15 @@
 #pragma mark - View lifecycle
 
 -(void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
     CGSize size = CGSizeMake(300,600);
     self.contentSizeForViewInPopover = size;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
     
     // post title
     self.postTitle.text = self.postDetail.postName;
