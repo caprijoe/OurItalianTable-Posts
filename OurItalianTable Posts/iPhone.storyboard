@@ -366,6 +366,7 @@
                                 <rect key="frame" x="0.0" y="328" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
+                                    <barButtonItem title="Item" id="Scm-d1-YXz"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uvg-M6-tnU"/>
                                     <barButtonItem style="plain" systemItem="action" id="Bjf-Hb-Qso">
                                         <connections>
@@ -387,7 +388,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="favoritesButton" destination="rQe-Ol-vVz" id="xVC-0h-bWC"/>
+                        <outlet property="toolbar" destination="Gyo-Cg-n4C" id="Pjc-or-wXB"/>
                         <outlet property="webView" destination="Kq4-Na-jp9" id="tqv-EF-1o9"/>
                     </connections>
                 </viewController>

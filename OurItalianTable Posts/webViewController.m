@@ -124,21 +124,17 @@
     [toolbarItems replaceObjectAtIndex:0 withObject:barButton];
     self.toolbar.items = [toolbarItems copy];
 
+    // fix CRLFs and caption blocks in incoming HTML
     NSString *accumulatedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]];
     
-    // img tag width and height if picture too big (usually for iPhone)
+    // adjust width and height on img tag so it will fit on device
     // <img .... width="300" height="199" .. />
-    int maxWidth = self.webView.scrollView.frame.size.width;
-    
-    NSString *regexPattern = @"<img[^>]*width=['\"\\s]*([0-9]+)[^>]*height=['\"\\s]*([0-9]+)[^>]*>";
-    
-    NSRegularExpression *regex = 
-    [NSRegularExpression regularExpressionWithPattern:regexPattern 
-                                              options:NSRegularExpressionDotMatchesLineSeparators 
-                                                error:nil];
-    
+    int maxWidth = self.webView.scrollView.frame.size.width;                                            // get screen size
+    NSString *regexPattern = @"<img[^>]*width=['\"\\s]*([0-9]+)[^>]*height=['\"\\s]*([0-9]+)[^>]*>";    // find img tags using regex
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexPattern 
+                                                                           options:NSRegularExpressionDotMatchesLineSeparators 
+                                                                             error:nil];
     NSMutableString *modifiedHTML = [NSMutableString stringWithString:accumulatedHTML];
-    
     NSArray *matchesArray = [regex matchesInString:modifiedHTML 
                                            options:NSRegularExpressionCaseInsensitive 
                                              range:NSMakeRange(0, [modifiedHTML length]) ]; 
@@ -190,7 +186,7 @@
     //show webview
     
     [self.webView loadHTMLString:finalHTMLstring baseURL:nil];
-    self.loadedHTML = finalHTMLstring;
+    self.loadedHTML = finalHTMLstring;                                  // save final html for e-mailing
 }
 
 - (void)viewDidUnload {
