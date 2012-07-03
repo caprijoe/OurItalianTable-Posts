@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "postRecord.h"
 #import "SplitViewBarButtonItemPresenter.h"
 
@@ -17,7 +18,7 @@
                 chosetag:(id)tag;
 @end
 
-@interface WebViewController : UIViewController <SplitViewBarButtonItemPresenter>
+@interface WebViewController : UIViewController <SplitViewBarButtonItemPresenter, MFMailComposeViewControllerDelegate>
 
 // outlets
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
