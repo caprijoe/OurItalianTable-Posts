@@ -17,6 +17,7 @@
 @interface WebViewController() <PostsDetailViewControllerDelegate>;
 @property (nonatomic,strong) NSString *cssHTMLHeader;                   // CSS Header to be stuck in front of HTML
 @property (nonatomic,strong) UIStoryboardSegue* detailsViewSeque;       // saved segue for return from "Details" button
+@property (nonatomic,strong) NSString *loadedHTML;                      // HTML code that was loaded -- for e-mailing
 @end
 
 @implementation WebViewController
@@ -29,6 +30,7 @@
 @synthesize toolbar = _toolbar;
 @synthesize delegate = _delegate;
 @synthesize detailsViewSeque = _detailsViewSeque;
+@synthesize loadedHTML = _loadedHTML;
 
 #pragma mark - Setter
 -(void)setPostRecord:(PostRecord *)postRecord
@@ -184,6 +186,7 @@
     //show webview
     
     [self.webView loadHTMLString:finalHTMLstring baseURL:nil];
+    self.loadedHTML = finalHTMLstring;
 }
 
 - (void)viewDidUnload {
@@ -240,8 +243,40 @@
     [defaults synchronize];
 }
 
-#pragma mark - Delegates
+- (IBAction)forwardPost:(id)sender {
+    
+    if ([MFMailComposeViewController canSendMail]) {
+        
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = self;
+        
+        [mailer setSubject:[NSString stringWithFormat:@"From Our Italian Table - %@",self.postRecord.postName]];
+        
+        UIImage *oitLogo = [UIImage imageNamed:@"oitIcon-57x57.png"];
+        NSData *imageData = UIImagePNGRepresentation(oitLogo);
+        [mailer addAttachmentData:imageData mimeType:@"image/jpg" fileName:@"Our Italian Table Logo"];
+        
+        [mailer setMessageBody:self.loadedHTML isHTML:YES];
+        
+        mailer.modalPresentationStyle = UIModalPresentationPageSheet;
+        [self presentModalViewController:mailer animated:YES];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" 
+                                                        message:@"Your device does not support e-mail" 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK" 
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
 
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+ 
+#pragma mark - Delegates
 -(void)postsDetailViewController:(PostDetailViewController *)sender choseTag:(id)tag {
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)

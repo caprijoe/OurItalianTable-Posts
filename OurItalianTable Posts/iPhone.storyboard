@@ -215,7 +215,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="VvW-gM-nEP"/>
-                                    <barButtonItem systemItem="reply" id="fh4-XN-JSH">
+                                    <barButtonItem style="plain" systemItem="action" id="fh4-XN-JSH">
                                         <connections>
                                             <action selector="forwardPost:" destination="NOz-J9-eoe" id="ZMG-ep-9YF"/>
                                         </connections>
@@ -367,7 +367,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uvg-M6-tnU"/>
-                                    <barButtonItem systemItem="reply" id="Bjf-Hb-Qso">
+                                    <barButtonItem style="plain" systemItem="action" id="Bjf-Hb-Qso">
                                         <connections>
                                             <action selector="forwardPost:" destination="z5Q-Hl-sCM" id="aAO-Zp-lq5"/>
                                         </connections>
