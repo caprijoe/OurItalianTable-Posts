@@ -53,7 +53,10 @@
     
     UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,250,15)];
     customLabel.text = context;
-    customLabel.textColor = [UIColor whiteColor];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        customLabel.textColor = [UIColor darkGrayColor];
+    else 
+        customLabel.textColor = [UIColor whiteColor];
     customLabel.backgroundColor =  [UIColor clearColor];
     customLabel.font = [UIFont boldSystemFontOfSize:16.0];
     
