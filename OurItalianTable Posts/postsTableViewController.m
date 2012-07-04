@@ -51,6 +51,7 @@
     else 
         context = [NSString stringWithFormat:@"%@ > %@",topLevel, detail];
     
+    // construct custom label for context statement
     UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,250,15)];
     customLabel.text = context;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -60,6 +61,7 @@
     customLabel.backgroundColor =  [UIColor clearColor];
     customLabel.font = [UIFont boldSystemFontOfSize:16.0];
     
+    // add it
     NSArray *toolbarItems = [NSArray arrayWithObjects:
                              [[UIBarButtonItem alloc] initWithCustomView:customLabel],
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil], 
