@@ -103,30 +103,7 @@
     return accumulatedHTML;
 }
 
-#pragma mark - View lifecycle support
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // self button for detail splitViewController when in portrait
-    [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
-    
-    UIButton *infoButton;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    else 
-        infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    
-    [infoButton addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
-    
-    NSMutableArray *toolbar = [self.toolbar.items mutableCopy];
-    [toolbar replaceObjectAtIndex:0 withObject:infoBarButton];
-    self.toolbar.items = [toolbar copy];
-    
-
-    // fix CRLFs and caption blocks in incoming HTML
-    NSString *accumulatedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]];
+-(NSString *)adjustIMGTagWidthHeighttoFitInDevice:(NSString *)incomingText {
     
     // adjust width and height on img tag so it will fit on device
     // <img .... width="300" height="199" .. />
@@ -135,7 +112,7 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexPattern 
                                                                            options:NSRegularExpressionDotMatchesLineSeparators 
                                                                              error:nil];
-    NSMutableString *modifiedHTML = [NSMutableString stringWithString:accumulatedHTML];
+    NSMutableString *modifiedHTML = [NSMutableString stringWithString:incomingText];
     NSArray *matchesArray = [regex matchesInString:modifiedHTML 
                                            options:NSRegularExpressionCaseInsensitive 
                                              range:NSMakeRange(0, [modifiedHTML length]) ]; 
@@ -178,16 +155,41 @@
             offset += newoffset;
         }
     }
+    return modifiedHTML;
+}
+
+#pragma mark - View lifecycle support
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
+    // self button for detail splitViewController when in portrait
+    [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
+    
+    // alter lower left button on UIToolbar to the standard "i" info button, adjust color for iPad vs iPhone
+    UIButton *infoButton;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+    else 
+        infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];    
+    [infoButton addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];    
+    NSMutableArray *toolbar = [self.toolbar.items mutableCopy];
+    [toolbar replaceObjectAtIndex:0 withObject:infoBarButton];
+    self.toolbar.items = [toolbar copy];
+    
+    // fix HTML problems
+    NSString *modifiedHTML = [self adjustIMGTagWidthHeighttoFitInDevice:[self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]]];
+            
     // Load up the style list, and the title and append
-    NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.postRecord.postName];
-    
+    NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.postRecord.postName];    
     NSString *finalHTMLstring = [[self.cssHTMLHeader stringByAppendingString:titleTags] stringByAppendingString:modifiedHTML];   
     
     //show webview
-    
     [self.webView loadHTMLString:finalHTMLstring baseURL:nil];
-    self.loadedHTML = finalHTMLstring;                                  // save final html for e-mailing
+    
+    // save final html in instance var for sharing button
+    self.loadedHTML = finalHTMLstring;                                  
 }
 
 - (void)viewDidUnload {
