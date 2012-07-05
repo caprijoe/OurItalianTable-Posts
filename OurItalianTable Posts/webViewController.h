@@ -18,7 +18,7 @@
                 chosetag:(id)tag;
 @end
 
-@interface WebViewController : UIViewController <SplitViewBarButtonItemPresenter, MFMailComposeViewControllerDelegate>
+@interface WebViewController : UIViewController <SplitViewBarButtonItemPresenter>
 
 // outlets
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

@@ -14,7 +14,7 @@
 #define DOUBLE_QUOTE_CHAR   @"\""
 #define IMAGE_SCALE         .95
 
-@interface WebViewController() <PostsDetailViewControllerDelegate>;
+@interface WebViewController() <PostsDetailViewControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>;
 @property (nonatomic,strong) NSString *cssHTMLHeader;                   // CSS Header to be stuck in front of HTML
 @property (nonatomic,strong) UIStoryboardSegue* detailsViewSeque;       // saved segue for return from "Details" button
 @property (nonatomic,strong) NSString *loadedHTML;                      // HTML code that was loaded -- for e-mailing
@@ -229,20 +229,52 @@
         return YES;
 }
 
-#pragma mark - IBActions
+#pragma mark - Action sheet for Bookmarks
 
-- (IBAction)addToFavorites:(id)sender {
+-(void)presentActionSheetforBookmark:(NSString *)postName
+                       fromBarButton:(UIBarButtonItem *)button {
     
+    // determine if post is currently in favorites
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
     if (!favorites) favorites = [NSMutableArray array];
-    if ([favorites containsObject:self.postRecord.postID]) {
-        [favorites removeObject:self.postRecord.postID];
-    } else {
-        [favorites addObject:self.postRecord.postID];
+    
+    UIActionSheet *actionSheet;
+    
+    if ([favorites containsObject:self.postRecord.postID])              // is currently a favorite
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Bookmarks" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Remove Bookmark", nil];
+    else 
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Bookmarks" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add Bookmark", nil];
+    
+    [actionSheet showFromBarButtonItem:button animated:YES];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // open defaults file
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
+    
+    // get button pressed
+    NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
+    
+    if (choice != @"Cancel") {
+        if (choice == @"Add Bookmark") {
+            [favorites addObject:self.postRecord.postID];        
+        } else if (choice == @"Remove Bookmark") {
+            [favorites removeObject:self.postRecord.postID];
+        }
     }
+    
+    // sync up user defaults
     [defaults setObject:favorites forKey:FAVORITES_KEY];
     [defaults synchronize];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)addToFavorites:(UIBarButtonItem *)sender {
+    
+    [self presentActionSheetforBookmark:self.postRecord.postID fromBarButton:sender];
 }
 
 - (IBAction)forwardPost:(id)sender {
