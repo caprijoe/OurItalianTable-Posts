@@ -103,10 +103,6 @@
     return accumulatedHTML;
 }
 
--(void)infoPressed:(UIButton *)button {
-    [self performSegueWithIdentifier:@"Push Post Detail" sender:self];
-}
-
 #pragma mark - View lifecycle support
 - (void)viewDidLoad
 {
@@ -208,6 +204,10 @@
     }
 }
 
+-(void)performSegueWhenInfoButtonPressed:(UIButton *)button {
+    [self performSegueWithIdentifier:@"Push Post Detail" sender:self];
+}
+
 #pragma mark - Rotation Support
 
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
@@ -270,14 +270,9 @@
     [defaults synchronize];
 }
 
-#pragma mark - IBActions
+#pragma mark - Share post via e-mail
 
-- (IBAction)addToFavorites:(UIBarButtonItem *)sender {
-    
-    [self presentActionSheetforBookmark:self.postRecord.postID fromBarButton:sender];
-}
-
-- (IBAction)forwardPost:(id)sender {
+-(void)shareViaEmail {
     
     if ([MFMailComposeViewController canSendMail]) {
         
@@ -302,12 +297,23 @@
                                               cancelButtonTitle:@"OK" 
                                               otherButtonTitles:nil];
         [alert show];
-    }
+    }    
 }
-
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - IBActions
+
+- (IBAction)addToFavorites:(UIBarButtonItem *)sender {
+    
+    [self presentActionSheetforBookmark:self.postRecord.postID fromBarButton:sender];
+}
+
+- (IBAction)sharePost:(id)sender {
+    [self shareViaEmail];
+
 }
  
 #pragma mark - Delegates
