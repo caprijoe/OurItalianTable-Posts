@@ -76,10 +76,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2gL-ix-bko">
-                                <rect key="frame" x="113" y="204" width="95" height="112"/>
+                                <rect key="frame" x="113" y="203" width="96" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="17"/>
-                                <state key="normal" title="Favorites" backgroundImage="italy-map-icon20.gif">
+                                <state key="normal" title="Bookmarks" backgroundImage="italy-map-icon20.gif">
                                     <color key="titleColor" red="0.66247085350000001" green="0.84239130429999998" blue="0.1208905539" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -209,12 +209,13 @@
                                 <rect key="frame" x="0.0" y="328" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Details" id="BsA-2h-Uh4">
+                                    <barButtonItem systemItem="pageCurl" id="BsA-2h-Uh4">
                                         <connections>
                                             <segue destination="677-sG-m0q" kind="modal" identifier="Push Post Detail" id="DSG-Up-2KY"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="VvW-gM-nEP"/>
+                                    <barButtonItem style="plain" id="rhA-M6-Z08"/>
                                     <barButtonItem style="plain" systemItem="action" id="fh4-XN-JSH">
                                         <connections>
                                             <action selector="forwardPost:" destination="NOz-J9-eoe" id="ZMG-ep-9YF"/>
