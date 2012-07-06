@@ -8,16 +8,18 @@
 
 #import "webViewController.h"
 #import "PostDetailViewController.h"
+#import <Twitter/Twitter.h>
 
 #define FAVORITES_KEY       @"FAVORITES_KEY"
 #define CSS_IMPORT_FILENAME @"oitHTMLStyles"
 #define DOUBLE_QUOTE_CHAR   @"\""
 #define IMAGE_SCALE         .95
 
-@interface WebViewController() <PostsDetailViewControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>;
+@interface WebViewController() <PostsDetailViewControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>;
 @property (nonatomic,strong) NSString *cssHTMLHeader;                   // CSS Header to be stuck in front of HTML
 @property (nonatomic,strong) UIStoryboardSegue* detailsViewSeque;       // saved segue for return from "Details" button
 @property (nonatomic,strong) NSString *loadedHTML;                      // HTML code that was loaded -- for e-mailing
+@property (nonatomic,strong) NSString *currentActionSheet;         // current sheet to figure clicked button
 @end
 
 @implementation WebViewController
@@ -30,6 +32,7 @@
 @synthesize delegate = _delegate;
 @synthesize detailsViewSeque = _detailsViewSeque;
 @synthesize loadedHTML = _loadedHTML;
+@synthesize currentActionSheet = _currentActionSheet;
 
 #pragma mark - Setter
 -(void)setPostRecord:(PostRecord *)postRecord
@@ -172,7 +175,7 @@
         infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
     else 
         infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];    
-    [infoButton addTarget:self action:@selector(infoPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [infoButton addTarget:self action:@selector(performSegueWhenInfoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];    
     NSMutableArray *toolbar = [self.toolbar.items mutableCopy];
     [toolbar replaceObjectAtIndex:0 withObject:infoBarButton];
@@ -231,10 +234,16 @@
         return YES;
 }
 
-#pragma mark - Action sheet for Bookmarks
+#pragma mark - Action sheets
 
--(void)presentActionSheetforBookmark:(NSString *)postName
-                       fromBarButton:(UIBarButtonItem *)button {
+#define BOOKMARKS_TITLE @"Bookmarks"
+#define SHARE_TITLE     @"Share"
+#define EMAIL_BUTTON    @"Email"
+#define TWEET_BUTTON    @"Tweet"
+#define SMS_BUTTON      @"Message"
+#define CANCEL_BUTTON   @"Cancel"
+
+-(void)presentActionSheetforBookmarkFromBarButton:(UIBarButtonItem *)button {
     
     // determine if post is currently in favorites
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -244,65 +253,112 @@
     UIActionSheet *actionSheet;
     
     if ([favorites containsObject:self.postRecord.postID])              // is currently a favorite
-        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Bookmarks" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Remove Bookmark", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:@"Remove Bookmark", nil];
     else 
-        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Bookmarks" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Add Bookmark", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:@"Add Bookmark", nil];
+    
+    self.currentActionSheet = BOOKMARKS_TITLE;
     
     [actionSheet showFromBarButtonItem:button animated:YES];
 }
 
+-(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button {
+    
+    // determine methods of sharing & load up buttons
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles: nil];
+    int buttonCount = 0;
+    if ([MFMailComposeViewController canSendMail]) {
+        [actionSheet addButtonWithTitle:EMAIL_BUTTON];
+        buttonCount++;
+    }
+    if ([TWTweetComposeViewController canSendTweet]) {
+        [actionSheet addButtonWithTitle:TWEET_BUTTON];
+        buttonCount++;
+    }
+    if ([MFMessageComposeViewController canSendText]) {
+        [actionSheet addButtonWithTitle:SMS_BUTTON];
+        buttonCount++;
+    }
+        
+    actionSheet.cancelButtonIndex = buttonCount;
+    [actionSheet addButtonWithTitle:CANCEL_BUTTON];
+    
+    self.currentActionSheet = SHARE_TITLE;
+    [actionSheet showFromBarButtonItem:button animated:YES];
+}
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    // open defaults file
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
     
-    // get button pressed
-    NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
-    
-    if (choice != @"Cancel") {
+    if (self.currentActionSheet == BOOKMARKS_TITLE) {
+        // open defaults file
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
+        
+        // get button pressed
+        NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
+        
         if (choice == @"Add Bookmark") {
             [favorites addObject:self.postRecord.postID];        
         } else if (choice == @"Remove Bookmark") {
             [favorites removeObject:self.postRecord.postID];
         }
+                
+        // sync up user defaults
+        [defaults setObject:favorites forKey:FAVORITES_KEY];
+        [defaults synchronize];
+    } else if (self.currentActionSheet == SHARE_TITLE) {
+        if ([actionSheet buttonTitleAtIndex:buttonIndex] == EMAIL_BUTTON) {
+            [self shareViaEmail];
+        } else if ([actionSheet buttonTitleAtIndex:buttonIndex ] == TWEET_BUTTON) {
+            [self shareViaTweet];
+        } else if ([actionSheet buttonTitleAtIndex:buttonIndex ] == SMS_BUTTON) {
+            [self shareViaMessage];
+        }
     }
-    
-    // sync up user defaults
-    [defaults setObject:favorites forKey:FAVORITES_KEY];
-    [defaults synchronize];
 }
 
 #pragma mark - Share post via e-mail
 
 -(void)shareViaEmail {
     
-    if ([MFMailComposeViewController canSendMail]) {
-        
-        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
-        mailer.mailComposeDelegate = self;
-        
-        [mailer setSubject:[NSString stringWithFormat:@"From Our Italian Table - %@",self.postRecord.postName]];
-        
-        UIImage *oitLogo = [UIImage imageNamed:@"oitIcon-57x57.png"];
-        NSData *imageData = UIImagePNGRepresentation(oitLogo);
-        [mailer addAttachmentData:imageData mimeType:@"image/jpg" fileName:@"Our Italian Table Logo"];
-        
-        [mailer setMessageBody:self.loadedHTML isHTML:YES];
-        
-        mailer.modalPresentationStyle = UIModalPresentationPageSheet;
-        [self presentModalViewController:mailer animated:YES];
-        
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert" 
-                                                        message:@"Your device does not support e-mail" 
-                                                       delegate:nil 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
-        [alert show];
-    }    
+    MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+    mailer.mailComposeDelegate = self;
+    
+    [mailer setSubject:[NSString stringWithFormat:@"From Our Italian Table - %@",self.postRecord.postName]];
+    
+    UIImage *oitLogo = [UIImage imageNamed:@"oitIcon-57x57.png"];
+    NSData *imageData = UIImagePNGRepresentation(oitLogo);
+    [mailer addAttachmentData:imageData mimeType:@"image/jpg" fileName:@"Our Italian Table Logo"];
+    
+    [mailer setMessageBody:self.loadedHTML isHTML:YES];
+    
+    mailer.modalPresentationStyle = UIModalPresentationPageSheet;
+    [self presentModalViewController:mailer animated:YES];
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - Share post via Twitter
+
+-(void)shareViaTweet {
+    TWTweetComposeViewController *tweetController = [[TWTweetComposeViewController alloc] init];
+    [tweetController setInitialText:self.postRecord.postName];
+    [tweetController addImage:self.postRecord.postIcon];
+    [tweetController addURL:[NSURL URLWithString:self.postRecord.postURLString]];
+    [self presentViewController:tweetController animated:YES completion:nil];
+}
+
+
+-(void)shareViaMessage {
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.body = [NSString stringWithFormat:@"%@ - %@",self.postRecord.postName, self.postRecord.postURLString];
+    [self presentViewController:messageController animated:YES completion:nil];
+    messageController.messageComposeDelegate = self;
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -310,11 +366,11 @@
 
 - (IBAction)addToFavorites:(UIBarButtonItem *)sender {
     
-    [self presentActionSheetforBookmark:self.postRecord.postID fromBarButton:sender];
+    [self presentActionSheetforBookmarkFromBarButton:sender];
 }
 
-- (IBAction)sharePost:(id)sender {
-    [self shareViaEmail];
+- (IBAction)sharePost:(UIBarButtonItem *)sender {
+    [self presentActionSheetforSharingFromBarButton:sender];
 
 }
  
