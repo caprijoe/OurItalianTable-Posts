@@ -110,7 +110,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Our Italian Table" id="0df-BS-b0C"/>
                     <connections>
-                        <outlet property="foodButtonOutlet" destination="agk-wb-7ev" id="Va1-ZM-HHL"/>
+                        <outlet property="bookmarksButton" destination="2gL-ix-bko" id="4O0-xg-xMi"/>
+                        <outlet property="foodButton" destination="agk-wb-7ev" id="Ign-b9-OlL"/>
+                        <outlet property="wanderingsButton" destination="tJ5-ep-U8s" id="JBE-YR-hlb"/>
+                        <outlet property="wineButton" destination="gXl-1k-7Ue" id="3Va-jq-HbW"/>
                     </connections>
                 </viewController>
             </objects>
@@ -195,7 +198,7 @@
         <scene sceneID="cBs-WY-7oV">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n15-kj-fud" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController title="Web Post" id="NOz-J9-eoe" customClass="WebViewController" sceneMemberID="viewController">
+                <viewController title="Web Post" hidesBottomBarWhenPushed="YES" id="NOz-J9-eoe" customClass="WebViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d0U-pi-Elm">
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -218,7 +221,7 @@
                                     <barButtonItem style="plain" id="rhA-M6-Z08"/>
                                     <barButtonItem style="plain" systemItem="action" id="fh4-XN-JSH">
                                         <connections>
-                                            <action selector="forwardPost:" destination="NOz-J9-eoe" id="ZMG-ep-9YF"/>
+                                            <action selector="sharePost:" destination="NOz-J9-eoe" id="rHb-vo-vpi"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="bookmarks" id="pSo-NB-QyB">
@@ -572,7 +575,10 @@
         <class className="OITLaunchViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OITLaunchViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="foodButtonOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bookmarksButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="foodButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="wanderingsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="wineButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="PhotoScroller" superclassName="UIViewController">
@@ -629,6 +635,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Qqa-cv-zDt"/>
-        <segue reference="b7w-bY-Kkz"/>
+        <segue reference="CXM-kx-gJ2"/>
     </inferredMetricsTieBreakers>
 </document>
