@@ -350,6 +350,7 @@
     [self presentViewController:tweetController animated:YES completion:nil];
 }
 
+#pragma mark - Share post via Message (SMS)
 
 -(void)shareViaMessage {
     MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
@@ -374,7 +375,7 @@
 
 }
  
-#pragma mark - Delegates
+#pragma mark - External Delegates
 -(void)postsDetailViewController:(PostDetailViewController *)sender choseTag:(id)tag {
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
