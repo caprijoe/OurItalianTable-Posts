@@ -70,7 +70,7 @@
     captionAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= caption=\").*?(?=\")"];
     captionText =[self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
         
-    return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, captionAttributeText,imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
+    return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, widthAttributeText , imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
 }
 
 -(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
