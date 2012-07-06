@@ -10,7 +10,11 @@
 #import "ParseXML.h"
 #import "postRecord.h"
 
+@protocol OITBrainFinishedDelegate;
+
 @interface OITBrain : NSObject <ProcessedPostsDelegate>
+
+@property (nonatomic, strong) id<OITBrainFinishedDelegate> delegate;
 
 // Init causes posts to be parsed from input source
 // always returns posts in descending order
@@ -35,4 +39,8 @@
             forCell:(UITableViewCell *)cell
        forTableView:(UITableView *)tableView
        forIndexPath:(NSIndexPath *)indexPath;
+@end
+
+@protocol OITBrainFinishedDelegate
+-(void)OITBrainDidFinish;
 @end

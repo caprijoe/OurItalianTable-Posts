@@ -19,7 +19,10 @@
 @end
 
 @implementation OITLaunchViewController
-@synthesize foodButtonOutlet = _foodButtonOutlet;
+@synthesize wineButton = _wineButtonOutlet;
+@synthesize wanderingsButton = _wanderingsButtonOutlet;
+@synthesize bookmarksButton = _bookmarksButtonOutlet;
+@synthesize foodButton = _foodButtonOutlet;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 @synthesize myBrain = _myBrain;
 
@@ -41,7 +44,15 @@
 {
     [super viewDidLoad];
     
+    // disable buttons until loading is done
+    self.foodButton.enabled = NO;
+    self.wineButton.enabled = NO;
+    self.wanderingsButton.enabled = NO;
+    self.bookmarksButton.enabled = NO;
+    
+    // alloc the brain, start the loading
     self.myBrain = [[OITBrain alloc] init];
+    self.myBrain.delegate = self;
         
     //Set the UIView background as lemons
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Lemons.png"]];
@@ -50,25 +61,27 @@
     //set a custome title in the launch controller
     //get font etc from first button
     UILabel *OITTitleView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 440.0, 44.0)];
-    OITTitleView.font = self.foodButtonOutlet.titleLabel.font;
+    OITTitleView.font = self.foodButton.titleLabel.font;
     OITTitleView.backgroundColor = [UIColor clearColor];
-    OITTitleView.textColor = self.foodButtonOutlet.currentTitleColor;
+    OITTitleView.textColor = self.foodButton.currentTitleColor;
     OITTitleView.textAlignment = UITextAlignmentCenter;
     OITTitleView.text = self.navigationItem.title;
     self.navigationItem.titleView = OITTitleView;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-       self.navigationController.toolbarHidden = YES; 
+    self.navigationController.toolbarHidden = YES; 
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [self resetDetailPanel];
-    
 }
 
 - (void)viewDidUnload {
-    [self setFoodButtonOutlet:nil];
+    [self setFoodButton:nil];
+    [self setWineButton:nil];
+    [self setWanderingsButton:nil];
+    [self setBookmarksButton:nil];
     [super viewDidUnload];
 }
 
@@ -142,6 +155,17 @@
 {
     self.rootPopoverButtonItem = nil;
     [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
+}
+
+#pragma mark - External delegates
+
+-(void)OITBrainDidFinish {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.foodButton.enabled = YES;
+        self.wineButton.enabled = YES;
+        self.wanderingsButton.enabled = YES;
+        self.bookmarksButton.enabled = YES;
+    });
 }
 
 @end

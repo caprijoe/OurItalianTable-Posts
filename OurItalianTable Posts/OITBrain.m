@@ -22,6 +22,7 @@
 @implementation OITBrain
 @synthesize parseXML = _parseXML;
 @synthesize brainEntries = _brainEntries;
+@synthesize delegate = _delegate;
 
 
 #pragma mark -
@@ -37,6 +38,7 @@
 
 -(void)finishedLoadingPosts:(NSArray *)posts {
     self.brainEntries = posts;
+    [self.delegate OITBrainDidFinish];
 }
 
 #pragma mark -
