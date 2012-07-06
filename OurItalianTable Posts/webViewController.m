@@ -166,6 +166,9 @@
 {
     [super viewDidLoad];
     
+    // make sure bottom toolbar in nav controller is hidden
+    [self.navigationController setToolbarHidden:YES];
+    
     // self button for detail splitViewController when in portrait
     [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
     
@@ -237,6 +240,8 @@
 #pragma mark - Action sheets
 
 #define BOOKMARKS_TITLE @"Bookmarks"
+#define ADD_BUTTON      @"Add Bookmark"
+#define REMOVE_BUTTON   @"Remove Bookmark"
 #define SHARE_TITLE     @"Share"
 #define EMAIL_BUTTON    @"Email"
 #define TWEET_BUTTON    @"Tweet"
@@ -253,9 +258,9 @@
     UIActionSheet *actionSheet;
     
     if ([favorites containsObject:self.postRecord.postID])              // is currently a favorite
-        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:@"Remove Bookmark", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:REMOVE_BUTTON, nil];
     else 
-        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:@"Add Bookmark", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:ADD_BUTTON, nil];
     
     self.currentActionSheet = BOOKMARKS_TITLE;
     
@@ -265,23 +270,7 @@
 -(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button {
     
     // determine methods of sharing & load up buttons
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles: nil];
-    int buttonCount = 0;
-    if ([MFMailComposeViewController canSendMail]) {
-        [actionSheet addButtonWithTitle:EMAIL_BUTTON];
-        buttonCount++;
-    }
-    if ([TWTweetComposeViewController canSendTweet]) {
-        [actionSheet addButtonWithTitle:TWEET_BUTTON];
-        buttonCount++;
-    }
-    if ([MFMessageComposeViewController canSendText]) {
-        [actionSheet addButtonWithTitle:SMS_BUTTON];
-        buttonCount++;
-    }
-        
-    actionSheet.cancelButtonIndex = buttonCount;
-    [actionSheet addButtonWithTitle:CANCEL_BUTTON];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles: EMAIL_BUTTON, SMS_BUTTON, TWEET_BUTTON, nil];
     
     self.currentActionSheet = SHARE_TITLE;
     [actionSheet showFromBarButtonItem:button animated:YES];
@@ -293,13 +282,14 @@
         // open defaults file
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
+        if (!favorites) favorites = [NSMutableArray array];
         
         // get button pressed
         NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
         
-        if (choice == @"Add Bookmark") {
+        if (choice == ADD_BUTTON) {
             [favorites addObject:self.postRecord.postID];        
-        } else if (choice == @"Remove Bookmark") {
+        } else if (choice == REMOVE_BUTTON) {
             [favorites removeObject:self.postRecord.postID];
         }
                 
@@ -321,19 +311,24 @@
 
 -(void)shareViaEmail {
     
-    MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
-    mailer.mailComposeDelegate = self;
-    
-    [mailer setSubject:[NSString stringWithFormat:@"From Our Italian Table - %@",self.postRecord.postName]];
-    
-    UIImage *oitLogo = [UIImage imageNamed:@"oitIcon-57x57.png"];
-    NSData *imageData = UIImagePNGRepresentation(oitLogo);
-    [mailer addAttachmentData:imageData mimeType:@"image/jpg" fileName:@"Our Italian Table Logo"];
-    
-    [mailer setMessageBody:self.loadedHTML isHTML:YES];
-    
-    mailer.modalPresentationStyle = UIModalPresentationPageSheet;
-    [self presentModalViewController:mailer animated:YES];
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = self;
+        
+        [mailer setSubject:[NSString stringWithFormat:@"From Our Italian Table - %@",self.postRecord.postName]];
+        
+        UIImage *oitLogo = [UIImage imageNamed:@"oitIcon-72x72.png"];
+        NSData *imageData = UIImagePNGRepresentation(oitLogo);
+        [mailer addAttachmentData:imageData mimeType:@"image/jpg" fileName:@"Our Italian Table Logo"];
+        
+        [mailer setMessageBody:self.loadedHTML isHTML:YES];
+        
+        mailer.modalPresentationStyle = UIModalPresentationPageSheet;
+        [self presentModalViewController:mailer animated:YES];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot send email" message:@"Unable to send email from this device. Make sure you have setup at least one email account" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
@@ -343,20 +338,32 @@
 #pragma mark - Share post via Twitter
 
 -(void)shareViaTweet {
-    TWTweetComposeViewController *tweetController = [[TWTweetComposeViewController alloc] init];
-    [tweetController setInitialText:self.postRecord.postName];
-    [tweetController addImage:self.postRecord.postIcon];
-    [tweetController addURL:[NSURL URLWithString:self.postRecord.postURLString]];
-    [self presentViewController:tweetController animated:YES completion:nil];
+    
+    if ([TWTweetComposeViewController canSendTweet]) {
+        TWTweetComposeViewController *tweetController = [[TWTweetComposeViewController alloc] init];
+        [tweetController setInitialText:self.postRecord.postName];
+        [tweetController addImage:self.postRecord.postIcon];
+        [tweetController addURL:[NSURL URLWithString:self.postRecord.postURLString]];
+        [self presentViewController:tweetController animated:YES completion:nil];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Tweet" message:@"Unable to send Tweet from this device. Make sure Tweeter is available and you have set up Tweeter with at least one account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - Share post via Message (SMS)
 
 -(void)shareViaMessage {
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-    messageController.body = [NSString stringWithFormat:@"%@ - %@",self.postRecord.postName, self.postRecord.postURLString];
-    [self presentViewController:messageController animated:YES completion:nil];
-    messageController.messageComposeDelegate = self;
+    
+    if ([MFMessageComposeViewController canSendText]) {
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+        messageController.body = [NSString stringWithFormat:@"%@ - %@",self.postRecord.postName, self.postRecord.postURLString];
+        [self presentViewController:messageController animated:YES completion:nil];
+        messageController.messageComposeDelegate = self;
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot send Message (SMS)" message:@"Unable to send a Message (SMS) from this device. Make sure iOS Messages is set up and you have logged in."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
