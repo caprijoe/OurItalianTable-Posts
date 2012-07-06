@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *wanderingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *bookmarksButton;
 
-
 // rotation support
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
 
