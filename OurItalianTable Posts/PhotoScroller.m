@@ -74,6 +74,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // make sure bottom toolbar in nav controller is hidden
+    [self.navigationController setToolbarHidden:YES];
+    
     self.title = @"The Family";
     [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
     

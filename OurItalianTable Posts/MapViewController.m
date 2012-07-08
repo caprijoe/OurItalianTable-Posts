@@ -49,6 +49,9 @@
 {
     [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
     
+    // make sure bottom toolbar in nav controller is hidden
+    [self.navigationController setToolbarHidden:YES];
+    
     self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid    
     self.mapView.delegate = self;
     self.webRecord = [[PostRecord alloc] init];
