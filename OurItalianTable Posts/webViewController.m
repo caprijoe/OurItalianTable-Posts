@@ -24,11 +24,12 @@
 
 @implementation WebViewController
 @synthesize webView = _webView;
+@synthesize topToolbar = _topToolbar;
 @synthesize postRecord = _postRecord;
 @synthesize cssHTMLHeader =_cssHTMLHeader;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
-@synthesize toolbar = _toolbar;
+@synthesize bottomToolbar = _bottomToolbar;
 @synthesize delegate = _delegate;
 @synthesize detailsViewSeque = _detailsViewSeque;
 @synthesize loadedHTML = _loadedHTML;
@@ -180,9 +181,9 @@
         infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];    
     [infoButton addTarget:self action:@selector(performSegueWhenInfoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];    
-    NSMutableArray *toolbar = [self.toolbar.items mutableCopy];
+    NSMutableArray *toolbar = [self.bottomToolbar.items mutableCopy];
     [toolbar replaceObjectAtIndex:0 withObject:infoBarButton];
-    self.toolbar.items = [toolbar copy];
+    self.bottomToolbar.items = [toolbar copy];
     
     // fix HTML problems
     NSString *modifiedHTML = [self adjustIMGTagWidthHeighttoFitInDevice:[self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]]];
@@ -199,6 +200,7 @@
 }
 
 - (void)viewDidUnload {
+    [self setTopToolbar:nil];
     [super viewDidUnload];
 }
 
@@ -221,10 +223,10 @@
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
     if (_splitViewBarButtonItem !=splitViewBarButtonItem) {
-        NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
+        NSMutableArray *toolbarsItems = [self.topToolbar.items mutableCopy];
         if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
         if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
-        self.toolbar.items = toolbarsItems;
+        self.topToolbar.items = toolbarsItems;
         _splitViewBarButtonItem = splitViewBarButtonItem;
     }
 }
