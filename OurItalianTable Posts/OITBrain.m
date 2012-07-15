@@ -159,15 +159,15 @@
 #pragma mark Icon loading support methods
 
 -(NSString *)uniquePath:(NSString *)postID {
-    NSString *filename = [postID stringByAppendingString:@".jpg"];
+    NSString *filename = [NSString stringWithFormat:@"Cached-thumbnail-%@.jpg",postID];
     NSString *path = [TMP stringByAppendingPathComponent:filename];
     return path;
 }
 
 -(BOOL)inIconCache:(NSString *)postID {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[self uniquePath:postID]])
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self uniquePath:postID]]) {
         return TRUE;
-    else
+    } else
         return FALSE;
 }
 
@@ -254,31 +254,33 @@
     if ([[self.brainEntries objectAtIndex:index] postIcon]) {
         cell.imageView.image = [[self.brainEntries objectAtIndex:index] postIcon];
         
-    // check if icon is in cache, if found populate memory too
+        // check if icon is in cache, if found populate memory too
     } else if ([self inIconCache:postRecord.postID]) {
         cell.imageView.image = [self getIconFromCache:postRecord.postID];
         PostRecord *post = [self.brainEntries objectAtIndex:index];
         post.postIcon = cell.imageView.image;
         
-    // if all else fails, load from internet. if found, load memory and cache too    
+        // if all else fails, load from internet. if found, load memory and cache too    
     } else {
         cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];
         dispatch_queue_t queue = dispatch_queue_create("get Icon",NULL);
         dispatch_async(queue, ^{
             NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:postRecord.imageURLString]];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UITableViewCell *correctCell = [tableView cellForRowAtIndexPath:indexPath];
-                correctCell.imageView.image = [self adjustImage:[UIImage imageWithData:data]];
-                [correctCell setNeedsLayout];
-                
-                // load into cache
-                [self cacheIcon:postRecord.postID withImage:correctCell.imageView.image];
-                
-                // load into memory array
-                PostRecord *post = [self.brainEntries objectAtIndex:index];
-                post.postIcon = correctCell.imageView.image;
-                
-            });
+            if (data)
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UITableViewCell *correctCell = [tableView cellForRowAtIndexPath:indexPath];
+                    
+                    correctCell.imageView.image = [self adjustImage:[UIImage imageWithData:data]];
+                    [correctCell setNeedsLayout];
+                    
+                    // load into cache
+                    [self cacheIcon:postRecord.postID withImage:correctCell.imageView.image];
+                    
+                    // load into memory array
+                    PostRecord *post = [self.brainEntries objectAtIndex:index];
+                    post.postIcon = correctCell.imageView.image;
+                    
+                });
         });
         dispatch_release(queue);
     }
