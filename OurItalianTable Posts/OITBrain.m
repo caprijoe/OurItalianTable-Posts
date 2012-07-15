@@ -57,52 +57,40 @@
             withCategory:(NSString *)category
       withDetailCategory:(NSString *)detailCategory {
     
-    NSEnumerator *postRecordReverseObjectEnumerator;
-    
-    // create reverse enumerator for FOR statement
-    if (!fav) {
-        postRecordReverseObjectEnumerator = [self.brainEntries reverseObjectEnumerator];
-    } else {
-        postRecordReverseObjectEnumerator = [[self getFavorites] reverseObjectEnumerator];
-    }
-    
     // create target
-    NSMutableArray *filtered = [[NSMutableArray alloc] init];    
+    NSMutableArray *filtered;
+    NSPredicate *predicate;
     
-    if ((!tag) && (!category)) {    // if tag AND category are nil   
-        for (PostRecord *postRecord in postRecordReverseObjectEnumerator) 
+    // start off with the entire array, if entire array, in reserve order else favorites
+    if (!fav) {
+        filtered = [NSMutableArray arrayWithCapacity:[self.brainEntries count]];
+        for (PostRecord *postRecord in [self.brainEntries reverseObjectEnumerator]) {
             [filtered addObject:postRecord];
-    } 
-    else if (!tag) {              // if the tag is empty, just search the category
-        for (PostRecord *postRecord in postRecordReverseObjectEnumerator)
-        {
-            if ([postRecord.postCategories containsObject:category])
-                [filtered addObject:postRecord];
-        } 
-    } else if (!category) {         // if the category is empty, just search the tag
-        for (PostRecord *postRecord in postRecordReverseObjectEnumerator)
-        {
-            if ([postRecord.postTags containsObject:tag])
-                [filtered addObject:postRecord];
-        }         
-    } else {                        // if both are NOT empty, search both
-        for (PostRecord *postRecord in postRecordReverseObjectEnumerator)
-        {
-            if ([postRecord.postTags containsObject:tag] && [postRecord.postCategories containsObject:category])
-                [filtered addObject:postRecord];
-        }  
+        }
+    } else {
+        filtered = [[self getFavorites] mutableCopy];
     }
     
-    if (!detailCategory)
-        return filtered;
-    else {
-        NSMutableArray *filtered2 = [[NSMutableArray alloc] init];
-        for (PostRecord *postRecord in filtered) {
-            if ([self findString:detailCategory inArray:postRecord.postCategories])
-                [filtered2 addObject:postRecord];
-        }
-        return filtered2;
+    // filter categories if not nil
+    if (category) {
+        predicate = [NSPredicate predicateWithFormat:@"postCategories contains[c] %@",category];
+        [filtered filterUsingPredicate:predicate];
     }
+    
+    // filter tags if not nil
+    if (tag) {
+        predicate = [NSPredicate predicateWithFormat:@"postTags contains[c] %@",tag];
+        [filtered filterUsingPredicate:predicate];
+    }
+    
+    // filter detail category (from picker) if not nil
+    if (detailCategory) {
+        predicate = [NSPredicate predicateWithFormat:@"postCategories contains[c] %@",detailCategory];
+        [filtered filterUsingPredicate:predicate];
+    }
+        
+    return filtered;
+    
 }
 
 -(NSArray *)searchScope:(NSString *)scope 
