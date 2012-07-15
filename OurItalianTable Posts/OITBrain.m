@@ -62,8 +62,8 @@
     NSMutableArray *filtered = [[NSMutableArray alloc] init];    
     
     if ((!tag) && (!category)) {    // if tag AND category are nil   
-        for (PostRecord *postReocrd in postRecordReverseObjectEnumerator) 
-            [filtered addObject:postReocrd];
+        for (PostRecord *postRecord in postRecordReverseObjectEnumerator) 
+            [filtered addObject:postRecord];
     } 
     else if (!tag) {              // if the tag is empty, just search the category
         for (PostRecord *postRecord in postRecordReverseObjectEnumerator)
