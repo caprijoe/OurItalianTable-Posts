@@ -50,8 +50,7 @@
     return [matchs count];    
 }
 
-#pragma mark -
-#pragma mark Search methods
+#pragma mark - Search methods
 
 -(NSMutableArray *)isFav:(BOOL)fav
                  withTag:(NSString *)tag
