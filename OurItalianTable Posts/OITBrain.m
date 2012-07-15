@@ -41,6 +41,15 @@
     [self.delegate OITBrainDidFinish];
 }
 
+#pragma mark - Private methods
+
+-(BOOL)findString:(NSString *)searchString
+          inArray:(NSMutableArray *)searchArray {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",searchString];
+    NSArray *matchs = [searchArray filteredArrayUsingPredicate:predicate];
+    return [matchs count];    
+}
+
 #pragma mark -
 #pragma mark Search methods
 
@@ -90,7 +99,7 @@
     else {
         NSMutableArray *filtered2 = [[NSMutableArray alloc] init];
         for (PostRecord *postRecord in filtered) {
-            if ([postRecord.postCategories containsObject:detailCategory])
+            if ([self findString:detailCategory inArray:postRecord.postCategories])
                 [filtered2 addObject:postRecord];
         }
         return filtered2;
