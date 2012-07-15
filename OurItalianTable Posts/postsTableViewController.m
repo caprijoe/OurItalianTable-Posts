@@ -147,7 +147,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.numberOfLines = 3;
     }
 	
     // Configure cell
@@ -159,10 +159,10 @@
         postRecord = [self.filteredListContent objectAtIndex:indexPath.row];
     } else {
         inSearch = NO;
-        postRecord = [self.entries objectAtIndex:indexPath.row];
-        
+        postRecord = [self.entries objectAtIndex:indexPath.row];        
     }
     
+
     cell.textLabel.text = postRecord.postName;
 
     [self.myBrain populateIcon:postRecord forCell:cell forTableView:tableView forIndexPath:indexPath];
