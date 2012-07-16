@@ -41,15 +41,6 @@
     [self.delegate OITBrainDidFinish];
 }
 
-#pragma mark - Private methods
-
--(BOOL)findString:(NSString *)searchString
-          inArray:(NSMutableArray *)searchArray {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",searchString];
-    NSArray *matchs = [searchArray filteredArrayUsingPredicate:predicate];
-    return [matchs count];    
-}
-
 #pragma mark - Search methods
 
 -(NSMutableArray *)isFav:(BOOL)fav
@@ -59,7 +50,6 @@
     
     // create target
     NSMutableArray *filtered;
-    NSPredicate *predicate;
     
     // start off with the entire array, if entire array, in reserve order else favorites
     if (!fav) {
@@ -73,20 +63,17 @@
     
     // filter categories if not nil
     if (category) {
-        predicate = [NSPredicate predicateWithFormat:@"postCategories contains[c] %@",category];
-        [filtered filterUsingPredicate:predicate];
+        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"postCategories contains[c] %@",category]];
     }
     
     // filter tags if not nil
     if (tag) {
-        predicate = [NSPredicate predicateWithFormat:@"postTags contains[c] %@",tag];
-        [filtered filterUsingPredicate:predicate];
+        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"postTags contains[c] %@",tag]];
     }
     
     // filter detail category (from picker) if not nil
     if (detailCategory) {
-        predicate = [NSPredicate predicateWithFormat:@"postCategories contains[c] %@",detailCategory];
-        [filtered filterUsingPredicate:predicate];
+        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"postCategories contains[c] %@",detailCategory]];
     }
         
     return filtered;
@@ -98,39 +85,16 @@
                  isFavs:(BOOL)fav
            withCategory:(NSString *)category {
     
-    // set objectEmumerator from private methods
-    NSEnumerator *objectEnumerator = [[self isFav:fav withTag:nil withCategory:category withDetailCategory:nil] objectEnumerator];
-
-    // create target
-    NSMutableArray *filtered = [[NSMutableArray alloc] init]; 
+    NSMutableArray *filtered = [[self isFav:fav withTag:nil withCategory:category withDetailCategory:nil] mutableCopy];
     
-    // create predicates
-    NSPredicate *tagPredicate = [NSPredicate predicateWithFormat:@"SELF == %@", searchText];
-    NSPredicate *allPredicate = [NSPredicate predicateWithFormat:@"SELF == %@", searchText];
-    
-    // loop thru parsed entries in reserve
-    for (PostRecord *postRecord in objectEnumerator)
-    {        
-        if ([scope isEqualToString:@"Title"]) {         // if "Title" button clicked, search postName only
-            NSRange searchResult = [postRecord.postName rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            if (searchResult.location != NSNotFound) 
-                [filtered addObject:postRecord];
-        } else if ([scope isEqualToString:@"Article"]) {// if "Article" button clicked, search entire HTML
-            NSRange searchResult = [postRecord.postHTML rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            if (searchResult.location != NSNotFound) 
-                [filtered addObject:postRecord]; 
-        } else if ([scope isEqualToString:@"Tags"]) {   // if "Tags" button clicked, search just tags
-            NSArray *results = [postRecord.postTags filteredArrayUsingPredicate:tagPredicate];
-            if (results.count !=0 )
-                [filtered addObject:postRecord]; 
-        } else if ([scope isEqualToString:@"All"]) {    // if "All" clicked, search postName, HTML and tags
-            NSRange searchResult1 = [postRecord.postName rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            NSRange searchResult2 = [postRecord.postHTML rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            NSArray *results = [postRecord.postTags filteredArrayUsingPredicate:allPredicate];
-            if ((searchResult1.location != NSNotFound) || (searchResult2.location != NSNotFound) || (results.count != 0))
-                [filtered addObject:postRecord];
-        }
-        
+    if ([scope isEqualToString:@"Title"]) {
+        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"postName contains[c] %@",searchText]];
+    } else if ([scope isEqualToString:@"Article"]) {
+        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"postHTML contains[c] %@",searchText]];
+    } else if ([scope isEqualToString:@"Tags"]) {
+        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"postTags contains[c] %@",searchText]];
+    } else  if ([scope isEqualToString:@"All"]) {
+        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"(postName contains[c] %@) OR (postHTML contains[c] %@) OR (postTags contains[c] %@)",searchText, searchText, searchText]];
     }
     return filtered;
 }
