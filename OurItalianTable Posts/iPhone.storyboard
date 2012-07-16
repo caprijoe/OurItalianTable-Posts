@@ -134,7 +134,7 @@
                             <textInputTraits key="textInputTraits"/>
                             <scopeButtonTitles>
                                 <string>All</string>
-                                <string>Title</string>
+                                <string>Article</string>
                                 <string>Tags</string>
                                 <string>Title</string>
                             </scopeButtonTitles>
@@ -238,7 +238,7 @@
                     <navigationItem key="navigationItem" id="KTM-Kp-zbV"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="toolbar" destination="V0h-aN-N0S" id="e3p-5r-5dn"/>
+                        <outlet property="bottomToolbar" destination="V0h-aN-N0S" id="Bip-pJ-94C"/>
                         <outlet property="webView" destination="Z98-4N-m3J" id="d2M-19-iqk"/>
                     </connections>
                 </viewController>
@@ -615,7 +615,8 @@
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
