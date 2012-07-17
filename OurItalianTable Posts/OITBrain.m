@@ -72,7 +72,7 @@
     }
     
     // filter detail category (from picker) if not nil
-    // FIX THIS .. UGLY
+    // FIX THIS .. UGLY!!
     if (detailCategory) {
         NSUInteger index = 0;
         NSMutableIndexSet *indexesToDelete = [[NSMutableIndexSet alloc] init];
