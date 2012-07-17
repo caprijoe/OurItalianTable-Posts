@@ -48,7 +48,7 @@
             withCategory:(NSString *)category
       withDetailCategory:(NSString *)detailCategory {
     
-    // create target
+    // declare target
     NSMutableArray *filtered;
     
     // start off with the entire array, if entire array, in reserve order else favorites
@@ -72,12 +72,24 @@
     }
     
     // filter detail category (from picker) if not nil
+    // FIX THIS .. UGLY
     if (detailCategory) {
-        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"postCategories contains[c] %@",detailCategory]];
+        NSUInteger index = 0;
+        NSMutableIndexSet *indexesToDelete = [[NSMutableIndexSet alloc] init];
+        for (PostRecord *postRecord in filtered) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",detailCategory];
+            NSArray *matchs = [postRecord.postCategories filteredArrayUsingPredicate:predicate];
+            if (![matchs count]) {
+                [indexesToDelete addIndex:index];
+            };
+            index++;
+        }
+        if (indexesToDelete) {
+            [filtered removeObjectsAtIndexes:indexesToDelete];
+        }
     }
         
-    return filtered;
-    
+    return filtered;    
 }
 
 -(NSArray *)searchScope:(NSString *)scope 
