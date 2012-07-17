@@ -14,8 +14,6 @@
 #import "TOCViewController.h"
 
 #define CUSTOM_ROW_HIEGHT    60.0
-#define POST_ICON_HEIGHT 48
-#define TMP NSTemporaryDirectory()
 
 @interface PostsTableViewController() <UIActionSheetDelegate>;
 @property (nonatomic, strong) NSMutableArray *entries;
@@ -36,7 +34,7 @@
 @synthesize favs = _favs;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 
-#pragma mark Private methods
+#pragma mark - Private methods
 
 -(void)updateContext:(NSString *)topLevel
           withDetail:(NSString *)detail {
@@ -183,7 +181,6 @@
     [self performSegueWithIdentifier:@"Push Web View" sender:self];
 } 
 
-#pragma mark -
 #pragma mark - UISearchDelegate
 
 -(void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
