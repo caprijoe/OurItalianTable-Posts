@@ -10,11 +10,12 @@
 #import <MapKit/MapKit.h>
 #import "OITBrain.h"
 #import "SplitViewBarButtonItemPresenter.h"
+#import "PostRecord.h"
 
 @interface MapViewController : UIViewController <MKMapViewDelegate,SplitViewBarButtonItemPresenter>
 
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
-@property (strong, nonatomic) OITBrain *myBrain;
+@property (nonatomic,weak) IBOutlet MKMapView *mapView;
+@property (nonatomic,weak) IBOutlet UIToolbar *toolbar;
+@property (nonatomic,weak) UIBarButtonItem *rootPopoverButtonItem;
+@property (nonatomic,weak) PostRecord *postRecord;                         // post to be displayed
 @end

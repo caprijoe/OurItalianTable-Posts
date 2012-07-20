@@ -22,7 +22,7 @@
 @implementation MapViewController
 @synthesize mapView = _mapView;
 @synthesize toolbar = _toolbar;
-@synthesize myBrain = _myBrain;
+@synthesize postRecord = _postRecord;
 @synthesize annotations = _annotations;
 @synthesize entries = _entries;
 @synthesize webRecord = _webRecord;
