@@ -43,6 +43,16 @@
 
 #pragma mark - Search methods
 
+// change display category to the one that WordPress knows
+-(NSString *)fixCategory:(NSString *)category {
+    NSString *lc = [category lowercaseString];
+    NSString *noComma = [lc stringByReplacingOccurrencesOfString:@"," withString:@""];
+    NSString *noQuote = [noComma stringByReplacingOccurrencesOfString:@"'" withString:@""];
+    NSString *addHyphen = [noQuote stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+    return addHyphen;
+}
+
+
 -(NSMutableArray *)isFav:(BOOL)fav
                  withTag:(NSString *)tag
             withCategory:(NSString *)category
@@ -72,21 +82,8 @@
     }
     
     // filter detail category (from picker) if not nil
-    // FIX THIS .. UGLY!!
     if (detailCategory) {
-        NSUInteger index = 0;
-        NSMutableIndexSet *indexesToDelete = [[NSMutableIndexSet alloc] init];
-        for (PostRecord *postRecord in filtered) {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",detailCategory];
-            NSArray *matchs = [postRecord.postCategories filteredArrayUsingPredicate:predicate];
-            if (![matchs count]) {
-                [indexesToDelete addIndex:index];
-            };
-            index++;
-        }
-        if (indexesToDelete) {
-            [filtered removeObjectsAtIndexes:indexesToDelete];
-        }
+        [filtered filterUsingPredicate:[NSPredicate predicateWithFormat:@"ANY postCategories contains[c] %@", [self fixCategory: detailCategory]]];
     }
         
     return filtered;    
