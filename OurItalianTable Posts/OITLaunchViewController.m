@@ -11,8 +11,9 @@
 #import "OITBrain.h"
 #import "SplitViewBarButtonItemPresenter.h"
 
-#define FOOD_CATEGORY @"food"
-#define WINE_CATEGORY @"wine"
+#define FOOD_CATEGORY       @"food"
+#define WINE_CATEGORY       @"wine"
+#define WANDERING_CATEGORY  @"wanderings"
 
 @interface OITLaunchViewController()
 @property (nonatomic,strong) OITBrain *myBrain;             // set brain object pointer when init-ed
@@ -102,6 +103,7 @@
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Travel"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
+        [segue.destinationViewController setCategory:WANDERING_CATEGORY];
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
     } else if ([segue.identifier isEqualToString:@"Push Favorites"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
