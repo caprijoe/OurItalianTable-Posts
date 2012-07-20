@@ -207,7 +207,7 @@
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     
     NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
-    self.filteredListContent = [self.myBrain searchScope:scope withString:searchString isFavs:nil withCategory:self.category];
+    self.filteredListContent = [self.myBrain searchScope:scope withString:searchString isFavs:NO withCategory:self.category];
     [self updateContext:self.category withDetail:searchString];
     
     return YES;
@@ -216,7 +216,7 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
     
     NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
-    self.filteredListContent = [self.myBrain searchScope:scope withString:[self.searchDisplayController.searchBar text] isFavs:nil withCategory:self.category];
+    self.filteredListContent = [self.myBrain searchScope:scope withString:[self.searchDisplayController.searchBar text] isFavs:NO withCategory:self.category];
     
     return YES;
 }
