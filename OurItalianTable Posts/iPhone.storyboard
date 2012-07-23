@@ -57,7 +57,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="kdN-AK-zp1" kind="push" identifier="Push Travel" id="faY-Ed-XcR"/>
+                                    <segue destination="PnC-60-255" kind="push" identifier="Push Travel" id="CGr-Wm-74V"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mbg-ZF-Wf7">
@@ -235,7 +235,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="KTM-Kp-zbV"/>
+                    <navigationItem key="navigationItem" id="KTM-Kp-zbV">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="cBC-Cp-wKz">
+                            <connections>
+                                <segue destination="fWE-3X-Eey" kind="push" identifier="Push Location Map" id="6cj-no-nJl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomToolbar" destination="V0h-aN-N0S" id="Bip-pJ-94C"/>
@@ -326,15 +332,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZP2-ZJ-91W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kdN-AK-zp1" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HFM-i8-ihz">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="NqE-r2-1jc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Nvb-ay-byC">
-                                <rect key="frame" x="0.0" y="-588" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="-544" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items/>
                             </toolbar>
@@ -424,6 +430,30 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="2208" y="-589"/>
+        </scene>
+        <!--Location Map View Controller-->
+        <scene sceneID="sdp-zm-t6H">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AZ4-pC-OIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="fWE-3X-Eey" customClass="LocationMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U6y-HO-afb">
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="FlL-e0-H7m">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gac-Bq-Twe"/>
+                    <connections>
+                        <outlet property="mapView" destination="FlL-e0-H7m" id="WVz-eH-ExJ"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2659" y="-594"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="2i7-73-MCD">
@@ -555,6 +585,77 @@
             </objects>
             <point key="canvasLocation" x="1068" y="1496"/>
         </scene>
+        <!--Travel Table View Controller-->
+        <scene sceneID="LOq-pu-h2R">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fXU-72-9Fe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="PnC-60-255" customClass="TravelTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dfg-gp-9so">
+                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="2hg-7t-RB7">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>All</string>
+                                <string>Article</string>
+                                <string>Tags</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="PnC-60-255" id="yXa-sH-fX4"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Post Description" textLabel="KFa-Le-K4u" style="IBUITableViewCellStyleDefault" id="lWY-R8-HnS">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" id="KFa-Le-K4u">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PnC-60-255" id="LjP-1N-Y2A"/>
+                            <outlet property="delegate" destination="PnC-60-255" id="W9L-6g-n9x"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="uls-yQ-NoW">
+                        <barButtonItem key="rightBarButtonItem" title="Table of Contents" id="UdM-EV-uSx"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="V4W-Jh-TpX" id="yEp-8H-e93"/>
+                        <segue destination="NOz-J9-eoe" kind="push" identifier="Push Web View" id="Tfe-hO-22E"/>
+                    </connections>
+                </tableViewController>
+                <searchDisplayController id="8hZ-QA-haH">
+                    <connections>
+                        <outlet property="delegate" destination="PnC-60-255" id="87S-uD-j7b"/>
+                        <outlet property="searchBar" destination="2hg-7t-RB7" id="R7f-EV-BCV"/>
+                        <outlet property="searchContentsController" destination="PnC-60-255" id="QYj-pR-dQV"/>
+                        <outlet property="searchResultsDataSource" destination="PnC-60-255" id="PHl-bh-meN"/>
+                        <outlet property="searchResultsDelegate" destination="PnC-60-255" id="Wzh-hN-dZt"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1594" y="-589"/>
+        </scene>
     </scenes>
     <resources>
         <image name="OITLaunchButtonBackground.png" width="250" height="50"/>
@@ -564,71 +665,6 @@
         <image name="mbecci.jpg" width="420" height="420"/>
         <image name="ouritaliantable-original-crop.jpg" width="454" height="451"/>
     </resources>
-    <classes>
-        <class className="MapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="OITLaunchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OITLaunchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bookmarksButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="foodButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="wanderingsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="wineButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="PhotoScroller" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoScroller.h"/>
-            <relationships>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="photoName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="PostDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButton:"/>
-                <relationship kind="outlet" name="authorPicture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="datePublished" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="postTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="PostsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostsTableViewController.h"/>
-        </class>
-        <class className="TOCViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOCViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goSearch:"/>
-                <relationship kind="action" name="selectCategorySegment:"/>
-                <relationship kind="outlet" name="categorySegmentedController" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="detailPicker" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="WebViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="aboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/aboutViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButton:"/>
-                <relationship kind="outlet" name="txtDisplay" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="versionBuildDisplay" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -636,6 +672,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Qqa-cv-zDt"/>
-        <segue reference="CXM-kx-gJ2"/>
+        <segue reference="Tfe-hO-22E"/>
     </inferredMetricsTieBreakers>
 </document>
