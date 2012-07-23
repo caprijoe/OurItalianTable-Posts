@@ -11,7 +11,7 @@
 #import "webViewController.h"
 #import "TOCViewController.h"
 
-@interface TravelTableViewController : UITableViewController
+@interface TravelTableViewController : UITableViewController <UISearchDisplayDelegate,UISearchBarDelegate>
 
 // public properties
 @property (nonatomic, strong) OITBrain *myBrain;                        // data brain

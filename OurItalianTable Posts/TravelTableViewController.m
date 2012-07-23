@@ -111,6 +111,7 @@
     
     // create a filtered list that will contain products for the search results table.
 	self.filteredListContent = [NSMutableArray array];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -138,7 +139,11 @@
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.regionList count];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return 1;
+    } else {
+        return [self.regionList count];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -245,7 +250,7 @@
         [segue.destinationViewController setDelegate:self];
         self.categoryPickerSegue = segue;
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
+        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];   
     }
 }
 @end
