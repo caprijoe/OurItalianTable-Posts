@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIToolbar *topToolbar;
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
+@property (weak, nonatomic) IBOutlet UINavigationItem *topNavBar;
 
 // public properties
 @property (weak, nonatomic) UIBarButtonItem *rootPopoverButtonItem;         // button for rotation support

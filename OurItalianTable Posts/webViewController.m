@@ -6,8 +6,10 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "webViewController.h"
+#import "WebViewController.h"
 #import "PostDetailViewController.h"
+#import "LocationMapViewController.h"
+
 #import <Twitter/Twitter.h>
 
 #define FAVORITES_KEY       @"FAVORITES_KEY"
@@ -30,6 +32,7 @@
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 @synthesize bottomToolbar = _bottomToolbar;
+@synthesize topNavBar = _topNavBar;
 @synthesize delegate = _delegate;
 @synthesize detailsViewSeque = _detailsViewSeque;
 @synthesize loadedHTML = _loadedHTML;
@@ -190,7 +193,11 @@
             
     // Load up the style list, and the title and append
     NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.postRecord.postName];    
-    NSString *finalHTMLstring = [[self.cssHTMLHeader stringByAppendingString:titleTags] stringByAppendingString:modifiedHTML];   
+    NSString *finalHTMLstring = [[self.cssHTMLHeader stringByAppendingString:titleTags] stringByAppendingString:modifiedHTML];
+    
+    // adjust if button map will appear on top toolbar
+    if (self.postRecord.coordinate.latitude == 0 && self.postRecord.coordinate.latitude == 0)
+        self.topNavBar.rightBarButtonItem = Nil;
     
     //show webview
     [self.webView loadHTMLString:finalHTMLstring baseURL:nil];
@@ -201,6 +208,7 @@
 
 - (void)viewDidUnload {
     [self setTopToolbar:nil];
+    [self setTopNavBar:nil];
     [super viewDidUnload];
 }
 
@@ -211,6 +219,8 @@
         [segue.destinationViewController setPostDetail:self.postRecord];
         [segue.destinationViewController setDelegate:self];
         self.detailsViewSeque = segue;
+    } else if ([segue.identifier isEqualToString:@"Push Location Map"]) {
+        [segue.destinationViewController setLocationRecord:self.postRecord];
     }
 }
 
@@ -392,8 +402,8 @@
     else {
         [self.detailsViewSeque.destinationViewController dismissModalViewControllerAnimated:YES];
     }
-    
-    [self.delegate webViewController:self chosetag:tag]; 
+    if (self.delegate)
+        [self.delegate webViewController:self chosetag:tag]; 
 }
 
 @end
