@@ -48,7 +48,7 @@
         context = [NSString stringWithFormat:@"%@ > %@",topLevel, detail];
     
     // construct custom label for context statement
-    UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,250,15)];
+    UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,250,20)];
     customLabel.text = context;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         customLabel.textColor = [UIColor darkGrayColor];
@@ -115,6 +115,9 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
+    
+    // make sure toolbar is displayed
+    [self.navigationController setToolbarHidden:NO];
 }
 
 - (WebViewController *)splitWebViewController
