@@ -30,11 +30,11 @@
 -(void)resetPickerWhenSegmentSelected {
     
     // load pickedCategory based on selectedSegmentIndex
-    self.pickedCategory = [self fixCategory:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]];    
+    self.pickedCategory = [self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex];    
     
     // set initial position of picker wheel to row 1 and load into pickedDetail variable
     [self.detailPicker selectRow:0 inComponent:0 animated:NO];
-    self.pickedDetail = [self fixCategory:[[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:0]];
+    self.pickedDetail = [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:0];
     
     // reload picker
     [self.detailPicker reloadAllComponents];
@@ -119,18 +119,6 @@
     return [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:row];
 }
 
-#pragma mark -
-#pragma Helper to change category to a readable one
-
-// change display category to the one that WordPress knows
--(NSString *)fixCategory:(NSString *)category {
-    NSString *lc = [category lowercaseString];
-    NSString *noComma = [lc stringByReplacingOccurrencesOfString:@"," withString:@""];
-    NSString *noQuote = [noComma stringByReplacingOccurrencesOfString:@"'" withString:@""];
-    NSString *addHyphen = [noQuote stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-    return addHyphen;
-}
-
 #pragma mark - 
 #pragma IBActions
 
@@ -140,6 +128,6 @@
 
 - (IBAction)goSearch:(id)sender {
 
-    [self.delegate TOCViewController:sender categoryPicked:[self fixCategory:self.pickedCategory] detailCategoryPicked:[self fixCategory:self.pickedDetail]];
+    [self.delegate TOCViewController:sender categoryPicked:self.pickedCategory detailCategoryPicked:self.pickedDetail];
 }
 @end
