@@ -111,7 +111,6 @@
     
     // create a filtered list that will contain products for the search results table.
 	self.filteredListContent = [NSMutableArray array];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -245,7 +244,7 @@
     if ([segue.identifier isEqualToString:@"Push Web View"]) {
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
         [segue.destinationViewController setPostRecord:self.webRecord];
-        [segue.destinationViewController setDelegate:self];
+        [segue.destinationViewController setDelegate:Nil];
     } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
         [segue.destinationViewController setDelegate:self];
         self.categoryPickerSegue = segue;
