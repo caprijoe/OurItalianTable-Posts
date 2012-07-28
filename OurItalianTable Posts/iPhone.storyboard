@@ -143,15 +143,15 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Post Description" textLabel="0yY-Xq-zU2" style="IBUITableViewCellStyleDefault" id="4mM-RK-yUY">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Post Description" textLabel="0yY-Xq-zU2" style="IBUITableViewCellStyleDefault" id="4mM-RK-yUY">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" id="0yY-Xq-zU2">
-                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -192,7 +192,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1594" y="99"/>
+            <point key="canvasLocation" x="1630" y="99"/>
         </scene>
         <!--Web View Controller - Web Post-->
         <scene sceneID="cBs-WY-7oV">
@@ -236,7 +236,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KTM-Kp-zbV">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="cBC-Cp-wKz">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="cBC-Cp-wKz">
                             <connections>
                                 <segue destination="fWE-3X-Eey" kind="push" identifier="Push Location Map" id="6cj-no-nJl"/>
                             </connections>
@@ -245,11 +245,12 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomToolbar" destination="V0h-aN-N0S" id="Bip-pJ-94C"/>
+                        <outlet property="topNavBar" destination="KTM-Kp-zbV" id="yku-4j-XKX"/>
                         <outlet property="webView" destination="Z98-4N-m3J" id="d2M-19-iqk"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2189" y="99"/>
+            <point key="canvasLocation" x="2706" y="-261"/>
         </scene>
         <!--About View Controller-->
         <scene sceneID="qem-ph-zBG">
@@ -324,7 +325,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="594" y="1496"/>
+            <point key="canvasLocation" x="550" y="1352"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="60E-QZ-QZJ">
@@ -352,11 +353,10 @@
                     <connections>
                         <outlet property="mapView" destination="NqE-r2-1jc" id="Ecd-LQ-whf"/>
                         <outlet property="toolbar" destination="Nvb-ay-byC" id="31j-h7-I1d"/>
-                        <segue destination="NOz-J9-eoe" kind="push" identifier="Push Travel Post" id="b7w-bY-Kkz"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1594" y="712"/>
+            <point key="canvasLocation" x="1630" y="755"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wkJ-l1-PqP">
@@ -429,7 +429,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2208" y="-589"/>
+            <point key="canvasLocation" x="2306" y="593"/>
         </scene>
         <!--Location Map View Controller-->
         <scene sceneID="sdp-zm-t6H">
@@ -453,7 +453,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2659" y="-594"/>
+            <point key="canvasLocation" x="3185" y="-690"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="2i7-73-MCD">
@@ -543,7 +543,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2665" y="99"/>
+            <point key="canvasLocation" x="3185" y="91"/>
         </scene>
         <!--Photo Scroller-->
         <scene sceneID="oXy-EF-5YH">
@@ -583,7 +583,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1068" y="1496"/>
+            <point key="canvasLocation" x="1066" y="1352"/>
         </scene>
         <!--Travel Table View Controller-->
         <scene sceneID="LOq-pu-h2R">
@@ -594,23 +594,9 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="2hg-7t-RB7">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <scopeButtonTitles>
-                                <string>All</string>
-                                <string>Article</string>
-                                <string>Tags</string>
-                                <string>Title</string>
-                            </scopeButtonTitles>
-                            <connections>
-                                <outlet property="delegate" destination="PnC-60-255" id="yXa-sH-fX4"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Post Description" textLabel="KFa-Le-K4u" style="IBUITableViewCellStyleDefault" id="lWY-R8-HnS">
-                                <rect key="frame" x="0.0" y="80" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="10" y="1" width="280" height="43"/>
@@ -635,26 +621,15 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="uls-yQ-NoW">
-                        <barButtonItem key="rightBarButtonItem" title="Table of Contents" id="UdM-EV-uSx"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="uls-yQ-NoW"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="V4W-Jh-TpX" id="yEp-8H-e93"/>
                         <segue destination="NOz-J9-eoe" kind="push" identifier="Push Web View" id="Tfe-hO-22E"/>
                     </connections>
                 </tableViewController>
-                <searchDisplayController id="8hZ-QA-haH">
-                    <connections>
-                        <outlet property="delegate" destination="PnC-60-255" id="87S-uD-j7b"/>
-                        <outlet property="searchBar" destination="2hg-7t-RB7" id="R7f-EV-BCV"/>
-                        <outlet property="searchContentsController" destination="PnC-60-255" id="QYj-pR-dQV"/>
-                        <outlet property="searchResultsDataSource" destination="PnC-60-255" id="PHl-bh-meN"/>
-                        <outlet property="searchResultsDelegate" destination="PnC-60-255" id="Wzh-hN-dZt"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1594" y="-589"/>
+            <point key="canvasLocation" x="1630" y="-504"/>
         </scene>
     </scenes>
     <resources>
@@ -726,6 +701,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="bottomToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="topNavBar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
@@ -745,7 +721,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Qqa-cv-zDt"/>
+        <segue reference="yCb-az-4Vq"/>
         <segue reference="Tfe-hO-22E"/>
     </inferredMetricsTieBreakers>
 </document>
