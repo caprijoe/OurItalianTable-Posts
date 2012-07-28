@@ -15,16 +15,24 @@
 	</array>
 	<key>Regions of Italy</key>
 	<array>
+		<string>Abruzzo</string>
+		<string>Basilicata</string>
+		<string>Calabria</string>
 		<string>Campania</string>
 		<string>Emilia-Romagna</string>
-		<string>Friuli Venezia-Giulia</string>
-		<string>Sardinia</string>
-		<string>Sicily</string>
+		<string>Friuli-Venezia Giulia</string>
+		<string>Lazio</string>
+		<string>Lombardy</string>
+		<string>Luguria</string>
+		<string>Le Marche</string>
+		<string>Molise</string>
 		<string>Piedmont</string>
 		<string>Puglia</string>
 		<string>Sardinia</string>
 		<string>Sicily</string>
+		<string>Trentino-Alto Adige</string>
 		<string>Tuscany</string>
+		<string>Umbria</string>
 		<string>Valle d&apos;Aosta</string>
 		<string>Veneto</string>
 	</array>
