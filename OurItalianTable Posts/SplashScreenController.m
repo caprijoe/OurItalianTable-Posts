@@ -28,8 +28,7 @@
     [super viewDidUnload];
 }
 
-#pragma mark -
-#pragma mark Rotation support
+#pragma mark - Rotation support
 
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
