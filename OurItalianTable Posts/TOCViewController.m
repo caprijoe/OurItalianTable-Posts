@@ -50,10 +50,14 @@
     
     // set up content for PickViewController and helpers
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
+    
+    // setup helper to hold first column picker content (load plist keys and sort)
+    self.categoryHolder = [[[[NSDictionary alloc] initWithContentsOfFile:filePath] allKeys] sortedArrayUsingSelector:@selector(compare:)];    
+    
+    // FIX THIS!!
     self.categoryDictionary = [[NSDictionary alloc] initWithContentsOfFile:filePath];    
     
-    // setup helper to hold first column picker content
-    self.categoryHolder = [[self.categoryDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
+
     
     // remove segments that came in from storyboard, initialize with categories
     [self.categorySegmentedController removeAllSegments];
