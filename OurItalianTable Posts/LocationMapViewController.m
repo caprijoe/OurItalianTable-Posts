@@ -32,8 +32,10 @@
     [self.mapView setRegion:newRegion animated:YES];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:YES];
+    
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
     
@@ -60,7 +62,7 @@
             MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
             
             customPinView.pinColor = MKPinAnnotationColorPurple;
-            customPinView.animatesDrop = YES;
+            customPinView.animatesDrop = NO;
             customPinView.canShowCallout = YES;
             
             customPinView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ANNOTATION_ICON_HEIGHT, ANNOTATION_ICON_HEIGHT)];
