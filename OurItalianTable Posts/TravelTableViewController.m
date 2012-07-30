@@ -12,11 +12,14 @@
 #import "PostDetailViewController.h"
 #import "OITBrain.h"
 #import "TOCViewController.h"
+#import "MapViewController.h"
+#import "RegionAnnotation.h"
 
 #define CUSTOM_ROW_HIEGHT    60.0
 
 @interface TravelTableViewController ()
 @property (nonatomic, strong) NSMutableArray *regionList;
+@property (nonatomic, strong) NSMutableArray *regionCoordinates;
 @property (nonatomic, strong) NSMutableArray *travelEntries;
 @property (nonatomic,strong) PostRecord *webRecord;
 @property (nonatomic) BOOL inSearchFlag;
@@ -26,6 +29,7 @@
 
 @implementation TravelTableViewController
 @synthesize regionList = _regionList;
+@synthesize regionCoordinates = _regionCoordinates;
 @synthesize travelEntries = _travelEntries;
 @synthesize webRecord = _webRecord;
 @synthesize filteredListContent = _filteredListContent;
@@ -84,25 +88,41 @@
     self.inSearchFlag = NO;
     
     // load and sort candidate regions and islands
-    NSMutableOrderedSet *candidateRegions = [NSMutableOrderedSet orderedSet];
+    NSMutableDictionary *candidateRegions = [NSMutableDictionary dictionary];
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
-    [candidateRegions addObjectsFromArray:[[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:@"Regions of Italy"]];
-    [candidateRegions addObjectsFromArray:[[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:@"Islands"]];
-    NSArray *workingArray = [[candidateRegions array] sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:nil ascending:YES]]];
-    candidateRegions = [[NSOrderedSet orderedSetWithArray:workingArray] mutableCopy];
-    
+    [candidateRegions addEntriesFromDictionary:[[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:@"Regions of Italy"]];
+    [candidateRegions addEntriesFromDictionary:[[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:@"Islands"]]; 
     
     // alloc and fill in reference arrays
     self.regionList = [[NSMutableArray alloc] initWithCapacity:[candidateRegions count]];
     self.travelEntries = [[NSMutableArray alloc] initWithCapacity:[candidateRegions count]];
+    self.regionCoordinates = [[NSMutableArray alloc] initWithCapacity:[candidateRegions count]];
     
-    for (NSString *candidate in candidateRegions) {
+    // loop thru candidates... 
+    for (NSString *candidate in [[candidateRegions allKeys] sortedArrayUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:nil ascending:YES]]]) {
+        
+        // check to see if any posts exist for this canidate
         NSArray *workingArray = [self.myBrain isFav:NO withTag:nil withCategory:self.category withDetailCategory:candidate];
         if ([workingArray count]) {
+            
+            // if yes, add to regionList and add travel posts to traveEntries array
             [self.regionList addObject:candidate];
             [self.travelEntries addObject:workingArray];
+            
+            // create an annotation object with the coordinates
+            RegionAnnotation *annotationObject = [[RegionAnnotation alloc] init];
+            annotationObject.regionName = candidate;
+            annotationObject.travelPostCount = [workingArray count];
+            annotationObject.latitude = [(NSNumber *)[[candidateRegions objectForKey:candidate] objectAtIndex:0] floatValue];
+            annotationObject.longitude = [(NSNumber *)[[candidateRegions objectForKey:candidate] objectAtIndex:1] floatValue];
+            if ([[candidateRegions objectForKey:candidate] count] > 2)
+            annotationObject.flagURL = [[candidateRegions objectForKey:candidate] objectAtIndex:2];
+            [self.regionCoordinates addObject:annotationObject];
         }
     }
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [self performSegueWithIdentifier:@"Show Region Map" sender:self];
     
     // update context field at bottom of screen
     [self updateContext:self.category withDetail:nil];
@@ -253,6 +273,8 @@
         self.categoryPickerSegue = segue;
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];   
+    } else if ([segue.identifier isEqualToString:@"Show Region Map"]) {
+        [segue.destinationViewController setRegionCoordinates:[self.regionCoordinates copy]];
     }
 }
 @end
