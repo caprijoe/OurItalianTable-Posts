@@ -15,5 +15,6 @@
 @property (nonatomic) int travelPostCount;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
+@property (nonatomic, strong) NSString *flagURL;
 
 @end

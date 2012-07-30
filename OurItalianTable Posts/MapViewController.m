@@ -8,24 +8,16 @@
 
 #import "MapViewController.h"
 #import "postRecord.h"
-#import "MapAnnotation.h"
+#import "RegionAnnotation.h"
 #import "webViewController.h"
 
 #define ANNOTATION_ICON_HEIGHT 30
-
-@interface MapViewController ()
-@property (strong,nonatomic) NSMutableArray *annotations;
-@property (strong,nonatomic) NSArray *entries;
-@property (strong,nonatomic) PostRecord *webRecord;
-@end
+#define FLAG_ICON_HEIGHT 50
 
 @implementation MapViewController
 @synthesize mapView = _mapView;
 @synthesize toolbar = _toolbar;
-@synthesize postRecord = _postRecord;
-@synthesize annotations = _annotations;
-@synthesize entries = _entries;
-@synthesize webRecord = _webRecord;
+@synthesize regionCoordinates = _regionCoordinates;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 
@@ -54,80 +46,65 @@
     
     self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid    
     self.mapView.delegate = self;
-    self.webRecord = [[PostRecord alloc] init];
-    self.entries = [self.myBrain isFav:NO withTag:nil withCategory:@"wanderings" withDetailCategory:nil];
-    self.annotations = [[NSMutableArray alloc] init];
-    for (PostRecord *entry in self.entries)
-    {
-        if ((entry.coordinate.latitude != 0) && (entry.coordinate.longitude != 0)) {
-            MapAnnotation *obj = [[MapAnnotation alloc] init];
-            obj.entry = entry;
-            [self.annotations addObject:obj];
-        }
-    }
      
     [self gotoLocation];    // finally goto Italy
     
-    [self.mapView addAnnotations:self.annotations];
+    [self.mapView addAnnotations:self.regionCoordinates];
 }
 
 #pragma mark -
 #pragma mark MKMapViewDelegate
 
--(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
-    MapAnnotation *thisAnnotation =[view annotation]; 
-    self.webRecord = thisAnnotation.entry;
-    [self performSegueWithIdentifier:@"Push Travel Post" sender:self];
-}
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    if([annotation isKindOfClass:[MapAnnotation class]])
-    {
-        MKAnnotationView *pinView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MapVC"];
-        if (!pinView) {
-            MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
-            customPinView.pinColor = MKPinAnnotationColorPurple;
-            customPinView.animatesDrop = YES;
-            customPinView.canShowCallout = YES;
-            
-            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            customPinView.rightCalloutAccessoryView = rightButton;
-            
-            customPinView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ANNOTATION_ICON_HEIGHT, ANNOTATION_ICON_HEIGHT)];
-            [(UIImageView *)customPinView.leftCalloutAccessoryView setImage:nil];
-                                                      
-            return customPinView;
-        } else {
-            pinView.annotation = annotation;
-        }
-        return pinView;
-    } 
-    return nil;
+    MKAnnotationView *pinView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MapVC"];
+    if (!pinView) {
+        MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
+        customPinView.pinColor = MKPinAnnotationColorPurple;
+        customPinView.animatesDrop = YES;
+        customPinView.canShowCallout = YES;
+        
+        customPinView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ANNOTATION_ICON_HEIGHT, ANNOTATION_ICON_HEIGHT)];
+        [(UIImageView *)customPinView.leftCalloutAccessoryView setImage:nil];
+        
+        return customPinView;
+    } else {
+        pinView.annotation = annotation;
+    }
+    return pinView;
 }
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view 
 {
-    MapAnnotation *thisAnnotation = [view annotation];
-    NSString *url = thisAnnotation.entry.imageURLString;
+    RegionAnnotation *thisAnnotation = [view annotation];
+    NSString *url = thisAnnotation.flagURL;
     
     dispatch_queue_t downloadQueue = dispatch_queue_create("annotation image downloader", NULL);
     dispatch_async(downloadQueue, ^{
         NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         dispatch_async(dispatch_get_main_queue(), ^{
-            UIImage *image = [UIImage imageWithData:data];
-            [(UIImageView *)view.leftCalloutAccessoryView setImage:image];
+
+            UIImage *flagImage = [UIImage imageWithData:data];
+            
+            CGRect resizeRect;
+            
+            resizeRect.size = flagImage.size;
+            CGSize maxSize = CGSizeMake(ANNOTATION_ICON_HEIGHT, ANNOTATION_ICON_HEIGHT);
+            if (resizeRect.size.width > maxSize.width)
+                resizeRect.size = CGSizeMake(maxSize.width, resizeRect.size.height / resizeRect.size.width * maxSize.width);
+            if (resizeRect.size.height > maxSize.height)
+                resizeRect.size = CGSizeMake(resizeRect.size.width / resizeRect.size.height * maxSize.height, maxSize.height);
+            
+            resizeRect.origin = (CGPoint){0.0f, 0.0f};
+            UIGraphicsBeginImageContext(resizeRect.size);
+            [flagImage drawInRect:resizeRect];
+            UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            [(UIImageView *)view.leftCalloutAccessoryView setImage:resizedImage];
         });
     });
     dispatch_release(downloadQueue);
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"Push Travel Post"]) {
-        [segue.destinationViewController setPostRecord:self.webRecord];
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
-    }
 }
 
 - (void)viewDidUnload

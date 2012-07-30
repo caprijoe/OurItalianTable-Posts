@@ -14,6 +14,7 @@
 @synthesize travelPostCount = _travelPostCount;
 @synthesize latitude = _latitude;
 @synthesize longitude = _longitude;
+@synthesize flagURL = _flagURL;
 
 -(NSString *)title
 {

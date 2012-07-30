@@ -17,5 +17,6 @@
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic,weak) IBOutlet UIToolbar *toolbar;
 @property (nonatomic,weak) UIBarButtonItem *rootPopoverButtonItem;
-@property (nonatomic,weak) PostRecord *postRecord;                         // post to be displayed
+
+@property (nonatomic,strong) NSArray *regionCoordinates;                        // annotations to be displayed
 @end
