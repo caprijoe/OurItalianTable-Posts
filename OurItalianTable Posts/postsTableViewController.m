@@ -220,9 +220,7 @@
     [self resetToAllEntries:self];
 }
 
-
-#pragma mark -
-#pragma mark Delegate responders
+#pragma mark - Delegate responders
 
 -(void)webViewController:(WebViewController *)sender chosetag:(id)tag
 {
@@ -262,8 +260,7 @@
 }
 
 
-#pragma mark -
-#pragma mark Handle seques
+#pragma mark - Handle seques
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Push Web View"]) {
