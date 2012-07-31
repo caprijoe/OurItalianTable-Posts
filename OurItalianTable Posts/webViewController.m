@@ -186,6 +186,10 @@
     UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];    
     NSMutableArray *toolbar = [self.bottomToolbar.items mutableCopy];
     [toolbar replaceObjectAtIndex:0 withObject:infoBarButton];
+    if (self.postRecord.coordinate.latitude == 0 && self.postRecord.coordinate.latitude == 0)
+        [toolbar removeObjectAtIndex:1];
+    
+    
     self.bottomToolbar.items = [toolbar copy];
     
     // fix HTML problems
