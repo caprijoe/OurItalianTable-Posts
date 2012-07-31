@@ -12,7 +12,6 @@
 #import "webViewController.h"
 
 #define ANNOTATION_ICON_HEIGHT 30
-#define FLAG_ICON_HEIGHT 50
 
 @implementation MapViewController
 @synthesize mapView = _mapView;
@@ -20,6 +19,7 @@
 @synthesize regionCoordinates = _regionCoordinates;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
+@synthesize delegate = _delegate;
 
 
 - (void)gotoLocation
@@ -105,6 +105,8 @@
         });
     });
     dispatch_release(downloadQueue);
+    
+    [self.delegate MapViewContoller:self regionClicked:thisAnnotation.regionName];
 }
 
 - (void)viewDidUnload

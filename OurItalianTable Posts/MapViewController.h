@@ -12,11 +12,21 @@
 #import "SplitViewBarButtonItemPresenter.h"
 #import "PostRecord.h"
 
+@class MapViewController;
+
+@protocol MapViewController <NSObject>
+
+-(void)MapViewContoller:(MapViewController *)sender
+          regionClicked:(NSString *)region;
+@end
+
 @interface MapViewController : UIViewController <MKMapViewDelegate,SplitViewBarButtonItemPresenter>
 
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic,weak) IBOutlet UIToolbar *toolbar;
 @property (nonatomic,weak) UIBarButtonItem *rootPopoverButtonItem;
+
+@property (nonatomic,weak) id<MapViewController> delegate;
 
 @property (nonatomic,strong) NSArray *regionCoordinates;                        // annotations to be displayed
 @end

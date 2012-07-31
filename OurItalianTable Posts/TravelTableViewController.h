@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "OITBrain.h"
 #import "webViewController.h"
-#import "TOCViewController.h"
+#import "MapViewController.h"
 
-@interface TravelTableViewController : UITableViewController <UISearchDisplayDelegate,UISearchBarDelegate>
+@interface TravelTableViewController : UITableViewController <UISearchDisplayDelegate,UISearchBarDelegate,MapViewController>
 
 // public properties
 @property (nonatomic, strong) OITBrain *myBrain;                        // data brain

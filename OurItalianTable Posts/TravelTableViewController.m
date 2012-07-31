@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "TravelTableViewController.h"
 #import "postRecord.h"
 #import "webViewController.h"
@@ -260,8 +261,15 @@
     [self resetToAllEntries:self];
 }
 
-#pragma mark -
-#pragma mark Handle seques
+#pragma mark - Delegate responders
+
+-(void)MapViewContoller:(MapViewController *)sender
+          regionClicked:(NSString *)region {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:[self.regionList indexOfObject:region]];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+#pragma mark - Handle seques
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Push Web View"]) {
@@ -275,6 +283,8 @@
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];   
     } else if ([segue.identifier isEqualToString:@"Show Region Map"]) {
         [segue.destinationViewController setRegionCoordinates:[self.regionCoordinates copy]];
+        [segue.destinationViewController setDelegate:self];
     }
 }
+
 @end
