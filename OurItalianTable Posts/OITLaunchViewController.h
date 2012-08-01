@@ -19,5 +19,6 @@
 
 // rotation support
 @property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
+@property (nonatomic, strong) UIPopoverController *masterPopoverController;
 
 @end

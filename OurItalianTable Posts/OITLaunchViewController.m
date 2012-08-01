@@ -17,6 +17,7 @@
 
 @interface OITLaunchViewController()
 @property (nonatomic,strong) OITBrain *myBrain;             // set brain object pointer when init-ed
+
 @end
 
 @implementation OITLaunchViewController
@@ -25,6 +26,7 @@
 @synthesize bookmarksButton = _bookmarksButtonOutlet;
 @synthesize foodButton = _foodButtonOutlet;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
+@synthesize masterPopoverController = _masterPopoverController;
 @synthesize myBrain = _myBrain;
 
 #pragma mark Private methods
@@ -105,6 +107,7 @@
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:WANDERING_CATEGORY];
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
+        [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Favorites"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setFavs:YES];
@@ -148,7 +151,8 @@
 {
     barButtonItem.title = @"Main Menu";
     self.rootPopoverButtonItem = barButtonItem;
-    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = barButtonItem;    
+    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = barButtonItem;
+    self.masterPopoverController = pc;
 }
 
 -(void)splitViewController:(UISplitViewController *)svc 
@@ -157,6 +161,7 @@
 {
     self.rootPopoverButtonItem = nil;
     [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
+    self.masterPopoverController = nil;
 }
 
 #pragma mark - External delegates
