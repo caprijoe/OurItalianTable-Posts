@@ -29,8 +29,9 @@
 @synthesize masterPopoverController = _masterPopoverController;
 @synthesize myBrain = _myBrain;
 
-#pragma mark Private methods
+#pragma mark - Private methods
 
+// reset right side splash screen when left side appears or disappears
 -(void)resetDetailPanel {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self performSegueWithIdentifier:@"Reset Splash View" sender:self];        
@@ -53,16 +54,16 @@
     self.wanderingsButton.enabled = NO;
     self.bookmarksButton.enabled = NO;
     
-    // alloc the brain, start the loading
+    // alloc the brain which starts the loading from NSBundle XML file
     self.myBrain = [[OITBrain alloc] init];
     self.myBrain.delegate = self;
         
-    //Set the UIView background as lemons
+    // Set the UIView background as lemons
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Lemons.png"]];
     self.view.backgroundColor = background;
     
-    //set a custome title in the launch controller
-    //get font etc from first button
+    // set a custom title in the launch controller
+    // get font etc from first button
     UILabel *OITTitleView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 440.0, 44.0)];
     OITTitleView.font = self.foodButton.titleLabel.font;
     OITTitleView.backgroundColor = [UIColor clearColor];
@@ -95,26 +96,22 @@
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:FOOD_CATEGORY];
         [segue.destinationViewController setFavs:NO];
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Wine"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:WINE_CATEGORY];
         [segue.destinationViewController setFavs:NO];
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Travel"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:WANDERING_CATEGORY];
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Favorites"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setFavs:YES];
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Family"]) {
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
+        // do nothing for this one
     }
 }
 
@@ -149,10 +146,10 @@
          withBarButtonItem:(UIBarButtonItem *)barButtonItem 
       forPopoverController:(UIPopoverController *)pc
 {
-    barButtonItem.title = @"Main Menu";
+    barButtonItem.title = @"Menu";
     self.rootPopoverButtonItem = barButtonItem;
-    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = barButtonItem;
     self.masterPopoverController = pc;
+    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = barButtonItem;
 }
 
 -(void)splitViewController:(UISplitViewController *)svc 
@@ -160,11 +157,11 @@
  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     self.rootPopoverButtonItem = nil;
-    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
     self.masterPopoverController = nil;
+    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
 }
 
-#pragma mark - External delegates
+#pragma mark - External delegates callbacks
 
 -(void)OITBrainDidFinish {
     dispatch_async(dispatch_get_main_queue(), ^{
