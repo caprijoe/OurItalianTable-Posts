@@ -10,6 +10,7 @@
 #import "OITBrain.h"
 #import "webViewController.h"
 #import "TOCViewController.h"
+#import "OITLaunchViewController.h"
 
 @interface PostsTableViewController : UITableViewController <UISearchDisplayDelegate,UISearchBarDelegate,WebViewControllerDelegate, TOCViewController>
 

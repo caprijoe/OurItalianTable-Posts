@@ -81,7 +81,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.inSearchFlag = NO;
     
     self.entries = [self.myBrain isFav:self.favs withTag:nil withCategory:self.category withDetailCategory:nil];
@@ -182,7 +182,12 @@
         self.webRecord = [self.entries objectAtIndex:indexPath.row]; 
     }
 
+    // bring up web view on right with post detail
     [self performSegueWithIdentifier:@"Push Web View" sender:self];
+    
+    // get rid of left side splitview
+    OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
+    [topVC.masterPopoverController dismissPopoverAnimated:YES];
 } 
 
 #pragma mark - UISearchDelegate
