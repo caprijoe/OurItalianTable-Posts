@@ -10,7 +10,9 @@
 #import "ParseXML.h"
 #import "postRecord.h"
 
-@protocol OITBrainFinishedDelegate;
+@protocol OITBrainFinishedDelegate
+-(void)OITBrainDidFinish;
+@end
 
 @interface OITBrain : NSObject <ProcessedPostsDelegate>
 
@@ -39,8 +41,4 @@
             forCell:(UITableViewCell *)cell
        forTableView:(UITableView *)tableView
        forIndexPath:(NSIndexPath *)indexPath;
-@end
-
-@protocol OITBrainFinishedDelegate
--(void)OITBrainDidFinish;
 @end
