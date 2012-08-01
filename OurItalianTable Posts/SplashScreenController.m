@@ -7,12 +7,11 @@
 //
 
 #import "SplashScreenController.h"
+#import "OITLaunchViewController.h"
 
 @implementation SplashScreenController
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolbar = _toolbar;
-@synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
-
 
 #pragma mark - View lifecycle
 
@@ -20,7 +19,9 @@
 {
     [super viewDidLoad];
     
-    [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
+    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
+    
+    [self setSplitViewBarButtonItem:rootPopoverButtonItem];
 }
 
 - (void)viewDidUnload

@@ -12,8 +12,7 @@
 
 @interface SplashScreenController : UIViewController <SplitViewBarButtonItemPresenter>
 
-// properties for rotation / bar button
+// outlets
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) UIBarButtonItem *rootPopoverButtonItem;
 
 @end
