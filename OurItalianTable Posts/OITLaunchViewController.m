@@ -7,8 +7,8 @@
 //
 
 #import "OITLaunchViewController.h"
-#import "postsTableViewController.h"
-#import "OITBrain.h"
+#import "PostsTableViewController.h"
+#import "TravelTableViewController.h"
 #import "SplitViewBarButtonItemPresenter.h"
 
 #define FOOD_CATEGORY       @"food"
@@ -41,6 +41,8 @@
 
 -(void)awakeFromNib {
     [super awakeFromNib];
+    
+    // set delegate for rotation support
     self.splitViewController.delegate = self;
 }
 
