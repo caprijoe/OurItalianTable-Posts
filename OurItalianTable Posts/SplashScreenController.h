@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SplitViewBarButtonItemPresenter.h"
 
-
 @interface SplashScreenController : UIViewController <SplitViewBarButtonItemPresenter>
 
 // outlets
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (nonatomic,weak) IBOutlet UIToolbar *toolbar;             // toolbar for "bar button dance"
 
 @end

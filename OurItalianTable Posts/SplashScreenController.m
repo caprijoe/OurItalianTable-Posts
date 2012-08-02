@@ -19,14 +19,10 @@
 {
     [super viewDidLoad];
     
+    // on load, get root button from left nav controller top and display on right
     UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
     
     [self setSplitViewBarButtonItem:rootPopoverButtonItem];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
 }
 
 #pragma mark - Rotation support
