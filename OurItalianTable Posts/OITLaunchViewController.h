@@ -12,10 +12,10 @@
 @interface OITLaunchViewController : UIViewController <UISplitViewControllerDelegate, OITBrainFinishedDelegate>;
 
 // outlets
-@property (weak,nonatomic) IBOutlet UIButton *foodButton;                      // for getting the font of 1st button
-@property (weak,nonatomic) IBOutlet UIButton *wineButton;
-@property (weak,nonatomic) IBOutlet UIButton *wanderingsButton;
-@property (weak,nonatomic) IBOutlet UIButton *bookmarksButton;
+@property (nonatomic,weak) IBOutlet UIButton *foodButton;                      // for getting the font of 1st button
+@property (nonatomic,weak) IBOutlet UIButton *wineButton;
+@property (nonatomic,weak) IBOutlet UIButton *wanderingsButton;
+@property (nonatomic,weak) IBOutlet UIButton *bookmarksButton;
 
 // rotation support
 @property (nonatomic,strong) UIBarButtonItem *rootPopoverButtonItem;            // "main menu" button for use by right controllers
