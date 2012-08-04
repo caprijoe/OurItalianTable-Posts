@@ -8,6 +8,8 @@
 
 #import "TOCViewController.h"
 
+#define LAST_TOC_CATEGORY_KEY   @"LAST_TOC_CATEGORY_KEY"
+
 @interface TOCViewController ()
 @property (nonatomic,strong) NSString *pickedCategory;          // category selected in first row of wheel
 @property (nonatomic, strong) NSString *pickedDetail;           // detail picked in second row of wheel based on first column selected
@@ -29,6 +31,11 @@
 
 -(void)resetPickerWhenSegmentSelected {
     
+    // save selected picker category to defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:self.categorySegmentedController.selectedSegmentIndex+1 forKey:LAST_TOC_CATEGORY_KEY];
+    [defaults synchronize];
+    
     // load pickedCategory based on selectedSegmentIndex
     self.pickedCategory = [self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex];    
     
@@ -48,16 +55,23 @@
 {
     [super viewWillAppear:YES];
     
-    // set up content for PickViewController and helpers
+    // set up filepath to PLIST for PickViewController and helpers
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
     
     // setup helper to hold first column picker content (load plist keys and sort)
     self.categoryHolder = [[[[NSDictionary alloc] initWithContentsOfFile:filePath] allKeys] sortedArrayUsingSelector:@selector(compare:)];    
     
-    // FIX THIS!!
-    self.categoryDictionary = [[NSDictionary alloc] initWithContentsOfFile:filePath];    
-    
-
+    // Load up category dictionary from PLIST. If incoming object is a NSDictionary, make the keys into an array
+    NSMutableDictionary *muteableCategoryDictionary = [[NSMutableDictionary alloc] init];
+    for (int i=0; i<[self.categoryHolder count]; i++) {
+        id temp = [[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:[self.categoryHolder objectAtIndex:i]];
+        if ([temp isKindOfClass:[NSDictionary class]]) {
+            [muteableCategoryDictionary setObject:[[temp allKeys] sortedArrayUsingSelector:@selector(compare:)] forKey:[self.categoryHolder objectAtIndex:i]]; 
+        } else {
+            [muteableCategoryDictionary setObject:[temp sortedArrayUsingSelector:@selector(compare:)] forKey:[self.categoryHolder objectAtIndex:i]];
+        }
+    }
+    self.categoryDictionary = [muteableCategoryDictionary copy];
     
     // remove segments that came in from storyboard, initialize with categories
     [self.categorySegmentedController removeAllSegments];
@@ -67,10 +81,19 @@
         i++;
     }
 
-    // initialize segmented control to first item and load into category variable
-    self.categorySegmentedController.selectedSegmentIndex = 0;
+    // get last selected category from defaults and use that (defaults value is offset by 1 -- so 1, 2, 3 is stored)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int lastCategory = [defaults integerForKey:LAST_TOC_CATEGORY_KEY];
+    
+    if (lastCategory) {
+        self.categorySegmentedController.selectedSegmentIndex = lastCategory - 1;
+    } else {
+        self.categorySegmentedController.selectedSegmentIndex = 0;
+        [defaults setInteger:1 forKey:LAST_TOC_CATEGORY_KEY];
+        [defaults synchronize];        
+    }
+    
     [self resetPickerWhenSegmentSelected];
-
 }
 
 -(void)viewDidLoad {
@@ -111,9 +134,10 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 {
-    if (self.categorySegmentedController.selectedSegmentIndex >=0)
-    return [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] count];
-    else {
+    if (self.categorySegmentedController.selectedSegmentIndex >=0) {
+        int i = [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] count];
+        return i;
+    } else {
         return 0;
     }
 }
