@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "ParseXML.h"
-#import "postRecord.h"
+#import "PostRecord.h"
 
 @protocol OITBrainFinishedDelegate
 -(void)OITBrainDidFinish;

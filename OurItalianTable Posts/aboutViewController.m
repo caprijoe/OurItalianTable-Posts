@@ -54,6 +54,7 @@
 
 #pragma mark - Outlets
 
+// when done button pressed (on iPhone only) dismiss self
 - (IBAction)doneButton:(id)sender {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     [self dismissModalViewControllerAnimated:YES];

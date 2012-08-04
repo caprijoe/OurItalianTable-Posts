@@ -7,6 +7,7 @@
 //
 
 #import "PhotoScroller.h"
+#import "OITLaunchViewController.h"
 
 @interface PhotoScroller () 
 @property (nonatomic, strong) NSArray *imagePaths;              // holds photos loaded from PLIST
@@ -22,18 +23,6 @@
 @synthesize imagePaths = _imagePaths;
 @synthesize toolbar = _toolbar;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
-@synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
-
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
-{
-    if (_splitViewBarButtonItem !=splitViewBarButtonItem) {
-        NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
-        if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-        if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
-        self.toolbar.items = toolbarsItems;
-        _splitViewBarButtonItem = splitViewBarButtonItem;
-    }
-}
 
 #pragma mark - Private methods
 - (void)loadVisiblePages {
@@ -77,8 +66,12 @@
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
     
+    // set window title
     self.title = @"The Family";
-    [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
+    
+    // on load, get root button from left nav controller top and display on right
+    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;    
+    [self setSplitViewBarButtonItem:rootPopoverButtonItem];
     
     // get image names from PLIST
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"NextImage" ofType:@"plist"];
@@ -127,6 +120,17 @@
         return (interfaceOrientation == UIInterfaceOrientationPortrait);
     else  
         return YES;
+}
+
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    if (_splitViewBarButtonItem !=splitViewBarButtonItem) {
+        NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
+        if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
+        if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
+        self.toolbar.items = toolbarsItems;
+        _splitViewBarButtonItem = splitViewBarButtonItem;
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

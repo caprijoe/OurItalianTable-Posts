@@ -11,7 +11,7 @@
 @interface aboutViewController : UIViewController
 
 // outlets
-@property (nonatomic, weak) IBOutlet UITextView *txtDisplay;    // box for displaying about text
+@property (nonatomic, weak) IBOutlet UITextView *txtDisplay;                // box for displaying about text
 @property (weak, nonatomic) IBOutlet UILabel *versionBuildDisplay;
 
 // actions

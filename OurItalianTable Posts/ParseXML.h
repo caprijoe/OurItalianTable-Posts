@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "ParseOperation.h"
-
 
 @protocol ProcessedPostsDelegate <NSObject>
 @required
@@ -16,7 +14,11 @@
 @end
 
 @interface ParseXML : NSObject <ParseOperationDelegate>;
+
+// public properties
 @property (nonatomic,weak) id <ProcessedPostsDelegate> delegate;
+
+// public methods
 -(void)startParse;
 @end
 

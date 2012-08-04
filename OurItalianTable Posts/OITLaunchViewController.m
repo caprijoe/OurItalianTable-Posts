@@ -165,6 +165,7 @@
 
 #pragma mark - External delegates callbacks
 
+// called back from loading posts and activate buttons
 -(void)OITBrainDidFinish {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.foodButton.enabled = YES;

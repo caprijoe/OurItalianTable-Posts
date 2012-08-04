@@ -17,7 +17,4 @@
 @property (nonatomic, weak) IBOutlet UILabel *photoName;
 @property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 
-// actions
-@property (nonatomic, weak) UIBarButtonItem *rootPopoverButtonItem;
-
 @end
