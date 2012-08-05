@@ -15,6 +15,7 @@
 #import "TOCViewController.h"
 #import "MapViewController.h"
 #import "RegionAnnotation.h"
+#import "OITLaunchViewController.h"
 
 #define CUSTOM_ROW_HIEGHT    60.0
 
@@ -72,11 +73,17 @@
 }
 
 -(void)resetToAllEntries:(id)sender {
-    [self viewDidLoad];
-    [self.searchDisplayController setActive:NO animated:YES];
+    
+    // if iPad, reload map on right side
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
-    [self.tableView reloadData];
+        [self performSegueWithIdentifier:@"Show Region Map" sender:self];
+    
+    // reset table view to top (0,0)
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
+    // update context field at bottom of screen at refresh
+    [self updateContext:self.category withDetail:nil];    
 }
 
 #pragma mark - View lifecycle
@@ -224,6 +231,10 @@
     }
     
     [self performSegueWithIdentifier:@"Push Web View" sender:self];
+    
+    // get rid of left side splitview
+    OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
+    [topVC.masterPopoverController dismissPopoverAnimated:YES];
 } 
 
 #pragma mark - UISearchDelegate
@@ -265,8 +276,24 @@
 
 -(void)MapViewContoller:(MapViewController *)sender
           regionClicked:(NSString *)region {
+    
+    // force the root controller on screen (should not be on screen now because last selection was detailed popover)
+    // suppress ARC warning about memory leak - not an issue
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    
+    // get root view controllers popover button from left side and make it appear
+    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[[self.navigationController viewControllers] objectAtIndex:0]).rootPopoverButtonItem;
+    
+    [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
+#pragma clang diagnostic pop
+    
+    // scroll to correct position of table for region clicked
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:[self.regionList indexOfObject:region]];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
+    // update context field at bottom of screen
+    [self updateContext:self.category withDetail:region];
 }
 
 #pragma mark - Handle seques
@@ -280,7 +307,7 @@
         [segue.destinationViewController setDelegate:self];
         self.categoryPickerSegue = segue;
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];   
+        // nothing for this one
     } else if ([segue.identifier isEqualToString:@"Show Region Map"]) {
         [segue.destinationViewController setRegionCoordinates:[self.regionCoordinates copy]];
         [segue.destinationViewController setDelegate:self];
