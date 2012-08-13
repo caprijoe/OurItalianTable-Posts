@@ -81,4 +81,7 @@
     [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
 }
 
+- (IBAction)doneButton:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

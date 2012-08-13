@@ -13,10 +13,13 @@
 
 @interface LocationMapViewController : UIViewController <MKMapViewDelegate>
 
-// outlets and actions
-@property (nonatomic,weak) IBOutlet MKMapView *mapView;
-
 // public properties
 @property (nonatomic,strong) PostRecord *locationRecord;
+
+// outlets
+@property (nonatomic,weak) IBOutlet MKMapView *mapView;
+
+// actions
+- (IBAction)doneButton:(id)sender;
 
 @end
