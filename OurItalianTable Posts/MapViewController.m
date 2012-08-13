@@ -10,6 +10,7 @@
 #import "postRecord.h"
 #import "RegionAnnotation.h"
 #import "webViewController.h"
+#import "OITLaunchViewController.h"
 
 #define ANNOTATION_ICON_HEIGHT 30
 
@@ -39,10 +40,13 @@
 
 - (void)viewDidLoad
 {
-    [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
+    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
     
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
+    
+    // self button for detail splitViewController when in portrait
+    [self setSplitViewBarButtonItem:rootPopoverButtonItem];
     
     self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid    
     self.mapView.delegate = self;
