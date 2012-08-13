@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *topNavBar;
 
 // public properties
-@property (weak, nonatomic) UIBarButtonItem *rootPopoverButtonItem;         // button for rotation support
-@property (weak, nonatomic) PostRecord *postRecord;                         // post to be displayed
-@property (nonatomic,weak) id <WebViewControllerDelegate> delegate;         // delegate call back for pressed TAG button
+@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;         // button for rotation support
+@property (nonatomic, strong) PostRecord *postRecord;                         // post to be displayed
+@property (nonatomic, strong) id <WebViewControllerDelegate> delegate;         // delegate call back for pressed TAG button
 @end

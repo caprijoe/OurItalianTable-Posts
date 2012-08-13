@@ -9,6 +9,7 @@
 #import "WebViewController.h"
 #import "PostDetailViewController.h"
 #import "LocationMapViewController.h"
+#import "OITLaunchViewController.h"
 
 #import <Twitter/Twitter.h>
 
@@ -170,26 +171,23 @@
 {
     [super viewDidLoad];
     
+    // if on ipad, set the root menu button by grabbing from the top of left stack
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
+        [self setSplitViewBarButtonItem:rootPopoverButtonItem];
+    }
+    
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
     
-    // self button for detail splitViewController when in portrait
-    [self setSplitViewBarButtonItem:self.rootPopoverButtonItem];
-    
-    // alter lower left button on UIToolbar to the standard "i" info button, adjust color for iPad vs iPhone
-    UIButton *infoButton;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        infoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
-    else 
-        infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];    
-    [infoButton addTarget:self action:@selector(performSegueWhenInfoButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *infoBarButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];    
+    // grab current toolbar
     NSMutableArray *toolbar = [self.bottomToolbar.items mutableCopy];
-    [toolbar replaceObjectAtIndex:0 withObject:infoBarButton];
+        
+    // if not coordinates in post, delete compass icon (position #2, index #1)
     if (self.postRecord.coordinate.latitude == 0 && self.postRecord.coordinate.latitude == 0)
         [toolbar removeObjectAtIndex:1];
     
-    
+    // set new version of toolbar
     self.bottomToolbar.items = [toolbar copy];
     
     // fix HTML problems
