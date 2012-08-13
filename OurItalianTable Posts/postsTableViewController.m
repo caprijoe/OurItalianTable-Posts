@@ -6,12 +6,11 @@
 //  Copyright (c) 2012 OurItalianTable. All rights reserved.
 //
 
+#import "OITLaunchViewController.h"
 #import "PostsTableViewController.h"
-#import "postRecord.h"
-#import "webViewController.h"
+#import "PostRecord.h"
+#import "WebViewController.h"
 #import "PostDetailViewController.h"
-#import "OITBrain.h"
-#import "TOCViewController.h"
 
 #define CUSTOM_ROW_HIEGHT    60.0
 
@@ -32,14 +31,14 @@
 @synthesize categoryPickerSegue = _categoryPickerSegue;
 @synthesize category = _category;
 @synthesize favs = _favs;
-@synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 
 #pragma mark - Private methods
 
+// update context at bottom of tableviewcontroller
 -(void)updateContext:(NSString *)topLevel
           withDetail:(NSString *)detail {
     
-    NSString *context = [NSString alloc];
+    NSString *context;
     
     if (self.favs)
         topLevel = @"favorites";
@@ -140,7 +139,6 @@
     }
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Post Description";
@@ -225,7 +223,7 @@
     [self resetToAllEntries:self];
 }
 
-#pragma mark - Delegate responders
+#pragma mark - External delegates
 
 -(void)webViewController:(WebViewController *)sender chosetag:(id)tag
 {
@@ -237,7 +235,11 @@
     // suppress ARC warning about memory leak - not an issue
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [self.rootPopoverButtonItem.target performSelector:self.rootPopoverButtonItem.action withObject:self.rootPopoverButtonItem];
+    
+    // get root view controllers popover button from left side and make it appear
+    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[[self.navigationController viewControllers] objectAtIndex:0]).rootPopoverButtonItem;
+    
+    [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
     #pragma clang diagnostic pop
 
     // reset detailed view controller with splash screen
@@ -264,19 +266,17 @@
     [self.tableView reloadData];
 }
 
-
 #pragma mark - Handle seques
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Push Web View"]) {
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
         [segue.destinationViewController setPostRecord:self.webRecord];
         [segue.destinationViewController setDelegate:self];
     } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
         [segue.destinationViewController setDelegate:self];
         self.categoryPickerSegue = segue;
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
-        [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
+        // nothing to set for this one
     }
 }
 

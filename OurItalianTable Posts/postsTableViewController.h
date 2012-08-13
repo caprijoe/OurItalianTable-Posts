@@ -10,13 +10,11 @@
 #import "OITBrain.h"
 #import "webViewController.h"
 #import "TOCViewController.h"
-#import "OITLaunchViewController.h"
 
 @interface PostsTableViewController : UITableViewController <UISearchDisplayDelegate,UISearchBarDelegate,WebViewControllerDelegate, TOCViewController>
 
 // public properties
 @property (nonatomic, strong) OITBrain *myBrain;                        // data brain
 @property (nonatomic, strong) NSString *category;
-@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
 @property (nonatomic) BOOL favs;
 @end
