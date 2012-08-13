@@ -6,13 +6,10 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "TravelTableViewController.h"
-#import "postRecord.h"
-#import "webViewController.h"
+#import "PostRecord.h"
+#import "WebViewController.h"
 #import "PostDetailViewController.h"
-#import "OITBrain.h"
-#import "TOCViewController.h"
 #import "MapViewController.h"
 #import "RegionAnnotation.h"
 #import "OITLaunchViewController.h"
@@ -24,9 +21,7 @@
 @property (nonatomic, strong) NSMutableArray *regionCoordinates;
 @property (nonatomic, strong) NSMutableArray *travelEntries;
 @property (nonatomic,strong) PostRecord *webRecord;
-@property (nonatomic) BOOL inSearchFlag;
 @property (nonatomic, strong) NSMutableArray *filteredListContent;
-@property (nonatomic,strong) UIStoryboardSegue *categoryPickerSegue;
 @end
 
 @implementation TravelTableViewController
@@ -35,9 +30,7 @@
 @synthesize travelEntries = _travelEntries;
 @synthesize webRecord = _webRecord;
 @synthesize filteredListContent = _filteredListContent;
-@synthesize inSearchFlag = _inSearchFlag;
 @synthesize myBrain = _myBrain;
-@synthesize categoryPickerSegue = _categoryPickerSegue;
 @synthesize category = _category;
 @synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 
@@ -91,9 +84,6 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // indicate no in search at the start
-    self.inSearchFlag = NO;
     
     // load and sort candidate regions and islands
     NSMutableDictionary *candidateRegions = [NSMutableDictionary dictionary];
@@ -219,7 +209,6 @@
     return cell;   
 } 
 
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -236,41 +225,6 @@
     OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
     [topVC.masterPopoverController dismissPopoverAnimated:YES];
 } 
-
-#pragma mark - UISearchDelegate
-
--(void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
-    tableView.rowHeight = CUSTOM_ROW_HIEGHT;
-}
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    
-    NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
-    self.filteredListContent = [self.myBrain searchScope:scope withString:searchString isFavs:NO withCategory:self.category];
-    [self updateContext:self.category withDetail:searchString];
-    
-    return YES;
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
-    
-    NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
-    self.filteredListContent = [self.myBrain searchScope:scope withString:[self.searchDisplayController.searchBar text] isFavs:NO withCategory:self.category];
-    
-    return YES;
-}
-
--(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView {
-    self.inSearchFlag = YES;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willUnloadSearchResultsTableView:(UITableView *)tableView {
-    self.inSearchFlag = NO;
-}
-
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [self resetToAllEntries:self];
-}
 
 #pragma mark - Delegate responders
 
@@ -303,9 +257,6 @@
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
         [segue.destinationViewController setPostRecord:self.webRecord];
         [segue.destinationViewController setDelegate:Nil];
-    } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
-        [segue.destinationViewController setDelegate:self];
-        self.categoryPickerSegue = segue;
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
         // nothing for this one
     } else if ([segue.identifier isEqualToString:@"Show Region Map"]) {
