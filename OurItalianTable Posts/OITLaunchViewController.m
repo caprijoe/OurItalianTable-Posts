@@ -107,13 +107,20 @@
     } else if ([segue.identifier isEqualToString:@"Push Travel"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:WANDERING_CATEGORY];
-        [self resetDetailPanel];
+        
+        // get rid of left side splitview, segue to map to navigate
+        OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
+        [topVC.masterPopoverController dismissPopoverAnimated:YES];
+        
     } else if ([segue.identifier isEqualToString:@"Push Favorites"]) {
         [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setFavs:YES];
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Family"]) {
-        // do nothing for this one
+        
+        // get rid of left side splitview, segue to map to navigate
+        OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
+        [topVC.masterPopoverController dismissPopoverAnimated:YES];
     }
 }
 
