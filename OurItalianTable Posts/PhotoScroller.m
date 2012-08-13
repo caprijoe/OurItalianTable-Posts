@@ -69,9 +69,11 @@
     // set window title
     self.title = @"The Family";
     
-    // on load, get root button from left nav controller top and display on right
-    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;    
-    [self setSplitViewBarButtonItem:rootPopoverButtonItem];
+    // if on iPad, on load, get root button from left nav controller top and display on right
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;    
+        [self setSplitViewBarButtonItem:rootPopoverButtonItem];
+    }
     
     // get image names from PLIST
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"NextImage" ofType:@"plist"];
