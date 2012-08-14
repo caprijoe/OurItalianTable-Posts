@@ -68,14 +68,17 @@
     NSString *captionAttributeText;                                                     // location for storing "caption=" value
     NSString *captionText;                                                              // location for storing -></a>text[/caption]
     NSString *imageTag;                                                                 // location for storing "<img ... />" tag
+    NSString *imageWidthOnTag;                                                          // width value on IMG tage
     
     imageTag = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"<img[^>]*>"];
+    imageWidthOnTag = [self grabTextFrom:imageTag viaRegularExpression:@"(?<= width=\").*?(?=\")"];
     alignmentAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= align=\").*?(?=\")"];
+    // following not used, width on IMG tag used instead in case image has been resized
     widthAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= width=\").*?(?=\")"];
     captionAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= caption=\").*?(?=\")"];
-    captionText =[self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
+    captionText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
         
-    return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, widthAttributeText , imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
+    return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, imageWidthOnTag, imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
 }
 
 -(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
@@ -114,6 +117,7 @@
 -(NSString *)adjustIMGTagWidthHeighttoFitInDevice:(NSString *)incomingText {
     
     // adjust width and height on img tag so it will fit on device
+    // if on an iphone, expand image to fit width
     // <img .... width="300" height="199" .. />
     int maxWidth = self.webView.scrollView.frame.size.width;                                            // get screen size
     NSString *regexPattern = @"<img[^>]*width=['\"\\s]*([0-9]+)[^>]*height=['\"\\s]*([0-9]+)[^>]*>";    // find img tags using regex
@@ -145,7 +149,7 @@
         int width = [widthStr intValue];
         int height = [heightStr intValue];
         
-        if (width > maxWidth) {
+        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) || (width > maxWidth)) {
             height = (height * maxWidth) / width * IMAGE_SCALE;
             width = maxWidth * IMAGE_SCALE;
             
@@ -191,13 +195,13 @@
     self.bottomToolbar.items = [toolbar copy];
     
     // fix HTML problems
-    NSString *modifiedHTML = [self adjustIMGTagWidthHeighttoFitInDevice:[self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]]];
+    NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self adjustIMGTagWidthHeighttoFitInDevice:[self convertCRLFstoPtag:self.postRecord.postHTML]]];
             
     // Load up the style list, and the title and append
     NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.postRecord.postName];    
     NSString *finalHTMLstring = [[self.cssHTMLHeader stringByAppendingString:titleTags] stringByAppendingString:modifiedHTML];
     
-    // adjust if button map will appear on top toolbar
+    // remove "compass" icon if coordinates are absent
     if (self.postRecord.coordinate.latitude == 0 && self.postRecord.coordinate.latitude == 0)
         self.topNavBar.rightBarButtonItem = Nil;
     
