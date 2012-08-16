@@ -68,10 +68,21 @@
 }
 
 -(void)resetToAllEntries:(id)sender {
+    
+    // reset table to initial state
     [self viewDidLoad];
+    
+    // make sure search bar is reset
     [self.searchDisplayController setActive:NO animated:YES];
+    
+    // if on an ipad, reset right side too
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
+    
+    // reset table view to top (0,0)
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES]; 
+    
     [self.tableView reloadData];
 }
 
@@ -127,7 +138,6 @@
         return YES;
 }
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -167,8 +177,7 @@
 
     [self.myBrain populateIcon:postRecord forCell:cell forTableView:tableView forIndexPath:indexPath];
     return cell;   
-} 
-    
+}
 
 #pragma mark - Table view delegate
 
@@ -225,8 +234,8 @@
 
 #pragma mark - External delegates
 
--(void)webViewController:(WebViewController *)sender chosetag:(id)tag
-{
+-(void)webViewController:(WebViewController *)sender chosetag:(id)tag {
+    
     // reset memory array with only items that match tag selected in details pop up
     [self setEntries:[self.myBrain isFav:self.favs withTag:tag withCategory:self.category withDetailCategory:nil]];
     [self updateContext:self.category withDetail:tag];
@@ -269,6 +278,7 @@
 #pragma mark - Handle seques
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     if ([segue.identifier isEqualToString:@"Push Web View"]) {
         [segue.destinationViewController setPostRecord:self.webRecord];
         [segue.destinationViewController setDelegate:self];
