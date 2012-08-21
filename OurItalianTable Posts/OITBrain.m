@@ -234,10 +234,11 @@
         dispatch_async(queue, ^{
             
             // load data from URL
-            NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:postRecord.imageURLString]];
+            NSError *error = Nil;
+            NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:postRecord.imageURLString] options:NSDataReadingUncached error:&error];
             
-            // if we got data, proceed. Else let the placeholder.png remain
-            if (data)
+            // if we got data AND no error, proceed. Else let the placeholder.png remain
+            if (data && !error)
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UITableViewCell *correctCell = [tableView cellForRowAtIndexPath:indexPath];
                     
