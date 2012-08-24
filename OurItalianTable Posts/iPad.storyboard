@@ -420,7 +420,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" id="UMa-BM-9Q2">
-                                        <rect key="frame" x="20" y="405" width="728" height="335"/>
+                                        <rect key="frame" x="20" y="405" width="728" height="370"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
