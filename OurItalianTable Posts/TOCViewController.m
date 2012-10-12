@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSString *pickedDetail;           // detail picked in second row of wheel based on first column selected
 @property (nonatomic, strong) NSDictionary *categoryDictionary; // dictionary of first and second columns picker
 @property (nonatomic, strong) NSArray *categoryHolder;          // helper to hold first column of dictionary
-
 @end
 
 @implementation TOCViewController
@@ -28,7 +27,6 @@
 @synthesize detailPicker = _detailPicker;
 
 #pragma mark - Private methods
-
 -(void)resetPickerWhenSegmentSelected {
     
     // save selected picker category to defaults
@@ -46,7 +44,6 @@
     // reload picker
     [self.detailPicker reloadAllComponents];
 }
-
 
 #pragma mark - View lifecycle support 
 - (void)viewWillAppear:(BOOL)animated
