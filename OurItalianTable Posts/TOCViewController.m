@@ -27,7 +27,7 @@
 @synthesize categorySegmentedController = _categorySegmentedController;
 @synthesize detailPicker = _detailPicker;
 
-#pragma mark Private methods
+#pragma mark - Private methods
 
 -(void)resetPickerWhenSegmentSelected {
     
@@ -48,9 +48,7 @@
 }
 
 
-#pragma mark -
-#pragma view lifecycle support
-
+#pragma mark - View lifecycle support 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -111,6 +109,7 @@
     // Release any retained subviews of the main view.
 }
 
+#pragma mark - Rotation Support
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -119,9 +118,18 @@
         return YES;
 }
 
-#pragma mark - 
-#pragma mark UIPicker methods
+-(BOOL)shouldAutorotate {
+    return YES;
+}
 
+-(NSUInteger)supportedInterfaceOrientations {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - UIPicker delegate methods
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
 {
     return 1;
@@ -147,9 +155,7 @@
     return [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:row];
 }
 
-#pragma mark - 
-#pragma IBActions
-
+#pragma mark - IBActions
 - (IBAction)selectCategorySegment:(id)sender {
     [self resetPickerWhenSegmentSelected];
 }
