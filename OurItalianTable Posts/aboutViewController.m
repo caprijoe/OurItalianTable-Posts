@@ -20,12 +20,11 @@
 
 - (NSString*) version {
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    return [NSString stringWithFormat:@"v%@ (build %@)", version, build];
+//    NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    return [NSString stringWithFormat:@"© Our Italian Table, 2012 (v%@)", version];
 }
 
 #pragma mark - View lifecycle support
-
 -(void)viewDidLoad {
     [super viewDidLoad];
     
@@ -43,7 +42,6 @@
 }
 
 #pragma mark - Rotation support
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -52,8 +50,18 @@
         return YES;
 }
 
-#pragma mark - Outlets
+-(BOOL)shouldAutorotate {
+    return YES;
+}
 
+-(NSUInteger)supportedInterfaceOrientations {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - Outlets
 // when done button pressed (on iPhone only) dismiss self
 - (IBAction)doneButton:(id)sender {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
