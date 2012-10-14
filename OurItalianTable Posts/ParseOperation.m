@@ -17,7 +17,7 @@
     #define POST_AUTHOR_TAG                 @"dc:creator"
     #define POST_HTML_CONTENT_TAG           @"content:encoded"
     #define POST_GPS_COORDINATES_TAG        @"excerpt:encoded"
-        #define POST_GPS_COORDINATES_FLAG       @"GPS: "
+        #define POST_GPS_COORDINATES_FLAG       @"GPS:"
     #define POST_ID_NUM_TAG                 @"wp:post_id"
     #define POST_META_DATA_TAG              @"category"
         #define POST_META_DATA_TYPE_ATTR        @"domain"
