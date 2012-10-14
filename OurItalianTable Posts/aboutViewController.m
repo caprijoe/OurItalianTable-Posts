@@ -18,9 +18,8 @@
 
 #pragma mark Private methods
 
-- (NSString*) version {
+- (NSString*) getAppVersion {
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//    NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     return [NSString stringWithFormat:@"© Our Italian Table, 2012 (v%@)", version];
 }
 
@@ -32,7 +31,7 @@
     NSString *filepath = [[NSBundle mainBundle] pathForResource:@"bios" ofType:@"txt"];
     NSString *txtContents = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
     self.txtDisplay.text = txtContents;
-    self.versionBuildDisplay.text = [self version];
+    self.versionBuildDisplay.text = [self getAppVersion];
 }
 
 - (void)viewDidUnload {
