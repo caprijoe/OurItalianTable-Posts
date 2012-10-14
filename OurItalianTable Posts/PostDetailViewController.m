@@ -24,9 +24,7 @@
 @synthesize clicked = _clicked;
 @synthesize delegate = _delegate;
 
-
 #pragma mark - View lifecycle
-
 -(void)viewDidLoad {
     
     [super viewDidLoad];
@@ -63,8 +61,7 @@
     CGFloat buttonHeight = 30;
     CGFloat buttonPad = 20;
     CGFloat nextButtonLength;
-    
-    
+        
     for (int i = 0; i < [self.postDetail.postTags count]; i++) {
         UIButton *tagButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         nextButtonLength = [[self.postDetail.postTags objectAtIndex:i] sizeWithFont:font].width + buttonPad;
@@ -97,13 +94,25 @@
     [super viewDidUnload];
 }
 
-
+#pragma mark - Rotation Support
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - Outlets/Actions
 - (IBAction)doneButton:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
