@@ -19,7 +19,6 @@
 
 #pragma mark Private methods
 
-
 - (void)gotoLocation
 {
     // start off by default in Italy
@@ -81,6 +80,19 @@
     [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
 }
 
+#pragma mark - Rotation support
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - Actions/Outlets
 - (IBAction)doneButton:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }

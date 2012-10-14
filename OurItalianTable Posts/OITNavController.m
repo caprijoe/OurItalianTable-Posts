@@ -23,6 +23,8 @@
     return self;
 }
 
+#pragma mark - View lifecycle supoort
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,6 +36,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Rotation support
 
 -(BOOL)shouldAutorotate {
     return YES;

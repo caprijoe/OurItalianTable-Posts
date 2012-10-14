@@ -3,7 +3,7 @@
 //  oitPosts
 //
 //  Created by Joseph Becci on 1/2/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
 #import "ParseXML.h"

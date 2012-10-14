@@ -3,7 +3,7 @@
 //  oitPosts
 //
 //  Created by Joseph Becci on 2/4/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
 #import "MapViewController.h"
@@ -48,7 +48,7 @@
     // self button for detail splitViewController when in portrait
     [self setSplitViewBarButtonItem:rootPopoverButtonItem];
     
-    self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid    
+    self.mapView.mapType = MKMapTypeHybrid; // MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
     self.mapView.delegate = self;
      
     [self gotoLocation];    // finally goto Italy
@@ -64,7 +64,7 @@
     MKAnnotationView *pinView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MapVC"];
     if (!pinView) {
         MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
-        customPinView.pinColor = MKPinAnnotationColorPurple;
+        customPinView.pinColor = MKPinAnnotationColorRed;
         customPinView.animatesDrop = YES;
         customPinView.canShowCallout = YES;
         
@@ -122,6 +122,8 @@
     // e.g. self.myOutlet = nil;
 }
 
+#pragma mark - Rotation support
+
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
     if (_splitViewBarButtonItem !=splitViewBarButtonItem) {
@@ -132,6 +134,7 @@
         _splitViewBarButtonItem = splitViewBarButtonItem;
     } 
 }
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -139,5 +142,4 @@
     else  
         return YES;
 }
-
 @end
