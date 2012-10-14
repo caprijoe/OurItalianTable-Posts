@@ -10,6 +10,8 @@
 #import "PostDetailViewController.h"
 #import "LocationMapViewController.h"
 #import "OITLaunchViewController.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 #import <Twitter/Twitter.h>
 
@@ -263,6 +265,7 @@
 #define SHARE_TITLE     @"Share"
 #define EMAIL_BUTTON    @"Email"
 #define TWEET_BUTTON    @"Tweet"
+#define FACEBOOK_BUTTON @"Facebook"
 #define SMS_BUTTON      @"Message"
 #define CANCEL_BUTTON   @"Cancel"
 
@@ -287,8 +290,18 @@
 
 -(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button {
     
-    // determine methods of sharing & load up buttons
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles: EMAIL_BUTTON, SMS_BUTTON, TWEET_BUTTON, nil];
+    NSString *reqSysVerForFB = @"6.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    UIActionSheet *actionSheet;
+    
+    if ([currSysVer compare:reqSysVerForFB options:NSNumericSearch] != NSOrderedAscending) {
+        // if running on ios6 and above, include Facebook as an option
+        actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles: EMAIL_BUTTON, SMS_BUTTON, TWEET_BUTTON, FACEBOOK_BUTTON, nil];
+    } else {
+        // if running a version less than ios6, don't include Facebook
+        actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles: EMAIL_BUTTON, SMS_BUTTON, TWEET_BUTTON, nil];
+    }
     
     self.currentActionSheet = SHARE_TITLE;
     [actionSheet showFromBarButtonItem:button animated:YES];
@@ -296,7 +309,7 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    if (self.currentActionSheet == BOOKMARKS_TITLE) {
+    if ([self.currentActionSheet isEqualToString:BOOKMARKS_TITLE]) {
         // open defaults file
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
@@ -305,22 +318,24 @@
         // get button pressed
         NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
         
-        if (choice == ADD_BUTTON) {
+        if ([choice isEqualToString:ADD_BUTTON]) {
             [favorites addObject:self.postRecord.postID];        
-        } else if (choice == REMOVE_BUTTON) {
+        } else if ([choice isEqualToString:REMOVE_BUTTON]) {
             [favorites removeObject:self.postRecord.postID];
         }
                 
         // sync up user defaults
         [defaults setObject:favorites forKey:FAVORITES_KEY];
         [defaults synchronize];
-    } else if (self.currentActionSheet == SHARE_TITLE) {
-        if ([actionSheet buttonTitleAtIndex:buttonIndex] == EMAIL_BUTTON) {
+    } else if ([self.currentActionSheet isEqualToString: SHARE_TITLE]) {
+        if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString: EMAIL_BUTTON]) {
             [self shareViaEmail];
-        } else if ([actionSheet buttonTitleAtIndex:buttonIndex ] == TWEET_BUTTON) {
+        } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:TWEET_BUTTON]) {
             [self shareViaTweet];
-        } else if ([actionSheet buttonTitleAtIndex:buttonIndex ] == SMS_BUTTON) {
+        } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:SMS_BUTTON]) {
             [self shareViaMessage];
+        } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:FACEBOOK_BUTTON]) {
+            [self shareViaFacebook];
         }
     }
 }
@@ -365,6 +380,24 @@
         [self presentViewController:tweetController animated:YES completion:nil];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Tweet" message:@"Unable to send Tweet from this device. Make sure Tweeter is available and you have set up Tweeter with at least one account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+#pragma mark - Share post via Facebook
+
+-(void)shareViaFacebook {
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *facebookController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [facebookController setInitialText:self.postRecord.postName];
+        [facebookController addImage:self.postRecord.postIcon];
+        [facebookController addURL:[NSURL URLWithString:self.postRecord.postURLString]];
+        
+        [self presentViewController:facebookController animated:YES completion:nil];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot post to Facebook" message:@"Unable to post to Facebook from this device. Make sure Facebook is available and you have set up Facebook with at least one account in Settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
 }
