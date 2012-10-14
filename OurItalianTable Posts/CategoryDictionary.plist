@@ -50,6 +50,7 @@
 		<array>
 			<real>41.9</real>
 			<real>12.5</real>
+			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Lazio_Coat_of_Arms.svg/500px-Lazio_Coat_of_Arms.svg.png</string>
 		</array>
 		<key>Lombardy</key>
 		<array>
@@ -82,6 +83,7 @@
 		<array>
 			<real>41.125278</real>
 			<real>16.866667</real>
+			<string>http://upload.wikimedia.org/wikipedia/commons/2/20/Regione_Puglia-Stemma.png</string>
 		</array>
 		<key>Sardinia</key>
 		<array>
