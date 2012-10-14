@@ -158,7 +158,6 @@
 }
 
 - (IBAction)goSearch:(id)sender {
-
     [self.delegate TOCViewController:sender categoryPicked:self.pickedCategory detailCategoryPicked:self.pickedDetail];
 }
 @end
