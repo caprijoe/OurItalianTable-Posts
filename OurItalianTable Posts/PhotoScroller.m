@@ -25,6 +25,7 @@
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 #pragma mark - Private methods
+
 - (void)loadVisiblePages {
     // First, determine which page is currently visible
     CGFloat pageWidth = self.scrollView.frame.size.width;
@@ -35,7 +36,6 @@
     
     // Update photo name
     self.photoName.text = [[self.imagePaths objectAtIndex:page] stringByDeletingPathExtension];
-
 }
 
 - (void)loadPage:(NSInteger)page
