@@ -15,13 +15,7 @@
 #define ANNOTATION_ICON_HEIGHT 30
 
 @implementation MapViewController
-@synthesize mapView = _mapView;
-@synthesize toolbar = _toolbar;
-@synthesize regionCoordinates = _regionCoordinates;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
-@synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
-@synthesize delegate = _delegate;
-
 
 - (void)gotoLocation
 {
