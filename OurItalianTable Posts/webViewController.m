@@ -28,18 +28,7 @@
 @end
 
 @implementation WebViewController
-@synthesize webView = _webView;
-@synthesize topToolbar = _topToolbar;
-@synthesize postRecord = _postRecord;
-@synthesize cssHTMLHeader =_cssHTMLHeader;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
-@synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
-@synthesize bottomToolbar = _bottomToolbar;
-@synthesize topNavBar = _topNavBar;
-@synthesize delegate = _delegate;
-@synthesize detailsViewSeque = _detailsViewSeque;
-@synthesize loadedHTML = _loadedHTML;
-@synthesize currentActionSheet = _currentActionSheet;
 
 #pragma mark - Setter
 -(void)setPostRecord:(PostRecord *)postRecord
@@ -118,7 +107,7 @@
 
 -(NSString *)adjustIMGTagWidthHeighttoFitInDevice:(NSString *)incomingText {
     
-    // adjust width and height on img tag so it will fit on device
+    // FIXME: adjust width and height on img tag so it will fit on device
     // if on an iphone, expand image to fit width
     // <img .... width="300" height="199" .. />
     int maxWidth = self.webView.scrollView.frame.size.width;                                            // get screen size
@@ -197,7 +186,10 @@
     self.bottomToolbar.items = [toolbar copy];
     
     // fix HTML problems
-    NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self adjustIMGTagWidthHeighttoFitInDevice:[self convertCRLFstoPtag:self.postRecord.postHTML]]];
+//    TODO: NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self adjustIMGTagWidthHeighttoFitInDevice:[self convertCRLFstoPtag:self.postRecord.postHTML]]];
+    
+    // fix WP caption blocks so they show on in webview
+    NSString *modifiedHTML = [self modifyAllCaptionBlocks:self.postRecord.postHTML];
             
     // Load up the style list, and the title and append
     NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.postRecord.postName];    
