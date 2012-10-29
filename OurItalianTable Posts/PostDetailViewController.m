@@ -16,13 +16,6 @@
 @end
 
 @implementation PostDetailViewController
-@synthesize postDetail = _postDetail;
-@synthesize authorPicture = _authorPicture;
-@synthesize postTitle = _postTitle;
-@synthesize datePublished = _datePublished;
-@synthesize tagsView = _tagsView;
-@synthesize clicked = _clicked;
-@synthesize delegate = _delegate;
 
 #pragma mark - View lifecycle
 -(void)viewDidLoad {
