@@ -10,12 +10,7 @@
 
 #define ANNOTATION_ICON_HEIGHT 30
 
-@interface LocationMapViewController ()
-@end
-
 @implementation LocationMapViewController
-@synthesize locationRecord = _locationRecord;
-@synthesize mapView = _mapView;
 
 #pragma mark Private methods
 
@@ -31,6 +26,8 @@
     [self.mapView setRegion:newRegion animated:YES];
 }
 
+#pragma mark - View Lifecycle Methods
+
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:YES];
@@ -38,10 +35,8 @@
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
     
-    self.mapView.delegate = self;
-    
     // set map type to regular map
-    self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid    
+    self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
     
     [self gotoLocation];    // finally goto Italy
     
@@ -50,6 +45,24 @@
         mapObject.entry = self.locationRecord;
         [self.mapView addAnnotation:mapObject];
     }
+}
+
+#pragma mark - Rotation support
+-(BOOL)shouldAutorotate {
+    return YES;
+}
+
+-(NSUInteger)supportedInterfaceOrientations {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        return UIInterfaceOrientationMaskPortrait;
+    else
+        return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - MKMapViewDelegate support
+
+-(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+    [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -72,24 +85,8 @@
             pinView.annotation = annotation;
         }
         return pinView;
-    } 
+    }
     return nil;
-}
-
--(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
-    [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
-}
-
-#pragma mark - Rotation support
--(BOOL)shouldAutorotate {
-    return YES;
-}
-
--(NSUInteger)supportedInterfaceOrientations {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return UIInterfaceOrientationMaskPortrait;
-    else
-        return UIInterfaceOrientationMaskAll;
 }
 
 #pragma mark - Actions/Outlets
