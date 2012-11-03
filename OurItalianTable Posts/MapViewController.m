@@ -21,10 +21,10 @@
 {
     // start off by default in Italy
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = 42; //42.521319;
+    newRegion.center.latitude = 42;
     newRegion.center.longitude = 12.264425;
-    newRegion.span.latitudeDelta = 9;
-    newRegion.span.longitudeDelta = 4;
+    newRegion.span.latitudeDelta = 15;
+    newRegion.span.longitudeDelta = 10;
     
     [self.mapView setRegion:newRegion animated:YES];
 }
