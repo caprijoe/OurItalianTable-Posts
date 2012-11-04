@@ -5,6 +5,7 @@
 //  Created by Joseph Becci on 7/19/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
+// NOTE: MKMapView delegate should be set in storyboard!!!!
 
 #import "LocationMapViewController.h"
 
@@ -18,8 +19,11 @@
 {
     // start off by default in Italy
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = 42;
-    newRegion.center.longitude = 12.264425;
+/*  FIXME:   newRegion.center.latitude = 42;
+    newRegion.center.longitude = 12.264425; */
+    newRegion.center.latitude = self.locationRecord.coordinate.latitude;
+    newRegion.center.longitude = self.locationRecord.coordinate.longitude;
+
     newRegion.span.latitudeDelta = 9;
     newRegion.span.longitudeDelta = 4;
     
@@ -36,7 +40,7 @@
     [self.navigationController setToolbarHidden:YES];
     
     // set map type to regular map
-    self.mapView.mapType = MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
+    self.mapView.mapType = MKMapTypeHybrid;   // also MKMapTypeSatellite or MKMapTypeHybrid
     
     [self gotoLocation];    // finally goto Italy
     
