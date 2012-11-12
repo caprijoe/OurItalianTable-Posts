@@ -42,26 +42,26 @@
 		</array>
 		<key>Friuli-Venezia Giulia</key>
 		<array>
-			<real>45.633333</real>
-			<real>13.8</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/c/c4/Friuli-Venezia_Giulia-Flag.png</string>
+			<real>46.165</real>
+			<real>12.9053</real>
+			<string>Friuli-Venezia_Giulia-Flag.png</string>
 		</array>
 		<key>Lazio</key>
 		<array>
 			<real>41.9</real>
-			<real>12.5</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Lazio_Coat_of_Arms.svg/500px-Lazio_Coat_of_Arms.svg.png</string>
+			<real>12.716667</real>
+			<string>Lazio_Coat_of_Arms.svg.png</string>
 		</array>
 		<key>Lombardy</key>
 		<array>
-			<real>45.464167</real>
-			<real>9.190277999999999</real>
+			<real>45.5856</real>
+			<real>9.930300000000001</real>
 		</array>
 		<key>Liguria</key>
 		<array>
-			<real>44.411111</real>
-			<real>8.932778000000001</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Coat_of_arms_of_Liguria.svg/200px-Coat_of_arms_of_Liguria.svg.png</string>
+			<real>44.3</real>
+			<real>8.7347</real>
+			<string>250px-Coat_of_arms_of_Liguria.svg.png</string>
 		</array>
 		<key>Le Marche</key>
 		<array>
@@ -75,27 +75,27 @@
 		</array>
 		<key>Piedmont</key>
 		<array>
-			<real>45.066667</real>
-			<real>7.7</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Regione-Piemonte-Stemma.svg/200px-Regione-Piemonte-Stemma.svg.png</string>
+			<real>44.9597</real>
+			<real>7.9194</real>
+			<string>60px-Regione-Piemonte-Stemma.svg.png</string>
 		</array>
 		<key>Puglia</key>
 		<array>
-			<real>41.125278</real>
-			<real>16.866667</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/2/20/Regione_Puglia-Stemma.png</string>
+			<real>41.0086</real>
+			<real>16.9</real>
+			<string>Regione_Puglia-Stemma.png</string>
 		</array>
 		<key>Sardinia</key>
 		<array>
-			<real>39.246389</real>
-			<real>9.057499999999999</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Sardegna-Stemma.svg/200px-Sardegna-Stemma.svg.png</string>
+			<real>40</real>
+			<real>9</real>
+			<string>530px-Sardegna-Stemma.svg.png</string>
 		</array>
 		<key>Sicily</key>
 		<array>
-			<real>38.116667</real>
-			<real>13.366667</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Coat_of_arms_of_Sicily.svg/200px-Coat_of_arms_of_Sicily.svg.png</string>
+			<real>37.5</real>
+			<integer>14</integer>
+			<string>Coat_of_arms_of_Sicily.svg.png</string>
 		</array>
 		<key>Trentino-Alto Adige</key>
 		<array>
@@ -104,9 +104,9 @@
 		</array>
 		<key>Tuscany</key>
 		<array>
-			<real>43.783333</real>
-			<real>11.25</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Coat_of_arms_of_Tuscany.svg/200px-Coat_of_arms_of_Tuscany.svg.png</string>
+			<real>43.41</real>
+			<integer>11</integer>
+			<string>200px-Coat_of_arms_of_Tuscany.svg.png</string>
 		</array>
 		<key>Umbria</key>
 		<array>
@@ -115,9 +115,9 @@
 		</array>
 		<key>Valle d&apos;Aosta</key>
 		<array>
-			<real>45.733333</real>
-			<real>7.316667</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Valle_d%27Aosta-Stemma.svg/200px-Valle_d%27Aosta-Stemma.svg.png</string>
+			<real>45.7469</real>
+			<real>7.4392</real>
+			<string>50px-Valle_d&apos;Aosta-Stemma.svg.png</string>
 		</array>
 		<key>Veneto</key>
 		<array>
@@ -129,27 +129,27 @@
 	<dict>
 		<key>Capri</key>
 		<array>
-			<real>40.54444</real>
-			<real>14.223889</real>
-			<string>http://upload.wikimedia.org/wikipedia/en/b/bb/Capri-Stemma.png</string>
+			<real>40.55</real>
+			<real>14.233333</real>
+			<string>100px-Capri-Stemma.png</string>
 		</array>
 		<key>Pantelleria</key>
 		<array>
 			<real>36.833333</real>
 			<real>11.95</real>
-			<string>http://upload.wikimedia.org/wikipedia/en/7/70/Pantelleria-Stemma.png</string>
+			<string>Pantelleria-Stemma.png</string>
 		</array>
 		<key>Sardinia</key>
 		<array>
-			<real>39.246389</real>
-			<real>9.057499999999999</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Sardegna-Stemma.svg/200px-Sardegna-Stemma.svg.png</string>
+			<real>40</real>
+			<real>9</real>
+			<string>530px-Sardegna-Stemma.svg.png</string>
 		</array>
 		<key>Sicily</key>
 		<array>
-			<real>38.116667</real>
-			<real>13.366667</real>
-			<string>http://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Coat_of_arms_of_Sicily.svg/200px-Coat_of_arms_of_Sicily.svg.png</string>
+			<real>37.5</real>
+			<integer>14</integer>
+			<string>Coat_of_arms_of_Sicily.svg.png</string>
 		</array>
 	</dict>
 </dict>

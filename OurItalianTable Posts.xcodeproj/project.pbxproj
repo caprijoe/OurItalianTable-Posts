@@ -19,11 +19,23 @@
 		6912BB8015CF34660014BB6F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7F15CF34660014BB6F /* Default-Portrait~ipad.png */; };
 		6912BB8315CF34C90014BB6F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */; };
 		6912BB8415CF35010014BB6F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7015CF2F6D0014BB6F /* Default.png */; };
+		691477DC164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */; };
+		695BE0331646337C0009EBFE /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 695BE03216462EB00009EBFE /* RegionAnnotationView.m */; };
+		695BE034164634EE0009EBFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD4892156054C9009976B8 /* CoreGraphics.framework */; };
+		696831E6164DD2DF001215EC /* 100px-Capri-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */; };
+		696831E7164DD2DF001215EC /* Pantelleria-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */; };
+		696831EA164DD3B7001215EC /* Regione_Puglia-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */; };
+		696831EC164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831EB164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png */; };
+		696831EF164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831ED164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png */; };
+		696831F0164E0395001215EC /* Lazio_Coat_of_Arms.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831EE164E0395001215EC /* Lazio_Coat_of_Arms.svg.png */; };
+		696831F5164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831F2164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png */; };
+		696831F6164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831F3164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png */; };
+		6989AC421647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */; };
 		699558DF15706A0800B25C6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558DE15706A0800B25C6D /* AboutViewController.m */; };
 		699558E215706BE300B25C6D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558E115706BE300B25C6D /* WebViewController.m */; };
+		699BD5AF164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */; };
 		69AD488F156054C9009976B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD488E156054C9009976B8 /* UIKit.framework */; };
 		69AD4891156054C9009976B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD4890156054C9009976B8 /* Foundation.framework */; };
-		69AD4893156054C9009976B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD4892156054C9009976B8 /* CoreGraphics.framework */; };
 		69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69AD4897156054C9009976B8 /* InfoPlist.strings */; };
 		69AD489B156054C9009976B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD489A156054C9009976B8 /* main.m */; };
 		69AD489F156054C9009976B8 /* oitPostsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD489E156054C9009976B8 /* oitPostsAppDelegate.m */; };
@@ -103,10 +115,23 @@
 		6912BB7B15CF30550014BB6F /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		6912BB7F15CF34660014BB6F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coat_of_arms_of_Sicily.svg.png; sourceTree = "<group>"; };
+		695BE03116462EB00009EBFE /* RegionAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
+		695BE03216462EB00009EBFE /* RegionAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
+		696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "100px-Capri-Stemma.png"; sourceTree = "<group>"; };
+		696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pantelleria-Stemma.png"; sourceTree = "<group>"; };
+		696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Regione_Puglia-Stemma.png"; sourceTree = "<group>"; };
+		696831EB164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "530px-Sardegna-Stemma.svg.png"; sourceTree = "<group>"; };
+		696831ED164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "250px-Coat_of_arms_of_Liguria.svg.png"; sourceTree = "<group>"; };
+		696831EE164E0395001215EC /* Lazio_Coat_of_Arms.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lazio_Coat_of_Arms.svg.png; sourceTree = "<group>"; };
+		696831F2164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "50px-Valle_d'Aosta-Stemma.svg.png"; sourceTree = "<group>"; };
+		696831F3164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "60px-Regione-Piemonte-Stemma.svg.png"; sourceTree = "<group>"; };
+		6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Coat_of_arms_of_Tuscany.svg.png"; sourceTree = "<group>"; };
 		699558DD15706A0800B25C6D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		699558DE15706A0800B25C6D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		699558E015706BE300B25C6D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		699558E115706BE300B25C6D /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Friuli-Venezia_Giulia-Flag.png"; sourceTree = "<group>"; };
 		69AD488A156054C9009976B8 /* OurItalianTable Posts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OurItalianTable Posts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69AD488E156054C9009976B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69AD4890156054C9009976B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -202,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695BE034164634EE0009EBFE /* CoreGraphics.framework in Frameworks */,
 				69C9510D1628DB0D001147D6 /* Social.framework in Frameworks */,
 				69C9510A1628DB00001147D6 /* Accounts.framework in Frameworks */,
 				69D00B4D15BCEDF5007050E3 /* Twitter.framework in Frameworks */,
@@ -210,7 +236,6 @@
 				69AD492415605A8C009976B8 /* CoreLocation.framework in Frameworks */,
 				69AD488F156054C9009976B8 /* UIKit.framework in Frameworks */,
 				69AD4891156054C9009976B8 /* Foundation.framework in Frameworks */,
-				69AD4893156054C9009976B8 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,13 +260,30 @@
 			name = "Launch/Icon Images";
 			sourceTree = "<group>";
 		};
+		6989AC3F1647A62000B8D914 /* Flags */ = {
+			isa = PBXGroup;
+			children = (
+				6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */,
+				691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */,
+				696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */,
+				696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */,
+				696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */,
+				696831EB164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png */,
+				696831ED164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png */,
+				696831EE164E0395001215EC /* Lazio_Coat_of_Arms.svg.png */,
+				696831F2164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png */,
+				696831F3164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png */,
+				699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */,
+			);
+			name = Flags;
+			sourceTree = "<group>";
+		};
 		69AD487F156054C9009976B8 = {
 			isa = PBXGroup;
 			children = (
-				69C9510C1628DB0D001147D6 /* Social.framework */,
-				69C951091628DB00001147D6 /* Accounts.framework */,
 				69AD4894156054C9009976B8 /* OurItalianTable Posts */,
 				69AD4895156054C9009976B8 /* Supporting Files */,
+				6989AC3F1647A62000B8D914 /* Flags */,
 				69AD48E6156057B5009976B8 /* Images */,
 				6912BB8515CF351F0014BB6F /* Launch/Icon Images */,
 				69AD488D156054C9009976B8 /* Frameworks */,
@@ -260,6 +302,8 @@
 		69AD488D156054C9009976B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69C9510C1628DB0D001147D6 /* Social.framework */,
+				69C951091628DB00001147D6 /* Accounts.framework */,
 				69D00B4C15BCEDF5007050E3 /* Twitter.framework */,
 				69D00B4A15BCEDDA007050E3 /* MessageUI.framework */,
 				69AD492515605A96009976B8 /* MapKit.framework */,
@@ -303,6 +347,8 @@
 				69D00B5415BCF287007050E3 /* TravelTableViewController.m */,
 				69AD48BF156056A9009976B8 /* MapViewController.h */,
 				69AD48C0156056A9009976B8 /* MapViewController.m */,
+				695BE03116462EB00009EBFE /* RegionAnnotationView.h */,
+				695BE03216462EB00009EBFE /* RegionAnnotationView.m */,
 				69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */,
 				69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */,
 				699558E015706BE300B25C6D /* WebViewController.h */,
@@ -480,6 +526,17 @@
 				6912BB8415CF35010014BB6F /* Default.png in Resources */,
 				69C259B91627938600E0BC40 /* Default-568h@2x.png in Resources */,
 				69DA17E2163BAC73009F6A6F /* oitWPExport.xml in Resources */,
+				6989AC421647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png in Resources */,
+				691477DC164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png in Resources */,
+				696831E6164DD2DF001215EC /* 100px-Capri-Stemma.png in Resources */,
+				696831E7164DD2DF001215EC /* Pantelleria-Stemma.png in Resources */,
+				696831EA164DD3B7001215EC /* Regione_Puglia-Stemma.png in Resources */,
+				696831EC164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png in Resources */,
+				696831EF164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png in Resources */,
+				696831F0164E0395001215EC /* Lazio_Coat_of_Arms.svg.png in Resources */,
+				696831F5164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png in Resources */,
+				696831F6164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png in Resources */,
+				699BD5AF164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695BE0331646337C0009EBFE /* RegionAnnotationView.m in Sources */,
 				69AD489B156054C9009976B8 /* main.m in Sources */,
 				69AD489F156054C9009976B8 /* oitPostsAppDelegate.m in Sources */,
 				69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */,
