@@ -159,24 +159,21 @@
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return 1;
-    } else {
-        return [self.regionList count];
-    }
+    
+    return [self.regionList count];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [self.filteredListContent count];
-    } else {
-        return [[self.travelEntries objectAtIndex:section] count];
-    }
+    return [[self.travelEntries objectAtIndex:section] count];
+    
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
     return [self.regionList objectAtIndex:section];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
