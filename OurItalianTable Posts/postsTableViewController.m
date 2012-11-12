@@ -23,14 +23,6 @@
 @end
 
 @implementation PostsTableViewController
-@synthesize entries = _entries;
-@synthesize webRecord = _webRecord;
-@synthesize filteredListContent = _filteredListContent;
-@synthesize inSearchFlag = _inSearchFlag;
-@synthesize myBrain = _myBrain;
-@synthesize categoryPickerSegue = _categoryPickerSegue;
-@synthesize category = _category;
-@synthesize favs = _favs;
 
 #pragma mark - Private methods
 
