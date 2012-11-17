@@ -114,7 +114,7 @@
             annotationObject.latitude = [(NSNumber *)[[candidateRegions objectForKey:candidate] objectAtIndex:0] floatValue];
             annotationObject.longitude = [(NSNumber *)[[candidateRegions objectForKey:candidate] objectAtIndex:1] floatValue];
             if ([[candidateRegions objectForKey:candidate] count] > 2)
-            annotationObject.flagURL = [[candidateRegions objectForKey:candidate] objectAtIndex:2];
+                annotationObject.flagURL = [[candidateRegions objectForKey:candidate] objectAtIndex:2];
             [self.regionCoordinates addObject:annotationObject];
         }
     }
