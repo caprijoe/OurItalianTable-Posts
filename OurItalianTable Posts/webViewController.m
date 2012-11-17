@@ -105,62 +105,6 @@
     return accumulatedHTML;
 }
 
--(NSString *)adjustIMGTagWidthHeighttoFitInDevice:(NSString *)incomingText {
-    
-    // FIXME: adjust width and height on img tag so it will fit on device
-    // if on an iphone, expand image to fit width
-    // <img .... width="300" height="199" .. />
-    int maxWidth = self.webView.scrollView.frame.size.width;                                            // get screen size
-    NSString *regexPattern = @"<img[^>]*width=['\"\\s]*([0-9]+)[^>]*height=['\"\\s]*([0-9]+)[^>]*>";    // find img tags using regex
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexPattern 
-                                                                           options:NSRegularExpressionDotMatchesLineSeparators 
-                                                                             error:nil];
-    NSMutableString *modifiedHTML = [NSMutableString stringWithString:incomingText];
-    NSArray *matchesArray = [regex matchesInString:modifiedHTML 
-                                           options:NSRegularExpressionCaseInsensitive 
-                                             range:NSMakeRange(0, [modifiedHTML length]) ]; 
-    
-    NSTextCheckingResult *match;
-    
-    // need to calculate offset because range position of matches
-    // within the HTML string will change after we modify the string
-    int offset = 0, newoffset = 0;
-    
-    for (match in matchesArray) {
-        
-        NSRange widthRange = [match rangeAtIndex:1];
-        NSRange heightRange = [match rangeAtIndex:2];
-        
-        widthRange.location += offset;
-        heightRange.location += offset;
-        
-        NSString *widthStr = [modifiedHTML substringWithRange:widthRange];
-        NSString *heightStr = [modifiedHTML substringWithRange:heightRange];
-        
-        int width = [widthStr intValue];
-        int height = [heightStr intValue];
-        
-        if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) || (width > maxWidth)) {
-            height = (height * maxWidth) / width * IMAGE_SCALE;
-            width = maxWidth * IMAGE_SCALE;
-            
-            NSString *newWidthStr = [NSString stringWithFormat:@"%d", width];
-            NSString *newHeightStr = [NSString stringWithFormat:@"%d", height];
-            
-            [modifiedHTML replaceCharactersInRange:widthRange withString:newWidthStr];
-            
-            newoffset = ([newWidthStr length] - [widthStr length]);
-            heightRange.location += newoffset;
-            
-            [modifiedHTML replaceCharactersInRange:heightRange withString:newHeightStr];                
-            
-            newoffset += ([newHeightStr length] - [heightStr length]);            
-            offset += newoffset;
-        }
-    }
-    return modifiedHTML;
-}
-
 #pragma mark - View lifecycle support
 - (void)viewDidLoad
 {
@@ -185,11 +129,8 @@
     // set new version of toolbar
     self.bottomToolbar.items = [toolbar copy];
     
-    // fix HTML problems
-//    TODO: NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self adjustIMGTagWidthHeighttoFitInDevice:[self convertCRLFstoPtag:self.postRecord.postHTML]]];
-    
-    // fix WP caption blocks so they show on in webview
-    NSString *modifiedHTML = [self modifyAllCaptionBlocks:self.postRecord.postHTML];
+     // fix CRLFs & WP caption blocks so they show on in webview
+    NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]];
             
     // Load up the style list, and the title and append
     NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.postRecord.postName];    
