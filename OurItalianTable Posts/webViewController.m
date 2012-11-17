@@ -85,8 +85,8 @@
     
     NSScanner *captionScanner = [NSScanner scannerWithString:incomingText];
     NSString *accumulatedHTML = [[NSString alloc] init];                            // location for building new html with replaced [catpion] structure
-    NSString *foundString;                                                          // location for text between "[caption]" blocks
-    NSString *captionBlock;
+    NSString *foundString;                                // location for text between "[caption]" blocks
+    NSString *captionBlock;;
     
     [captionScanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@""]];
     
@@ -100,7 +100,8 @@
         accumulatedHTML = [accumulatedHTML stringByAppendingString:[self modifyCaptionBlock:captionBlock]];
         
         [captionScanner scanUpToString:@"[caption" intoString:&foundString];
-        accumulatedHTML = [accumulatedHTML stringByAppendingString:foundString];        
+        if (foundString)
+            accumulatedHTML = [accumulatedHTML stringByAppendingString:foundString];        
     }
     return accumulatedHTML;
 }
