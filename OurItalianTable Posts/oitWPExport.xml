@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-<!-- generator="WordPress.com" created="2012-10-27 05:43"-->
+<!-- generator="WordPress.com" created="2012-11-17 01:17"-->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>Our Italian Table</title>
 	<link>http://ouritaliantable.wordpress.com</link>
 	<description>Food, wine and wanderings from our beloved Italy</description>
-	<pubDate>Sat, 27 Oct 2012 05:43:56 +0000</pubDate>
+	<pubDate>Sat, 17 Nov 2012 01:17:29 +0000</pubDate>
 	<language>en</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>http://wordpress.com/</wp:base_site_url>
@@ -13727,6 +13727,36 @@ Salt to taste
 			</wp:commentmeta>
 		</wp:comment>
 		<wp:comment>
+			<wp:comment_id>1576</wp:comment_id>
+			<wp:comment_author><![CDATA[Massa pré-prova &laquo; Run Ju Run &#8211; All it takes is all you got]]></wp:comment_author>
+			<wp:comment_author_email></wp:comment_author_email>
+			<wp:comment_author_url>http://runjurun.com/?p=1591</wp:comment_author_url>
+			<wp:comment_author_IP>200.98.246.220</wp:comment_author_IP>
+			<wp:comment_date>2012-11-09 07:00:43</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-09 11:00:43</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[[...] Gostou da foto? Imagem e receita  [...]]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type>pingback</wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352458843.8182489871978759765625;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1352459735]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352459735.1643021106719970703125;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
 			<wp:comment_id>1395</wp:comment_id>
 			<wp:comment_author><![CDATA[Diane]]></wp:comment_author>
 			<wp:comment_author_email>dbframe@comcast.net</wp:comment_author_email>
@@ -15432,6 +15462,62 @@ Boun natale!!!!]]></wp:comment_content>
 			</wp:commentmeta>
 		</wp:comment>
 		<wp:comment>
+			<wp:comment_id>1578</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-11-09 10:25:59</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-09 14:25:59</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Absolutely!! Enjoy....Michele]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1577</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352471162.2642230987548828125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1352471160]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1577</wp:comment_id>
+			<wp:comment_author><![CDATA[BA Bonetti]]></wp:comment_author>
+			<wp:comment_author_email>b_a_bonetti@yahoo.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>108.243.64.91</wp:comment_author_IP>
+			<wp:comment_date>2012-11-09 10:01:26</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-09 14:01:26</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Since me and my family are not fans of anise, can I use all vanilla extract instead of the anise?]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1352470865]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352470865.6304099559783935546875;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352469686.567718982696533203125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
 			<wp:comment_id>1496</wp:comment_id>
 			<wp:comment_author><![CDATA[Rosaline]]></wp:comment_author>
 			<wp:comment_author_email>burt2531@yahoo.com</wp:comment_author_email>
@@ -16989,6 +17075,32 @@ I remember our neighbor outside of Atlantic City, NJ  in the 60's  (Mrs. "Josie"
 			<wp:meta_key>tagazine-media</wp:meta_key>
 			<wp:meta_value><![CDATA[a:7:{s:7:"primary";s:69:"http://ouritaliantable.files.wordpress.com/2011/03/baked-eggplant.jpg";s:6:"images";a:1:{s:69:"http://ouritaliantable.files.wordpress.com/2011/03/baked-eggplant.jpg";a:6:{s:8:"file_url";s:69:"http://ouritaliantable.files.wordpress.com/2011/03/baked-eggplant.jpg";s:5:"width";s:4:"2541";s:6:"height";s:4:"1906";s:4:"type";s:5:"image";s:4:"area";s:7:"4843146";s:9:"file_path";s:0:"";}}s:6:"videos";a:0:{}s:11:"image_count";s:1:"1";s:6:"author";s:7:"4720350";s:7:"blog_id";s:7:"4503398";s:9:"mod_stamp";s:19:"2011-03-13 15:46:32";}]]></wp:meta_value>
 		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>1593</wp:comment_id>
+			<wp:comment_author><![CDATA[Paccheri ripieni di pesce spada, cavoli e funghi (Paccheri stuffed with swordfish, kale and mushroom) &laquo; Our Italian Table]]></wp:comment_author>
+			<wp:comment_author_email></wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com/2012/11/16/paccheri-ripieni-di-pesce-spada-cavoli-e-funghi-paccheri-stuffed-with-swordfish-kale-and-mushroom/</wp:comment_author_url>
+			<wp:comment_author_IP>72.233.61.93</wp:comment_author_IP>
+			<wp:comment_date>2012-11-16 16:26:04</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-16 20:26:04</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[[...] through a food mill, or pureed with a immersion blender or in a standup blender). You can use this recipe to make the [...]]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type>pingback</wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353098256]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353097565.40680789947509765625;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
 	</item>
 	<item>
 		<title>Sauteed Spinach with Cannellini Beans and Garlic</title>
@@ -21645,6 +21757,32 @@ FYI - I just did  a slow cooker recipe including the ceci: "Moroccan Chicken wit
 				<wp:meta_value><![CDATA[a:4:{s:4:"time";s:15:"1329009944.2415";s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
 			</wp:commentmeta>
 		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1592</wp:comment_id>
+			<wp:comment_author><![CDATA[Paccheri ripieni di pesce spada, cavoli e funghi (Paccheri stuffed with swordfish, kale and mushroom) &laquo; Our Italian Table]]></wp:comment_author>
+			<wp:comment_author_email></wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com/2012/11/16/paccheri-ripieni-di-pesce-spada-cavoli-e-funghi-paccheri-stuffed-with-swordfish-kale-and-mushroom/</wp:comment_author_url>
+			<wp:comment_author_IP>72.233.61.93</wp:comment_author_IP>
+			<wp:comment_date>2012-11-16 16:26:01</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-16 20:26:01</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[[...] batch of sauteed kale. Follow the directions in this recipe. Substitute cavolo nero or other type of kale for the Swiss Chard. Omit the step to add the [...]]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type>pingback</wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353098260]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353097561.937076091766357421875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
 	</item>
 	<item>
 		<title>Benvenuto Brunello 2012: The 2007 Brunello di Montalcinos have arrived!</title>
@@ -23324,6 +23462,32 @@ More extra virgin olive oil for drizzling
 			<wp:meta_key>_wpas_done_fb</wp:meta_key>
 			<wp:meta_value><![CDATA[1]]></wp:meta_value>
 		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>1547</wp:comment_id>
+			<wp:comment_author><![CDATA[Our Kitchen Inventions]]></wp:comment_author>
+			<wp:comment_author_email>Susan@ourkitcheninventions.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ourkitcheninventions.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>24.126.129.197</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 11:24:22</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 15:24:22</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Sounds luscious! We have taken cooking classes in Lucca many times but not yet in Florence. This sounds like one to try. We are back in November, so maybe we can do it then. Take care!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>19605370</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351524262]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351524262.5062310695648193359375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:20:"ourkitcheninventions";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
 	</item>
 	<item>
 		<title>Weekly Photo Challenge: Two Subjects - Memories from Sicilia</title>
@@ -29366,6 +29530,28 @@ Our tour of the Bele Casel facility, and our enthusiastic guide, made this tasty
 			<wp:meta_key>_wpas_done_facebook</wp:meta_key>
 			<wp:meta_value><![CDATA[1]]></wp:meta_value>
 		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>1570</wp:comment_id>
+			<wp:comment_author><![CDATA[A special place and Joe&#8217;s and Mark&#8217;s hearts&#8230; | Bele Casel]]></wp:comment_author>
+			<wp:comment_author_email></wp:comment_author_email>
+			<wp:comment_author_url>http://belecasel.com/2012/11/06/best-prosecco-wedding/</wp:comment_author_url>
+			<wp:comment_author_IP>74.200.244.5</wp:comment_author_IP>
+			<wp:comment_date>2012-11-06 12:06:09</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-06 16:06:09</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[[...] writes Mark Denten (above, left), co-author of the wonderful Italian wine and food blog Our Italian Table. &#8220;So we were delighted to find, as we were planning our 2010 trip to the Veneto, that an [...]]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type>pingback</wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1352218146]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352218146.8396599292755126953125;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
 	</item>
 	<item>
 		<title>Swordfish with lemon-oregano bath (Pesce spada al salmoriglio)</title>
@@ -29537,6 +29723,36 @@ When the fish is done, place in a shallow platter or Pyrex dish and pour the sal
 			<wp:commentmeta>
 				<wp:meta_key>akismet_history</wp:meta_key>
 				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1349297073.22348499298095703125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1591</wp:comment_id>
+			<wp:comment_author><![CDATA[Paccheri ripieni di pesce spada, cavoli e funghi (Paccheri stuffed with swordfish, kale and mushroom) &laquo; Our Italian Table]]></wp:comment_author>
+			<wp:comment_author_email></wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com/2012/11/16/paccheri-ripieni-di-pesce-spada-cavoli-e-funghi-paccheri-stuffed-with-swordfish-kale-and-mushroom/</wp:comment_author_url>
+			<wp:comment_author_IP>72.233.61.93</wp:comment_author_IP>
+			<wp:comment_date>2012-11-16 16:25:57</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-16 20:25:57</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[[...] grilled swordfish steak. See this recipe for directions to grill swordfish. Don&#8217;t make the sauce described. Just squeeze a little [...]]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type>pingback</wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353097863.574512958526611328125;s:7:"message";s:46:"jcbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:7:"jcbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353097863]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353097558.429832935333251953125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
 			</wp:commentmeta>
 		</wp:comment>
 	</item>
@@ -30666,18 +30882,21 @@ Extra oil for drizzling on top
 		<dc:creator>markdenton</dc:creator>
 		<guid isPermaLink="false">https://ouritaliantable.wordpress.com/?p=6376</guid>
 		<description></description>
-		<content:encoded><![CDATA[<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113820.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113820.jpg" alt="20120927-113820.jpg" class="alignnone size-full" /></a>
-We were sad to leave this amazing agriturismo, <a href="http://www.torredeipreti.it/en/">Torre dei Preti</a>, on the Gargona peninsula in the Puglia region of Italy; it's such an unspoiled, hidden treasure! We would love to have had more time eating the spectacular food, looking out across the glorious view, and being spoiled by the unfussy, thoughtful, warm and friendly service -- three days simply didn't seem like enough!
-<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113847.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113847.jpg" alt="20120927-113847.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113900.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113900.jpg" alt="20120927-113900.jpg" class="alignnone size-full" /></a>
-Maybe its location near the quaint, whitewashed hilltown of Peschici along the northern edge of the Gargona -- the spur on the boot that is Italy's shape -- and the difficulty reaching it over winding, narrow roads is what has kept Torre dei Preti such a fantastic value (our room with an outstanding breakfast and unforgettable dinner each night cost less than most rooms alone, even in Puglia). But let me tell you, it's worth the effort to seek this place out, as the many Italians who keep it busy can attest. (The well-to-do couple seated next to us at dinner each night made the eight-hour drive from Milan to spend a week.)
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113820.jpg"><img class="alignleft size-medium wp-image-6529 " alt="20120927-113820.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113820.jpg" /></a>We were sad to leave this amazing agriturismo, <a href="http://www.torredeipreti.it/en/">Torre dei Preti</a>, on the Gargona peninsula in the Puglia region of Italy; it's such an unspoiled, hidden treasure! We would love to have had more time eating the spectacular food, looking out across the glorious view, and being spoiled by the unfussy, thoughtful, warm and friendly service -- three days simply didn't seem like enough!
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113847.jpg"><img class="size-full alignright" alt="20120927-113847.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113847.jpg" /></a>
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113900.jpg"><img class="size-full alignleft" alt="20120927-113900.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113900.jpg" /></a>Maybe its location near the quaint, whitewashed hilltown of Peschici along the northern edge of the Gargona -- the spur on the boot that is Italy's shape -- and the difficulty reaching it over winding, narrow roads is what has kept Torre dei Preti such a fantastic value (our room with an outstanding breakfast and unforgettable dinner each night cost less than most rooms alone, even in Puglia). But let me tell you, it's worth the effort to seek this place out, as the many Italians who keep it busy can attest. (The well-to-do couple seated next to us at dinner each night made the eight-hour drive from Milan to spend a week.)
 
-What makes Torre dei Preti so amazing is, First and foremost, the food! Forget menus and wine lists, this is an agriturismo where you have two choices for the primo and secondo each night--one seafood, one not--and three choices of wine: bianco, rosato, and rosso. (There may be a menu and a wine list, but no one in his or her right mind would bother with them here.)  For those willing to go with the program and give up the "choices" of a menu, the rewards are extraordinary! Without describing the meals in detail, let me just say that we were dazzled each and every time by the abundance, the authenticity, the sheer deliciousness, and the craft of each dish. Simply amazing!<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113919.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113919.jpg" alt="20120927-113919.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113936.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113936.jpg" alt="20120927-113936.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-114132.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-114132.jpg" alt="20120927-114132.jpg" class="alignnone size-full" /></a>
+What makes Torre dei Preti so amazing is, First and foremost, the food! Forget menus and wine lists, this is an agriturismo where you have two choices for the primo and secondo each night--one seafood, one not--and three choices of wine: bianco, rosato, and rosso. (There may be a menu and a wine list, but no one in his or her right mind would bother with them here.) For those willing to go with the program and give up the "choices" of a menu, the rewards are extraordinary! Without describing the meals in detail, let me just say that we were dazzled each and every time by the abundance, the authenticity, the sheer deliciousness, and the craft of each dish. Simply amazing!
+<table>
+<tr><td><img class="size-full alignleft" alt="20120927-113919.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113919.jpg" /></td></tr>
+<tr><td><img class="size-full alignleft" alt="20120927-113936.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-113936.jpg" /></td></tr>
+<tr><td><img class="size-full alignleft" alt="20120927-114132.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-114132.jpg" /></td></tr>
+</table>
 
-But it wasn't just the food that dazzled us. The warmth and friendliness of the staff, from the owners-- she as beautiful as an Italian movie star, he a cool hipster with a gracious, hospitable manner--to the lovely wait staff who were consistently warm, gracious, and kind, was truly remarkable and made the stay a delight. The setting was spectacular, with glorious views. The placement of the simple cottages around the acreage means that each room is a quiet oasis, simply but completely furnished with all the modern conveniences.    
+But it wasn't just the food that dazzled us. The warmth and friendliness of the staff, from the owners-- she as beautiful as an Italian movie star, he a cool hipster with a gracious, hospitable manner--to the lovely wait staff who were consistently warm, gracious, and kind, was truly remarkable and made the stay a delight. The setting was spectacular, with glorious views. The placement of the simple cottages around the acreage means that each room is a quiet oasis, simply but completely furnished with all the modern conveniences.
 
-Until we can return to this hidden treasure, we will remember with gratitude and great joy everything about our stay, from the outstanding food to the warmth of our hosts to the incredible value! Truly spectacular!
-
-<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-114053.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-114053.jpg" alt="20120927-114053.jpg" class="alignnone size-full" /></a>]]></content:encoded>
+<img class="alignright size-full" alt="20120927-114053.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-114053.jpg" />Until we can return to this hidden treasure, we will remember with gratitude and great joy everything about our stay, from the outstanding food to the warmth of our hosts to the incredible value! Truly spectacular!
+]]></content:encoded>
 		<excerpt:encoded><![CDATA[GPS: 41.928791,16.002011]]></excerpt:encoded>
 		<wp:post_id>6376</wp:post_id>
 		<wp:post_date>2012-09-27 05:51:43</wp:post_date>
@@ -30720,18 +30939,35 @@ Until we can return to this hidden treasure, we will remember with gratitude and
 		<dc:creator>markdenton</dc:creator>
 		<guid isPermaLink="false">https://ouritaliantable.wordpress.com/?p=6390</guid>
 		<description></description>
-		<content:encoded><![CDATA[This elegant agriturismo -- resort, really -- is a magical oasis in an ideal location for touring the historic and fascinating Valle d'Itria in central Puglia. Each day we found ourselves torn between venturing out to the valley's historic hill towns, each with its own distinct character and history -- Ostuni, Locorotondo, Martina Franca, Cisternino -- versus staying put to relish the sophisticated attractions of this exquisitely restored Masseria. Its convenient location made venturing out easy, but the pull of the property itself was strong too.
-<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120457.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120457.jpg" alt="20120927-120457.jpg" class="alignnone size-full" /></a></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120822.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120822.jpg" alt="20120927-120822.jpg" class="alignnone size-full" /></a><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120902.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120902.jpg" alt="20120927-120902.jpg" class="alignnone size-full" /></a><br /><br />
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120457.jpg"><img class="alignleft size-full" alt="20120927-120457.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120457.jpg" /></a>This elegant agriturismo -- resort, really -- is a magical oasis in an ideal location for touring the historic and fascinating Valle d'Itria in central Puglia. Each day we found ourselves torn between venturing out to the valley's historic hill towns, each with its own distinct character and history -- Ostuni, Locorotondo, Martina Franca, Cisternino -- versus staying put to relish the sophisticated attractions of this exquisitely restored Masseria. Its convenient location made venturing out easy, but the pull of the property itself was strong too.
 
-The owners of Cervarolo, Teo and Patrizia, have obviously lavished years of thought, taste, and hard work upon this labor of love, and we who get to stay here for a time are the beneficiaries of their creativity, taste, eye, and immense effort! Everywhere one looks there is a composition thoughtful enough for a photograph; each wall, room, courtyard, garden vista is an artistic composition that adds up to true delight for the eyes, and an unforgettable experience. From the history, to the decor, to the landscape, to the lighting, staying here is like being transported to live out the fantasy of an elegant, enchanted existence. We didn't have the good sense to opt to stay in one of the historic trulli that have been made into suites on the property, but next time we will definitely splurge because they are fascinating (so much so that Joe is ready to buy one to live in)!<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120645.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120645.jpg" alt="20120927-120645.jpg" class="alignnone size-full" /></a>
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120822.jpg"><img class="size-full alignleft" alt="20120927-120822.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120822.jpg" /></a><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120902.jpg"><img class="size-full alignright" alt="20120927-120902.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120902.jpg" /></a>
 
-This enchantment is enhanced by the enchanting staff. Each one is warm, affable, thoughtful, and attentive (not to mention attractive and charming!). We were greeted each day by all members of the staff as though our being there was an absolute pleasure, which of course made it a pleasure for us!<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-123211.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-123211.jpg" alt="20120927-123211.jpg" class="alignnone size-full" /></a>
+The owners of Cervarolo, Teo and Patrizia, have obviously lavished years of thought, taste, and hard work upon this labor of love, and we who get to stay here for a time are the beneficiaries of their creativity, taste, eye, and immense effort! Everywhere one looks there is a composition thoughtful enough for a photograph; each wall, room, courtyard, garden vista is an artistic composition that adds up to true delight for the eyes, and an unforgettable experience. From the history, to the decor, to the landscape, to the lighting, staying here is like being transported to live out the fantasy of an elegant, enchanted existence. We didn't have the good sense to opt to stay in one of the historic trulli that have been made into suites on the property, but next time we will definitely splurge because they are fascinating (so much so that Joe is ready to buy one to live in)!
 
-Being in Italy to us means eating wonderful food, and here Cervarolo continued the enchantment with regional but elegant, sophisticated cooking that impressed us both. Refined yet not fussy, traditional but modern, of the locality but impressive by any standard, we had no need or desire to dine anywhere else for breakfast or dinner. This is quite possibly one of the most elegant, sophisticated restauants inthe area, but the chef strikes an ideal balance that incorporates the traditions of food and preparation particular to this locality. That two of our four dinners were served al fresco in an exquisite outdoor room was a bonus that only added to the sense that we were living an enchanted existence.<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120609.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120609.jpg" alt="20120927-120609.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120845.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120845.jpg" alt="20120927-120845.jpg" class="alignnone size-full" /></a>
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120645.jpg"><img class="size-full alignright" alt="20120927-120645.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120645.jpg" /></a>
 
-The delights that kept us on the property even when the Valle d'Itria beckoned? Start with a large complex of buildings, from ancient Trulli to modern rooms. Add one of the largest and most pleasant swimming pools (no chlorine!) that I have ever seen, in a setting of ancient stone walls and modern conveniences (like a staffed bar, pergolas for shade, many options for seating and relaxing). Also add lovely and colorful landscaping amid historic olive trees, a varied assortment of paths and courtyards, a beautifully furnished library, even a parking area thoughtfully shaded by the masseria's solar array, and you begin to sense the appeal of this magical place. But to do Cervarolo justice, you have to come and experience it for yourself-- to meet the warm and charming people, to taste the refined food, to luxuriate in the huge, gorgeous pool, to wander through the complex after dark, when the spectacular lighting illuminates everything from walls to trees to buildings in a soft, warm glow.<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120722.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120722.jpg" alt="20120927-120722.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120545.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120545.jpg" alt="20120927-120545.jpg" class="alignnone size-full" /></a>
+This enchantment is enhanced by the enchanting staff. Each one is warm, affable, thoughtful, and attentive (not to mention attractive and charming!). We were greeted each day by all members of the staff as though our being there was an absolute pleasure, which of course made it a pleasure for us!
 
-Inviting on its own, Cervarolo becomes incomparable by its location so convenient to all the most beautiful towns and sites of the incomparable Valle d'Itria in the center of Puglia. For an elegant oasis far from life's hustle and bustle; for a time of sheer relaxation in a sophisticated an elegant setting; I can't imagine a superior alternative. <br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120801.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120801.jpg" alt="20120927-120801.jpg" class="alignnone size-full" /><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120921.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120921.jpg" alt="20120927-120921.jpg" class="alignnone size-full" /></a>]]></content:encoded>
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-123211.jpg"><img class="size-full alignleft" alt="20120927-123211.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-123211.jpg" /></a>
+
+Being in Italy to us means eating wonderful food, and here Cervarolo continued the enchantment with regional but elegant, sophisticated cooking that impressed us both. Refined yet not fussy, traditional but modern, of the locality but impressive by any standard, we had no need or desire to dine anywhere else for breakfast or dinner. This is quite possibly one of the most elegant, sophisticated restauants inthe area, but the chef strikes an ideal balance that incorporates the traditions of food and preparation particular to this locality. That two of our four dinners were served al fresco in an exquisite outdoor room was a bonus that only added to the sense that we were living an enchanted existence.
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120609.jpg"><img class="size-full alignleft" alt="20120927-120609.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120609.jpg" /></a>
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120845.jpg"><img class="size-full alignright" alt="20120927-120845.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120845.jpg" /></a>
+
+The delights that kept us on the property even when the Valle d'Itria beckoned? Start with a large complex of buildings, from ancient Trulli to modern rooms. Add one of the largest and most pleasant swimming pools (no chlorine!) that I have ever seen, in a setting of ancient stone walls and modern conveniences (like a staffed bar, pergolas for shade, many options for seating and relaxing). Also add lovely and colorful landscaping amid historic olive trees, a varied assortment of paths and courtyards, a beautifully furnished library, even a parking area thoughtfully shaded by the masseria's solar array, and you begin to sense the appeal of this magical place. But to do Cervarolo justice, you have to come and experience it for yourself-- to meet the warm and charming people, to taste the refined food, to luxuriate in the huge, gorgeous pool, to wander through the complex after dark, when the spectacular lighting illuminates everything from walls to trees to buildings in a soft, warm glow.
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120722.jpg"><img class="size-full alignright" alt="20120927-120722.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120722.jpg" /></a>
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120545.jpg"><img class="size-full alignleft" alt="20120927-120545.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120545.jpg" /></a>
+
+Inviting on its own, Cervarolo becomes incomparable by its location so convenient to all the most beautiful towns and sites of the incomparable Valle d'Itria in the center of Puglia. For an elegant oasis far from life's hustle and bustle; for a time of sheer relaxation in a sophisticated an elegant setting; I can't imagine a superior alternative.
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120801.jpg"><img class="size-full alignleft" alt="20120927-120801.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120801.jpg" /></a>
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120921.jpg"><img class="size-full alignleft" alt="20120927-120921.jpg" src="http://ouritaliantable.files.wordpress.com/2012/09/20120927-120921.jpg" /></a>]]></content:encoded>
 		<excerpt:encoded><![CDATA[GPS: 40.708319,17.503970]]></excerpt:encoded>
 		<wp:post_id>6390</wp:post_id>
 		<wp:post_date>2012-09-28 06:30:49</wp:post_date>
@@ -30801,16 +31037,30 @@ Inviting on its own, Cervarolo becomes incomparable by its location so convenien
 		<dc:creator>markdenton</dc:creator>
 		<guid isPermaLink="false">https://ouritaliantable.wordpress.com/?p=6403</guid>
 		<description></description>
-		<content:encoded><![CDATA[Monte Sant'Angelo is perched high on a southern ridge of the Gargano peninsula, overlooking the plains of Puglia below. We made the trek to this tourist mecca over our better judgment on the advice of the proprietors of Torre dei Preti, the wonderful agriturismo where we stayed on the north side of the Gargano near Peschici. They were right to suggest it, and we were glad we made the drive over rugged terrain and narrow winding roads. Yes, it was full of tourists, mostly Italian Catholic pilgrims, but the dramatic setting is worth dealing with even bus load after bus load of the faithful. This small hill town (ridge-top town, really) has one of the most amazing views I can remember seeing from its high promontory, south forever down the Adriatic coast and across the Puglian plain: unforgettably dramatic. And the spectacle of all those bus loads of tourists is a pretty dramatic phenomenon in its own right!  
-<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223326.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223326.jpg" alt="20121001-223326.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223613.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223613.jpg" alt="20121001-223613.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224248.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224248.jpg" alt="20121001-224248.jpg" class="alignnone size-full" /></a>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223326.jpg"><img class="size-full alignleft" alt="20121001-223326.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223326.jpg" /></a>Monte Sant'Angelo is perched high on a southern ridge of the Gargano peninsula, overlooking the plains of Puglia below. We made the trek to this tourist mecca over our better judgment on the advice of the proprietors of Torre dei Preti, the wonderful agriturismo where we stayed on the north side of the Gargano near Peschici. They were right to suggest it, and we were glad we made the drive over rugged terrain and narrow winding roads. Yes, it was full of tourists, mostly Italian Catholic pilgrims, but the dramatic setting is worth dealing with even bus load after bus load of the faithful. This small hill town (ridge-top town, really) has one of the most amazing views I can remember seeing from its high promontory, south forever down the Adriatic coast and across the Puglian plain: unforgettably dramatic. And the spectacle of all those bus loads of tourists is a pretty dramatic phenomenon in its own right!
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223613.jpg"><img class="size-full alignleft" alt="20121001-223613.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223613.jpg" /></a>
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224248.jpg"><img class="size-full alignright" alt="20121001-224248.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224248.jpg" /></a>
 
 Wending our way along the crowded main pedestrian street we held out little hope of finding a decent meal, but it was lunch time, so Joe used his unerring instincts to guide us off the beaten path (amazingly, it didn't take many blocks to find ourselves well out of the pilgrims' way), where we came upon a terrific little place, Li Jalantuumene, orchestrated by an energetic chef with a larger-than-life personality, Gege Mangano. He had a good grasp of English, made great suggestions, and offered up hearty local specialties with great gusto. My orecchiette, the pasta shape most associated with Puglia, was a hearty multi-grain version, with the freshest of basil-accented tomato sauces and strong salty cheese. Joe had quadrotti -- large ravioli -- stuffed with cheese and with a brocolli rabe sauce. The house rosato was excellent, a marvelous time was had by all, and we were greatly entertained by our chef holding forth with us and the other diners, even when we couldn't follow his Italian.
-<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223722.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223722.jpg" alt="20121001-223722.jpg" class="alignnone size-full" /></a>
-Chef Mangano asked if we had come because of the New York Times article; I had read it before we left but hadn't remembered the restaurant because I wasn't then thinking we would bother with Monte Sant'Angelo. <a href="http://travel.nytimes.com/2012/09/02/travel/in-gargano-polishing-italys-spur.html?pagewanted=2&amp;_r=0&amp;adxnnlx=1346611018-43YjbzVNoocOjvpB7vAoJQ">The article</a> does capture many of our own impressions, though we can't imagine staying anywhere but Torre dei Preti! 
 
-Joe insists that we can't end our Monte Sant'Angelo post without mentioning Padre Pio and his bread. I had never heard of Padre Pio (and in a sense I still haven't, except as a running joke between Joe and Michele), but he was everywhere in evidence here where the archangel Michael has been said to visit.<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224156.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224156.jpg" alt="20121001-224156.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-2243421.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-2243421.jpg" alt="20121001-224342.jpg" class="alignnone size-full" /></a>
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223722.jpg"><img class="size-full alignleft" alt="20121001-223722.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-223722.jpg" /></a>
+Chef Mangano asked if we had come because of the New York Times article; I had read it before we left but hadn't remembered the restaurant because I wasn't then thinking we would bother with Monte Sant'Angelo. <a href="http://travel.nytimes.com/2012/09/02/travel/in-gargano-polishing-italys-spur.html?pagewanted=2&amp;_r=0&amp;adxnnlx=1346611018-43YjbzVNoocOjvpB7vAoJQ">The article</a> does capture many of our own impressions, though we can't imagine staying anywhere but Torre dei Preti!
 
-If you should find yourself anywhere near Monte Sant'Angelo, make the effort to take in the sweeping view, and if you find yourself there at lunch- or dinner-time, seek out the hearty food and hearty chef at Li Jalantuumene. Tell Gege the guys from Los Angeles sent you!<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224453.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224453.jpg" alt="20121001-224453.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224622.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224622.jpg" alt="20121001-224622.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224642.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224642.jpg" alt="20121001-224642.jpg" class="alignnone size-full" /></a>]]></content:encoded>
+Joe insists that we can't end our Monte Sant'Angelo post without mentioning Padre Pio and his bread. I had never heard of Padre Pio (and in a sense I still haven't, except as a running joke between Joe and Michele), but he was everywhere in evidence here where the archangel Michael has been said to visit.
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224156.jpg"><img class="size-full alignright" alt="20121001-224156.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224156.jpg" /></a>
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-2243421.jpg"><img class="size-full alignright" alt="20121001-224342.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-2243421.jpg" /></a>
+
+If you should find yourself anywhere near Monte Sant'Angelo, make the effort to take in the sweeping view, and if you find yourself there at lunch- or dinner-time, seek out the hearty food and hearty chef at Li Jalantuumene. Tell Gege the guys from Los Angeles sent you!
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224453.jpg"><img class="alignnone size-full" alt="20121001-224453.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224453.jpg" /></a>
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224622.jpg"><img class="alignnone size-full" alt="20121001-224622.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224622.jpg" /></a>
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224642.jpg"><img class="alignnone size-full" alt="20121001-224642.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-224642.jpg" /></a>]]></content:encoded>
 		<excerpt:encoded><![CDATA[GPS: 41.704804,15.951654]]></excerpt:encoded>
 		<wp:post_id>6403</wp:post_id>
 		<wp:post_date>2012-10-01 16:49:11</wp:post_date>
@@ -30854,9 +31104,14 @@ If you should find yourself anywhere near Monte Sant'Angelo, make the effort to 
 		<dc:creator>markdenton</dc:creator>
 		<guid isPermaLink="false">https://ouritaliantable.wordpress.com/?p=6410</guid>
 		<description></description>
-		<content:encoded><![CDATA[I'm not sure there is much to say about Alberobello, the intensely touristy Puglian town famous for the world's largest concentration of Trulli -- the curious and ancient stone huts with conical stone roofs -- because it speaks for itself. Yes, it's touristy and full of junky tourist shops. Yes, it's still worth a visit because the trulli are just so fascinating. J. R. R. Tolkien must have visited Alberobello, because the trulli do seem to be an inspiration for Hobbit housing (though the doors aren't round). <br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-225200.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-225200.jpg" alt="20121001-225200.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-225316.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-225316.jpg" alt="20121001-225316.jpg" class="alignnone size-full" /></a>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-225200.jpg"><img class="alignleft size-full" alt="20121001-225200.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-225200.jpg" /></a>I'm not sure there is much to say about Alberobello, the intensely touristy Puglian town famous for the world's largest concentration of Trulli -- the curious and ancient stone huts with conical stone roofs -- because it speaks for itself. Yes, it's touristy and full of junky tourist shops. Yes, it's still worth a visit because the trulli are just so fascinating. J. R. R. Tolkien must have visited Alberobello, because the trulli do seem to be an inspiration for Hobbit housing (though the doors aren't round).
 
-What did surprise us is that while the greatest concentration of trulli occurs in Alberobello, they dot the landscape all over the Valle d'Itria. They are charming, sweet, and somehow incredibly domestic -- which of course is just the sense Tolkien wanted to convey about the homeland of Bilbo, Froddo, and the rest.<br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230528.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230528.jpg" alt="20121001-230528.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230634.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230634.jpg" alt="20121001-230634.jpg" class="alignnone size-full" /></a><br /><br /><a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230752.jpg"><img src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230752.jpg" alt="20121001-230752.jpg" class="alignnone size-full" /></a>]]></content:encoded>
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-225316.jpg"><img class="alignleft size-full" alt="20121001-225316.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-225316.jpg" /></a>
+
+What did surprise us is that while the greatest concentration of trulli occurs in Alberobello, they dot the landscape all over the Valle d'Itria. They are charming, sweet, and somehow incredibly domestic -- which of course is just the sense Tolkien wanted to convey about the homeland of Bilbo, Froddo, and the rest.
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230528.jpg"><img class="alignright size-full" alt="20121001-230528.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230528.jpg" /></a>
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230634.jpg"><img class="alignright  none size-full" alt="20121001-230634.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230634.jpg" /></a>
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230752.jpg"><img class="alignright size-full" alt="20121001-230752.jpg" src="http://ouritaliantable.files.wordpress.com/2012/10/20121001-230752.jpg" /></a>]]></content:encoded>
 		<excerpt:encoded><![CDATA[GPS: 40.783211,17.237114]]></excerpt:encoded>
 		<wp:post_id>6410</wp:post_id>
 		<wp:post_date>2012-10-02 12:05:46</wp:post_date>
@@ -31547,11 +31802,11 @@ This recipe makes 4 servings as a first course or 2 servings as a main course. S
 		<description></description>
 		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/10/puglianwines.jpg"><img class="alignright size-medium wp-image-6529" title="PuglianWines" alt="" src="http://ouritaliantable.files.wordpress.com/2012/10/puglianwines.jpg?w=200" height="300" width="200" /></a>Our trip to Puglia was an unqualified success, but writing about the wines we encountered, I face two predicaments. The first is that most the wine we loved on our trip just isn't available here at home. The second is that some of the best wines we drank there were the house wines offered by the places we ate, served in carafes -- not even bottled at all.
 
-The variety and quality of wine for sale in Puglia is astounding! The wines we tried there were mostly wonderful and a great value -- we brought back as many as we could fit in our luggage (only six bottles; we carry on). The three wines pictured at right from our luggage stash -- the two on the right from a wine cooperative in Locorotondo; the one on the left from a wine shop in Lecce -- are all special, and were inexpensive, but are not for sale in the USA. (If you know of their being available here, let me know!) So that's the predicament -- I'll continue to write about Puglian wines I find for sale here at home, but there is little point reviewing wines you and I can't buy here. 
+The variety and quality of wine for sale in Puglia is astounding! The wines we tried there were mostly wonderful and a great value -- we brought back as many as we could fit in our luggage (only six bottles; we carry on). The three wines pictured at right from our luggage stash -- the two on the right from a wine cooperative in Locorotondo; the one on the left from a wine shop in Lecce -- are all special, and were inexpensive, but are not for sale in the USA. (If you know of their being available here, let me know!) So that's the predicament -- I'll continue to write about Puglian wines I find for sale here at home, but there is little point reviewing wines you and I can't buy here.
 
 The second predicament is that the wines we loved best on our trip didn't come in bottles at all -- they came in quarter-, half- or full-liter carafes at the restaurants where we ate. Many restaurants have wine lists and are happy to serve bottles of wine, but virtually every place we ate also offered a house white, red, and nearly all a house rosato. (We consistently ordered the rosato when it was on offer -- the weather was still hot in late September, and the rosato paired incredibly well with all the seafood and vegetable dishes we loved.) These simple wines, which I would imagine come from a barrel in the back room, probably from a local producer, were without exception our favorite wines during the trip. They complemented the food perfectly!
 
-This uncomplicated approach to the ubiquitous wine that accompanies Italian cuisine is one of my favorite things about eating in Italy. As far as I can tell no one will serve a house wine that doesn't work well with their food. Italian diners fully expect that ordering a carafe of the "house" will give them decent, drinkable wine that pairs well with their meal. There are many more glass "mezzo-litro" and "litro" carafes on the tables of Puglian restaurants than labeled bottles of wine. 
+This uncomplicated approach to the ubiquitous wine that accompanies Italian cuisine is one of my favorite things about eating in Italy. As far as I can tell no one will serve a house wine that doesn't work well with their food. Italian diners fully expect that ordering a carafe of the "house" will give them decent, drinkable wine that pairs well with their meal. There are many more glass "mezzo-litro" and "litro" carafes on the tables of Puglian restaurants than labeled bottles of wine.
 
 So there are predicaments writing about our wine drinking in Puglia, but they are the reasons we can't wait to go back -- to try more of those wonderful wines that never make it to the USA, and to rest assured that a carafe of the house wine will be not only drinkable, but a perfect accompaniment to Puglia's wonderful cuisine!]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
@@ -31575,7 +31830,7 @@ So there are predicaments writing about our wine drinking in Puglia, but they ar
 		<category domain="post_tag" nicename="wine"><![CDATA[Wine]]></category>
 		<wp:postmeta>
 			<wp:meta_key>_edit_last</wp:meta_key>
-			<wp:meta_value><![CDATA[4779663]]></wp:meta_value>
+			<wp:meta_value><![CDATA[6312452]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>jabber_published</wp:meta_key>
@@ -31621,6 +31876,733 @@ So there are predicaments writing about our wine drinking in Puglia, but they ar
 			<wp:commentmeta>
 				<wp:meta_key>akismet_history</wp:meta_key>
 				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1350827716.116364002227783203125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:8:"bsteiner";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+	</item>
+	<item>
+		<title>When life gives you a hurricane, make Stracotto al Chianti (Pot Roast Italian Style)!</title>
+		<link>http://ouritaliantable.wordpress.com/2012/10/29/when-life-gives-you-a-hurricane-make-stracotto-al-chianti-pot-roast-italian-style/</link>
+		<pubDate>Mon, 29 Oct 2012 15:09:16 +0000</pubDate>
+		<dc:creator>mbecci</dc:creator>
+		<guid isPermaLink="false">http://ouritaliantable.wordpress.com/?p=6564</guid>
+		<description></description>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/10/stracottoa1-1-of-1.jpg"><img class="alignleft size-full wp-image-6569" title="Stracottoa1 (1 of 1)" alt="" src="http://ouritaliantable.files.wordpress.com/2012/10/stracottoa1-1-of-1.jpg" height="333" width="500" /></a>Fiesty hurricane Sandy is on it's way for a direct hit near my house!  A hurricane  - in Pennsylvania of all places! My feisty friend is bearing down, taking her good ole' time whipping up waves and foam about 150 miles offshore but she is expected to arrive over the next 24 hours - so we have battened down the hatches, stocked the pantry, charged our batteries and made the essential stop at the wine shop!  We are as ready as we can be! I worry more for my friends near the sea (please keep them safe!).  Our biggest threat is the winds which are already tossing leaves and branches to and fro - away we go! And when life gives you a hurricane, time to make some warming, comforting Stracotto - Italy's take on pot roast doused with a good measure of Chianti.  I have had this dish on many occasions in Italy - those chilly nights when the comfort of a warming hearty meal is required eating.  I whipped up a big batch last evening to have on hand as Sandy comes to visit. This is one of my favorite dishes for these times - a true hug for our jittery nerves.  And if the power goes out, my stracotto will be served via candlelight alongside that comforting bottle of vino I have at the ready! And for all my friends in Sandy's path - stay safe and warm!
+
+<span style="text-decoration:underline;"><strong>Stracotto al Chianti (Pot-roast Italian Style)</strong></span>
+
+<strong>Ingredients:</strong>
+
+2 large sprigs of fresh rosemary, needles stripped and chopped
+
+3 cloves of garlic, minced
+
+About  2 pounds of beef for pot roast (like chuck roast)
+
+Salt and freshly ground black pepper
+
+Olive oil
+
+1 medium onion, diced
+
+2 carrots, diced
+
+1 stalk of celery, diced
+
+1 bay leaf
+
+2 cup of Chianti wine
+
+1 (14.5 ounce) can diced tomatoes
+
+About 1/2 cup of beef broth (or more wine)
+
+About 1 tablespoon whole peppercorns
+
+<strong>Directions: </strong>
+
+1. Stir together the rosemary and garlic. Tuck into any areas that you can in the beef. If needed, make little slits in the beef and tuck into the slits. Season the meat all over with salt and freshly ground black pepper.
+
+2. Cover the bottom of a large saucepan or dutch oven with olive oil. Heat over medium heat.  When hot, add the meat and quickly sauté on both sides until browned.  Remove from pot and set aside.
+
+3. Add the onions, carrots, celery and sauté until softened. Add the meat back to the pan. Add the bay leaf. Pour the wine over the meat. Allow it to come to a boil and reduce slightly for a few minutes. Add in the chopped tomatoes and the broth. It should cover the top of the meat. If not, add in more wine, broth or water.  Add in the whole peppercorns.
+
+4. Cover and turn heat to low. Allow to simmer until the meat is tender - about 2 - 2 1/2 hours.
+
+5. When meat is tender, remove from pan. Taste the sauce and adjust seasonings. Slice the meat and put back into the pot.
+
+6. Serve! Buon appetito!
+<div id="recipe-head">
+<div id="ingr-first">
+<h2><span class="Apple-style-span" style="font-size:13px;font-weight:normal;"> </span></h2>
+</div>
+</div>]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>6564</wp:post_id>
+		<wp:post_date>2012-10-29 11:09:16</wp:post_date>
+		<wp:post_date_gmt>2012-10-29 15:09:16</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>when-life-gives-you-a-hurricane-make-stracotto-al-chianti-pot-roast-italian-style</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="post_tag" nicename="dinner"><![CDATA[dinner]]></category>
+		<category domain="category" nicename="food"><![CDATA[Food]]></category>
+		<category domain="post_tag" nicename="hurricane"><![CDATA[hurricane]]></category>
+		<category domain="category" nicename="main-courses"><![CDATA[Main Courses]]></category>
+		<category domain="category" nicename="recipes"><![CDATA[Recipes]]></category>
+		<category domain="category" nicename="regions-of-italy"><![CDATA[Regions of Italy]]></category>
+		<category domain="category" nicename="soups-stews"><![CDATA[Soups, Stews]]></category>
+		<category domain="post_tag" nicename="stracotto-al-peppoli"><![CDATA[Stracotto al Peppoli]]></category>
+		<category domain="category" nicename="tuscany"><![CDATA[Tuscany]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>jabber_published</wp:meta_key>
+			<wp:meta_value><![CDATA[1351523359]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>email_notification</wp:meta_key>
+			<wp:meta_value><![CDATA[1351523361]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>tagazine-media</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:7:"primary";s:73:"http://ouritaliantable.files.wordpress.com/2012/10/stracottoa1-1-of-1.jpg";s:6:"images";a:1:{s:73:"http://ouritaliantable.files.wordpress.com/2012/10/stracottoa1-1-of-1.jpg";a:6:{s:8:"file_url";s:73:"http://ouritaliantable.files.wordpress.com/2012/10/stracottoa1-1-of-1.jpg";s:5:"width";i:500;s:6:"height";i:333;s:4:"type";s:5:"image";s:4:"area";i:166500;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:1;s:6:"author";s:7:"4720350";s:7:"blog_id";s:7:"4503398";s:9:"mod_stamp";s:19:"2012-10-29 16:40:34";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>1546</wp:comment_id>
+			<wp:comment_author><![CDATA[Our Kitchen Inventions]]></wp:comment_author>
+			<wp:comment_author_email>Susan@ourkitcheninventions.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ourkitcheninventions.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>24.126.129.197</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 11:22:17</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 15:22:17</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Glad I found your blog today. I'm supposed to be in Philly this week for work, but the airline has cancelled my flight for tomorrow...oh, well. Hopefully, all will be well by Wed! The dish looks yummy for sure! Perfect for the weather to come.]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>19605370</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351524137]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351524137.7660529613494873046875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:20:"ourkitcheninventions";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1556</wp:comment_id>
+			<wp:comment_author><![CDATA[Mary Burlett]]></wp:comment_author>
+			<wp:comment_author_email>mburlett@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP></wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 16:08:43</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 20:08:43</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Sounds delish, thank you.  Here in Pittsburgh we will get Sandy's outer band effect.  Getting windier and wetter by the hour. Stracotto al Chianti on our plates and Chianti in our glasses tomorrow!  Enjoy and Be safe.]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351541323.4939510822296142578125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351546697]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351546698.0419709682464599609375;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1554</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 13:36:46</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 17:36:46</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Hi sweetie! Stay warm and safe down yonder....hope canal stays put. Hope to see you guys soon! Hugs]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1551</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351532206]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351532207.5248730182647705078125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1555</wp:comment_id>
+			<wp:comment_author><![CDATA[sharingmyitaly]]></wp:comment_author>
+			<wp:comment_author_email>mg@sharingmyitaly.com</wp:comment_author_email>
+			<wp:comment_author_url>http://sharingmyitaly.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>76.100.227.200</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 15:31:18</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 19:31:18</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Love it . . . making Polenta with Sausage myself!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>29761347</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351539080.0711019039154052734375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:14:"sharingmyitaly";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351539079]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1558</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 17:39:16</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 21:39:16</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Ooooh that sounds fantastic!  Stay safe! Michele]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1555</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351546757]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351546758.03289699554443359375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1549</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 11:36:21</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 15:36:21</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Thanks Winegetter!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1548</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351524982]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351524982.8629229068756103515625;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1550</wp:comment_id>
+			<wp:comment_author><![CDATA[trialsinfood]]></wp:comment_author>
+			<wp:comment_author_email>yvonneluu@yahoo.com</wp:comment_author_email>
+			<wp:comment_author_url>http://trialsinfood.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>207.23.252.26</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 12:38:48</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 16:38:48</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[looks like you are prepared for anything that may be coming.  be safe!  there was a earthquake in these parts on the weekend...there was no serious damage, but it was still unnerving!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>21592293</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351528728.410953044891357421875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:12:"trialsinfood";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351528728]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1548</wp:comment_id>
+			<wp:comment_author><![CDATA[the winegetter]]></wp:comment_author>
+			<wp:comment_author_email>o.windgaetter@gmx.de</wp:comment_author_email>
+			<wp:comment_author_url>http://thewinegetter.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>108.245.49.121</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 11:27:49</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 15:27:49</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Be safe! That dish alone should get you through...]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>35635526</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351524470]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351524471.3975479602813720703125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:13:"thewinegetter";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1553</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 13:36:02</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 17:36:02</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Thanks for the comment, Unwind Cooking!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1552</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351532166]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351532167.4231369495391845703125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1551</wp:comment_id>
+			<wp:comment_author><![CDATA[Tracey Emrey]]></wp:comment_author>
+			<wp:comment_author_email>taemrey@yahoo.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP></wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 12:59:50</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 16:59:50</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Interestingly I made a big Irish stew...very similar...be safe and hope to see you soon, Tracey 
+
+________________________________]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351532173]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351532173.56107807159423828125;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351529990.6421029567718505859375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1552</wp:comment_id>
+			<wp:comment_author><![CDATA[Unwind Cooking | CA Realtor]]></wp:comment_author>
+			<wp:comment_author_email>lliubaa@yahoo.com</wp:comment_author_email>
+			<wp:comment_author_url>http://unwindcooking.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>76.254.14.239</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 13:01:28</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 17:01:28</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Stay safe. Chianti wine sounds delish in that recipe!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>31624420</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351532144.0594069957733154296875;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351532143]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351530088.4696691036224365234375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:13:"unwindcooking";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1557</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-10-29 17:38:42</wp:comment_date>
+			<wp:comment_date_gmt>2012-10-29 21:38:42</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Thanks Mary...stay safe! Winds are really picking up here...amazing!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1556</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1351546723]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1351546724.3261840343475341796875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+	</item>
+	<item>
+		<title>Paccheri ripieni di pesce spada, cavoli e funghi (Paccheri stuffed with swordfish, kale and mushroom)</title>
+		<link>http://ouritaliantable.wordpress.com/2012/11/16/paccheri-ripieni-di-pesce-spada-cavoli-e-funghi-paccheri-stuffed-with-swordfish-kale-and-mushroom/</link>
+		<pubDate>Fri, 16 Nov 2012 20:25:51 +0000</pubDate>
+		<dc:creator>jcbecci</dc:creator>
+		<guid isPermaLink="false">http://ouritaliantable.wordpress.com/?p=6580</guid>
+		<description></description>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/11/paccheri-with-swordfish-2.jpg"><img class="alignleft size-full wp-image-6698" title="Paccheri with swordfish 2" alt="" src="http://ouritaliantable.files.wordpress.com/2012/11/paccheri-with-swordfish-2.jpg" height="334" width="500" /></a>Paccheri is a pasta shape that is all the rage in the USA at the moment. It's been in several cooking magazines of late, mentioned on blogs and featured on hot restaurant menus, but I haven't seen them sold in mainline food stores. So when we went on vacation to Puglia, on the first night at Torre dei Preti, they offered a dish with paccheri and seafood. The best way to describe paccheri is a half-size cannolini shell or a giant rigatoni. It takes a full 12-14 minutes to cook these to <em>al dente</em> because you need to cook them in a gentle to medium boil. Otherwise, you'll have a lot of torn and broken paccheri.
+
+<a href="http://ouritaliantable.files.wordpress.com/2012/10/paccheri-1.jpg"><img class="alignleft size-medium wp-image-6581" title="Dried paccheri" alt="" src="http://ouritaliantable.files.wordpress.com/2012/10/paccheri-1.jpg?w=300" height="200" width="300" /></a>Paccheri can be used like other dried pastas -- with sauce or stuffed. When I got home, I went searching for these guys and found them at a couple of Italian specialty stores in LA, namely <a href="http://store.claros.com/" target="_blank">Claro's</a> and <a href="http://mariosdeli.com/" target="_blank">Mario's Deli</a>. I came across an interesting recipe in <a title="La Cucina Italiana" href="http://lacucinaitalianamagazine.com/recipe/swordfish-filled-paccheri-with-a-tomato-and-herb-sauce" target="_blank">La Cucina Italiana</a> that is in the spirit of the Pugliaese dish we had. This is a heavily modified version of that recipe and one that I scaled up for a dinner party for 30 people. So it works! It keeps the fish and vegetable cuisine of Puglia intact.
+
+This recipe serves 6 people. You can prepare the individual stuffing components (swordfish, kale and mushrooms) 2 days in advance. Prepare the stuffed pasta up to 1 day in advance. Cover and refrigerate each before use. Remove from refrigerator and allow to approach room temperature before use. About 1 hour.
+
+<strong>Ingredients and directions:</strong>
+<ul>
+	<li>Olive oil for cooking</li>
+	<li>12 to 18 paccheri (2-3 per person) plus a few more for breakage</li>
+	<li>One grilled swordfish steak. See <a href="http://ouritaliantable.wordpress.com/2012/09/15/swordfish-with-lemon-oregano-bath-pesce-spada-al-salmoriglio/" target="_blank">this recipe</a> for directions to grill swordfish. Don't make the sauce described. Just squeeze a little lemon over the prepared steak and cool to room temperature or overnight in the refrigerator.</li>
+	<li>One batch of sauteed kale. Follow the directions in <a href="http://ouritaliantable.wordpress.com/2012/02/11/sauteed-swiss-chard-and-chick-peas-florentine-style-bietole-e-ceci-alla-fiorentina/" target="_blank">this recipe</a>. Substitute cavolo nero or other type of kale for the Swiss Chard. Omit the step to add the chickpeas and tomatoes. Prepare, let come to room temperature or cool overnight in refrigerator.</li>
+	<li>One package of medium sized Cremini mushrooms -- chopped into large pieces, sauteed with olive oil and garlic until cooked through but still somewhat firm.</li>
+	<li>Salt and pepper</li>
+	<li>Lemons for juicing</li>
+	<li>Home-made smooth tomato-sauce (Tomato sauce passed through a food mill, or pureed with a immersion blender or in a standup blender). You can use <a href="http://ouritaliantable.wordpress.com/2011/03/13/sunday-comfort-food-baked-eggplant-with-ricotta-and-marinara-sauce/" target="_blank">this recipe</a> to make the sauce.</li>
+	<li>High quality olive oil for drizzling</li>
+</ul>
+<em>Special equipment:</em>
+<ul>
+	<li>A baking dish big enough to hold all the paccheri on one level.</li>
+	<li>A spider</li>
+	<li>A large strainer</li>
+	<li>A large bowl for preparing the stuffing</li>
+</ul>
+<ol>
+	<li>If serving right away, heat oven to 350 degrees.</li>
+	<li>Prepare the baking dish by drizzling a little olive oil in the dish and coat the entire dish using a paper towel or a brush.</li>
+	<li>In a large pot with boiling salt water, boil the paccheri according to the package directions. Probably 12-14 minutes. As mentioned, cook in a gentle bowl; not a violent boil. If you are cooking paccheri for the first time or using a new brand of pasta, I recommend you do a "test boil" with one piece to get the cooking time right. You can remove the test piece starting at the low end of the cooking range and test by cutting in half. Return to boiling water if not cooked through. There should be no dry looking band of pasta on the interior of the pasta. One brand of paccheri I bought said to cook for 12 minutes and it took 16. Also, don't overcrowd the pot with pasta. Not more than 10 paccheri at a time.</li>
+	<li>Remove the pasta from the water using a <a href="http://en.wikipedia.org/wiki/Spider_%28utensil%29">spider</a>. Place in a strainer and rinse with cold water. Cool until you can handle them.</li>
+	<li>Transfer the cooled pasta to the prepared baking dish lining up the paccheri in an organized manner (see photo).<a href="http://ouritaliantable.files.wordpress.com/2012/10/paccheri-2.jpg"><img class="alignright size-medium wp-image-6582" title="Stuffed paccheri" alt="" src="http://ouritaliantable.files.wordpress.com/2012/10/paccheri-2.jpg?w=300" height="200" width="300" /></a></li>
+	<li>Prepare the stuffing. Look at the paccheri to gauge the size of the ingredients, remembering that the stuffing will need to be easily placed inside. In a large bowl --
+<ul>
+	<li>Coarsely chop the prepared kale and add to the bowl</li>
+	<li>Coarsely chop the prepared mushrooms and add to the bowl</li>
+	<li>Breakup the swordfish steak using your hands into to very small pieces. Don't chop up with a knife as it will lose its texture.</li>
+	<li>Gently mix these 3 ingredients together and season with salt, pepper and some lemon juice. Taste the mixture and season as needed to obtain a nicely acidic and seasoned mixture. Add olive oil if the mixture seems too lose.</li>
+</ul>
+</li>
+	<li>Using your hands, gently stuff the paccheri with the prepared mixture over the bowl letting the lose pieces to fall back into the bowl. Fill the paccheri completely but don't pack them in and place back in the prepared baking dish. If the paccheri have any splits in the pasta, hold together as your stuff and return to the prepared dish with the split side down. Don't use any really broken up paccheri.</li>
+	<li>Spread about 1 cup of sauce over the paccheri just before baking. Spread evenly over the entire surface and push in between the stuffed pasta.</li>
+	<li>Bake for about 20 minutes until you can smell the swordfish, lemony aroma from the oven.</li>
+	<li>Using a spatula, place 2 to 3 paccheri on each plate. Drizzle with a little high quality olive oil and serve.</li>
+</ol>]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>6580</wp:post_id>
+		<wp:post_date>2012-11-16 16:25:51</wp:post_date>
+		<wp:post_date_gmt>2012-11-16 20:25:51</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>paccheri-ripieni-di-pesce-spada-cavoli-e-funghi-paccheri-stuffed-with-swordfish-kale-and-mushroom</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="food"><![CDATA[Food]]></category>
+		<category domain="post_tag" nicename="kale"><![CDATA[Kale]]></category>
+		<category domain="post_tag" nicename="mushrooms"><![CDATA[mushrooms]]></category>
+		<category domain="post_tag" nicename="paccheri"><![CDATA[paccheri]]></category>
+		<category domain="category" nicename="pasta-risotto-breads"><![CDATA[Pasta, Risotto, Breads]]></category>
+		<category domain="category" nicename="puglia"><![CDATA[Puglia]]></category>
+		<category domain="category" nicename="recipes"><![CDATA[Recipes]]></category>
+		<category domain="category" nicename="regions-of-italy"><![CDATA[Regions of Italy]]></category>
+		<category domain="post_tag" nicename="sauce"><![CDATA[sauce]]></category>
+		<category domain="post_tag" nicename="swordfish"><![CDATA[swordfish]]></category>
+		<wp:postmeta>
+			<wp:meta_key>jabber_published</wp:meta_key>
+			<wp:meta_value><![CDATA[1353097551]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>email_notification</wp:meta_key>
+			<wp:meta_value><![CDATA[1353097552]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>tagazine-media</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:7:"primary";s:65:"http://ouritaliantable.files.wordpress.com/2012/10/paccheri-2.jpg";s:6:"images";a:3:{s:80:"http://ouritaliantable.files.wordpress.com/2012/11/paccheri-with-swordfish-2.jpg";a:6:{s:8:"file_url";s:80:"http://ouritaliantable.files.wordpress.com/2012/11/paccheri-with-swordfish-2.jpg";s:5:"width";i:3872;s:6:"height";i:2592;s:4:"type";s:5:"image";s:4:"area";i:10036224;s:9:"file_path";b:0;}s:65:"http://ouritaliantable.files.wordpress.com/2012/10/paccheri-1.jpg";a:6:{s:8:"file_url";s:65:"http://ouritaliantable.files.wordpress.com/2012/10/paccheri-1.jpg";s:5:"width";i:3872;s:6:"height";i:2592;s:4:"type";s:5:"image";s:4:"area";i:10036224;s:9:"file_path";b:0;}s:65:"http://ouritaliantable.files.wordpress.com/2012/10/paccheri-2.jpg";a:6:{s:8:"file_url";s:65:"http://ouritaliantable.files.wordpress.com/2012/10/paccheri-2.jpg";s:5:"width";i:3872;s:6:"height";i:2592;s:4:"type";s:5:"image";s:4:"area";i:10036224;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:3;s:6:"author";s:7:"6312452";s:7:"blog_id";s:7:"4503398";s:9:"mod_stamp";s:19:"2012-11-16 20:25:51";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[6312452]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>The Calm after the Storm: Hurricane Sandy and a good &#039;ole pot of Sausage, Kale and Cannellini Bean Soup</title>
+		<link>http://ouritaliantable.wordpress.com/2012/11/06/the-calm-after-the-storm-hurricane-sandy-and-a-good-ole-pot-of-sausage-kale-and-cannellini-bean-soup/</link>
+		<pubDate>Tue, 06 Nov 2012 22:43:44 +0000</pubDate>
+		<dc:creator>mbecci</dc:creator>
+		<guid isPermaLink="false">http://ouritaliantable.wordpress.com/?p=6585</guid>
+		<description></description>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/11/kale-soup2-1-of-2.jpg"><img class="alignleft size-full wp-image-6595" title="Kale Soup2 (1 of 2)" alt="" src="http://ouritaliantable.files.wordpress.com/2012/11/kale-soup2-1-of-2.jpg" height="329" width="500" /></a>Hurricane indeed! Hmpfh! Sandy certainly made her presence known last week around these parts.  Her howling winds made for quite a long night as every creak and groan outside made me cringe with worry that my roof was about to fly away or the trees were about to come down.  We lost power early in the afternoon on Monday and the beautiful ambiance of candles and solitude quickly faded as her winds whipped up a frenzy outside.  With daylight, it was amazing to see the extent of the damage in the area - even an hour from the coast! Huge old 60 foot pine and oak trees tumbled down all over the county like matchsticks.  Roof shingles were everywhere.  However, we were incredibly fortunate that the worst of it was four days without power.  Our fellow friends to the northeast in New York and New Jersey took the brunt of the storm and the pictures of the devastation following are hard to see....so many lost so much. My heart goes out to those suffering.
+
+After four days without power, the simple joy of cooking a hot meal was immeasurable. How we take the joys of our daily lives for granted. Our friend, Sandy, surely sent me a reminder to be thankful <em>every</em> day for <em>everything</em> we have. Chilled to the bone, we headed out for dinner on Thursday night to a local restaurant that had only had power restored a few hours previously.  The menu was extremely limited but we sat around the bar with our new also-powerless friends lamenting about how we missed our electricity and how we were spending our chilly nights.  One couple at the bar heard that they had their power restored while we sat and they quickly glugged down their drinks and headed home to the warmth.  The rest of us looked after them with sad puppy dog eyes as they hightailed it out of there.  Finally, it was time to head home to the cold and darkness of another night without power.  But ss we pulled up the drive, as if on cue, the lights in my house magically came on. I could have kissed the light bulbs then and there. I was so ready for a good long hot shower. I have to admit that I am much more 'Barefoot Contessa' than 'The Pioneer Woman'! :o
+
+So last night for dinner, I opened a bottle of red wine and made a good ole pot of sausage, kale and cannelloni bean soup - savoring every minute of preparation.  The warmth of the soup along with the wine was just what we needed to feel connected and grounded once again as our hearts expanded with gratitude for life's simple pleasures. Buon appetito!
+
+<span style="text-decoration:underline;"><strong>Sausage, Kale and Cannellini Bean Soup</strong></span>
+
+<strong>Ingredients:</strong>
+
+1 tablespoon extra virgin olive oil, divided
+
+1 pound sausage, cut into one inch pieces
+
+1 large onion, chopped
+
+3 cloves garlic, finely chopped
+
+2 (15-ounce) cans cannellini beans, drained and rinsed
+
+5 cups of good quality chicken broth
+
+2 cups of water
+
+1 bay leaf
+
+1 bunch of kale (preferably Tuscan if you can find it), stems and center ribs removed and coarsely chopped
+
+Salt and freshly ground black pepper
+
+Freshly grated parmesan cheese
+
+<strong>Directions:</strong>
+
+1. Heat one tablespoon of olive oil in a dutch oven or sauce pot over medium heat. Add the sausage and cook until browned, stirring occasionally.  Remove the sausage and transfer to paper towels to drain. If there is a lot of oil in the pot, use a paper towel to remove excess.
+
+2.  Add in the onion and cook until softened, about 5 minutes. Add the garlic and cook for about 1 minute, stirring.  Add in the cannellini beans and cook for a few minutes, stirring to combine all the wonderful flavors.
+
+3. Add the chicken broth, water and bay leaf. Bring to a boil. Reduce the heat and simmer over medium low, covered, for 15 minutes.
+
+4. Add in the sausage, kale and simmer for an additional 10 minutes, until kale is tender.  Discard the bay leaf. Season the soup to taste with salt and freshly ground black pepper.
+
+5. Serve with a generous dusting of grated parmesan cheese and a drizzle of olive oil. Enjoy!]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>6585</wp:post_id>
+		<wp:post_date>2012-11-06 18:43:44</wp:post_date>
+		<wp:post_date_gmt>2012-11-06 22:43:44</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>the-calm-after-the-storm-hurricane-sandy-and-a-good-ole-pot-of-sausage-kale-and-cannellini-bean-soup</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="post_tag" nicename="calm"><![CDATA[Calm]]></category>
+		<category domain="category" nicename="food"><![CDATA[Food]]></category>
+		<category domain="post_tag" nicename="hurricane-sandy"><![CDATA[Hurricane Sandy]]></category>
+		<category domain="post_tag" nicename="kale"><![CDATA[Kale]]></category>
+		<category domain="category" nicename="recipes"><![CDATA[Recipes]]></category>
+		<category domain="post_tag" nicename="sausage"><![CDATA[sausage]]></category>
+		<category domain="post_tag" nicename="soup"><![CDATA[soup]]></category>
+		<category domain="category" nicename="soups-stews"><![CDATA[Soups, Stews]]></category>
+		<category domain="post_tag" nicename="storm"><![CDATA[Storm]]></category>
+		<category domain="post_tag" nicename="white-bean"><![CDATA[White bean]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>publicize_reach</wp:meta_key>
+			<wp:meta_value><![CDATA[a:2:{s:2:"fb";a:1:{i:1972942;i:84;}s:2:"wp";a:1:{i:0;i:193;}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>jabber_published</wp:meta_key>
+			<wp:meta_value><![CDATA[1352241828]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_publicize_done_external</wp:meta_key>
+			<wp:meta_value><![CDATA[a:1:{s:8:"facebook";a:1:{i:1201419342;b:1;}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_done_1972942</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>email_notification</wp:meta_key>
+			<wp:meta_value><![CDATA[1352241830]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_skip_1972942</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>1583</wp:comment_id>
+			<wp:comment_author><![CDATA[Steve Olsen]]></wp:comment_author>
+			<wp:comment_author_email>Steve@sjoconsulting.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>71.175.100.85</wp:comment_author_IP>
+			<wp:comment_date>2012-11-12 20:04:21</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-13 00:04:21</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[We made this soup tonight. It was really, really good. Although the recipe wasn't specific, we added the sausage back with the cannellini beans. If that wasn't right, who cares 'cause it tasted just fine.]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352814855.3203270435333251953125;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1352814855]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352765062.6502659320831298828125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1574</wp:comment_id>
+			<wp:comment_author><![CDATA[Susan]]></wp:comment_author>
+			<wp:comment_author_email>Susan@ourkitcheninventions.com</wp:comment_author_email>
+			<wp:comment_author_url>http://www.ourkitcheninventions.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>24.126.129.197</wp:comment_author_IP>
+			<wp:comment_date>2012-11-08 17:25:17</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-08 21:25:17</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[This is always one of our faves when it turns cold outside. Glad you survived the storm!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1352410585]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352410585.6595439910888671875;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352409918.0215198993682861328125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:20:"ourkitcheninventions";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1575</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-11-08 17:36:50</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-08 21:36:50</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Thanks for the comment, Susan!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1574</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352410612.4466249942779541015625;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1352410611]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1585</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>12.177.140.2</wp:comment_author_IP>
+			<wp:comment_date>2012-11-13 09:54:58</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-13 13:54:58</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Yeah! Glad you enjoyed it Steve - and thanks for finding an omission in the recipe - better go add that right now! Hope you are well!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1583</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1352814898]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352814898.084455013275146484375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
 			</wp:commentmeta>
 		</wp:comment>
 	</item>
