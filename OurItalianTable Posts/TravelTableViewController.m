@@ -21,18 +21,9 @@
 @property (nonatomic, strong) NSMutableArray *regionCoordinates;
 @property (nonatomic, strong) NSMutableArray *travelEntries;
 @property (nonatomic,strong) PostRecord *webRecord;
-@property (nonatomic, strong) NSMutableArray *filteredListContent;
 @end
 
 @implementation TravelTableViewController
-@synthesize regionList = _regionList;
-@synthesize regionCoordinates = _regionCoordinates;
-@synthesize travelEntries = _travelEntries;
-@synthesize webRecord = _webRecord;
-@synthesize filteredListContent = _filteredListContent;
-@synthesize myBrain = _myBrain;
-@synthesize category = _category;
-@synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
 
 #pragma mark - Private methods
 
@@ -127,8 +118,6 @@
     
     self.tableView.rowHeight = CUSTOM_ROW_HIEGHT;
     
-    // create a filtered list that will contain products for the search results table.
-	self.filteredListContent = [NSMutableArray array];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -189,15 +178,7 @@
 	
     // Configure cell
     PostRecord *postRecord = nil;
-    BOOL inSearch = NO;
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        inSearch = YES;
-        postRecord = [self.filteredListContent objectAtIndex:indexPath.row];
-    } else {
-        inSearch = NO;
-        postRecord = [[self.travelEntries objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];        
-    }
+    postRecord = [[self.travelEntries objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];        
     
     
     cell.textLabel.text = postRecord.postName;
@@ -210,18 +191,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        self.webRecord = [self.filteredListContent objectAtIndex:indexPath.row];
-    } else {                    
-        self.webRecord = [[self.travelEntries objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]; 
-    }
+    self.webRecord = [[self.travelEntries objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     [self performSegueWithIdentifier:@"Push Web View" sender:self];
     
     // get rid of left side splitview
     OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
     [topVC.masterPopoverController dismissPopoverAnimated:YES];
-} 
+}
 
 #pragma mark - Delegate responders
 
