@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		690E650C16571D3B002B7B3A /* oitWPExport.xml in Resources */ = {isa = PBXBuildFile; fileRef = 690E650B16571D3B002B7B3A /* oitWPExport.xml */; };
 		6912BB6915CDDAA10014BB6F /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6715CDDAA10014BB6F /* 71-compass.png */; };
 		6912BB6A15CDDAA10014BB6F /* 71-compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */; };
 		6912BB6D15CF2F2A0014BB6F /* oitIcon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6C15CF2F2A0014BB6F /* oitIcon-57x57.png */; };
@@ -21,6 +20,7 @@
 		6912BB8315CF34C90014BB6F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */; };
 		6912BB8415CF35010014BB6F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7015CF2F6D0014BB6F /* Default.png */; };
 		691477DC164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */; };
+		693731C5165DFC87005AE8F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492315605A8C009976B8 /* CoreLocation.framework */; };
 		695BE0331646337C0009EBFE /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 695BE03216462EB00009EBFE /* RegionAnnotationView.m */; };
 		695BE034164634EE0009EBFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD4892156054C9009976B8 /* CoreGraphics.framework */; };
 		696831E6164DD2DF001215EC /* 100px-Capri-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */; };
@@ -65,7 +65,6 @@
 		69AD491E15605805009976B8 /* ouritaliantable-original-crop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */; };
 		69AD491F15605805009976B8 /* oitIconiPad-72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491415605805009976B8 /* oitIconiPad-72x72.png */; };
 		69AD492215605805009976B8 /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491715605805009976B8 /* Placeholder.png */; };
-		69AD492415605A8C009976B8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492315605A8C009976B8 /* CoreLocation.framework */; };
 		69AD492615605A96009976B8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492515605A96009976B8 /* MapKit.framework */; };
 		69AD49421560877F009976B8 /* The whole Drago family.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49301560877B009976B8 /* The whole Drago family.jpg */; };
 		69AD49431560877F009976B8 /* Popop and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49311560877B009976B8 /* Popop and Joey.jpg */; };
@@ -100,10 +99,11 @@
 		69DAE4EB15CDD146002CA239 /* 42-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E915CDD146002CA239 /* 42-info.png */; };
 		69DAE4EC15CDD146002CA239 /* 42-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4EA15CDD146002CA239 /* 42-info@2x.png */; };
 		69DFEA2615C5EF8900CDABA1 /* RegionAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */; };
+		69E2541A16658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E2541916658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png */; };
+		69E2541C1665D4A900FB21E5 /* oitWPExport.xml in Resources */ = {isa = PBXBuildFile; fileRef = 69E2541B1665D4A900FB21E5 /* oitWPExport.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		690E650B16571D3B002B7B3A /* oitWPExport.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = oitWPExport.xml; sourceTree = "<group>"; };
 		6912BB6715CDDAA10014BB6F /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
 		6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass@2x.png"; sourceTree = "<group>"; };
 		6912BB6C15CF2F2A0014BB6F /* oitIcon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oitIcon-57x57.png"; sourceTree = "<group>"; };
@@ -117,6 +117,7 @@
 		6912BB7F15CF34660014BB6F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coat_of_arms_of_Sicily.svg.png; sourceTree = "<group>"; };
+		693731C2165DFC71005AE8F1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		695BE03116462EB00009EBFE /* RegionAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
 		695BE03216462EB00009EBFE /* RegionAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
 		696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "100px-Capri-Stemma.png"; sourceTree = "<group>"; };
@@ -220,6 +221,8 @@
 		69DAE4EA15CDD146002CA239 /* 42-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info@2x.png"; sourceTree = "<group>"; };
 		69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotation.h; sourceTree = "<group>"; };
 		69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotation.m; sourceTree = "<group>"; };
+		69E2541916658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Coat_of_arms_of_Calabria.svg.png"; sourceTree = "<group>"; };
+		69E2541B1665D4A900FB21E5 /* oitWPExport.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = oitWPExport.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,13 +230,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				693731C5165DFC87005AE8F1 /* CoreLocation.framework in Frameworks */,
 				695BE034164634EE0009EBFE /* CoreGraphics.framework in Frameworks */,
 				69C9510D1628DB0D001147D6 /* Social.framework in Frameworks */,
 				69C9510A1628DB00001147D6 /* Accounts.framework in Frameworks */,
 				69D00B4D15BCEDF5007050E3 /* Twitter.framework in Frameworks */,
 				69D00B4B15BCEDDA007050E3 /* MessageUI.framework in Frameworks */,
 				69AD492615605A96009976B8 /* MapKit.framework in Frameworks */,
-				69AD492415605A8C009976B8 /* CoreLocation.framework in Frameworks */,
 				69AD488F156054C9009976B8 /* UIKit.framework in Frameworks */,
 				69AD4891156054C9009976B8 /* Foundation.framework in Frameworks */,
 			);
@@ -274,6 +277,7 @@
 				696831F2164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png */,
 				696831F3164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png */,
 				699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */,
+				69E2541916658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png */,
 			);
 			name = Flags;
 			sourceTree = "<group>";
@@ -302,6 +306,7 @@
 		69AD488D156054C9009976B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				693731C2165DFC71005AE8F1 /* CoreFoundation.framework */,
 				69C9510C1628DB0D001147D6 /* Social.framework */,
 				69C951091628DB00001147D6 /* Accounts.framework */,
 				69D00B4C15BCEDF5007050E3 /* Twitter.framework */,
@@ -372,7 +377,7 @@
 				69AD4897156054C9009976B8 /* InfoPlist.strings */,
 				69AD489A156054C9009976B8 /* main.m */,
 				69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */,
-				690E650B16571D3B002B7B3A /* oitWPExport.xml */,
+				69E2541B1665D4A900FB21E5 /* oitWPExport.xml */,
 				69AD48DC156056FC009976B8 /* oitHTMLStyles.html */,
 				69AD48DD156056FC009976B8 /* NextImage.plist */,
 				69AD48DE156056FC009976B8 /* CategoryDictionary.plist */,
@@ -536,7 +541,8 @@
 				696831F5164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png in Resources */,
 				696831F6164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png in Resources */,
 				699BD5AF164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png in Resources */,
-				690E650C16571D3B002B7B3A /* oitWPExport.xml in Resources */,
+				69E2541A16658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png in Resources */,
+				69E2541C1665D4A900FB21E5 /* oitWPExport.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,14 +647,14 @@
 		69AD48A3156054C9009976B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurItalianTable Posts/OurItalianTable Posts-Prefix.pch";
 				INFOPLIST_FILE = "OurItalianTable Posts/OurItalianTable Posts-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1A44637A-C3CB-44FB-B694-5D08A52E4720";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1A44637A-C3CB-44FB-B694-5D08A52E4720";
+				PROVISIONING_PROFILE = "FED984E6-9121-4682-9DEF-0F09C37CFDD3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FED984E6-9121-4682-9DEF-0F09C37CFDD3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -656,14 +662,14 @@
 		69AD48A4156054C9009976B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurItalianTable Posts/OurItalianTable Posts-Prefix.pch";
 				INFOPLIST_FILE = "OurItalianTable Posts/OurItalianTable Posts-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1A44637A-C3CB-44FB-B694-5D08A52E4720";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1A44637A-C3CB-44FB-B694-5D08A52E4720";
+				PROVISIONING_PROFILE = "FED984E6-9121-4682-9DEF-0F09C37CFDD3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FED984E6-9121-4682-9DEF-0F09C37CFDD3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
