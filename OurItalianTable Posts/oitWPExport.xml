@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-<!-- generator="WordPress.com" created="2012-11-17 01:17"-->
+<!-- generator="WordPress.com" created="2012-11-28 05:11"-->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>Our Italian Table</title>
 	<link>http://ouritaliantable.wordpress.com</link>
 	<description>Food, wine and wanderings from our beloved Italy</description>
-	<pubDate>Sat, 17 Nov 2012 01:17:29 +0000</pubDate>
+	<pubDate>Wed, 28 Nov 2012 05:11:32 +0000</pubDate>
 	<language>en</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>http://wordpress.com/</wp:base_site_url>
@@ -22878,6 +22878,7 @@ I was very excited to learn about the WordPress photo challenge from my blogger 
 		<category domain="category" nicename="photos"><![CDATA[Photos]]></category>
 		<category domain="post_tag" nicename="photos-2"><![CDATA[photos]]></category>
 		<category domain="post_tag" nicename="postaday"><![CDATA[postaday]]></category>
+		<category domain="category" nicename="wanderings"><![CDATA[Wanderings]]></category>
 		<wp:postmeta>
 			<wp:meta_key>jabber_published</wp:meta_key>
 			<wp:meta_value><![CDATA[1332878960]]></wp:meta_value>
@@ -23052,6 +23053,7 @@ And we are busily planning our Easter menu for Sunday - look for upcoming posts 
 		<category domain="post_tag" nicename="photos-2"><![CDATA[photos]]></category>
 		<category domain="category" nicename="regions-of-italy"><![CDATA[Regions of Italy]]></category>
 		<category domain="category" nicename="tuscany"><![CDATA[Tuscany]]></category>
+		<category domain="category" nicename="wanderings"><![CDATA[Wanderings]]></category>
 		<wp:postmeta>
 			<wp:meta_key>_edit_last</wp:meta_key>
 			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
@@ -29781,6 +29783,7 @@ When the fish is done, place in a shallow platter or Pyrex dish and pour the sal
 		<wp:is_sticky>0</wp:is_sticky>
 		<category domain="category" nicename="photos"><![CDATA[Photos]]></category>
 		<category domain="post_tag" nicename="sunflower"><![CDATA[Sunflower]]></category>
+		<category domain="category" nicename="wanderings"><![CDATA[Wanderings]]></category>
 		<category domain="post_tag" nicename="wordless-wednesdays"><![CDATA[Wordless Wednesdays]]></category>
 		<wp:postmeta>
 			<wp:meta_key>_edit_last</wp:meta_key>
@@ -29991,10 +29994,12 @@ Let me know if that resolves it. Thanks. Joe]]></wp:comment_content>
 		<category domain="post_tag" nicename="montepulciano"><![CDATA[Montepulciano]]></category>
 		<category domain="category" nicename="photos"><![CDATA[Photos]]></category>
 		<category domain="post_tag" nicename="rainbow"><![CDATA[Rainbow]]></category>
+		<category domain="category" nicename="tuscany"><![CDATA[Tuscany]]></category>
+		<category domain="category" nicename="wanderings"><![CDATA[Wanderings]]></category>
 		<category domain="post_tag" nicename="wordless-wednesday"><![CDATA[Wordless Wednesday]]></category>
 		<wp:postmeta>
 			<wp:meta_key>_edit_last</wp:meta_key>
-			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
+			<wp:meta_value><![CDATA[6312452]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>jabber_published</wp:meta_key>
@@ -30010,6 +30015,10 @@ Let me know if that resolves it. Thanks. Joe]]></wp:comment_content>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>_wpas_done_facebook</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_skip_131584</wp:meta_key>
 			<wp:meta_value><![CDATA[1]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:comment>
@@ -30250,9 +30259,10 @@ Put clams and their juice in a warmed serving bowl (or serve from the pot). Spri
 		<category domain="post_tag" nicename="pantelleria"><![CDATA[Pantelleria]]></category>
 		<category domain="category" nicename="photos"><![CDATA[Photos]]></category>
 		<category domain="post_tag" nicename="travel"><![CDATA[travel]]></category>
+		<category domain="category" nicename="wanderings"><![CDATA[Wanderings]]></category>
 		<wp:postmeta>
 			<wp:meta_key>_edit_last</wp:meta_key>
-			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
+			<wp:meta_value><![CDATA[6312452]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>jabber_published</wp:meta_key>
@@ -30497,10 +30507,11 @@ Cheers - Tom B.  (go Scarlet Knights!)  Hoo Rah...Hoo...Rah!]]></wp:comment_cont
 		<category domain="post_tag" nicename="spiaggia"><![CDATA[Spiaggia]]></category>
 		<category domain="post_tag" nicename="travel"><![CDATA[travel]]></category>
 		<category domain="post_tag" nicename="vacation"><![CDATA[vacation]]></category>
+		<category domain="category" nicename="wanderings"><![CDATA[Wanderings]]></category>
 		<category domain="post_tag" nicename="wordless-wednesday"><![CDATA[Wordless Wednesday]]></category>
 		<wp:postmeta>
 			<wp:meta_key>_edit_last</wp:meta_key>
-			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
+			<wp:meta_value><![CDATA[6312452]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>jabber_published</wp:meta_key>
@@ -31175,10 +31186,12 @@ What did surprise us is that while the greatest concentration of trulli occurs i
 		<category domain="category" nicename="photos"><![CDATA[Photos]]></category>
 		<category domain="post_tag" nicename="street-art"><![CDATA[street art]]></category>
 		<category domain="post_tag" nicename="travel"><![CDATA[travel]]></category>
+		<category domain="category" nicename="tuscany"><![CDATA[Tuscany]]></category>
+		<category domain="category" nicename="wanderings"><![CDATA[Wanderings]]></category>
 		<category domain="post_tag" nicename="wordless-wednesday"><![CDATA[Wordless Wednesday]]></category>
 		<wp:postmeta>
 			<wp:meta_key>_edit_last</wp:meta_key>
-			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
+			<wp:meta_value><![CDATA[6312452]]></wp:meta_value>
 		</wp:postmeta>
 		<wp:postmeta>
 			<wp:meta_key>jabber_published</wp:meta_key>
@@ -32603,6 +32616,674 @@ Freshly grated parmesan cheese
 			<wp:commentmeta>
 				<wp:meta_key>akismet_history</wp:meta_key>
 				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1352814898.084455013275146484375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+	</item>
+	<item>
+		<title>Pasta con polpa di ricci (Pasta with sea urchin roe or &quot;uni&quot; if you like)</title>
+		<link>http://ouritaliantable.wordpress.com/2012/11/21/pasta-con-polpa-di-ricci-pasta-with-sea-urchin-roe-or-uni-if-you-like/</link>
+		<pubDate>Wed, 21 Nov 2012 21:26:47 +0000</pubDate>
+		<dc:creator>jcbecci</dc:creator>
+		<guid isPermaLink="false">http://ouritaliantable.wordpress.com/?p=6712</guid>
+		<description></description>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/11/uni.jpg"><img class="aligncenter size-full wp-image-6713" title="uni" alt="" src="http://ouritaliantable.files.wordpress.com/2012/11/uni.jpg" height="261" width="500" /></a>I would have never thought to incorporate sea urchin roe, the famous Japanese sushi bar ingredient -- a.k.a. uni, into Italian food. But there we were in Otranto in the Puglia region of Italy at the restaurant, <a href="http://www.laltrobaffo.com/" target="_blank">L'altro Baffo</a>, and there it was on the menu -- Pasta with uni!!
+
+This is a fairly straight forward dish to make. The key if to find the freshest possible sea urchin roe. Sea urchin roe is sold in little wooden trays. And while uni imported from Japan can be found, there are great US waters harvested products. The best of all is the uni from Santa Barbara, CA. Here's a great <a href="http://articles.latimes.com/2004/apr/14/food/fo-calcook14" target="_blank">article</a> (albeit from 2004) from the LA Times about California uni.
+
+Go to your local Asian grocery store and find your uni. Checks the dates on the packages as you hunt for the freshest one. In markets in the Los Angeles area, one tray will run about $5-$7. 
+
+I used bucatini in this recipe but you could use any type of long strand pasta you like. This recipe serves 2 people and scales up easily.
+
+<em>Ingredients and Directions:</em>
+<ul>
+	<li>One tray of fresh sea urchin roe - a.k.a. uni</li>
+<li>Extra virgin olive oil</li>
+	<li>2 o 3 cloves of garlic, finely chopped</li>
+	<li>One half a 28 ounce can of San Marzano plum or crushed tomatoes</li>
+	<li>Chopped parsley - about 1/8 cup or two tablespoons</li>
+	<li>Salt and pepper</li>
+	<li>1/2 pound of long strand pasta - e.g., spaghetti, linguine, bucatini</li>
+</ul>
+
+<ol>
+<li>In a saute pan, heat 2 tablespoons of olive oil over medium heat. Add the chopped garlic and saute for about 1 minute. Be careful not to burn the garlic. Add the tomatoes. Cook for 5-10 minutes. While cooking, use the back of a wooden spoon to crush the tomatoes (if using plum tomatoes). Also add the chopped parsley.</li>
+<li>Add about 2/3rds of the tray of uni into the sauce - reserving the remainder for garnish. Using a wooden spoon, stir the uni into the sauce. The uni will not completely dissolve. Turn off the heat as you really don't want to cook the uni. Taste the sauce and season as needed with salt and pepper.</li>
+<li>While cooking the sauce, cook the pasta in boiling salted water for 1 minute less than the package directions. Drain the pasta and add to the sauce. Stir the pasta with the sauce for about 30 seconds to allow the pasta to absorb the sauce.</li>
+<li>Place the pasta on serving plates and garnish with the remaining uni as shown in the photo. Serve immediately. DO NOT serve with cheese. It would overpower the subtle uni taste.</li>
+</ol>
+<a href="http://ouritaliantable.files.wordpress.com/2012/11/pasta-con-polpa-di-ricci1.jpg"><img class="aligncenter size-full wp-image-6735" title="pasta con polpa di ricci" alt="" src="http://ouritaliantable.files.wordpress.com/2012/11/pasta-con-polpa-di-ricci1.jpg" height="334" width="500" /></a>]]></content:encoded>
+		<excerpt:encoded><![CDATA[GPS: 40.1449555,18.4915004]]></excerpt:encoded>
+		<wp:post_id>6712</wp:post_id>
+		<wp:post_date>2012-11-21 17:26:47</wp:post_date>
+		<wp:post_date_gmt>2012-11-21 21:26:47</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>pasta-con-polpa-di-ricci-pasta-with-sea-urchin-roe-or-uni-if-you-like</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="food"><![CDATA[Food]]></category>
+		<category domain="post_tag" nicename="otranto"><![CDATA[otranto]]></category>
+		<category domain="post_tag" nicename="pasta"><![CDATA[Pasta]]></category>
+		<category domain="category" nicename="pasta-risotto-breads"><![CDATA[Pasta, Risotto, Breads]]></category>
+		<category domain="category" nicename="puglia"><![CDATA[Puglia]]></category>
+		<category domain="post_tag" nicename="puglia"><![CDATA[Puglia]]></category>
+		<category domain="category" nicename="recipes"><![CDATA[Recipes]]></category>
+		<category domain="category" nicename="regions-of-italy"><![CDATA[Regions of Italy]]></category>
+		<category domain="post_tag" nicename="sea-urchin-roe"><![CDATA[sea urchin roe]]></category>
+		<category domain="post_tag" nicename="uni"><![CDATA[uni]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[6312452]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>email_notification</wp:meta_key>
+			<wp:meta_value><![CDATA[1353533208]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>jabber_published</wp:meta_key>
+			<wp:meta_value><![CDATA[1353533207]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>tagazine-media</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:7:"primary";s:80:"http://ouritaliantable.files.wordpress.com/2012/11/pasta-con-polpa-di-ricci1.jpg";s:6:"images";a:2:{s:58:"http://ouritaliantable.files.wordpress.com/2012/11/uni.jpg";a:6:{s:8:"file_url";s:58:"http://ouritaliantable.files.wordpress.com/2012/11/uni.jpg";s:5:"width";i:3099;s:6:"height";i:1623;s:4:"type";s:5:"image";s:4:"area";i:5029677;s:9:"file_path";b:0;}s:80:"http://ouritaliantable.files.wordpress.com/2012/11/pasta-con-polpa-di-ricci1.jpg";a:6:{s:8:"file_url";s:80:"http://ouritaliantable.files.wordpress.com/2012/11/pasta-con-polpa-di-ricci1.jpg";s:5:"width";i:3872;s:6:"height";i:2592;s:4:"type";s:5:"image";s:4:"area";i:10036224;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:2;s:6:"author";s:7:"6312452";s:7:"blog_id";s:7:"4503398";s:9:"mod_stamp";s:19:"2012-11-21 21:26:47";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_mess</wp:meta_key>
+			<wp:meta_value><![CDATA[Pasta con polpa di ricci (Pasta with sea urchin roe or "uni" if you like) http://wp.me/piTxs-1Kg]]></wp:meta_value>
+		</wp:postmeta>
+	</item>
+	<item>
+		<title>The Elusive Cavolo Nero (Black Kale): Black Kale, Sweet Potato and Cheddar Gratin</title>
+		<link>http://ouritaliantable.wordpress.com/2012/11/18/the-elusive-cavolo-nero-black-kale-black-kale-sweet-potato-and-cheddar-gratin/</link>
+		<pubDate>Sun, 18 Nov 2012 23:07:44 +0000</pubDate>
+		<dc:creator>mbecci</dc:creator>
+		<guid isPermaLink="false">http://ouritaliantable.wordpress.com/?p=6738</guid>
+		<description></description>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/11/cavolo-nero2-1-of-1.jpg"><img class="aligncenter size-full wp-image-6739" title="Cavolo Nero2 (1 of 1)" alt="" src="http://ouritaliantable.files.wordpress.com/2012/11/cavolo-nero2-1-of-1.jpg" height="361" width="500" /></a>
+
+Ahhh, the elusive cavolo nero! This mysterious green is an essential ingredient for authentic ribollita - a Tuscan soup made with tomatoes, beans, kale and bread.  Since first tasting this classic soup on a chilly winter day in Tuscany, I have been on a search for this hardy, healthful green in America.  With kale's recent rise in popularity in American cooking, I was wonderfully surprised to find a huge fresh bucket full of cavolo nero at our local farmer's market; its dark green and purple wrinkly leaves almost smiling at me as if to say 'Here I am!! Finally here I am!!'.  Over the moon excited, I smiled at my elusive friend and quickly gathered a basketful. Wohoo! What to cook first?!?! Having decided on a lemon roasted chicken for supper, I thought a nutritious kale and sweet potato combination would be the perfect side to this simple Sunday supper.  And now that I have found a source for my little green buddy , I have a long list of possibilities turning around in my head - simply braised, or over pasta with garlic or on crostini. And finally I can make that authentic ribollita.  Look for more recipes in the frosty days ahead - so exciting! Buon appetito!!
+
+<span style="text-decoration:underline;"><strong>Black Kale, Sweet Potato and Cheddar Gratin</strong></span>
+
+<strong>Ingredients:</strong>
+
+3 large sweet potatoes, peeled and diced into 1" chunks
+
+2 tablespoons olive oil
+
+2 medium to large shallots, cut in half lengthwise and sliced into slivers
+
+3 cloves of garlic, diced
+
+1 bunch of kale, stemmed and roughly chopped  (Tuscan kale if you can find it!)
+
+Salt and freshly ground black pepper
+
+1 cup milk
+
+2 tablespoons butter
+
+A pinch of fresh nutmeg
+
+1 cup of grated cheddar, divided
+
+<strong>Instructions:</strong>
+
+1. Preheat oven to 350 degrees Fahrenheit.
+
+2. Fill a large sauce pot with cold water. Add the diced sweet potatoes and bring to a boil over medium high heat. Simmer until tender - about 15 minutes.  Drain potatoes in a colander.
+
+3. In the same pot, heat the olive oil over medium heat. Add the shallots and sauté until tender - about 5 minutes. Add the garlic and sauté until fragrant, about 2 minutes.  Add in the kale and simmer until tender - about 10 minutes. Season with salt and freshly ground black pepper.
+
+4. Add the milk and butter. Simmer for just a few minutes to allow the butter to melt and the mixture to blend. Add the nutmeg and stir to incorporate.
+
+5. Place the sweet potatoes in a large bowl. Mash with a potato masher. Add in the kale mixture and stir to incorporate. Add in 1/2 cup of the grated cheddar.  Adjust seasonings.
+
+6. Butter the inside of a baking dish - about 8X8 in size.  Transfer the potato mixture to the prepared dish.  Smooth over the top. Sprinkle with the additional 1/2 cup of cheddar. Bake until golden brown - about 30 minutes.
+
+7. Serve!  Buon appetito!]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>6738</wp:post_id>
+		<wp:post_date>2012-11-18 19:07:44</wp:post_date>
+		<wp:post_date_gmt>2012-11-18 23:07:44</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>the-elusive-cavolo-nero-black-kale-black-kale-sweet-potato-and-cheddar-gratin</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="post_tag" nicename="black-kale"><![CDATA[Black Kale]]></category>
+		<category domain="post_tag" nicename="cavolo-nero"><![CDATA[Cavolo Nero]]></category>
+		<category domain="post_tag" nicename="cheddar"><![CDATA[Cheddar]]></category>
+		<category domain="category" nicename="food"><![CDATA[Food]]></category>
+		<category domain="post_tag" nicename="gratin"><![CDATA[gratin]]></category>
+		<category domain="category" nicename="recipes"><![CDATA[Recipes]]></category>
+		<category domain="category" nicename="regions-of-italy"><![CDATA[Regions of Italy]]></category>
+		<category domain="post_tag" nicename="sweet-potato"><![CDATA[Sweet Potato]]></category>
+		<category domain="post_tag" nicename="tuscan-kale"><![CDATA[Tuscan Kale]]></category>
+		<category domain="category" nicename="tuscany"><![CDATA[Tuscany]]></category>
+		<category domain="category" nicename="vegetables-side-dishes"><![CDATA[Vegetables, Side Dishes]]></category>
+		<category domain="post_tag" nicename="vegetarian"><![CDATA[Vegetarian]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_publicize_done_external</wp:meta_key>
+			<wp:meta_value><![CDATA[a:1:{s:8:"facebook";a:1:{i:1201419342;b:1;}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_done_1972942</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>jabber_published</wp:meta_key>
+			<wp:meta_value><![CDATA[1353280065]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>publicize_reach</wp:meta_key>
+			<wp:meta_value><![CDATA[a:2:{s:2:"fb";a:1:{i:1972942;i:91;}s:2:"wp";a:1:{i:0;i:199;}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>tagazine-media</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:7:"primary";s:74:"http://ouritaliantable.files.wordpress.com/2012/11/cavolo-nero2-1-of-1.jpg";s:6:"images";a:1:{s:74:"http://ouritaliantable.files.wordpress.com/2012/11/cavolo-nero2-1-of-1.jpg";a:6:{s:8:"file_url";s:74:"http://ouritaliantable.files.wordpress.com/2012/11/cavolo-nero2-1-of-1.jpg";s:5:"width";i:3938;s:6:"height";i:2848;s:4:"type";s:5:"image";s:4:"area";i:11215424;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:1;s:6:"author";s:7:"4720350";s:7:"blog_id";s:7:"4503398";s:9:"mod_stamp";s:19:"2012-11-18 23:07:44";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>email_notification</wp:meta_key>
+			<wp:meta_value><![CDATA[1353280067]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>1599</wp:comment_id>
+			<wp:comment_author><![CDATA[susan]]></wp:comment_author>
+			<wp:comment_author_email>susan@ourktcheninventions.com</wp:comment_author_email>
+			<wp:comment_author_url>http://www.ourkitcheninventions.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>37.205.199.113</wp:comment_author_IP>
+			<wp:comment_date>2012-11-19 13:04:51</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-19 17:04:51</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Sounds like the perfect combo. We are in Italy for vacation, and love the food this time of year....so filling!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353407499]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353407499.5818979740142822265625;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353344691.9028589725494384765625;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:20:"ourkitcheninventions";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+	</item>
+	<item>
+		<title>Zuppa di cipolla rossa di Tropea (Tropea red onion soup) - kind of</title>
+		<link>http://ouritaliantable.wordpress.com/2012/11/27/zuppa-di-cipolla-rossa-di-tropea-tropea-red-onion-soup-kind-of/</link>
+		<pubDate>Tue, 27 Nov 2012 04:00:11 +0000</pubDate>
+		<dc:creator>jcbecci</dc:creator>
+		<guid isPermaLink="false">http://ouritaliantable.wordpress.com/?p=6759</guid>
+		<description></description>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/11/la-cipolla-rossa-di-tropea.jpg"><img class="alignnone size-full wp-image-6760" title="la cipolla rossa di Tropea" alt="" src="http://ouritaliantable.files.wordpress.com/2012/11/la-cipolla-rossa-di-tropea.jpg" height="405" width="500" /></a>
+
+We were in Ojai, California last weekend and I went to a small yet very diverse farmers' market on Sunday morning. I came across some interesting onions that I knew I'd seen before, but I couldn't place them. The farmer called them "torpedo onions" and described them as very spicy. I bought a bagful, determined to figure out where I had seen them before.
+
+Upon getting home and with the help of Google search, I remembered these as Tropea onions or <em>Cipolla rossa di Tropea</em> -- sort of. I say "sort of" because the real thing grown around Tropea, Italy in the Calabria region of Italy is a <a href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=9&amp;cad=rja&amp;ved=0CF8QFjAI&amp;url=http%3A%2F%2Feur-lex.europa.eu%2FLexUriServ%2FLexUriServ.do%3Furi%3DOJ%3AC%3A2007%3A160%3A0015%3A0018%3AEN%3APDF&amp;ei=FVWuUPuDDeb_igKny4HoDA&amp;usg=AFQjCNG78sq9yAxTCm04YPr8E1ARyl1UBA&amp;sig2=FfcOqcxRihF-eEd621Xl-w" target="_blank">European Union IGP (Protected Geographical Indication) product</a>. That is, if it's not produced in the exact manner and region specified by the EU, you can't call it a <em>Cipolla rossa di Tropea</em>. (Think of <em>Parmigiano Reggiano</em> cheese vs. the stuff in the green can.)
+
+These onions are credited with a lot: increasing life span, aiding sleep and increasing sexual performance. For the purposes of this recipe, we are just making Italian onion soup. As the farmer mentioned, they are spicy. I can't remember my eyes watering quite so badly as when I cut these onions. Regular red onions are a poor-but-worthwhile substitute.
+
+This recipe is adapted from Lida Bastiannich's 2009 Cookbook - <em>Lidia Cooks from the Heart of Italy</em>. I have really enjoyed her region-specific recipes, and her section on Calabria is quite good. I recommend this cookbook for your library.
+
+This recipe serves 6 people.
+
+<strong>Ingredient and Direction:</strong>
+<ul>
+	<li>1/2 cup extra virgin olive oil</li>
+	<li>2-3 cloves of garlic, peeled and sliced</li>
+	<li>2 pounds of Tropea onions (also called torpedo onions) or other sweet onions - halved or quartered (if the onion is large) and thinly sliced</li>
+	<li>1 tablespoon sea salt</li>
+	<li>1 @ 28-ounce can of San Marzano tomatoes</li>
+	<li>4 cups of water</li>
+	<li>6 slices of thick crusty bread</li>
+	<li>6 slices of provolone cheese</li>
+	<li>1/3 cup grated pecorino cheese for topping</li>
+</ul>
+<em>Special Equipment:</em>
+<ul>
+	<li>A heavy-bottomed soup pot (such as Le Creuset)</li>
+</ul>
+<a href="http://ouritaliantable.files.wordpress.com/2012/11/zuppa-di-cipolla-rossa-di-tropea.jpg"><img class="alignright  wp-image-6763" title="Zuppa di cipolla rossa di Tropea" alt="" src="http://ouritaliantable.files.wordpress.com/2012/11/zuppa-di-cipolla-rossa-di-tropea.jpg" height="376" width="251" /></a>
+<ol>
+	<li>In a large heavy-bottomed pot, add the olive oil and set on medium heat. When the oil is hot, add the garlic and let sizzle for about 1 minute. Be careful not to burn. Add the onion slices and sprinkle with the salt. Stir into the olive oil with a wooden spoon. Reduce heat to low and slowly cook them for about 15 minutes - stirring frequently. The onions will reduce in size and begin to develop a light browned color.</li>
+	<li>Add the tomatoes to the pot. Then add 4 cups of water using some water to wash out and add the remaining tomatoes juice in the can. Stir in with the onions. Bring the pot to a boil, then cover with a lid and reduce heat to low and cook for 45 minutes. Uncover and cook for another 15 minutes, letting the soup thicken a bit.</li>
+	<li>When ready to serve, toast or grill the bread and immediately top with the provolone cheese to melt a bit. Alternatively, you could toast the bread quickly under the broiler, then add the cheese and brown and melt the a bit. Add bread with cheese to the bottom of a serving bowl. Ladle the soup mixture over the bread. Top with the pecorino and serve.</li>
+</ol>]]></content:encoded>
+		<excerpt:encoded><![CDATA[GPS: 38.676994,15.897223]]></excerpt:encoded>
+		<wp:post_id>6759</wp:post_id>
+		<wp:post_date>2012-11-27 00:00:11</wp:post_date>
+		<wp:post_date_gmt>2012-11-27 04:00:11</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>zuppa-di-cipolla-rossa-di-tropea-tropea-red-onion-soup-kind-of</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="category" nicename="calabria"><![CDATA[Calabria]]></category>
+		<category domain="post_tag" nicename="calabria"><![CDATA[Calabria]]></category>
+		<category domain="post_tag" nicename="cipolla-rossa-di-tropea"><![CDATA[cipolla rossa di Tropea]]></category>
+		<category domain="category" nicename="food"><![CDATA[Food]]></category>
+		<category domain="category" nicename="from-our-bookshelf"><![CDATA[From Our Bookshelf]]></category>
+		<category domain="category" nicename="recipes"><![CDATA[Recipes]]></category>
+		<category domain="category" nicename="regions-of-italy"><![CDATA[Regions of Italy]]></category>
+		<category domain="post_tag" nicename="san-marzano"><![CDATA[San Marzano]]></category>
+		<category domain="post_tag" nicename="soup"><![CDATA[soup]]></category>
+		<category domain="category" nicename="soups-stews"><![CDATA[Soups, Stews]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[6312452]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>jabber_published</wp:meta_key>
+			<wp:meta_value><![CDATA[1353988996]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>tagazine-media</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:7:"primary";s:81:"http://ouritaliantable.files.wordpress.com/2012/11/la-cipolla-rossa-di-tropea.jpg";s:6:"images";a:2:{s:81:"http://ouritaliantable.files.wordpress.com/2012/11/la-cipolla-rossa-di-tropea.jpg";a:6:{s:8:"file_url";s:81:"http://ouritaliantable.files.wordpress.com/2012/11/la-cipolla-rossa-di-tropea.jpg";s:5:"width";i:3097;s:6:"height";i:2512;s:4:"type";s:5:"image";s:4:"area";i:7779664;s:9:"file_path";b:0;}s:87:"http://ouritaliantable.files.wordpress.com/2012/11/zuppa-di-cipolla-rossa-di-tropea.jpg";a:6:{s:8:"file_url";s:87:"http://ouritaliantable.files.wordpress.com/2012/11/zuppa-di-cipolla-rossa-di-tropea.jpg";s:5:"width";i:1817;s:6:"height";i:2729;s:4:"type";s:5:"image";s:4:"area";i:4958593;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:2;s:6:"author";s:7:"6312452";s:7:"blog_id";s:7:"4503398";s:9:"mod_stamp";s:19:"2012-11-27 04:03:11";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>email_notification</wp:meta_key>
+			<wp:meta_value><![CDATA[1353988998]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_done_2187249</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_publicize_done_external</wp:meta_key>
+			<wp:meta_value><![CDATA[a:1:{s:8:"facebook";a:1:{i:1586336952;b:1;}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_skip_2187249</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>1616</wp:comment_id>
+			<wp:comment_author><![CDATA[Do Bianchi]]></wp:comment_author>
+			<wp:comment_author_email>editors@vinowire.com</wp:comment_author_email>
+			<wp:comment_author_url>http://dobianchi.com</wp:comment_author_url>
+			<wp:comment_author_IP>72.177.18.78</wp:comment_author_IP>
+			<wp:comment_date>2012-11-27 10:01:38</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-27 14:01:38</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[I've only ever had those onions in Apulia (not far from the Calabrian border). Very cool post! 
+
+Joe, if you can, please send me an email via the email I use to comment. I'd love to be in touch with yall... best (and great post!), Jeremy]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>1339765</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1354024898]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1354024898.966083049774169921875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:9:"dobianchi";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+	</item>
+	<item>
+		<title>A Chilly, Lazy Sunday and a Tender Braciole</title>
+		<link>http://ouritaliantable.wordpress.com/2012/11/25/a-chilly-lazy-sunday-and-a-tender-braciole/</link>
+		<pubDate>Sun, 25 Nov 2012 21:45:19 +0000</pubDate>
+		<dc:creator>mbecci</dc:creator>
+		<guid isPermaLink="false">http://ouritaliantable.wordpress.com/?p=6821</guid>
+		<description></description>
+		<content:encoded><![CDATA[<a href="http://ouritaliantable.files.wordpress.com/2012/11/braciola1-1-of-1.jpg"><img class="aligncenter size-full wp-image-6833" title="Braciola1 (1 of 1)" alt="" src="http://ouritaliantable.files.wordpress.com/2012/11/braciola1-1-of-1.jpg" height="750" width="500" /></a>My Italian family always sat down for the classic Italian Sunday supper.  We would wake to the smell of meatballs frying or tomato sauce warming on the stove.  But we were never allowed to taste the sauce or meatballs before 11 AM church - a silly Catholic rule about not eating before mass. So we walked around the house in our Sunday best, drooling from the delicious smells wafting from the kitchen.  Occasionally, Mom made braciole, little Italian beef rolls stuffed with delicious yummy ingredients like pine nuts, raisins, cheese, parsley. They would simmer for hours and were mouthwateringly tender by the time we returned from church. We would dart into the house anxious to sit down to Sunday 'dinner' which was always served around 1 or 2 PM after church. Those precious hours between church and Sunday dinner were the only time my brother and I did not raise hell for my Mom - amazing that she didn't wait until hours later to serve dinner. It would have kept the peace a lot longer :o. Occasionally, I add braciole to my sauce pot and smile with warm memories of helping my Mom roll the braciole.  With Thanksgiving just behind us and thoughts of family, thoughts of Sunday supper left me craving a long-simmering tender braciola - a meal to warm both my heart and my house. You can make braciole as small rolls or as a single large piece of steak.  I opted for a single braciola today.  And mission accomplished - as I type this, my house smells of the wonderful Sunday aromas with which I grew up - a fitting meal to end the long Thanksgiving weekend. Happy Thanksgiving and buon appetito!
+<h4><span style="text-decoration:underline;"><strong>Sunday Braciola </strong></span></h4>
+<strong>Ingredients:</strong>
+
+1/2 cup breadcrumbs
+
+1/3 cup golden raisins
+
+1/3 cup pine nuts
+
+3 cloves of garlic, finely chopped
+
+1/2 cup grated provolone
+
+1/2 cup freshly grated Parmesan
+
+4 tablespoons olive oil (or more), divided
+
+1 piece of flank steak, about 1 1/2 pounds, pounded to 1/8 inch thickness
+
+Salt and freshly ground black pepper
+
+1 small onion, finely chopped
+
+3/4 cup dry red wine
+
+2 (28-ounce) cans diced tomatoes
+
+About 1/4 cup basil, chopped
+
+Additional parsley, chopped
+
+<strong>Instructions: </strong>
+
+1. Preheat the oven to 350 degrees Fahrenheit.
+
+2. Mix together the first 6 ingredients in a bowl. Stir in 2 tablespoons of the oil. If too dry, add a bit more oil.  Season with salt and freshly ground black pepper.
+
+3. Lay out the flank steak.  Be sure the steak is pounded to 1/8 inch thickness. If still too thick, pound away.  Place the filling over the steak covering evenly.  Starting a the shorter end, roll up the flank steak into a tight cylinder. Tie the roll with butcher's twine or toothpicks (twine works better).
+
+4. Heat a large ovenproof skillet or dutch oven over medium high heat. Add the remaining 2 tablespoons of oil.  Add in the braciola and brown on all sides, about 10 minutes total. Carefully remove the braciola to a plate.  Add the onion to the pot and cook until tenter, about 5 minutes. Add in the wine and bring to a boil, scraping the bottom of the pot. Add in the tomatoes. Bring to a boil and then reduce heat to medium low. Allow to simmer for a few minutes to incorporate all the ingredients.  Season with salt and freshly ground black pepper.
+
+5. Add the braciola to the pot.  Cover with lid or foil and place in the oven. Bake, turning the braciole every 30 minutes or so and basting with the tomato sauce.  Uncover about 1 hour into baking. Bake until meat is tender, about 1 1/2 to 2 hours. Add a bit more wine or water to the sauce if needed as it cooks.
+
+6. Remove the braciola from the sauce and let rest. Remove the butcher twine or toothpicks.  Slice the braciola into 1 inch thick slices.  Transfer to a warmed platter. Spoon the sauce over. Sprinkle with the basil and parsley.
+
+7. Serve - buon appetito!]]></content:encoded>
+		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
+		<wp:post_id>6821</wp:post_id>
+		<wp:post_date>2012-11-25 17:45:19</wp:post_date>
+		<wp:post_date_gmt>2012-11-25 21:45:19</wp:post_date_gmt>
+		<wp:comment_status>open</wp:comment_status>
+		<wp:ping_status>open</wp:ping_status>
+		<wp:post_name>a-chilly-lazy-sunday-and-a-tender-braciole</wp:post_name>
+		<wp:status>publish</wp:status>
+		<wp:post_parent>0</wp:post_parent>
+		<wp:menu_order>0</wp:menu_order>
+		<wp:post_type>post</wp:post_type>
+		<wp:post_password></wp:post_password>
+		<wp:is_sticky>0</wp:is_sticky>
+		<category domain="post_tag" nicename="braciole"><![CDATA[braciole]]></category>
+		<category domain="post_tag" nicename="dinner"><![CDATA[dinner]]></category>
+		<category domain="category" nicename="food"><![CDATA[Food]]></category>
+		<category domain="category" nicename="main-courses"><![CDATA[Main Courses]]></category>
+		<category domain="category" nicename="recipes"><![CDATA[Recipes]]></category>
+		<category domain="post_tag" nicename="sunday"><![CDATA[Sunday]]></category>
+		<category domain="post_tag" nicename="tomato-sauce"><![CDATA[Tomato Sauce]]></category>
+		<wp:postmeta>
+			<wp:meta_key>_edit_last</wp:meta_key>
+			<wp:meta_value><![CDATA[4720350]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>publicize_reach</wp:meta_key>
+			<wp:meta_value><![CDATA[a:2:{s:2:"fb";a:2:{i:1972942;i:91;i:2187249;i:91;}s:2:"wp";a:1:{i:0;i:200;}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>jabber_published</wp:meta_key>
+			<wp:meta_value><![CDATA[1353879922]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_publicize_done_external</wp:meta_key>
+			<wp:meta_value><![CDATA[a:1:{s:8:"facebook";a:1:{i:1201419342;b:1;}}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_done_1972942</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>email_notification</wp:meta_key>
+			<wp:meta_value><![CDATA[1353879924]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_done_2187249</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>tagazine-media</wp:meta_key>
+			<wp:meta_value><![CDATA[a:7:{s:7:"primary";s:71:"http://ouritaliantable.files.wordpress.com/2012/11/braciola1-1-of-1.jpg";s:6:"images";a:1:{s:71:"http://ouritaliantable.files.wordpress.com/2012/11/braciola1-1-of-1.jpg";a:6:{s:8:"file_url";s:71:"http://ouritaliantable.files.wordpress.com/2012/11/braciola1-1-of-1.jpg";s:5:"width";i:2848;s:6:"height";i:4272;s:4:"type";s:5:"image";s:4:"area";i:12166656;s:9:"file_path";b:0;}}s:6:"videos";a:0:{}s:11:"image_count";i:1;s:6:"author";s:7:"4720350";s:7:"blog_id";s:7:"4503398";s:9:"mod_stamp";s:19:"2012-11-25 21:51:35";}]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_skip_1972942</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:postmeta>
+			<wp:meta_key>_wpas_skip_2187249</wp:meta_key>
+			<wp:meta_value><![CDATA[1]]></wp:meta_value>
+		</wp:postmeta>
+		<wp:comment>
+			<wp:comment_id>1611</wp:comment_id>
+			<wp:comment_author><![CDATA[My French Heaven]]></wp:comment_author>
+			<wp:comment_author_email>gabart@chambres-saint-emilion.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>83.155.157.67</wp:comment_author_IP>
+			<wp:comment_date>2012-11-25 18:20:20</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-25 22:20:20</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[My Grandma was Italian. I want to lick the screen anytime I see something in tomato sauce:0)]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1609</wp:comment_parent>
+			<wp:comment_user_id>2265919</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353882021.4618299007415771484375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:11:"stephanegab";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353882021]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1612</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-11-25 18:25:51</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-25 22:25:51</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Chuckle :o))....well, not quite as tasty!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1611</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353882353.1503989696502685546875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353882352]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1617</wp:comment_id>
+			<wp:comment_author><![CDATA[Lou Cavaliere]]></wp:comment_author>
+			<wp:comment_author_email>captainusn@comcast.net</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>108.24.44.41</wp:comment_author_IP>
+			<wp:comment_date>2012-11-27 21:30:18</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-28 01:30:18</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Michelle,
+Your story about Sunday is very familiar to me. Today, 50 years later, I cook Sunday dinner and the kids and grandkids flock over from their homes. Hopefully, this will carry on to the next generation.
+BTW, my ingredients are identical to yours minus the pine nuts. And, I prefer the toothpicks to bind the braciole. The toughest part is getting good flank steak. Thanks for sharing this wonderful recipe.
+Lou Cavaliere]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1354066219.1680629253387451171875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1354067400]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1354067401.288712024688720703125;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1608</wp:comment_id>
+			<wp:comment_author><![CDATA[My French Heaven]]></wp:comment_author>
+			<wp:comment_author_email>gabart@chambres-saint-emilion.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>83.155.157.67</wp:comment_author_IP>
+			<wp:comment_date>2012-11-25 18:09:43</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-25 22:09:43</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Michele, this looks unbelievable! Thanks for the recipe!!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>2265919</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353881567]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353881567.8965320587158203125;s:7:"message";s:45:"mbecci changed the comment status to approved";s:5:"event";s:15:"status-approved";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353881383.445024013519287109375;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:11:"stephanegab";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1609</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-11-25 18:13:36</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-25 22:13:36</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Grazie, My French Heaven! And so does your blog - just subscribed. Look forward to future posts!]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1608</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353881617]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353881618.2654469013214111328125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1610</wp:comment_id>
+			<wp:comment_author><![CDATA[My French Heaven]]></wp:comment_author>
+			<wp:comment_author_email>gabart@chambres-saint-emilion.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>83.155.157.67</wp:comment_author_IP>
+			<wp:comment_date>2012-11-25 18:19:29</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-25 22:19:29</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[:0)]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1609</wp:comment_parent>
+			<wp:comment_user_id>2265919</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353881969.874598979949951171875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:11:"stephanegab";}]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353881969]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1614</wp:comment_id>
+			<wp:comment_author><![CDATA[Tom Braddock]]></wp:comment_author>
+			<wp:comment_author_email>thomdock@msn.com</wp:comment_author_email>
+			<wp:comment_author_url></wp:comment_author_url>
+			<wp:comment_author_IP>72.91.159.240</wp:comment_author_IP>
+			<wp:comment_date>2012-11-26 13:50:58</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-26 17:50:58</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Looks great Michele!   Reminds me of dinners at Italian friends eons ago in So. Jersey. Now that the endless humidity has left Fla. (for a while!   ....this morning we bordered on freezing!), this looks like the perfect time for your  feel-good  recipe!      Keep 'em comin'!
+
+Tom B.]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>0</wp:comment_parent>
+			<wp:comment_user_id>0</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1353952259]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1353952260.0450770854949951171875;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:0:"";}]]></wp:meta_value>
+			</wp:commentmeta>
+		</wp:comment>
+		<wp:comment>
+			<wp:comment_id>1618</wp:comment_id>
+			<wp:comment_author><![CDATA[Michele]]></wp:comment_author>
+			<wp:comment_author_email>mbecci@gmail.com</wp:comment_author_email>
+			<wp:comment_author_url>http://ouritaliantable.wordpress.com</wp:comment_author_url>
+			<wp:comment_author_IP>67.165.19.70</wp:comment_author_IP>
+			<wp:comment_date>2012-11-27 21:51:17</wp:comment_date>
+			<wp:comment_date_gmt>2012-11-28 01:51:17</wp:comment_date_gmt>
+			<wp:comment_content><![CDATA[Ciao Lou - Thanks for the wonderful comment.  Wonderful to keep the tradition going. Grazie! Michele]]></wp:comment_content>
+			<wp:comment_approved>1</wp:comment_approved>
+			<wp:comment_type></wp:comment_type>
+			<wp:comment_parent>1617</wp:comment_parent>
+			<wp:comment_user_id>4720350</wp:comment_user_id>
+			<wp:commentmeta>
+				<wp:meta_key>jabber_published</wp:meta_key>
+				<wp:meta_value><![CDATA[1354067477]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_result</wp:meta_key>
+				<wp:meta_value><![CDATA[false]]></wp:meta_value>
+			</wp:commentmeta>
+			<wp:commentmeta>
+				<wp:meta_key>akismet_history</wp:meta_key>
+				<wp:meta_value><![CDATA[a:4:{s:4:"time";d:1354067478.456799030303955078125;s:7:"message";s:28:"Akismet cleared this comment";s:5:"event";s:9:"check-ham";s:4:"user";s:6:"mbecci";}]]></wp:meta_value>
 			</wp:commentmeta>
 		</wp:comment>
 	</item>
