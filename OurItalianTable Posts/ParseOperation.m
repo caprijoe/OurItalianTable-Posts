@@ -140,7 +140,8 @@
                                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             // clear the string for next time around
-            [self.workingPropertyString setString:@""];  
+            [self.workingPropertyString setString:@""];
+            self.storingCharacterData = NO;
             
             // look for specific end element and store the data away
             if ([elementName isEqualToString:POST_LINK_TAG])
@@ -197,7 +198,7 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    if (self.storingCharacterData)
+    if (self.workingEntry && self.storingCharacterData)
     {
         [self.workingPropertyString appendString:string];
     }
