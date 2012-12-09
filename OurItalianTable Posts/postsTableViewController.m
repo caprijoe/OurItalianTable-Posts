@@ -6,9 +6,11 @@
 //  Copyright (c) 2012 OurItalianTable. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "OITLaunchViewController.h"
 #import "PostsTableViewController.h"
-#import "PostRecord.h"
+#import "OLDPostRecord.h"
+#import "Post.h"
 #import "WebViewController.h"
 #import "PostDetailViewController.h"
 
@@ -16,13 +18,30 @@
 
 @interface PostsTableViewController() <UIActionSheetDelegate>;
 @property (nonatomic, strong) NSMutableArray *entries;
-@property (nonatomic,strong) PostRecord *webRecord;
+@property (nonatomic, strong) Post *webRecord;
 @property (nonatomic) BOOL inSearchFlag;
 @property (nonatomic, strong) NSMutableArray *filteredListContent;
-@property (nonatomic,strong) UIStoryboardSegue *categoryPickerSegue;
+@property (nonatomic, strong) UIStoryboardSegue *categoryPickerSegue;
+@property (nonatomic, strong) UIManagedDocument *database;
+@property (nonatomic, strong) NSManagedObjectContext *backgroundMOC;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @end
 
 @implementation PostsTableViewController
+
+-(void)setupFetchedResultsController {
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.backgroundMOC sectionNameKeyPath:nil cacheName:nil];
+    
+    self.fetchedResultsController.delegate = self;
+    
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
+    [self.tableView reloadData];
+}
 
 #pragma mark - Private methods
 
@@ -83,6 +102,17 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // get UIManagedDocument from AppDelegate
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIManagedDocument *database = delegate.postsDatabase;
+    
+    // set up a child managed object context
+    self.backgroundMOC = [[NSManagedObjectContext alloc] init];
+    [self.backgroundMOC setPersistentStoreCoordinator:[database.managedObjectContext persistentStoreCoordinator]];
+    
+    // setup fetch controller
+    [self setupFetchedResultsController];
 
     self.inSearchFlag = NO;
     
@@ -113,6 +143,15 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"saving in thread is = %@",[NSThread currentThread]);
+    
+    [self.backgroundMOC save:NULL];
+    self.fetchedResultsController = nil;
+    self.backgroundMOC = nil;
+
+}
+
 - (WebViewController *)splitWebViewController
 {
     id hvc = [self.splitViewController.viewControllers lastObject];
@@ -137,7 +176,7 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [self.filteredListContent count];
     } else {
-        return [self.entries count];
+        return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
     }
 }
 
@@ -153,21 +192,24 @@
     }
 	
     // Configure cell
-    PostRecord *postRecord = nil;
+    Post *thisPost = nil;
     BOOL inSearch = NO;
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         inSearch = YES;
-        postRecord = [self.filteredListContent objectAtIndex:indexPath.row];
+//        postRecord = [self.filteredListContent objectAtIndex:indexPath.row];
     } else {
         inSearch = NO;
-        postRecord = [self.entries objectAtIndex:indexPath.row];        
+        thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
+
+    cell.textLabel.text = thisPost.postName;
     
-
-    cell.textLabel.text = postRecord.postName;
-
-    [self.myBrain populateIcon:postRecord forCell:cell forTableView:tableView forIndexPath:indexPath];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate populateIcon:thisPost forCell:cell forTableView:self.tableView forIndexPath:indexPath];
+    
+    
+    
     return cell;   
 }
 
@@ -178,7 +220,7 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         self.webRecord = [self.filteredListContent objectAtIndex:indexPath.row];
     } else {                    
-        self.webRecord = [self.entries objectAtIndex:indexPath.row]; 
+        self.webRecord = [self.fetchedResultsController objectAtIndexPath:indexPath]; 
     }
 
     // bring up web view on right with post detail
@@ -272,7 +314,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"Push Web View"]) {
-        [segue.destinationViewController setPostRecord:self.webRecord];
+        [segue.destinationViewController setThisPost:self.webRecord];
         [segue.destinationViewController setDelegate:self];
     } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
         [segue.destinationViewController setDelegate:self];

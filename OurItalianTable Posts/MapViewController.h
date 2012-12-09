@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "OITBrain.h"
 #import "SplitViewBarButtonItemPresenter.h"
-#import "PostRecord.h"
+#import "OLDPostRecord.h"
 
 @class MapViewController;
 

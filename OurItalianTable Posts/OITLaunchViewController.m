@@ -50,15 +50,15 @@
 {
     [super viewDidLoad];
     
-    // disable buttons until loading is done
+/*    // disable buttons until loading is done
     self.foodButton.enabled = NO;
     self.wineButton.enabled = NO;
     self.wanderingsButton.enabled = NO;
-    self.bookmarksButton.enabled = NO;
+    self.bookmarksButton.enabled = NO; */
     
     // alloc the brain which starts the loading from NSBundle XML file
-    self.myBrain = [[OITBrain alloc] init];
-    self.myBrain.delegate = self;
+//    self.myBrain = [[OITBrain alloc] init];
+//    self.myBrain.delegate = self;
         
     // Set the UIView background as lemons
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Lemons.png"]];
@@ -173,13 +173,13 @@
 #pragma mark - External delegates callbacks
 
 // called back from loading posts and activate buttons
--(void)OITBrainDidFinish {
+/* -(void)OITBrainDidFinish {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.foodButton.enabled = YES;
         self.wineButton.enabled = YES;
         self.wanderingsButton.enabled = YES;
         self.bookmarksButton.enabled = YES;
     });
-}
+} */
 
 @end

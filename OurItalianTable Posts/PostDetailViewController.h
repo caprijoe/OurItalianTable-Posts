@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "postRecord.h"
+#import "OLDPostRecord.h"
 @class PostDetailViewController;
 
 @protocol PostsDetailViewControllerDelegate
@@ -21,7 +21,7 @@
 @property (nonatomic, weak) id <PostsDetailViewControllerDelegate> delegate;
 
 // properties to be set
-@property (nonatomic,strong) PostRecord *postDetail; // post for which detail will be displayed
+@property (nonatomic,strong) OLDPostRecord *postDetail; // post for which detail will be displayed
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *authorPicture;

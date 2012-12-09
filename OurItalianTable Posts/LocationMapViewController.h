@@ -14,7 +14,7 @@
 @interface LocationMapViewController : UIViewController <MKMapViewDelegate>
 
 // public properties
-@property (nonatomic,strong) PostRecord *locationRecord;
+@property (nonatomic,strong) OLDPostRecord *locationRecord;
 
 // outlets
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;

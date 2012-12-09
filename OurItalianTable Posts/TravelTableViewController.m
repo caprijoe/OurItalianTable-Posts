@@ -7,7 +7,7 @@
 //
 
 #import "TravelTableViewController.h"
-#import "PostRecord.h"
+#import "OLDPostRecord.h"
 #import "WebViewController.h"
 #import "PostDetailViewController.h"
 #import "MapViewController.h"
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *regionList;
 @property (nonatomic, strong) NSMutableArray *regionCoordinates;
 @property (nonatomic, strong) NSMutableArray *travelEntries;
-@property (nonatomic,strong) PostRecord *webRecord;
+@property (nonatomic,strong) OLDPostRecord *webRecord;
 @end
 
 @implementation TravelTableViewController
@@ -177,7 +177,7 @@
     }
 	
     // Configure cell
-    PostRecord *postRecord = nil;
+    OLDPostRecord *postRecord = nil;
     postRecord = [[self.travelEntries objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];        
     
     
@@ -229,7 +229,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Push Web View"]) {
         [segue.destinationViewController setRootPopoverButtonItem:self.rootPopoverButtonItem];
-        [segue.destinationViewController setPostRecord:self.webRecord];
+//        [segue.destinationViewController setPostRecord:self.webRecord];
         [segue.destinationViewController setDelegate:Nil];
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
         // nothing for this one

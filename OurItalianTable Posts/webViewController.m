@@ -16,24 +16,25 @@
 #import <Twitter/Twitter.h>
 
 #define FAVORITES_KEY       @"FAVORITES_KEY"
-#define CSS_IMPORT_FILENAME @"oitHTMLStyles"
+#define CSS_IMPORT_FILENAME @"OITHTMLStyles"
 #define DOUBLE_QUOTE_CHAR   @"\""
 #define IMAGE_SCALE         .95
 
 @interface WebViewController() <PostsDetailViewControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>;
-@property (nonatomic,strong) NSString *cssHTMLHeader;                   // CSS Header to be stuck in front of HTML
-@property (nonatomic,strong) UIStoryboardSegue* detailsViewSeque;       // saved segue for return from "Details" button
-@property (nonatomic,strong) NSString *loadedHTML;                      // HTML code that was loaded -- for e-mailing
-@property (nonatomic,strong) NSString *currentActionSheet;         // current sheet to figure clicked button
+@property (nonatomic,strong) NSString *cssHTMLHeader;               // CSS Header to be stuck in front of HTML
+@property (nonatomic,strong) UIStoryboardSegue* detailsViewSeque;   // saved segue for return from "Details" button
+@property (nonatomic,strong) NSString *loadedHTML;                  // HTML code that was loaded -- for e-mailing
+@property (nonatomic,strong) NSString *currentActionSheet;          // current sheet to figure clicked button
 @end
 
 @implementation WebViewController
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 #pragma mark - Setter
--(void)setPostRecord:(PostRecord *)postRecord
+
+-(void)setThisPost:(Post *)thisPost
 {
-    _postRecord = postRecord;
+    _thisPost = thisPost;
     if(!self.cssHTMLHeader) {
         NSString *path = [[NSBundle mainBundle] pathForResource:CSS_IMPORT_FILENAME ofType:@"html"];
         NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
@@ -124,21 +125,21 @@
     NSMutableArray *toolbar = [self.bottomToolbar.items mutableCopy];
         
     // if not coordinates in post, delete compass icon (position #2, index #1)
-    if (self.postRecord.coordinate.latitude == 0 && self.postRecord.coordinate.latitude == 0)
+    if (self.thisPost.latitude == 0 && self.thisPost.latitude == 0)
         [toolbar removeObjectAtIndex:1];
     
     // set new version of toolbar
     self.bottomToolbar.items = [toolbar copy];
     
      // fix CRLFs & WP caption blocks so they show on in webview
-    NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.postRecord.postHTML]];
+    NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.thisPost.postHTML]];
             
     // Load up the style list, and the title and append
-    NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.postRecord.postName];    
+    NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.thisPost.postName];
     NSString *finalHTMLstring = [[self.cssHTMLHeader stringByAppendingString:titleTags] stringByAppendingString:modifiedHTML];
     
     // remove "compass" icon if coordinates are absent
-    if (self.postRecord.coordinate.latitude == 0 && self.postRecord.coordinate.latitude == 0)
+    if (self.thisPost.latitude == 0 && self.thisPost.latitude == 0)
         self.topNavBar.rightBarButtonItem = Nil;
     
     //show webview
@@ -158,11 +159,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Push Post Detail"]) {
-        [segue.destinationViewController setPostDetail:self.postRecord];
+//        [segue.destinationViewController setPostDetail:self.postRecord];
         [segue.destinationViewController setDelegate:self];
         self.detailsViewSeque = segue;
     } else if ([segue.identifier isEqualToString:@"Push Location Map"]) {
-        [segue.destinationViewController setLocationRecord:self.postRecord];
+//        [segue.destinationViewController setLocationRecord:self.postRecord];
     }
 }
 
@@ -212,14 +213,14 @@
     
     UIActionSheet *actionSheet;
     
-    if ([favorites containsObject:self.postRecord.postID])              // is currently a favorite
+/*    if ([favorites containsObject:self.thisPost.postID])              // is currently a favorite
         actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:REMOVE_BUTTON, nil];
     else 
         actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:ADD_BUTTON, nil];
     
     self.currentActionSheet = BOOKMARKS_TITLE;
     
-    [actionSheet showFromBarButtonItem:button animated:YES];
+    [actionSheet showFromBarButtonItem:button animated:YES]; */
 }
 
 -(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button {
@@ -253,9 +254,9 @@
         NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
         
         if ([choice isEqualToString:ADD_BUTTON]) {
-            [favorites addObject:self.postRecord.postID];        
+//            [favorites addObject:self.thisPost.postID];
         } else if ([choice isEqualToString:REMOVE_BUTTON]) {
-            [favorites removeObject:self.postRecord.postID];
+//            [favorites removeObject:self.thisPost.postID];
         }
                 
         // sync up user defaults
@@ -282,7 +283,7 @@
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         mailer.mailComposeDelegate = self;
         
-        [mailer setSubject:[NSString stringWithFormat:@"From Our Italian Table - %@",self.postRecord.postName]];
+        [mailer setSubject:[NSString stringWithFormat:@"From Our Italian Table - %@",self.thisPost.postName]];
         
         UIImage *oitLogo = [UIImage imageNamed:@"oitIcon-72x72.png"];
         NSData *imageData = UIImagePNGRepresentation(oitLogo);
@@ -308,9 +309,9 @@
     
     if ([TWTweetComposeViewController canSendTweet]) {
         TWTweetComposeViewController *tweetController = [[TWTweetComposeViewController alloc] init];
-        [tweetController setInitialText:self.postRecord.postName];
-        [tweetController addImage:self.postRecord.postIcon];
-        [tweetController addURL:[NSURL URLWithString:self.postRecord.postURLString]];
+        [tweetController setInitialText:self.thisPost.postName];
+        [tweetController addImage:self.thisPost.postIcon];
+        [tweetController addURL:[NSURL URLWithString:self.thisPost.postURLstring]];
         [self presentViewController:tweetController animated:YES completion:nil];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Tweet" message:@"Unable to send Tweet from this device. Make sure Tweeter is available and you have set up Tweeter with at least one account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -324,9 +325,9 @@
     
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewController *facebookController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-        [facebookController setInitialText:self.postRecord.postName];
-        [facebookController addImage:self.postRecord.postIcon];
-        [facebookController addURL:[NSURL URLWithString:self.postRecord.postURLString]];
+        [facebookController setInitialText:self.thisPost.postName];
+        [facebookController addImage:[UIImage imageWithData:self.thisPost.postIcon]];
+        [facebookController addURL:[NSURL URLWithString:self.thisPost.postURLstring]];
         
         [self presentViewController:facebookController animated:YES completion:nil];
         
@@ -342,7 +343,7 @@
     
     if ([MFMessageComposeViewController canSendText]) {
         MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
-        messageController.body = [NSString stringWithFormat:@"%@ - %@",self.postRecord.postName, self.postRecord.postURLString];
+        messageController.body = [NSString stringWithFormat:@"%@ - %@",self.thisPost.postName, self.thisPost.postURLstring];
         [self presentViewController:messageController animated:YES completion:nil];
         messageController.messageComposeDelegate = self;
     } else {

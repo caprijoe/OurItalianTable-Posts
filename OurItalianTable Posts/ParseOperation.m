@@ -7,7 +7,7 @@
  */
 
 #import "ParseOperation.h"
-#import "postRecord.h"
+#import "OLDPostRecord.h"
 
 // string contants found in the RSS feed
 #define TOP_LEVEL_TAG                @"item"
@@ -31,7 +31,7 @@
 // private properties
 @property (nonatomic, strong) NSData *dataToParse;                      // XML data load in from disk
 @property (nonatomic, strong) NSMutableArray *workingArray;             // array to accumulate parsed data
-@property (nonatomic, strong) PostRecord *workingEntry;                 // current post being parsed
+@property (nonatomic, strong) OLDPostRecord *workingEntry;                 // current post being parsed
 @property (nonatomic, strong) NSMutableString *workingPropertyString;
 @property (nonatomic, strong) NSArray *elementsToParse;                 // XML tags to parse
 @property BOOL storingCharacterData;
@@ -101,7 +101,7 @@
     // if we at start of new segment, reset tracking properties
     if ([elementName isEqualToString:TOP_LEVEL_TAG])
 	{
-        self.workingEntry = [[PostRecord alloc] init];
+        self.workingEntry = [[OLDPostRecord alloc] init];
         self.workingEntry.postCategories = [[NSMutableArray alloc] init];
         self.workingEntry.postTags = [[NSMutableArray alloc] init];
     }

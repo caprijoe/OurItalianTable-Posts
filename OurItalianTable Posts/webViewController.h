@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
+#import "Post.h"
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import "postRecord.h"
 #import "SplitViewBarButtonItemPresenter.h"
 
 @class WebViewController;
@@ -21,13 +21,13 @@
 @interface WebViewController : UIViewController <SplitViewBarButtonItemPresenter>
 
 // outlets
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIToolbar *topToolbar;
-@property (weak, nonatomic) IBOutlet UIToolbar *bottomToolbar;
-@property (weak, nonatomic) IBOutlet UINavigationItem *topNavBar;
+@property (nonatomic, weak) IBOutlet UIWebView *webView;
+@property (nonatomic, weak) IBOutlet UIToolbar *topToolbar;
+@property (nonatomic, weak) IBOutlet UIToolbar *bottomToolbar;
+@property (nonatomic, weak) IBOutlet UINavigationItem *topNavBar;
 
 // public properties
-@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;         // button for rotation support
-@property (nonatomic, strong) PostRecord *postRecord;                         // post to be displayed
-@property (nonatomic, strong) id <WebViewControllerDelegate> delegate;         // delegate call back for pressed TAG button
+@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;           // button for rotation support
+@property (nonatomic, strong) Post *thisPost;                                   // post to be displayed
+@property (nonatomic, strong) id <WebViewControllerDelegate> delegate;          // delegate call back for TAG button
 @end
