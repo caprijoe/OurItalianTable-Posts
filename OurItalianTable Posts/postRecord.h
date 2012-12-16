@@ -18,5 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *postTags;
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
+@property (nonatomic, strong) NSString * geo;
+
 
 @end

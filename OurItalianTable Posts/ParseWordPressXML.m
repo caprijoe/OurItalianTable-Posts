@@ -118,6 +118,7 @@
         self.workingEntry = [[PostRecord alloc] init];
         self.workingEntry.postCategories = [[NSMutableArray alloc] init];
         self.workingEntry.postTags = [[NSMutableArray alloc] init];
+        self.workingEntry.geo = @"elsewhere";
     }
     
     // set BOOL to YES if one of the element tags is found
@@ -134,7 +135,9 @@
                 [self.workingEntry.postCategories addObject:attrContent];
                 
                 [self.candidateGeos enumerateObjectsUsingBlock:^(id geo, BOOL *stop) {
-                    if ([[self fixCategory:geo] isEqualToString:attrContent]) {
+                    
+                    NSRange range = [attrContent rangeOfString:[self fixCategory:geo]];
+                    if (range.location != NSNotFound) {
                         self.workingEntry.geo = geo;
                         *stop = YES;
                     }
