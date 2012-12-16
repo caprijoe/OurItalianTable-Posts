@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-#define LAST_UPDATE_DATE_KEY    @"LAST_UPDATE_DATE"
+#define REMOTE_LAST_MODIFIED_KEY        @"Last-Modified"
 
 #import "RemoteFillDatabaseFromXMLParser.h"
 
@@ -41,38 +41,7 @@
 
 -(void)didReturnRemoteFillDate:(NSString*)remoteDateString {
     
-    // setup date formatter
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
-    
-    // set up NSUserDefaults object and get date of last download file if present
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *lastUpdateDateString = [defaults stringForKey:LAST_UPDATE_DATE_KEY];
-    
-    if (lastUpdateDateString) {
-        // got a good string from NSUserDefaults
-        
-        // convert NSString date to NSTimeInterval
-        NSTimeInterval timeIntervalFromDefaults = [[dateFormatter dateFromString:lastUpdateDateString] timeIntervalSinceReferenceDate];
-        NSTimeInterval timeIntervalFromRemote = [[dateFormatter dateFromString:remoteDateString] timeIntervalSinceReferenceDate];
-        
-        if (timeIntervalFromRemote > timeIntervalFromDefaults) {
-            // update will occur
-            
-            // set date to be saved to remote file date (which is newer)
-            self.lastUpdateStringtoSave = [dateFormatter stringFromDate:[[NSDate alloc] initWithTimeIntervalSinceReferenceDate:timeIntervalFromRemote]];
-            
-        } else {
-            // update will not occur
-            
-            // do nothing, fall through
-        }
-    } else {
-        // no defaults string found (must be first time)
-        
-        // flag date for saving if load & parse successful
-        self.lastUpdateStringtoSave = remoteDateString;        
-    }
+    self.lastUpdateStringtoSave = remoteDateString;        
 }
 
 -(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success {
@@ -91,7 +60,10 @@
         //
         self.parser = [[ParseWordPressXML alloc] initWithData:XMLfile intoDatabase:self.databaseDocument withDelegate:self];
         [self.queue addOperation:self.parser];
-    }
+        
+    } else
+        
+        [self didFinishParsing];
 }
 
 #pragma mark - External Delegates - ParseWordPressXML
@@ -106,7 +78,7 @@
         
         // finished parsing sucessfully, update NSUserDefaults with last update date
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:self.lastUpdateStringtoSave forKey:LAST_UPDATE_DATE_KEY];
+        [defaults setObject:self.lastUpdateStringtoSave forKey:REMOTE_LAST_MODIFIED_KEY];
         [defaults synchronize];
         
     }

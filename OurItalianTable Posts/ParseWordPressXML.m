@@ -14,6 +14,7 @@
 @interface ParseWordPressXML ()
 
 // private properties
+@property (nonatomic, strong) NSMutableSet *candidateGeos;
 @property (nonatomic, strong) NSData *dataToParse;                      // XML data load in from disk
 @property (nonatomic, strong) PostRecord *workingEntry;                 // current post being parsed
 @property (nonatomic, strong) Post *post;
@@ -47,6 +48,15 @@
     return self;
 }
 
+// change display category to the one that WordPress knows
+-(NSString *)fixCategory:(NSString *)category {
+    NSString *lc = [category lowercaseString];
+    NSString *noComma = [lc stringByReplacingOccurrencesOfString:@"," withString:@""];
+    NSString *noQuote = [noComma stringByReplacingOccurrencesOfString:@"'" withString:@""];
+    NSString *addHyphen = [noQuote stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+    return addHyphen;
+}
+
 // -------------------------------------------------------------------------------
 //	main:
 //  Given data to parse, use NSXMLParser and process all the top paid apps.
@@ -63,6 +73,14 @@
     // setup date formatter
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
+    
+    // setup regions and islands list
+    
+    // load and sort candidate regions and islands
+    self.candidateGeos = [NSMutableSet set];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];    
+    [self.candidateGeos addObjectsFromArray:[[[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:@"Regions of Italy"] allKeys]];
+    [self.candidateGeos addObjectsFromArray:[[[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:@"Islands"] allKeys]];
     
     // It's also possible to have NSXMLParser download the data, by passing it a URL, but this is not
 	// desirable because it gives less control over the network, particularly in responding to
@@ -114,6 +132,14 @@
             if ([attributeDict[POST_META_DATA_TYPE_ATTR] isEqualToString:POST_META_DATA_CATEGORY])
             {
                 [self.workingEntry.postCategories addObject:attrContent];
+                
+                [self.candidateGeos enumerateObjectsUsingBlock:^(id geo, BOOL *stop) {
+                    if ([[self fixCategory:geo] isEqualToString:attrContent]) {
+                        self.workingEntry.geo = geo;
+                        *stop = YES;
+                    }
+                
+                }];
             }
             else if ([attributeDict[POST_META_DATA_TYPE_ATTR] isEqualToString:POST_META_DATA_POSTTAG])
             {

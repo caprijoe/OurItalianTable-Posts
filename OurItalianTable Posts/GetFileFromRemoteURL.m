@@ -1,12 +1,12 @@
 //
 //  GetFileFromRemoteURL.m
-//  ASBHapp
+//  Our Italian Table Posts
 //
 //  Created by Joseph Becci on 6/23/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-#define LAST_MODIFIED_KEY @"Last-Modified"
+#define REMOTE_LAST_MODIFIED_KEY        @"Last-Modified"
 
 #import "GetFileFromRemoteURL.h"
 
@@ -54,6 +54,51 @@
     [alertView show];
 }
 
+-(BOOL)continueWithRemoteFillUsingDate:(NSString*)remoteDateString {
+    
+    // setup date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
+    
+    // set up NSUserDefaults object and get date of last download file if present
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastUpdateDateString = [defaults stringForKey:REMOTE_LAST_MODIFIED_KEY];
+    
+    if (lastUpdateDateString) {
+        // got a good string from NSUserDefaults
+        
+        // convert NSString date to NSTimeInterval
+        NSTimeInterval timeIntervalFromDefaults = [[dateFormatter dateFromString:lastUpdateDateString] timeIntervalSinceReferenceDate];
+        NSTimeInterval timeIntervalFromRemote = [[dateFormatter dateFromString:remoteDateString] timeIntervalSinceReferenceDate];
+        
+        if (timeIntervalFromRemote > timeIntervalFromDefaults) {
+            // update should occur            
+            return YES;
+            
+        } else {
+            // update not needed
+            return NO;
+        }
+    } else {
+        // no defaults string found (must be first time), load needed
+        return YES;
+    }
+}
+
+-(void)exitGetFile {
+    
+    // no need to continue downloading because remote date is not greater than current date
+    
+    self.urlConnection = nil;
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    [self.delegate didFinishLoadingURL:NULL withSuccess:NO];
+    
+    self.incomingData = nil;
+    
+}
+
 #pragma mark - NSURLConnection delegate methods
 
 // connection:didReceiveResponse
@@ -61,20 +106,21 @@
 {
     // when connection response received, create new empty data property
     self.incomingData = [NSMutableData data];
-    
-/*    if ([response respondsToSelector:@selector(statusCode)])
-    {
-        int statusCode = [((NSHTTPURLResponse *)response) statusCode];
-        NSLog(@"didReceiveResponse statusCode with %i", statusCode);
-    } */
-    
+        
     if ([response respondsToSelector:@selector(allHeaderFields)])
     {
         NSDictionary *headers = [((NSHTTPURLResponse *)response) allHeaderFields];
         NSLog(@"didReceiveResponse headers = %@",headers);
         
-        [self.delegate didReturnRemoteFillDate:headers[LAST_MODIFIED_KEY]];
-        
+        if ([self continueWithRemoteFillUsingDate:headers[REMOTE_LAST_MODIFIED_KEY]]) {
+            
+            // update continue with update, tell Remote Filler of new last modified date
+            [self.delegate didReturnRemoteFillDate:headers[REMOTE_LAST_MODIFIED_KEY]];
+        } else {
+            
+            // no need to update, exit data load
+            [self exitGetFile];
+        }
     } 
 }
 

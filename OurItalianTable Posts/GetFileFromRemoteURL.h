@@ -1,6 +1,6 @@
 //
 //  GetFileFromRemoteURL.h
-//  ASBHapp
+//  Our Italian Table Posts
 //
 //  Created by Joseph Becci on 6/23/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
