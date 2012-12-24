@@ -20,7 +20,7 @@
     [super viewDidLoad];
     
     // on load, get root button from left nav controller top and display on right
-    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
+    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)(((UINavigationController *)(((UISplitViewController *)self.parentViewController).viewControllers)[0]).viewControllers)[0]).rootPopoverButtonItem;
     
     [self setSplitViewBarButtonItem:rootPopoverButtonItem];
 }
