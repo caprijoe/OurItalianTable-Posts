@@ -1,6 +1,6 @@
 //
-//  FillDatabaseFromXMLParser.m
-//  ASBH
+//  RemoteFillDatabaseFromXMLParser.m
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 9/1/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
@@ -41,7 +41,8 @@
 
 -(void)didReturnRemoteFillDate:(NSString*)remoteDateString {
     
-    self.lastUpdateStringtoSave = remoteDateString;        
+    self.lastUpdateStringtoSave = remoteDateString;
+    
 }
 
 -(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success {
@@ -54,10 +55,7 @@
         // create the queue to run our ParseOperation
         self.queue = [[NSOperationQueue alloc] init];
         
-        // create an ParseOperation (NSOperation subclass) to parse the RSS feed data so that the UI is not blocked
-        // "ownership of appListData has been transferred to the parse operation and should no longer be
-        // referenced in this thread.
-        //
+        // create a parser from the ParseWordPressXML class and add to an NSOperationQueue, will call back when done
         self.parser = [[ParseWordPressXML alloc] initWithData:XMLfile intoDatabase:self.databaseDocument withDelegate:self];
         [self.queue addOperation:self.parser];
         
@@ -88,7 +86,7 @@
 }
 
 - (void)parseErrorOccurred:(NSError *)error {
-//    NSAssert(NO, @"Parse operation failed");
+// do nothing
 }
 
 @end

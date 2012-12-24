@@ -13,7 +13,6 @@
 @property (nonatomic, strong) NSString *postURLString;
 @property (nonatomic, strong) NSString *postHTML;
 @property (nonatomic) NSTimeInterval postPubDate;
-@property (nonatomic) int64_t postLastUpdate;
 @property (nonatomic, strong) NSMutableArray *postCategories;
 @property (nonatomic, strong) NSMutableArray *postTags;
 @property (nonatomic) float latitude;

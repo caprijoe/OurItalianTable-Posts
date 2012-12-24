@@ -21,7 +21,4 @@
 #define POST_META_DATA_CATEGORY                 @"category"
 #define POST_META_DATA_POSTTAG                  @"post_tag"
 #define POST_META_DATA_DESCRIPTION_ATTR     @"nicename"
-#define POST_POSTMETA_TAG               @"wp:postmeta"
-#define POST_POSTMETA_KEY_TAG               @"wp:meta_key"
-#define POST_POSTMETA_KEY_VALUE             @"wp:meta_value"
 // close top level tag

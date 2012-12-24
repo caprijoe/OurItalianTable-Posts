@@ -1,6 +1,6 @@
 //
 //  GetFileFromRemoteURL.m
-//  Our Italian Table Posts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 6/23/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
@@ -93,6 +93,7 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
+    // call back and tell caller were done but no file gotten, pass back NULL for data and success=NO
     [self.delegate didFinishLoadingURL:NULL withSuccess:NO];
     
     self.incomingData = nil;
@@ -114,12 +115,14 @@
         
         if ([self continueWithRemoteFillUsingDate:headers[REMOTE_LAST_MODIFIED_KEY]]) {
             
-            // update continue with update, tell Remote Filler of new last modified date
+            // continue with update, tell Remote Filler of new last modified date
             [self.delegate didReturnRemoteFillDate:headers[REMOTE_LAST_MODIFIED_KEY]];
+            
         } else {
             
             // no need to update, exit data load
             [self exitGetFile];
+            
         }
     } 
 }
@@ -155,6 +158,7 @@
     self.urlConnection = nil; 
 }
 
+// connection:willSendRequest:redirectResponse
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
     
     NSURLRequest *newRequest = request;
@@ -167,17 +171,18 @@
     return newRequest;
 }
 
+// connectionDidFinishLoading
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     // release URL connection
     self.urlConnection = nil;
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
+    
+    // call back and tell caller were done, pass back data and success=YES
     [self.delegate didFinishLoadingURL:self.incomingData withSuccess:YES];
     
     self.incomingData = nil;
 }
-
 
 @end

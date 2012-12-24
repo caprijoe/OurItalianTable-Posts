@@ -1,15 +1,16 @@
 //
 //  ParseWordPressXML.m
-//  oitPosts V2
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 11/16/12.
 //  Copyright (c) 2012 Joseph Becci. All rights reserved.
 //
 
 #import "ParseWordPressXML.h"
+#import "GetFileFromRemoteURL.h"
 #import "PostRecord.h"
-#import "WordPressXMLTags.h"
 #import "Post+Create.h"
+#import "AppDelegate.h"
 
 @interface ParseWordPressXML ()
 
@@ -21,16 +22,18 @@
 @property (nonatomic, strong) NSMutableString *workingPropertyString;
 @property (nonatomic, strong) NSArray *elementsToParse;                 // XML tags to parse
 @property                     BOOL storingElementOfInterest;
-@property                     BOOL storingEditLast;
 @property (nonatomic, strong) UIManagedDocument *database;
 @property (nonatomic, strong) NSManagedObjectContext *backgroundMOC;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, weak) id <ParseWordPressXMLDelegate> delegate;
+@property (nonatomic, strong) AppDelegate *appDelegate;
 
 @end
 
 @implementation ParseWordPressXML
 @synthesize delegate;
+
+#pragma mark - Init method
 
 - (id)initWithData:(NSData *)data
       intoDatabase:(UIManagedDocument *)database
@@ -39,55 +42,52 @@
     self = [super init];
     if (self != nil)
     {
+        // save key init parms for when "main" starts
         self.dataToParse = data;
         self.delegate = theDelegate;
         self.database = database;
-                
-        self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_META_DATA_TAG ,POST_GPS_COORDINATES_TAG, POST_POSTMETA_KEY_TAG, POST_POSTMETA_KEY_VALUE];
+        
+        // set the app delegate for accessing shared methods
+        self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        // set "global" variables
+        self.workingPropertyString = [NSMutableString string];
+        self.storingElementOfInterest = NO;
+        
+        // setup date formatter
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
+        
+        // load and sort candidate regions and islands
+        self.candidateGeos = [NSMutableSet set];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
+        [self.candidateGeos addObjectsFromArray:[[[NSDictionary alloc] initWithContentsOfFile:filePath][@"Regions of Italy"] allKeys]];
+        [self.candidateGeos addObjectsFromArray:[[[NSDictionary alloc] initWithContentsOfFile:filePath][@"Islands"] allKeys]];
+        
+        // set up the XML elements that will be parsed
+        self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_META_DATA_TAG ,POST_GPS_COORDINATES_TAG];
     }
     return self;
 }
 
-// change display category to the one that WordPress knows
--(NSString *)fixCategory:(NSString *)category {
-    NSString *lc = [category lowercaseString];
-    NSString *noComma = [lc stringByReplacingOccurrencesOfString:@"," withString:@""];
-    NSString *noQuote = [noComma stringByReplacingOccurrencesOfString:@"'" withString:@""];
-    NSString *addHyphen = [noQuote stringByReplacingOccurrencesOfString:@" " withString:@"-"];
-    return addHyphen;
+-(void)mergeChanges:(NSNotification *)notification {
+    NSManagedObjectContext *mainMoc = self.database.managedObjectContext;
+    [mainMoc performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:) withObject:notification waitUntilDone:YES];
 }
 
-// -------------------------------------------------------------------------------
-//	main:
-//  Given data to parse, use NSXMLParser and process all the top paid apps.
-// -------------------------------------------------------------------------------
+// override point for NSOperation
+
 - (void)main
-{	
-    // set "global" variables
-    self.workingPropertyString = [NSMutableString string];
-    self.storingElementOfInterest = NO;
+{
     
+    // setup the MOC for background processing - this must be done in the "main" method which is in the background thread
     self.backgroundMOC = [[NSManagedObjectContext alloc] init];
     [self.backgroundMOC setPersistentStoreCoordinator:[self.database.managedObjectContext persistentStoreCoordinator]];
-    
-    // setup date formatter
-    self.dateFormatter = [[NSDateFormatter alloc] init];
-    [self.dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
-    
-    // setup regions and islands list
-    
-    // load and sort candidate regions and islands
-    self.candidateGeos = [NSMutableSet set];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];    
-    [self.candidateGeos addObjectsFromArray:[[[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:@"Regions of Italy"] allKeys]];
-    [self.candidateGeos addObjectsFromArray:[[[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:@"Islands"] allKeys]];
-    
-    // It's also possible to have NSXMLParser download the data, by passing it a URL, but this is not
-	// desirable because it gives less control over the network, particularly in responding to
-	// connection errors.
-    //
+        
+    // setup the XML parser
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:self.dataToParse];
     
+    // set it's delegate to this method and start it
 	[parser setDelegate:self];
     [parser parse];
 	
@@ -104,8 +104,7 @@
 }
 
 
-#pragma mark -
-#pragma mark XML processing
+#pragma mark - NSXMLParser processing delegates
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
                                         namespaceURI:(NSString *)namespaceURI
@@ -136,7 +135,7 @@
                 
                 [self.candidateGeos enumerateObjectsUsingBlock:^(id geo, BOOL *stop) {
                     
-                    NSRange range = [attrContent rangeOfString:[self fixCategory:geo]];
+                    NSRange range = [attrContent rangeOfString:[self.appDelegate fixCategory:geo]];
                     if (range.location != NSNotFound) {
                         self.workingEntry.geo = geo;
                         *stop = YES;
@@ -213,15 +212,6 @@
                     self.workingEntry.latitude = [floats[0] doubleValue];
                     self.workingEntry.longitude = [floats[1] doubleValue];
                 }
-            }
-            else if ([elementName isEqualToString:POST_POSTMETA_KEY_TAG])
-            {
-                if ([trimmedString isEqualToString:@"_edit_last"])
-                    self.storingEditLast = YES;
-            }
-            else if (self.storingEditLast && [elementName isEqualToString:POST_POSTMETA_KEY_VALUE]) {
-                self.workingEntry.postLastUpdate = [trimmedString integerValue];
-                self.storingEditLast = NO;
             }
         }
         else if ([elementName isEqualToString:TOP_LEVEL_TAG])
