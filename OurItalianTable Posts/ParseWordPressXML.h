@@ -18,7 +18,7 @@
 @interface ParseWordPressXML : NSOperation <NSXMLParserDelegate>
 
 - (id)initWithData:(NSData *)data
-      intoDatabase:(UIManagedDocument *)database
+    usingParentMOC:(NSManagedObjectContext *)parentMOC
       withDelegate:(id <ParseWordPressXMLDelegate>)theDelegate;
 
 @end

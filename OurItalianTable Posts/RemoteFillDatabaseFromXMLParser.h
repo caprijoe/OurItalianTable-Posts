@@ -19,7 +19,7 @@
 @interface RemoteFillDatabaseFromXMLParser : NSObject <GetFileFromRemoteURLDelegate, ParseWordPressXMLDelegate>
 
 -(id)initWithURL:(NSURL *)url
-    intoDatabase:(UIManagedDocument *)database
+  usingParentMOC:(NSManagedObjectContext *)parentMOC
     withDelegate:(id <RemoteFillDatabaseFromXMLParserDelegate>)delegate;
 
 @end

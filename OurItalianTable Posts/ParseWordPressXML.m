@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSMutableString *workingPropertyString;
 @property (nonatomic, strong) NSArray *elementsToParse;                 // XML tags to parse
 @property                     BOOL storingElementOfInterest;
-@property (nonatomic, strong) UIManagedDocument *database;
+@property (nonatomic, strong) NSManagedObjectContext *parentMOC;
 @property (nonatomic, strong) NSManagedObjectContext *backgroundMOC;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, weak) id <ParseWordPressXMLDelegate> delegate;
@@ -36,7 +36,7 @@
 #pragma mark - Init method
 
 - (id)initWithData:(NSData *)data
-      intoDatabase:(UIManagedDocument *)database
+    usingParentMOC:(NSManagedObjectContext *)parentMOC
       withDelegate:(id <ParseWordPressXMLDelegate>)theDelegate;
 {
     self = [super init];
@@ -45,7 +45,7 @@
         // save key init parms for when "main" starts
         self.dataToParse = data;
         self.delegate = theDelegate;
-        self.database = database;
+        self.parentMOC = parentMOC;
         
         // set the app delegate for accessing shared methods
         self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -70,37 +70,53 @@
     return self;
 }
 
--(void)mergeChanges:(NSNotification *)notification {
-    NSManagedObjectContext *mainMoc = self.database.managedObjectContext;
-    [mainMoc performSelectorOnMainThread:@selector(mergeChangesFromContextDidSaveNotification:) withObject:notification waitUntilDone:YES];
-}
-
 // override point for NSOperation
 
 - (void)main
 {
     
     // setup the MOC for background processing - this must be done in the "main" method which is in the background thread
-    self.backgroundMOC = [[NSManagedObjectContext alloc] init];
-    [self.backgroundMOC setPersistentStoreCoordinator:[self.database.managedObjectContext persistentStoreCoordinator]];
-        
-    // setup the XML parser
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:self.dataToParse];
+    self.backgroundMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    self.backgroundMOC.parentContext = self.parentMOC;
     
-    // set it's delegate to this method and start it
-	[parser setDelegate:self];
-    [parser parse];
-	
-	if (![self isCancelled])
-    {
-        [self.backgroundMOC save:NULL];
+    [self.backgroundMOC performBlock:^{
         
-        // notify our AppDelegate that the parsing is complete
-        [self.delegate didFinishParsing];
-    } 
-    
-    self.workingPropertyString = nil;
-    self.dataToParse = nil;
+        // setup the XML parser
+        NSXMLParser *parser = [[NSXMLParser alloc] initWithData:self.dataToParse];
+        
+        // set it's delegate to this method and start it
+        [parser setDelegate:self];
+        [parser parse];
+        
+        if (![self isCancelled])
+        {
+            // push to parent
+            NSError *error;
+            if (![self.backgroundMOC save:&error])
+            {
+                // handle error
+                NSLog(@"error saving background MOC = %@",error);
+            }
+            
+            // save parent to disk asynchronously
+            [self.parentMOC performBlock:^{
+                NSError *error;
+                if (![self.parentMOC save:&error])
+                {
+                    // handle error
+                    NSLog(@"error saving parent MOC = %@",error);
+
+                }
+            }];
+            
+            // notify our AppDelegate that the parsing is complete
+            [self.delegate didFinishParsing];
+        } 
+        
+        self.workingPropertyString = nil;
+        self.dataToParse = nil;
+        
+    }];
 }
 
 

@@ -9,7 +9,7 @@
 
 @interface BundleFillDatabaseFromXMLParser ()
 @property (nonatomic, strong) NSOperationQueue *queue;                                  // queue for XML parsing
-@property (nonatomic, strong) UIManagedDocument *databaseDocument;                      // core DB file
+@property (nonatomic, strong) NSManagedObjectContext *parentMOC;                        // core DB file
 @property (nonatomic, strong) ParseWordPressXML *parser;                                // object for XML parser
 @property (nonatomic, strong) id<BundleFillDatabaseFromXMLParserDelegate> delegate;     // callback delegate for this class
 @end
@@ -18,10 +18,12 @@
 
 #pragma mark - init method
 
--(id)initWithURL:(NSURL *)url intoDatabase:(UIManagedDocument *)database withDelegate:(id <BundleFillDatabaseFromXMLParserDelegate>)delegate; {
-    
+-(id)initWithURL:(NSURL *)url
+  usingParentMOC:(NSManagedObjectContext *)parentMOC
+    withDelegate:(id <BundleFillDatabaseFromXMLParserDelegate>)delegate {
+
     // store ivars needed at init
-    self.databaseDocument = database;
+    self.parentMOC = parentMOC;
     self.delegate = delegate;
     
     // get XML posts file from bundle
@@ -34,7 +36,7 @@
     self.queue = [[NSOperationQueue alloc] init];
     
     // create a parser from the ParseWordPressXML class and add to an NSOperationQueue, will call back when done
-    self.parser = [[ParseWordPressXML alloc] initWithData:XMLFile intoDatabase:self.databaseDocument withDelegate:self];
+    self.parser = [[ParseWordPressXML alloc] initWithData:XMLFile usingParentMOC:self.parentMOC withDelegate:self];
     [self.queue addOperation:self.parser];
     
     return self;

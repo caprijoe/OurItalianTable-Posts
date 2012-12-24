@@ -18,7 +18,7 @@
 @interface BundleFillDatabaseFromXMLParser : NSObject <ParseWordPressXMLDelegate>
 
 -(id)initWithURL:(NSURL *)url
-    intoDatabase:(UIManagedDocument *)database
+  usingParentMOC:(NSManagedObjectContext *)parentMOC
     withDelegate:(id <BundleFillDatabaseFromXMLParserDelegate>)delegate;
 
 @end

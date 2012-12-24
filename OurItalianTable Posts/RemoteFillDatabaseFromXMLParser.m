@@ -12,7 +12,7 @@
 
 @interface RemoteFillDatabaseFromXMLParser ()
 @property (nonatomic, strong) NSOperationQueue *queue;                          // queue for XML parsing
-@property (nonatomic, strong) UIManagedDocument *databaseDocument;              // core DB file
+@property (nonatomic, strong) NSManagedObjectContext *parentMOC;              // core DB file
 @property (nonatomic, strong) GetFileFromRemoteURL *fileGetter;                 // object for remote file getter
 @property (nonatomic, strong) ParseWordPressXML *parser;                        // object for XML parser
 @property (nonatomic, strong) id<RemoteFillDatabaseFromXMLParserDelegate> delegate;   // callback delegate for this class 
@@ -23,10 +23,12 @@
 
 #pragma mark - Init method
 
--(id)initWithURL:(NSURL *)url intoDatabase:(UIManagedDocument *)database withDelegate:(id<RemoteFillDatabaseFromXMLParserDelegate>)delegate {
+-(id)initWithURL:(NSURL *)url
+  usingParentMOC:(NSManagedObjectContext *)parentMOC
+    withDelegate:(id<RemoteFillDatabaseFromXMLParserDelegate>)delegate {
     
     // store ivars needed at init
-    self.databaseDocument = database;
+    self.parentMOC = parentMOC;
     self.delegate = delegate;
     
     // launch the filegetter - must be on main thread because it's using NSURLConnection
@@ -56,7 +58,7 @@
         self.queue = [[NSOperationQueue alloc] init];
         
         // create a parser from the ParseWordPressXML class and add to an NSOperationQueue, will call back when done
-        self.parser = [[ParseWordPressXML alloc] initWithData:XMLfile intoDatabase:self.databaseDocument withDelegate:self];
+        self.parser = [[ParseWordPressXML alloc] initWithData:XMLfile usingParentMOC:self.parentMOC withDelegate:self];
         [self.queue addOperation:self.parser];
         
     } else

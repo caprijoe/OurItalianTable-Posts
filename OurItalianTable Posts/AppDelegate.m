@@ -7,10 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "BundleFillDatabaseFromXMLParser.h"
-#import "RemoteFillDatabaseFromXMLParser.h"
-#import "ParseWordPressXML.h"
-#include "Post.h"
 
 #define POST_ICON_HEIGHT        48
 #define COREDB_NAME             @"OITPostsDatabase-V2.0"
@@ -18,6 +14,7 @@
 #define WORDPRESS_REMOTE_URL    @"http://www.ouritaliantable.com/OITLatest.xml"
 
 @interface AppDelegate()
+@property (nonatomic, strong) UIManagedDocument *postsDatabase;                               // core DB file
 @property (nonatomic, strong) BundleFillDatabaseFromXMLParser *bundleDatabaseFiller;              // filler object for bundle
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *remoteDatabaseFiller;              // filled object for remote
 @end
@@ -31,7 +28,6 @@
     
     // alloc init core database object
     NSURL *documentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSLog(@"documents directory = %@",documentsDirectory);
     NSURL *databaseURL = [documentsDirectory URLByAppendingPathComponent:COREDB_NAME];
     self.postsDatabase = [[UIManagedDocument alloc] initWithFileURL:databaseURL];
     
@@ -68,7 +64,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - Shared methods
+#pragma mark - Shared methods for use in other classes
 
 // load up the table thumbnnail, if not cached, cache it
 -(void)populateIcon:(Post *)postRecord
@@ -114,6 +110,15 @@
         });
         dispatch_release(queue);
     }
+}
+
+// change display category to the one that WordPress knows
+-(NSString *)fixCategory:(NSString *)category {
+    NSString *lc = [category lowercaseString];
+    NSString *noComma = [lc stringByReplacingOccurrencesOfString:@"," withString:@""];
+    NSString *noQuote = [noComma stringByReplacingOccurrencesOfString:@"'" withString:@""];
+    NSString *addHyphen = [noQuote stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+    return addHyphen;
 }
 
 #pragma mark - Private methods
@@ -189,16 +194,16 @@
     NSURL *bundleUrl = [NSURL fileURLWithPath:path];
     
     // launch filler for bundle
-    self.bundleDatabaseFiller = [[BundleFillDatabaseFromXMLParser alloc] initWithURL:bundleUrl intoDatabase:self.postsDatabase withDelegate:self];
+    self.bundleDatabaseFiller = [[BundleFillDatabaseFromXMLParser alloc] initWithURL:bundleUrl usingParentMOC:self.parentMOC withDelegate:self];
 }
 
 -(void)fillFromRemote {
     
-    // set uo URL to remote file
+    // set up URL to remote file
     NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
     
     // launch filler for remote
-    self.remoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL intoDatabase:self.postsDatabase withDelegate:self];
+    self.remoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.parentMOC withDelegate:self];
 }
 
 -(void)useDocument {
@@ -212,6 +217,10 @@
             // if create failed, abort
             NSAssert(success, @"Core Data savetoURL for DB creation failed");
             
+            // setup parent MOC with NSMainQueueConcurrencyType
+            self.parentMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+            [self.parentMOC setPersistentStoreCoordinator:[self.postsDatabase.managedObjectContext persistentStoreCoordinator]];
+                        
             // coreDB opened, now fill from bundle
             [self fillFromBundle];
             
@@ -226,6 +235,10 @@
             // if open failed, abort
             NSAssert(success, @"Core Data open failed");
 
+            // setup parent MOC with NSMainQueueConcurrencyType
+            self.parentMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+            [self.parentMOC setPersistentStoreCoordinator:[self.postsDatabase.managedObjectContext persistentStoreCoordinator]];
+            
             // coreDB opened, assume previously filled from bundle. now fill from remotr
             [self fillFromRemote];
 
