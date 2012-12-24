@@ -6,12 +6,10 @@
 //  Copyright (c) 2012 OurItalianTable. All rights reserved.
 //
 
+#import "Post.h"
 #import "AppDelegate.h"
 #import "OITLaunchViewController.h"
 #import "PostsTableViewController.h"
-#import "OLDPostRecord.h"
-#import "Post.h"
-#import "WebViewController.h"
 #import "PostDetailViewController.h"
 
 #define CUSTOM_ROW_HIEGHT    60.0
@@ -19,11 +17,8 @@
 @interface PostsTableViewController() <UIActionSheetDelegate>;
 @property (nonatomic, strong) NSMutableArray *entries;
 @property (nonatomic, strong) Post *webRecord;
-@property (nonatomic) BOOL inSearchFlag;
-@property (nonatomic, strong) NSMutableArray *filteredListContent;
 @property (nonatomic, strong) UIStoryboardSegue *categoryPickerSegue;
-@property (nonatomic, strong) UIManagedDocument *database;
-@property (nonatomic, strong) NSManagedObjectContext *backgroundMOC;
+@property (nonatomic, strong) NSManagedObjectContext *parentMOC;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @end
 
@@ -31,13 +26,21 @@
 
 -(void)setupFetchedResultsController {
     
+    // set up initial fetch request
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.backgroundMOC sectionNameKeyPath:nil cacheName:nil];
+    // if we're looking at bookmarks, setup the predicate
+    if (self.favs)
+        request.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString =[cd] %@) ", [NSNumber numberWithBool:YES], self.category];
+    else
+        request.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
     
+    // setup controller
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.parentMOC sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController.delegate = self;
-    
+        
+    // Perform fetch and reload table
     NSError *error = nil;
     [self.fetchedResultsController performFetch:&error];
     [self.tableView reloadData];
@@ -48,16 +51,12 @@
 // update context at bottom of tableviewcontroller
 -(void)updateContext:(NSString *)topLevel
           withDetail:(NSString *)detail {
+        
+    // override toplevel context if we're in favorites
+    topLevel = self.favs ? @"favorites" : topLevel;
     
-    NSString *context;
-    
-    if (self.favs)
-        topLevel = @"favorites";
-    
-    if (!detail)
-        context = topLevel;
-    else 
-        context = [NSString stringWithFormat:@"%@ > %@",topLevel, detail];
+    // if there's a detail context use it, otherwise show none
+    NSString *context = detail ? [NSString stringWithFormat:@"%@ > %@",topLevel, detail] : topLevel;
     
     // construct custom label for context statement
     UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,250,20)];
@@ -69,7 +68,7 @@
     customLabel.backgroundColor =  [UIColor clearColor];
     customLabel.font = [UIFont boldSystemFontOfSize:16.0];
     
-    // add it
+    // add it to bottom of view
     NSArray *toolbarItems = [NSArray arrayWithObjects:
                              [[UIBarButtonItem alloc] initWithCustomView:customLabel],
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil], 
@@ -80,20 +79,21 @@
 
 -(void)resetToAllEntries:(id)sender {
     
-    // reset table to initial state
-    [self viewDidLoad];
-    
     // make sure search bar is reset
     [self.searchDisplayController setActive:NO animated:YES];
     
+    // if this viewcontroller was called from favs button, display "favorites" at bottom, otherwise display selected category (food, wine, wandering)
+    self.favs ? [self updateContext:@"favorites" withDetail:nil] : [self updateContext:self.category withDetail:nil];
+    
+    // reset fetch controller
+    [self setupFetchedResultsController];
+
     // if on an ipad, reset right side too
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
     
-    // reset table view to top (0,0)
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES]; 
-    
+    // reset table view to top (0,0) & reload table
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self.tableView reloadData];
 }
 
@@ -103,32 +103,16 @@
 {
     [super viewDidLoad];
     
-    // get UIManagedDocument from AppDelegate
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    UIManagedDocument *database = delegate.postsDatabase;
-    
-    // set up a child managed object context
-    self.backgroundMOC = [[NSManagedObjectContext alloc] init];
-    [self.backgroundMOC setPersistentStoreCoordinator:[database.managedObjectContext persistentStoreCoordinator]];
+    // get NSManagedObjectContext from AppDelegate
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.parentMOC = appDelegate.parentMOC;
     
     // setup fetch controller
     [self setupFetchedResultsController];
-
-    self.inSearchFlag = NO;
     
-    self.entries = [self.myBrain isFav:self.favs withTag:nil withCategory:self.category withDetailCategory:nil];
-
-    if (self.favs) {
-        [self updateContext:@"favorites" withDetail:nil];
-    }
-    else {
-        [self updateContext:self.category withDetail:nil];
-    }
+    // if this viewcontroller was called from favs button, display "favorites" at bottom, otherwise display selected category (food, wine, wandering)
+    self.favs ? [self updateContext:@"favorites" withDetail:nil] : [self updateContext:self.category withDetail:nil];
     
-    self.tableView.rowHeight = CUSTOM_ROW_HIEGHT;
-    
-    // create a filtered list that will contain products for the search results table.
-	self.filteredListContent = [NSMutableArray arrayWithCapacity:[self.entries count]];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -137,18 +121,12 @@
     // make sure toolbar is displayed
     [self.navigationController setToolbarHidden:NO];
     
-    if (self.favs) {
-        self.entries = [self.myBrain getFavorites];
-        [self.tableView reloadData];
-    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"saving in thread is = %@",[NSThread currentThread]);
     
-    [self.backgroundMOC save:NULL];
-    self.fetchedResultsController = nil;
-    self.backgroundMOC = nil;
+    // save any loaded changes at this point
+    [self.parentMOC save:NULL];
 
 }
 
@@ -169,15 +147,20 @@
         return YES;
 }
 
-#pragma mark - Table view data source
+#pragma mark - NSFetchedResultsControllerDelegate method(s) 
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    
+    [self.tableView reloadData];
+    
+}
 
+#pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [self.filteredListContent count];
-    } else {
-        return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
-    }
+    tableView.rowHeight = CUSTOM_ROW_HIEGHT;
+    
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -193,22 +176,13 @@
 	
     // Configure cell
     Post *thisPost = nil;
-    BOOL inSearch = NO;
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        inSearch = YES;
-//        postRecord = [self.filteredListContent objectAtIndex:indexPath.row];
-    } else {
-        inSearch = NO;
-        thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    }
+    thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     cell.textLabel.text = thisPost.postName;
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [delegate populateIcon:thisPost forCell:cell forTableView:self.tableView forIndexPath:indexPath];
-    
-    
+    [delegate populateIcon:thisPost forCell:cell forTableView:tableView forIndexPath:indexPath];    
     
     return cell;   
 }
@@ -217,12 +191,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        self.webRecord = [self.filteredListContent objectAtIndex:indexPath.row];
-    } else {                    
-        self.webRecord = [self.fetchedResultsController objectAtIndexPath:indexPath]; 
-    }
-
+    self.webRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
     // bring up web view on right with post detail
     [self performSegueWithIdentifier:@"Push Web View" sender:self];
     
@@ -238,40 +208,83 @@
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-
-    NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
-    self.filteredListContent = [self.myBrain searchScope:scope withString:searchString isFavs:self.favs withCategory:self.category];
+    
+    // grab search scope for passing to fetch controller update method
+    NSInteger scope = controller.searchBar.selectedScopeButtonIndex;
+    
+    // update context at bottom of pane
     [self updateContext:self.category withDetail:searchString];
     
-    return YES;
+    // do the refetch
+    return [self reviseFetchRequestUsing:searchString searchScope:scope];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
     
-    NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
-    self.filteredListContent = [self.myBrain searchScope:scope withString:[self.searchDisplayController.searchBar text] isFavs:self.favs withCategory:self.category];
+    // grab the search string for passing to fetch controller update method
+    NSString *searchString = controller.searchBar.text;
+    
+    // do the refetch
+    return [self reviseFetchRequestUsing:searchString searchScope:searchOption];
+}
+
+// private method used by UISearchDisplayDelegate
+-(BOOL)reviseFetchRequestUsing:(NSString *)searchString searchScope:(NSInteger)searchOption {
+        
+    if ([searchString length]) {
+        switch (searchOption) {
+                
+            // "All" option
+            case 0:
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND ((postHTML contains[cd] %@) OR (whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))",self.category, searchString, searchString, searchString];
+                break;
+            
+            // "Article" option
+            case 1:
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (postHTML contains[cd] %@)",self.category, searchString];
+                break;
+            
+            // "Tags" option
+            case 2:
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (whichTags.tagString contains[cd] %@)",self.category, searchString];
+                break;
+            
+            // "Title" option
+            case 3:
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (postName contains[cd] %@)",self.category, searchString];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    [[self fetchedResultsController] performFetch:NULL];
+    [self.tableView reloadData];
     
     return YES;
 }
 
--(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView {
-    self.inSearchFlag = YES;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willUnloadSearchResultsTableView:(UITableView *)tableView {
-    self.inSearchFlag = NO;
-}
-
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self setupFetchedResultsController];
     [self resetToAllEntries:self];
 }
 
 #pragma mark - External delegates
 
--(void)webViewController:(WebViewController *)sender chosetag:(id)tag {
+-(void)didClickTag:(NSString *)tag {
     
-    // reset memory array with only items that match tag selected in details pop up
-    [self setEntries:[self.myBrain isFav:self.favs withTag:tag withCategory:self.category withDetailCategory:nil]];
+    // fetch entries with clicked tab
+    
+    // remembering if we're in bookmarked entries, setup the predicate
+    if (self.favs)
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString =[cd] %@) AND (ANY whichTags.tagString =[cd] %@)", [NSNumber numberWithBool:YES], self.category, tag];
+    else
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichTags.tagString =[cd] %@)", self.category, tag];
+    
+    [[self fetchedResultsController] performFetch:NULL];
+    
+    // update context at bottom of view
     [self updateContext:self.category withDetail:tag];
      
     // force the root controller on screen (should not be on screen now because last selection was detailed popover)
@@ -296,16 +309,25 @@
     [self.tableView reloadData];
 }
 
--(void)TOCViewController:(TOCViewController *)sender
-          categoryPicked:(NSString *)masterCategory
-    detailCategoryPicked:(NSString *)detailCategory; 
+-(void)didPickUsingCategory:(NSString *)category detailCategory:(NSString *)detailCategory
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [[(UIStoryboardPopoverSegue*)self.categoryPickerSegue popoverController] dismissPopoverAnimated:YES];
     else    
         [self.categoryPickerSegue.destinationViewController dismissModalViewControllerAnimated:YES];
-    self.entries = [self.myBrain isFav:self.favs withTag:nil withCategory:self.category withDetailCategory: detailCategory];
+    
+    // remembering if we're in bookmarked entries, setup the predicate
+    if (self.favs)
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString =[cd] %@)", [NSNumber numberWithBool:YES], detailCategory];
+    else
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichCategories.categoryString =[cd] %@)", self.category, detailCategory];
+    
+    [[self fetchedResultsController] performFetch:NULL];
+    
+    // update context at bottom of view
     [self updateContext:self.category withDetail:detailCategory];
+    
+    // reload tableview
     [self.tableView reloadData];
 }
 
