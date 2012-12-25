@@ -14,8 +14,7 @@
 @class WebViewController;
 
 @protocol WebViewControllerDelegate
--(void)webViewController:(WebViewController *)sender
-                chosetag:(id)tag;
+-(void)didClickTag:(NSString *)tag;
 @end
 
 @interface WebViewController : UIViewController <SplitViewBarButtonItemPresenter>

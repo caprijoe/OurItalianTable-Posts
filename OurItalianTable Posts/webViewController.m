@@ -74,7 +74,7 @@
 }
 
 -(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
-    return [incomingText stringByReplacingOccurrencesOfString:@"\x0D\x0A\x0D\x0A" withString:@"<p>\x0D\x0A"];
+    return [incomingText stringByReplacingOccurrencesOfString:@"\n\n" withString:@"<p>\n"];
 }
 
 -(NSString *)modifyAllCaptionBlocks:(NSString *)incomingText {
@@ -112,6 +112,11 @@
 {
     [super viewDidLoad];
     
+/*    const char *utf8 = [self.thisPost.postHTML UTF8String];
+    while (*utf8) {
+        NSLog(@"s ->%c, h ->%@",*utf8, [NSString stringWithFormat:@"%02X" , *utf8++ & 0x00FF]);
+    } */
+    
     // if on ipad, set the root menu button by grabbing from the top of left stack
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
@@ -125,7 +130,7 @@
     NSMutableArray *toolbar = [self.bottomToolbar.items mutableCopy];
         
     // if not coordinates in post, delete compass icon (position #2, index #1)
-    if (self.thisPost.latitude == 0 && self.thisPost.latitude == 0)
+    if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0)
         [toolbar removeObjectAtIndex:1];
     
     // set new version of toolbar
@@ -159,11 +164,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Push Post Detail"]) {
-//        [segue.destinationViewController setPostDetail:self.postRecord];
+        [segue.destinationViewController setPostDetail:self.thisPost];
         [segue.destinationViewController setDelegate:self];
         self.detailsViewSeque = segue;
     } else if ([segue.identifier isEqualToString:@"Push Location Map"]) {
-//        [segue.destinationViewController setLocationRecord:self.postRecord];
+        [segue.destinationViewController setLocationRecord:self.thisPost];
     }
 }
 
@@ -213,14 +218,14 @@
     
     UIActionSheet *actionSheet;
     
-/*    if ([favorites containsObject:self.thisPost.postID])              // is currently a favorite
+    if (self.thisPost.bookmarked)              // is currently a favorite
         actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:REMOVE_BUTTON, nil];
     else 
         actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:ADD_BUTTON, nil];
     
     self.currentActionSheet = BOOKMARKS_TITLE;
     
-    [actionSheet showFromBarButtonItem:button animated:YES]; */
+    [actionSheet showFromBarButtonItem:button animated:YES]; 
 }
 
 -(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button {
@@ -245,23 +250,16 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if ([self.currentActionSheet isEqualToString:BOOKMARKS_TITLE]) {
-        // open defaults file
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
-        if (!favorites) favorites = [NSMutableArray array];
         
         // get button pressed
         NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
         
         if ([choice isEqualToString:ADD_BUTTON]) {
-//            [favorites addObject:self.thisPost.postID];
+            self.thisPost.bookmarked = YES;
         } else if ([choice isEqualToString:REMOVE_BUTTON]) {
-//            [favorites removeObject:self.thisPost.postID];
+            self.thisPost.bookmarked = NO;
         }
                 
-        // sync up user defaults
-        [defaults setObject:favorites forKey:FAVORITES_KEY];
-        [defaults synchronize];
     } else if ([self.currentActionSheet isEqualToString: SHARE_TITLE]) {
         if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString: EMAIL_BUTTON]) {
             [self shareViaEmail];
@@ -310,7 +308,7 @@
     if ([TWTweetComposeViewController canSendTweet]) {
         TWTweetComposeViewController *tweetController = [[TWTweetComposeViewController alloc] init];
         [tweetController setInitialText:self.thisPost.postName];
-        [tweetController addImage:self.thisPost.postIcon];
+        [tweetController addImage:[UIImage imageWithData: self.thisPost.postIcon]];
         [tweetController addURL:[NSURL URLWithString:self.thisPost.postURLstring]];
         [self presentViewController:tweetController animated:YES completion:nil];
     } else {
@@ -369,15 +367,16 @@
 }
  
 #pragma mark - External Delegates
--(void)postsDetailViewController:(PostDetailViewController *)sender choseTag:(id)tag {
+-(void)didClickTag:(NSString *)tag {
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [[(UIStoryboardPopoverSegue*)self.detailsViewSeque popoverController] dismissPopoverAnimated:YES];
     else {
         [self.detailsViewSeque.destinationViewController dismissModalViewControllerAnimated:YES];
     }
+    
     if (self.delegate)
-        [self.delegate webViewController:self chosetag:tag]; 
+        [self.delegate didClickTag:tag];
 }
 
 @end
