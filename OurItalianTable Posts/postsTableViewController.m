@@ -1,6 +1,5 @@
 //
-//  postsTableViewController.m
-//  oitPosts
+//  PostsTableViewController.m
 //
 //  Created by Joseph Becci on 1/7/12.
 //  Copyright (c) 2012 OurItalianTable. All rights reserved.
@@ -24,17 +23,16 @@
 
 @implementation PostsTableViewController
 
+#pragma mark - Core data helper
+
 -(void)setupFetchedResultsController {
     
     // set up initial fetch request
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     
     // if we're looking at bookmarks, setup the predicate
-    if (self.favs)
-        request.predicate = [NSPredicate predicateWithFormat:@"bookmarked == %@", [NSNumber numberWithBool:YES]];
-    else
-        request.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
+    request.predicate = self.favs ? [NSPredicate predicateWithFormat:@"bookmarked == %@", @YES] : [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
     
     // setup controller
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.parentMOC sectionNameKeyPath:nil cacheName:nil];
@@ -69,10 +67,9 @@
     customLabel.font = [UIFont boldSystemFontOfSize:16.0];
     
     // add it to bottom of view
-    NSArray *toolbarItems = [NSArray arrayWithObjects:
-                             [[UIBarButtonItem alloc] initWithCustomView:customLabel],
+    NSArray *toolbarItems = @[[[UIBarButtonItem alloc] initWithCustomView:customLabel],
                              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil], 
-                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(resetToAllEntries:)], nil];
+                             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(resetToAllEntries:)]];
     self.toolbarItems  = toolbarItems;
     self.navigationController.toolbarHidden = NO;    
 }
@@ -161,7 +158,7 @@
 {
     tableView.rowHeight = CUSTOM_ROW_HIEGHT;
     
-    return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+    return [[self.fetchedResultsController sections][section] numberOfObjects];
 
 }
 
@@ -199,7 +196,7 @@
     [self performSegueWithIdentifier:@"Push Web View" sender:self];
     
     // get rid of left side splitview
-    OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
+    OITLaunchViewController *topVC = [self.navigationController viewControllers][0];
     [topVC.masterPopoverController dismissPopoverAnimated:YES];
 } 
 
@@ -232,40 +229,31 @@
 
 // private method used by UISearchDisplayDelegate
 -(BOOL)reviseFetchRequestUsing:(NSString *)searchString searchScope:(NSInteger)searchOption {
-        
+    
+    NSString *topOrderPredicateString = self.favs ? @"(bookmarked == %@) AND " : @"(ANY whichCategories.categoryString =[cd] %@) AND ";
+    NSArray *topOrderPredicateInputs = self.favs ? @[@YES] : @[self.category];
+    
     if ([searchString length]) {
         switch (searchOption) {
                 
             // "All" option
             case 0:
-                if (self.favs)
-                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))",[NSNumber numberWithBool:YES], searchString, searchString, searchString];
-                else
-                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))",self.category, searchString, searchString, searchString];
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString, searchString, searchString]]];
                 break;
             
             // "Article" option
             case 1:
-                if (self.favs)
-                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (postHTML contains[cd] %@)",[NSNumber numberWithBool:YES], searchString];
-                else
-                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (postHTML contains[cd] %@)",self.category, searchString];
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(postHTML contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
                 break;
             
             // "Tags" option
             case 2:
-                if (self.favs)
-                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichTags.tagString contains[cd] %@)",[NSNumber numberWithBool:YES], searchString];
-                else
-                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichTags.tagString contains[cd] %@)",self.category, searchString];
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(ANY whichTags.tagString contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
                 break;
             
             // "Title" option
             case 3:
-                if (self.favs)
-                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (postName contains[cd] %@)",[NSNumber numberWithBool:YES], searchString];
-                else
-                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (postName contains[cd] %@)",self.category, searchString];
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(postName contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
                 break;
                 
             default:
@@ -292,7 +280,7 @@
     
     // remembering if we're in bookmarked entries, setup the predicate
     if (self.favs)
-        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString =[cd] %@) AND (ANY whichTags.tagString =[cd] %@)", [NSNumber numberWithBool:YES], self.category, tag];
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString =[cd] %@) AND (ANY whichTags.tagString =[cd] %@)", @YES, self.category, tag];
     else
         self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichTags.tagString =[cd] %@)", self.category, tag];
     
@@ -307,7 +295,7 @@
     #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     
     // get root view controllers popover button from left side and make it appear
-    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[[self.navigationController viewControllers] objectAtIndex:0]).rootPopoverButtonItem;
+    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[self.navigationController viewControllers][0]).rootPopoverButtonItem;
     
     [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
     #pragma clang diagnostic pop
@@ -332,7 +320,7 @@
     
     // remembering if we're in bookmarked entries, setup the predicate
     if (self.favs)
-        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString contains[cd] %@)", [NSNumber numberWithBool:YES], [self.appDelegate fixCategory: detailCategory]];
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString contains[cd] %@)", @YES, [self.appDelegate fixCategory: detailCategory]];
     else
         self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichCategories.categoryString contains[cd] %@)", self.category, [self.appDelegate fixCategory: detailCategory]];
     
