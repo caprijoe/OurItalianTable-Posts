@@ -15,11 +15,11 @@
 #define CUSTOM_ROW_HIEGHT    60.0
 
 @interface PostsTableViewController() <UIActionSheetDelegate>;
-@property (nonatomic, strong) NSMutableArray *entries;
 @property (nonatomic, strong) Post *webRecord;
 @property (nonatomic, strong) UIStoryboardSegue *categoryPickerSegue;
 @property (nonatomic, strong) NSManagedObjectContext *parentMOC;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) AppDelegate *appDelegate;
 @end
 
 @implementation PostsTableViewController
@@ -32,7 +32,7 @@
     
     // if we're looking at bookmarks, setup the predicate
     if (self.favs)
-        request.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString =[cd] %@) ", [NSNumber numberWithBool:YES], self.category];
+        request.predicate = [NSPredicate predicateWithFormat:@"bookmarked == %@", [NSNumber numberWithBool:YES]];
     else
         request.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
     
@@ -103,9 +103,11 @@
 {
     [super viewDidLoad];
     
+    // setup appDelegate for accessing shared properties and methods
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     // get NSManagedObjectContext from AppDelegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.parentMOC = appDelegate.parentMOC;
+    self.parentMOC = self.appDelegate.parentMOC;
     
     // setup fetch controller
     [self setupFetchedResultsController];
@@ -236,22 +238,34 @@
                 
             // "All" option
             case 0:
-                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND ((postHTML contains[cd] %@) OR (whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))",self.category, searchString, searchString, searchString];
+                if (self.favs)
+                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))",[NSNumber numberWithBool:YES], searchString, searchString, searchString];
+                else
+                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))",self.category, searchString, searchString, searchString];
                 break;
             
             // "Article" option
             case 1:
-                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (postHTML contains[cd] %@)",self.category, searchString];
+                if (self.favs)
+                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (postHTML contains[cd] %@)",[NSNumber numberWithBool:YES], searchString];
+                else
+                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (postHTML contains[cd] %@)",self.category, searchString];
                 break;
             
             // "Tags" option
             case 2:
-                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (whichTags.tagString contains[cd] %@)",self.category, searchString];
+                if (self.favs)
+                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichTags.tagString contains[cd] %@)",[NSNumber numberWithBool:YES], searchString];
+                else
+                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichTags.tagString contains[cd] %@)",self.category, searchString];
                 break;
             
             // "Title" option
             case 3:
-                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (postName contains[cd] %@)",self.category, searchString];
+                if (self.favs)
+                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (postName contains[cd] %@)",[NSNumber numberWithBool:YES], searchString];
+                else
+                    self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (postName contains[cd] %@)",self.category, searchString];
                 break;
                 
             default:
@@ -318,9 +332,9 @@
     
     // remembering if we're in bookmarked entries, setup the predicate
     if (self.favs)
-        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString =[cd] %@)", [NSNumber numberWithBool:YES], detailCategory];
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(bookmarked == %@) AND (ANY whichCategories.categoryString contains[cd] %@)", [NSNumber numberWithBool:YES], [self.appDelegate fixCategory: detailCategory]];
     else
-        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichCategories.categoryString =[cd] %@)", self.category, detailCategory];
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichCategories.categoryString contains[cd] %@)", self.category, [self.appDelegate fixCategory: detailCategory]];
     
     [[self fetchedResultsController] performFetch:NULL];
     
