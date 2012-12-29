@@ -16,7 +16,7 @@
 #import <Twitter/Twitter.h>
 
 #define FAVORITES_KEY       @"FAVORITES_KEY"
-#define CSS_IMPORT_FILENAME @"OITHTMLStyles"
+#define CSS_IMPORT_FILENAME @"HTMLStyles"
 #define DOUBLE_QUOTE_CHAR   @"\""
 #define IMAGE_SCALE         .95
 
