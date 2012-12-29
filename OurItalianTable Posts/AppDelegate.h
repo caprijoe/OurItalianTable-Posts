@@ -17,6 +17,8 @@
 // public properties
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) NSManagedObjectContext *parentMOC;
+@property (nonatomic, strong) NSDictionary *candidateGeos;
+@property (nonatomic, strong) NSDictionary *candidateGeoSlugs;
 
 //public shared methods
 -(NSString *)fixCategory:(NSString *)category;

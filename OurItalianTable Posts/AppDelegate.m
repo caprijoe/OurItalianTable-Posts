@@ -31,6 +31,9 @@
     NSURL *databaseURL = [documentsDirectory URLByAppendingPathComponent:COREDB_NAME];
     self.postsDatabase = [[UIManagedDocument alloc] initWithFileURL:databaseURL];
     
+    // setup public reference properties
+    [self setupReferenceProperties];
+    
     // use doc, create or open depending on current state
     [self useDocument];    
     
@@ -122,6 +125,33 @@
 }
 
 #pragma mark - Private methods
+
+-(void)setupReferenceProperties {
+    
+    // load filepath to bundle plist
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
+    
+    // fail if can't find file
+    NSAssert(filePath, @"Can't find CategoryDictionary plist bundle file");
+
+    // load and sort (using dictionary) candidate regions and islands
+    NSMutableDictionary *mutableCandidateGeos = [NSMutableDictionary dictionary];
+    [mutableCandidateGeos addEntriesFromDictionary:[[NSDictionary alloc] initWithContentsOfFile:filePath][@"Regions of Italy"]];
+    [mutableCandidateGeos addEntriesFromDictionary:[[NSDictionary alloc] initWithContentsOfFile:filePath][@"Islands"]];
+    
+    // set up the dictionary for public use
+    self.candidateGeos = [mutableCandidateGeos copy];
+    
+    // set up a reference array for the slugs and cross walk back to original key
+    NSMutableDictionary *muteableCandidateGeoSlugs = [[NSMutableDictionary alloc] initWithCapacity:[[self.candidateGeos allKeys] count]];
+    
+    for (NSString *key in [mutableCandidateGeos allKeys]) {
+        muteableCandidateGeoSlugs[[self fixCategory:key]] = key;
+    }
+    
+    // set up the array for public use
+    self.candidateGeoSlugs = [muteableCandidateGeoSlugs copy];    
+}
 
 - (UIImage *)adjustImage:(UIImage *)image
 {
