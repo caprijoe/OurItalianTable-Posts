@@ -8,16 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "OITBrain.h"
 #import "SplitViewBarButtonItemPresenter.h"
 #import "OLDPostRecord.h"
 
 @class MapViewController;
 
-@protocol MapViewController <NSObject>
+@protocol MapViewControllerDelegate <NSObject>
 
--(void)MapViewContoller:(MapViewController *)sender
-          regionClicked:(NSString *)region;
+-(void)didMapClick:(MapViewController *)sender
+          geoNamed:(NSString *)region;
 @end
 
 @interface MapViewController : UIViewController <MKMapViewDelegate,SplitViewBarButtonItemPresenter>
@@ -26,7 +25,7 @@
 @property (nonatomic,weak) IBOutlet UIToolbar *toolbar;
 @property (nonatomic,weak) UIBarButtonItem *rootPopoverButtonItem;
 
-@property (nonatomic,weak) id<MapViewController> delegate;
+@property (nonatomic,weak) id<MapViewControllerDelegate> delegate;
 
-@property (nonatomic,strong) NSArray *regionCoordinates;                        // annotations to be displayed
+@property (nonatomic,strong) NSArray *geoCoordinates;                        // annotations to be displayed
 @end

@@ -11,9 +11,8 @@
 
 // Protocol for call back when search button is clicked; a) close popover/modal and b) return selected categories
 @protocol  TOCViewController <NSObject>                                            
--(void)TOCViewController:(TOCViewController *)sender
-          categoryPicked:(NSString *)category
-    detailCategoryPicked:(NSString *)detailCategory;
+-(void)didPickUsingCategory:(NSString *)category
+    detailCategory:(NSString *)detailCategory;
 @end
 
 @interface TOCViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>;

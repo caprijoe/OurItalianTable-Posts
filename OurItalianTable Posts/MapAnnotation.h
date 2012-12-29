@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "postRecord.h"
+#import "Post.h"
 
 @interface MapAnnotation : NSObject <MKAnnotation>
 
-@property (nonatomic,strong) PostRecord *entry;
+@property (nonatomic,strong) Post *entry;
 
 @end

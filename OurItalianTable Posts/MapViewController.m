@@ -47,7 +47,7 @@
      
     [self gotoLocation];    // finally goto Italy
     
-    [self.mapView addAnnotations:self.regionCoordinates];
+    [self.mapView addAnnotations:self.geoCoordinates];
 }
 
 #pragma mark -
@@ -72,7 +72,7 @@
  -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     RegionAnnotation *thisAnnotation = [view annotation];    
-    [self.delegate MapViewContoller:self regionClicked:thisAnnotation.regionName];
+    [self.delegate didMapClick:self geoNamed:thisAnnotation.regionName];
 } 
 
 - (void)viewDidUnload

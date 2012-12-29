@@ -9,8 +9,6 @@
 #import "MapAnnotation.h"
 
 @implementation MapAnnotation
-@synthesize entry =_entry;
-
 
 -(NSString *)title
 {
@@ -20,12 +18,15 @@
 -(NSString *)subtitle 
 {
     
-    return [self.entry.postPubDate substringToIndex:16]; 
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+        
+    return [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:self.entry.postPubDate]];
 }
 
 -(CLLocationCoordinate2D) coordinate 
 {
-    return self.entry.coordinate;
+    return CLLocationCoordinate2DMake(self.entry.latitude, self.entry.longitude);
 }
 
 @end
