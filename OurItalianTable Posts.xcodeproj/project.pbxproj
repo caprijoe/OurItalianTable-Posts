@@ -183,8 +183,8 @@
 		69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OurItalianTable Posts-Prefix.pch"; sourceTree = "<group>"; };
 		69AD489D156054C9009976B8 /* OLD-oitPostsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OLD-oitPostsAppDelegate.h"; sourceTree = "<group>"; };
 		69AD489E156054C9009976B8 /* OLD-oitPostsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "OLD-oitPostsAppDelegate.m"; sourceTree = "<group>"; };
-		69AD48A91560560C009976B8 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		69AD48AA1560560C009976B8 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+		69AD48A91560560C009976B8 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPhone.storyboard; path = ../iPhone.storyboard; sourceTree = "<group>"; };
+		69AD48AA1560560C009976B8 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = iPad.storyboard; path = ../iPad.storyboard; sourceTree = "<group>"; };
 		69AD48AD156056A9009976B8 /* OITLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITLaunchViewController.h; sourceTree = "<group>"; };
 		69AD48AE156056A9009976B8 /* OITLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITLaunchViewController.m; sourceTree = "<group>"; };
 		69AD48AF156056A9009976B8 /* OLD-OITBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OLD-OITBrain.h"; sourceTree = "<group>"; };
@@ -206,42 +206,42 @@
 		69AD48C5156056A9009976B8 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 		69AD48C8156056A9009976B8 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		69AD48C9156056A9009976B8 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
-		69AD48DD156056FC009976B8 /* NextImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NextImage.plist; sourceTree = "<group>"; };
-		69AD48DE156056FC009976B8 /* CategoryDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CategoryDictionary.plist; sourceTree = "<group>"; };
-		69AD48DF156056FC009976B8 /* bios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bios.txt; sourceTree = "<group>"; };
-		69AD490D15605805009976B8 /* information-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "information-icon.png"; path = "OurItalianTable Posts/information-icon.png"; sourceTree = "<group>"; };
-		69AD490E15605805009976B8 /* mbecci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mbecci.jpg; path = "OurItalianTable Posts/mbecci.jpg"; sourceTree = "<group>"; };
-		69AD490F15605805009976B8 /* jcbecci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = jcbecci.jpg; path = "OurItalianTable Posts/jcbecci.jpg"; sourceTree = "<group>"; };
-		69AD491015605805009976B8 /* italy-map-icon20.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "italy-map-icon20.gif"; path = "OurItalianTable Posts/italy-map-icon20.gif"; sourceTree = "<group>"; };
+		69AD48DD156056FC009976B8 /* NextImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NextImage.plist; path = ../NextImage.plist; sourceTree = "<group>"; };
+		69AD48DE156056FC009976B8 /* CategoryDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CategoryDictionary.plist; path = ../CategoryDictionary.plist; sourceTree = "<group>"; };
+		69AD48DF156056FC009976B8 /* bios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bios.txt; path = ../bios.txt; sourceTree = "<group>"; };
+		69AD490D15605805009976B8 /* information-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "information-icon.png"; sourceTree = "<group>"; };
+		69AD490E15605805009976B8 /* mbecci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mbecci.jpg; sourceTree = "<group>"; };
+		69AD490F15605805009976B8 /* jcbecci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jcbecci.jpg; sourceTree = "<group>"; };
+		69AD491015605805009976B8 /* italy-map-icon20.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "italy-map-icon20.gif"; sourceTree = "<group>"; };
 		69AD491115605805009976B8 /* OITLaunchButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OITLaunchButtonBackground.png; path = "OurItalianTable Posts/OITLaunchButtonBackground.png"; sourceTree = "<group>"; };
-		69AD491215605805009976B8 /* Lemons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Lemons.png; path = "OurItalianTable Posts/Lemons.png"; sourceTree = "<group>"; };
+		69AD491215605805009976B8 /* Lemons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lemons.png; sourceTree = "<group>"; };
 		69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ouritaliantable-original-crop.jpg"; path = "OurItalianTable Posts/ouritaliantable-original-crop.jpg"; sourceTree = "<group>"; };
-		69AD491415605805009976B8 /* oitIconiPad-72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "oitIconiPad-72x72.png"; path = "OurItalianTable Posts/oitIconiPad-72x72.png"; sourceTree = "<group>"; };
-		69AD491715605805009976B8 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Placeholder.png; path = "OurItalianTable Posts/Placeholder.png"; sourceTree = "<group>"; };
+		69AD491415605805009976B8 /* oitIconiPad-72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oitIconiPad-72x72.png"; sourceTree = "<group>"; };
+		69AD491715605805009976B8 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
 		69AD492315605A8C009976B8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		69AD492515605A96009976B8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		69AD49301560877B009976B8 /* The whole Drago family.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "The whole Drago family.jpg"; path = "OurItalianTable Posts/The whole Drago family.jpg"; sourceTree = "<group>"; };
-		69AD49311560877B009976B8 /* Popop and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Popop and Joey.jpg"; path = "OurItalianTable Posts/Popop and Joey.jpg"; sourceTree = "<group>"; };
-		69AD49321560877B009976B8 /* Momom and Popop with Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Momom and Popop with Joey.jpg"; path = "OurItalianTable Posts/Momom and Popop with Joey.jpg"; sourceTree = "<group>"; };
-		69AD49331560877C009976B8 /* Mom and Dad Honeymoon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Mom and Dad Honeymoon.jpg"; path = "OurItalianTable Posts/Mom and Dad Honeymoon.jpg"; sourceTree = "<group>"; };
-		69AD49341560877C009976B8 /* Mom's wedding dress.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Mom's wedding dress.jpg"; path = "OurItalianTable Posts/Mom's wedding dress.jpg"; sourceTree = "<group>"; };
-		69AD49351560877C009976B8 /* Little Joey and Michele.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Little Joey and Michele.jpg"; path = "OurItalianTable Posts/Little Joey and Michele.jpg"; sourceTree = "<group>"; };
-		69AD49361560877D009976B8 /* In the snow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "In the snow.jpg"; path = "OurItalianTable Posts/In the snow.jpg"; sourceTree = "<group>"; };
-		69AD49371560877D009976B8 /* Baby Joe and Michele.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Baby Joe and Michele.jpg"; path = "OurItalianTable Posts/Baby Joe and Michele.jpg"; sourceTree = "<group>"; };
-		69AD49381560877D009976B8 /* The Drago Grandparents.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "The Drago Grandparents.jpg"; path = "OurItalianTable Posts/The Drago Grandparents.jpg"; sourceTree = "<group>"; };
-		69AD49391560877D009976B8 /* Young mom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Young mom.jpg"; path = "OurItalianTable Posts/Young mom.jpg"; sourceTree = "<group>"; };
-		69AD493A1560877E009976B8 /* Popop, Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Popop, Dad and Joey.jpg"; path = "OurItalianTable Posts/Popop, Dad and Joey.jpg"; sourceTree = "<group>"; };
-		69AD493C1560877E009976B8 /* Baby Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Baby Joey.jpg"; path = "OurItalianTable Posts/Baby Joey.jpg"; sourceTree = "<group>"; };
-		69AD493D1560877E009976B8 /* Lenny and Annie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Lenny and Annie.jpg"; path = "OurItalianTable Posts/Lenny and Annie.jpg"; sourceTree = "<group>"; };
-		69AD493E1560877F009976B8 /* Mom, Dad and Annie with the cake.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Mom, Dad and Annie with the cake.JPG"; path = "OurItalianTable Posts/Mom, Dad and Annie with the cake.JPG"; sourceTree = "<group>"; };
-		69AD493F1560877F009976B8 /* After the wedding.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "After the wedding.JPG"; path = "OurItalianTable Posts/After the wedding.JPG"; sourceTree = "<group>"; };
-		69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Aunt Mary, Joey and Michele.JPG"; path = "OurItalianTable Posts/Aunt Mary, Joey and Michele.JPG"; sourceTree = "<group>"; };
-		69AD49411560877F009976B8 /* Aunt Mary.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Aunt Mary.JPG"; path = "OurItalianTable Posts/Aunt Mary.JPG"; sourceTree = "<group>"; };
+		69AD49311560877B009976B8 /* Popop and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Popop and Joey.jpg"; sourceTree = "<group>"; };
+		69AD49321560877B009976B8 /* Momom and Popop with Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Momom and Popop with Joey.jpg"; sourceTree = "<group>"; };
+		69AD49331560877C009976B8 /* Mom and Dad Honeymoon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Mom and Dad Honeymoon.jpg"; sourceTree = "<group>"; };
+		69AD49341560877C009976B8 /* Mom's wedding dress.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Mom's wedding dress.jpg"; sourceTree = "<group>"; };
+		69AD49351560877C009976B8 /* Little Joey and Michele.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Little Joey and Michele.jpg"; sourceTree = "<group>"; };
+		69AD49361560877D009976B8 /* In the snow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "In the snow.jpg"; sourceTree = "<group>"; };
+		69AD49371560877D009976B8 /* Baby Joe and Michele.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Baby Joe and Michele.jpg"; sourceTree = "<group>"; };
+		69AD49381560877D009976B8 /* The Drago Grandparents.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "The Drago Grandparents.jpg"; sourceTree = "<group>"; };
+		69AD49391560877D009976B8 /* Young mom.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Young mom.jpg"; sourceTree = "<group>"; };
+		69AD493A1560877E009976B8 /* Popop, Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Popop, Dad and Joey.jpg"; sourceTree = "<group>"; };
+		69AD493C1560877E009976B8 /* Baby Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Baby Joey.jpg"; sourceTree = "<group>"; };
+		69AD493D1560877E009976B8 /* Lenny and Annie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lenny and Annie.jpg"; sourceTree = "<group>"; };
+		69AD493E1560877F009976B8 /* Mom, Dad and Annie with the cake.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Mom, Dad and Annie with the cake.JPG"; sourceTree = "<group>"; };
+		69AD493F1560877F009976B8 /* After the wedding.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "After the wedding.JPG"; sourceTree = "<group>"; };
+		69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aunt Mary, Joey and Michele.JPG"; sourceTree = "<group>"; };
+		69AD49411560877F009976B8 /* Aunt Mary.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aunt Mary.JPG"; sourceTree = "<group>"; };
 		69AD495515622546009976B8 /* OLDPostRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLDPostRecord.h; sourceTree = "<group>"; };
 		69AD495615622546009976B8 /* OLDPostRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLDPostRecord.m; sourceTree = "<group>"; };
 		69AD4958156226CF009976B8 /* OLD_PostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLD_PostsTableViewController.h; sourceTree = "<group>"; };
 		69AD4959156226CF009976B8 /* OLD_PostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLD_PostsTableViewController.m; sourceTree = "<group>"; };
-		69AD495B15622718009976B8 /* Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Dad and Joey.jpg"; path = "OurItalianTable Posts/Dad and Joey.jpg"; sourceTree = "<group>"; };
+		69AD495B15622718009976B8 /* Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dad and Joey.jpg"; sourceTree = "<group>"; };
 		69C259B81627938600E0BC40 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		69C259BF16279C9100E0BC40 /* OITNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITNavController.h; sourceTree = "<group>"; };
 		69C259C016279C9100E0BC40 /* OITNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITNavController.m; sourceTree = "<group>"; };
@@ -251,12 +251,12 @@
 		69D00B4C15BCEDF5007050E3 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		69D00B4E15BCF1CF007050E3 /* LocationMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMapViewController.h; sourceTree = "<group>"; };
 		69D00B4F15BCF1CF007050E3 /* LocationMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMapViewController.m; sourceTree = "<group>"; };
-		69D00B5115BCF1ED007050E3 /* markdenton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = markdenton.jpg; path = "OurItalianTable Posts/markdenton.jpg"; sourceTree = "<group>"; };
+		69D00B5115BCF1ED007050E3 /* markdenton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = markdenton.jpg; sourceTree = "<group>"; };
 		69D00B5315BCF287007050E3 /* OLD_TravelTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLD_TravelTableViewController.h; sourceTree = "<group>"; };
 		69D00B5415BCF287007050E3 /* OLD_TravelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLD_TravelTableViewController.m; sourceTree = "<group>"; };
-		69D1D965168EA93700540CD9 /* WPExport.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WPExport.xml; sourceTree = "<group>"; };
-		69D1D969168EA99800540CD9 /* HTMLStyles.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HTMLStyles.html; sourceTree = "<group>"; };
-		69DAE4E615CDB75E002CA239 /* Dragos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Dragos.jpg; path = "OurItalianTable Posts/Dragos.jpg"; sourceTree = "<group>"; };
+		69D1D965168EA93700540CD9 /* WPExport.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = WPExport.xml; path = ../WPExport.xml; sourceTree = "<group>"; };
+		69D1D969168EA99800540CD9 /* HTMLStyles.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = HTMLStyles.html; path = ../HTMLStyles.html; sourceTree = "<group>"; };
+		69DAE4E615CDB75E002CA239 /* Dragos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dragos.jpg; sourceTree = "<group>"; };
 		69DAE4E915CDD146002CA239 /* 42-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info.png"; sourceTree = "<group>"; };
 		69DAE4EA15CDD146002CA239 /* 42-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info@2x.png"; sourceTree = "<group>"; };
 		69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotation.h; sourceTree = "<group>"; };
@@ -298,6 +298,7 @@
 				6912BB7215CF2F7E0014BB6F /* Default@2x.png */,
 				6912BB7015CF2F6D0014BB6F /* Default.png */,
 				6912BB6E15CF2F520014BB6F /* oitIcon-114x114.png */,
+				69AD491415605805009976B8 /* oitIconiPad-72x72.png */,
 				6912BB6C15CF2F2A0014BB6F /* oitIcon-57x57.png */,
 			);
 			name = "Launch/Icon Images";
@@ -466,35 +467,34 @@
 				69DAE4EA15CDD146002CA239 /* 42-info@2x.png */,
 				6912BB6715CDDAA10014BB6F /* 71-compass.png */,
 				6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */,
-				69AD490D15605805009976B8 /* information-icon.png */,
-				69D00B5115BCF1ED007050E3 /* markdenton.jpg */,
-				69AD490E15605805009976B8 /* mbecci.jpg */,
-				69AD490F15605805009976B8 /* jcbecci.jpg */,
-				69AD491015605805009976B8 /* italy-map-icon20.gif */,
-				69AD491115605805009976B8 /* OITLaunchButtonBackground.png */,
-				69AD491215605805009976B8 /* Lemons.png */,
-				69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */,
-				69AD491415605805009976B8 /* oitIconiPad-72x72.png */,
-				69AD491715605805009976B8 /* Placeholder.png */,
 				69AD493F1560877F009976B8 /* After the wedding.JPG */,
 				69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */,
-				69AD49301560877B009976B8 /* The whole Drago family.jpg */,
-				69AD49311560877B009976B8 /* Popop and Joey.jpg */,
+				69AD49411560877F009976B8 /* Aunt Mary.JPG */,
+				69AD49371560877D009976B8 /* Baby Joe and Michele.jpg */,
+				69AD493C1560877E009976B8 /* Baby Joey.jpg */,
+				69AD495B15622718009976B8 /* Dad and Joey.jpg */,
 				69DAE4E615CDB75E002CA239 /* Dragos.jpg */,
-				69AD49321560877B009976B8 /* Momom and Popop with Joey.jpg */,
+				69AD49361560877D009976B8 /* In the snow.jpg */,
+				69AD490D15605805009976B8 /* information-icon.png */,
+				69AD491015605805009976B8 /* italy-map-icon20.gif */,
+				69AD490F15605805009976B8 /* jcbecci.jpg */,
+				69AD491215605805009976B8 /* Lemons.png */,
+				69AD493D1560877E009976B8 /* Lenny and Annie.jpg */,
+				69AD49351560877C009976B8 /* Little Joey and Michele.jpg */,
+				69D00B5115BCF1ED007050E3 /* markdenton.jpg */,
+				69AD490E15605805009976B8 /* mbecci.jpg */,
 				69AD49331560877C009976B8 /* Mom and Dad Honeymoon.jpg */,
 				69AD49341560877C009976B8 /* Mom's wedding dress.jpg */,
-				69AD49351560877C009976B8 /* Little Joey and Michele.jpg */,
-				69AD49361560877D009976B8 /* In the snow.jpg */,
-				69AD49371560877D009976B8 /* Baby Joe and Michele.jpg */,
-				69AD49381560877D009976B8 /* The Drago Grandparents.jpg */,
-				69AD49391560877D009976B8 /* Young mom.jpg */,
-				69AD493A1560877E009976B8 /* Popop, Dad and Joey.jpg */,
-				69AD493C1560877E009976B8 /* Baby Joey.jpg */,
-				69AD493D1560877E009976B8 /* Lenny and Annie.jpg */,
 				69AD493E1560877F009976B8 /* Mom, Dad and Annie with the cake.JPG */,
-				69AD49411560877F009976B8 /* Aunt Mary.JPG */,
-				69AD495B15622718009976B8 /* Dad and Joey.jpg */,
+				69AD49321560877B009976B8 /* Momom and Popop with Joey.jpg */,
+				69AD491115605805009976B8 /* OITLaunchButtonBackground.png */,
+				69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */,
+				69AD491715605805009976B8 /* Placeholder.png */,
+				69AD49311560877B009976B8 /* Popop and Joey.jpg */,
+				69AD493A1560877E009976B8 /* Popop, Dad and Joey.jpg */,
+				69AD49381560877D009976B8 /* The Drago Grandparents.jpg */,
+				69AD49301560877B009976B8 /* The whole Drago family.jpg */,
+				69AD49391560877D009976B8 /* Young mom.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
