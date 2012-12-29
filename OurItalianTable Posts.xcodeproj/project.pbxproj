@@ -47,7 +47,6 @@
 		6971120816709730006D93DB /* OITPosts.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 697111DE166DD7C1006D93DB /* OITPosts.xcdatamodel */; };
 		697559E5168E6C850076DFED /* GeneralizedPostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697559E4168E6C850076DFED /* GeneralizedPostsTableViewController.m */; };
 		6989AC421647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */; };
-		698C9E9D167451BF002B4E11 /* OITHTMLStyles.html in Resources */ = {isa = PBXBuildFile; fileRef = 698C9E9C167451BF002B4E11 /* OITHTMLStyles.html */; };
 		699558DF15706A0800B25C6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558DE15706A0800B25C6D /* AboutViewController.m */; };
 		699558E215706BE300B25C6D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558E115706BE300B25C6D /* WebViewController.m */; };
 		699BD5AF164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */; };
@@ -105,12 +104,13 @@
 		69D00B5015BCF1CF007050E3 /* LocationMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D00B4F15BCF1CF007050E3 /* LocationMapViewController.m */; };
 		69D00B5215BCF1ED007050E3 /* markdenton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69D00B5115BCF1ED007050E3 /* markdenton.jpg */; };
 		69D00B5515BCF287007050E3 /* OLD_TravelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D00B5415BCF287007050E3 /* OLD_TravelTableViewController.m */; };
+		69D1D966168EA93700540CD9 /* WPExport.xml in Resources */ = {isa = PBXBuildFile; fileRef = 69D1D965168EA93700540CD9 /* WPExport.xml */; };
+		69D1D96A168EA99800540CD9 /* HTMLStyles.html in Resources */ = {isa = PBXBuildFile; fileRef = 69D1D969168EA99800540CD9 /* HTMLStyles.html */; };
 		69DAE4E715CDB75E002CA239 /* Dragos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E615CDB75E002CA239 /* Dragos.jpg */; };
 		69DAE4EB15CDD146002CA239 /* 42-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E915CDD146002CA239 /* 42-info.png */; };
 		69DAE4EC15CDD146002CA239 /* 42-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4EA15CDD146002CA239 /* 42-info@2x.png */; };
 		69DFEA2615C5EF8900CDABA1 /* RegionAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */; };
 		69E2541A16658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E2541916658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png */; };
-		69E2541C1665D4A900FB21E5 /* OITWPExport.xml in Resources */ = {isa = PBXBuildFile; fileRef = 69E2541B1665D4A900FB21E5 /* OITWPExport.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,7 +168,6 @@
 		697559E3168E6C850076DFED /* GeneralizedPostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralizedPostsTableViewController.h; sourceTree = "<group>"; };
 		697559E4168E6C850076DFED /* GeneralizedPostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralizedPostsTableViewController.m; sourceTree = "<group>"; };
 		6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Coat_of_arms_of_Tuscany.svg.png"; sourceTree = "<group>"; };
-		698C9E9C167451BF002B4E11 /* OITHTMLStyles.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = OITHTMLStyles.html; sourceTree = "<group>"; };
 		699558DD15706A0800B25C6D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		699558DE15706A0800B25C6D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		699558E015706BE300B25C6D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -255,13 +254,14 @@
 		69D00B5115BCF1ED007050E3 /* markdenton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = markdenton.jpg; path = "OurItalianTable Posts/markdenton.jpg"; sourceTree = "<group>"; };
 		69D00B5315BCF287007050E3 /* OLD_TravelTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLD_TravelTableViewController.h; sourceTree = "<group>"; };
 		69D00B5415BCF287007050E3 /* OLD_TravelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLD_TravelTableViewController.m; sourceTree = "<group>"; };
+		69D1D965168EA93700540CD9 /* WPExport.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WPExport.xml; sourceTree = "<group>"; };
+		69D1D969168EA99800540CD9 /* HTMLStyles.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HTMLStyles.html; sourceTree = "<group>"; };
 		69DAE4E615CDB75E002CA239 /* Dragos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Dragos.jpg; path = "OurItalianTable Posts/Dragos.jpg"; sourceTree = "<group>"; };
 		69DAE4E915CDD146002CA239 /* 42-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info.png"; sourceTree = "<group>"; };
 		69DAE4EA15CDD146002CA239 /* 42-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info@2x.png"; sourceTree = "<group>"; };
 		69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotation.h; sourceTree = "<group>"; };
 		69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotation.m; sourceTree = "<group>"; };
 		69E2541916658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Coat_of_arms_of_Calabria.svg.png"; sourceTree = "<group>"; };
-		69E2541B1665D4A900FB21E5 /* OITWPExport.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = OITWPExport.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -443,14 +443,14 @@
 		69AD4895156054C9009976B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				69D1D965168EA93700540CD9 /* WPExport.xml */,
+				69D1D969168EA99800540CD9 /* HTMLStyles.html */,
 				69AD48A91560560C009976B8 /* iPhone.storyboard */,
 				69AD48AA1560560C009976B8 /* iPad.storyboard */,
 				69AD4896156054C9009976B8 /* OurItalianTable Posts-Info.plist */,
 				69AD4897156054C9009976B8 /* InfoPlist.strings */,
 				69AD489A156054C9009976B8 /* main.m */,
 				69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */,
-				69E2541B1665D4A900FB21E5 /* OITWPExport.xml */,
-				698C9E9C167451BF002B4E11 /* OITHTMLStyles.html */,
 				69AD48DD156056FC009976B8 /* NextImage.plist */,
 				69AD48DE156056FC009976B8 /* CategoryDictionary.plist */,
 				69AD48DF156056FC009976B8 /* bios.txt */,
@@ -634,8 +634,8 @@
 				696831F6164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png in Resources */,
 				699BD5AF164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png in Resources */,
 				69E2541A16658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png in Resources */,
-				69E2541C1665D4A900FB21E5 /* OITWPExport.xml in Resources */,
-				698C9E9D167451BF002B4E11 /* OITHTMLStyles.html in Resources */,
+				69D1D966168EA93700540CD9 /* WPExport.xml in Resources */,
+				69D1D96A168EA99800540CD9 /* HTMLStyles.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
