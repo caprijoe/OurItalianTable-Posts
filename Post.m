@@ -2,7 +2,7 @@
 //  Post.m
 //  OurItalianTable Posts
 //
-//  Created by Joseph Becci on 12/6/12.
+//  Created by Joseph Becci on 12/21/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
@@ -13,6 +13,8 @@
 
 @implementation Post
 
+@dynamic bookmarked;
+@dynamic geo;
 @dynamic imageURLString;
 @dynamic latitude;
 @dynamic longitude;
@@ -20,11 +22,9 @@
 @dynamic postHTML;
 @dynamic postIcon;
 @dynamic postID;
-@dynamic postLastUpdate;
 @dynamic postName;
 @dynamic postPubDate;
 @dynamic postURLstring;
-@dynamic bookmarked;
 @dynamic whichCategories;
 @dynamic whichTags;
 

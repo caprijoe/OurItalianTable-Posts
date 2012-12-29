@@ -2,7 +2,7 @@
 //  Post.h
 //  OurItalianTable Posts
 //
-//  Created by Joseph Becci on 12/6/12.
+//  Created by Joseph Becci on 12/21/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
@@ -13,6 +13,8 @@
 
 @interface Post : NSManagedObject
 
+@property (nonatomic) BOOL bookmarked;
+@property (nonatomic, retain) NSString * geo;
 @property (nonatomic, retain) NSString * imageURLString;
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
@@ -20,11 +22,9 @@
 @property (nonatomic, retain) NSString * postHTML;
 @property (nonatomic, retain) NSData * postIcon;
 @property (nonatomic) int64_t postID;
-@property (nonatomic) int64_t postLastUpdate;
 @property (nonatomic, retain) NSString * postName;
 @property (nonatomic) NSTimeInterval postPubDate;
 @property (nonatomic, retain) NSString * postURLstring;
-@property (nonatomic) BOOL bookmarked;
 @property (nonatomic, retain) NSSet *whichCategories;
 @property (nonatomic, retain) NSSet *whichTags;
 @end

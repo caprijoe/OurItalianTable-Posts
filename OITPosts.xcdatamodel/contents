@@ -6,6 +6,7 @@
     </entity>
     <entity name="Post" representedClassName="Post" syncable="YES">
         <attribute name="bookmarked" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="geo" optional="YES" attributeType="String" defaultValueString="Other" indexed="YES" syncable="YES"/>
         <attribute name="imageURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -13,7 +14,6 @@
         <attribute name="postHTML" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postIcon" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="postID" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
-        <attribute name="postLastUpdate" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="postName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postPubDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="postURLstring" optional="YES" attributeType="String" syncable="YES"/>

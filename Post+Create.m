@@ -44,11 +44,6 @@
         NSLog(@"updating = %lli",postRecord.postID);
         [self updatePost:thisPost withRecord:postRecord inManagedObjectContext:context];
 
-/*        if (postRecord.postLastUpdate > thisPost.postLastUpdate) {
-            NSLog(@"updating = %lld",postRecord.postID);
-
-            [self updatePost:thisPost withRecord:postRecord inManagedObjectContext:context];
-        } */
     }
     
     return thisPost;
@@ -65,10 +60,10 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     thisPost.imageURLString = postRecord.imageURLString;
     thisPost.postURLstring = postRecord.postURLString;
     thisPost.postHTML = postRecord.postHTML;
-    thisPost.postLastUpdate = postRecord.postLastUpdate;
     thisPost.postPubDate = postRecord.postPubDate;
     thisPost.latitude = postRecord.latitude;
     thisPost.longitude = postRecord.longitude;
+    thisPost.geo = postRecord.geo;
     
     thisPost.whichCategories = nil;
     thisPost.whichTags = nil;
