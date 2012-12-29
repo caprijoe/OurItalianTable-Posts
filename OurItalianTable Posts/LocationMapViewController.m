@@ -17,12 +17,10 @@
 
 - (void)gotoLocation
 {
-    // start off by default in Italy
+    // center map on coordinates of post
     MKCoordinateRegion newRegion;
-/*  FIXME:   newRegion.center.latitude = 42;
-    newRegion.center.longitude = 12.264425; */
-    newRegion.center.latitude = self.locationRecord.coordinate.latitude;
-    newRegion.center.longitude = self.locationRecord.coordinate.longitude;
+    newRegion.center.latitude = self.locationRecord.latitude;
+    newRegion.center.longitude = self.locationRecord.longitude;
 
     newRegion.span.latitudeDelta = 9;
     newRegion.span.longitudeDelta = 4;
@@ -44,7 +42,7 @@
     
     [self gotoLocation];    // finally goto Italy
     
-    if ((self.locationRecord.coordinate.latitude != 0) && (self.locationRecord.coordinate.longitude != 0)) {
+    if ((self.locationRecord.latitude != 0) && (self.locationRecord.longitude != 0)) {
         MapAnnotation *mapObject = [[MapAnnotation alloc] init];
         mapObject.entry = self.locationRecord;
         [self.mapView addAnnotation:mapObject];
@@ -82,7 +80,7 @@
             customPinView.canShowCallout = YES;
             
             customPinView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ANNOTATION_ICON_HEIGHT, ANNOTATION_ICON_HEIGHT)];
-            [(UIImageView *)customPinView.leftCalloutAccessoryView setImage:self.locationRecord.postIcon];
+            [(UIImageView *)customPinView.leftCalloutAccessoryView setImage:[UIImage imageWithData:self.locationRecord.postIcon]];
             
             return customPinView;
         } else {

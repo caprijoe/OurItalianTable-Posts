@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OLDPostRecord.h"
+#import "GeneralizedPostsTableViewController.h"
+#import "Post.h"
+#import "Tag.h"
+
 @class PostDetailViewController;
 
 @protocol PostsDetailViewControllerDelegate
--(void)postsDetailViewController:(PostDetailViewController *)sender
-                        choseTag:(id)tag;
+-(void)didClickTag:(NSString *)tag;
 @end
 
 @interface PostDetailViewController : UIViewController
@@ -21,7 +23,7 @@
 @property (nonatomic, weak) id <PostsDetailViewControllerDelegate> delegate;
 
 // properties to be set
-@property (nonatomic,strong) OLDPostRecord *postDetail; // post for which detail will be displayed
+@property (nonatomic,strong) Post *postDetail; // post for which detail will be displayed
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *authorPicture;
@@ -31,6 +33,5 @@
 
 // Actions
 - (IBAction)doneButton:(id)sender;
-
 
 @end

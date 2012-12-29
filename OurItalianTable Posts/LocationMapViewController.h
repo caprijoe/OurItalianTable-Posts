@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "postRecord.h"
+#import "Post.h"
 #import "MapAnnotation.h"
 
 @interface LocationMapViewController : UIViewController <MKMapViewDelegate>
 
 // public properties
-@property (nonatomic,strong) OLDPostRecord *locationRecord;
+@property (nonatomic,strong) Post *locationRecord;
 
 // outlets
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;

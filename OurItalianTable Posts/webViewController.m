@@ -112,11 +112,6 @@
 {
     [super viewDidLoad];
     
-/*    const char *utf8 = [self.thisPost.postHTML UTF8String];
-    while (*utf8) {
-        NSLog(@"s ->%c, h ->%@",*utf8, [NSString stringWithFormat:@"%02X" , *utf8++ & 0x00FF]);
-    } */
-    
     // if on ipad, set the root menu button by grabbing from the top of left stack
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
