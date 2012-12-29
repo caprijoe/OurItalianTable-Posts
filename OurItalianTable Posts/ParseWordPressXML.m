@@ -57,13 +57,7 @@
         // setup date formatter
         self.dateFormatter = [[NSDateFormatter alloc] init];
         [self.dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
-        
-        // load and sort candidate regions and islands
-        self.candidateGeos = [NSMutableSet set];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
-        [self.candidateGeos addObjectsFromArray:[[[NSDictionary alloc] initWithContentsOfFile:filePath][@"Regions of Italy"] allKeys]];
-        [self.candidateGeos addObjectsFromArray:[[[NSDictionary alloc] initWithContentsOfFile:filePath][@"Islands"] allKeys]];
-        
+                
         // set up the XML elements that will be parsed
         self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_META_DATA_TAG ,POST_GPS_COORDINATES_TAG];
     }
@@ -149,15 +143,21 @@
             {
                 [self.workingEntry.postCategories addObject:attrContent];
                 
-                [self.candidateGeos enumerateObjectsUsingBlock:^(id geo, BOOL *stop) {
-                    
-                    NSRange range = [attrContent rangeOfString:[self.appDelegate fixCategory:geo]];
+                // is the attribute text(subset) in the slug cross walk dictionary?
+                NSSet *resultsSet = [self.appDelegate.candidateGeoSlugs keysOfEntriesPassingTest:^BOOL(id key, id obj, BOOL *stop) {
+                    NSRange range = [attrContent rangeOfString:(NSString *)key];
                     if (range.location != NSNotFound) {
-                        self.workingEntry.geo = geo;
                         *stop = YES;
-                    }
-                
+                        return YES;
+                    } else
+                        return NO;
                 }];
+                
+                NSString *finalGeo = [self.appDelegate.candidateGeoSlugs objectForKey:[resultsSet anyObject]];
+                
+                if (finalGeo)
+                    self.workingEntry.geo = finalGeo;
+                
             }
             else if ([attributeDict[POST_META_DATA_TYPE_ATTR] isEqualToString:POST_META_DATA_POSTTAG])
             {
