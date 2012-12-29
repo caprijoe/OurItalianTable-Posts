@@ -1,33 +1,15 @@
 //
 //  OITLaunchViewController.m
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 1/21/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
+
 #import "OITLaunchViewController.h"
-#import "PostsTableViewController.h"
-#import "TravelTableViewController.h"
-#import "SplitViewBarButtonItemPresenter.h"
-
-#define FOOD_CATEGORY       @"food"
-#define WINE_CATEGORY       @"wine"
-#define WANDERING_CATEGORY  @"wanderings"
-
-@interface OITLaunchViewController()
-@property (nonatomic,strong) OITBrain *myBrain;             // set brain object pointer when init-ed
-
-@end
 
 @implementation OITLaunchViewController
-@synthesize wineButton = _wineButtonOutlet;
-@synthesize wanderingsButton = _wanderingsButtonOutlet;
-@synthesize bookmarksButton = _bookmarksButtonOutlet;
-@synthesize foodButton = _foodButtonOutlet;
-@synthesize rootPopoverButtonItem = _rootPopoverButtonItem;
-@synthesize masterPopoverController = _masterPopoverController;
-@synthesize myBrain = _myBrain;
 
 #pragma mark - Private methods
 
@@ -50,16 +32,6 @@
 {
     [super viewDidLoad];
     
-/*    // disable buttons until loading is done
-    self.foodButton.enabled = NO;
-    self.wineButton.enabled = NO;
-    self.wanderingsButton.enabled = NO;
-    self.bookmarksButton.enabled = NO; */
-    
-    // alloc the brain which starts the loading from NSBundle XML file
-//    self.myBrain = [[OITBrain alloc] init];
-//    self.myBrain.delegate = self;
-        
     // Set the UIView background as lemons
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Lemons.png"]];
     self.view.backgroundColor = background;
@@ -83,37 +55,26 @@
     [self resetDetailPanel];
 }
 
-- (void)viewDidUnload {
-    [self setFoodButton:nil];
-    [self setWineButton:nil];
-    [self setWanderingsButton:nil];
-    [self setBookmarksButton:nil];
-    [super viewDidUnload];
-}
-
 #pragma mark - Segue support
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Push Food"]) {
-        [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:FOOD_CATEGORY];
         [segue.destinationViewController setFavs:NO];
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Wine"]) {
-        [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:WINE_CATEGORY];
         [segue.destinationViewController setFavs:NO];
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Travel"]) {
-        [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setCategory:WANDERING_CATEGORY];
+        [segue.destinationViewController setFavs:NO];
         
         // get rid of left side splitview, segue to map to navigate
         OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
         [topVC.masterPopoverController dismissPopoverAnimated:YES];
         
     } else if ([segue.identifier isEqualToString:@"Push Favorites"]) {
-        [segue.destinationViewController setMyBrain:self.myBrain];
         [segue.destinationViewController setFavs:YES];
         [self resetDetailPanel];
     } else if ([segue.identifier isEqualToString:@"Push Family"]) {
@@ -169,17 +130,5 @@
     self.masterPopoverController = nil;
     [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
 }
-
-#pragma mark - External delegates callbacks
-
-// called back from loading posts and activate buttons
-/* -(void)OITBrainDidFinish {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.foodButton.enabled = YES;
-        self.wineButton.enabled = YES;
-        self.wanderingsButton.enabled = YES;
-        self.bookmarksButton.enabled = YES;
-    });
-} */
 
 @end

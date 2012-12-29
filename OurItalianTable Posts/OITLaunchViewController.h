@@ -1,15 +1,20 @@
 //
 //  OITLaunchViewController.h
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 1/21/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "OITBrain.h"
+#import "GeneralizedPostsTableViewController.h"
+#import "SplitViewBarButtonItemPresenter.h"
 
-@interface OITLaunchViewController : UIViewController <UISplitViewControllerDelegate, OITBrainFinishedDelegate>;
+#define FOOD_CATEGORY       @"food"
+#define WINE_CATEGORY       @"wine"
+#define WANDERING_CATEGORY  @"wanderings"
+
+@interface OITLaunchViewController : UIViewController <UISplitViewControllerDelegate>;
 
 // outlets
 @property (nonatomic,weak) IBOutlet UIButton *foodButton;                      // for getting the font of 1st button
