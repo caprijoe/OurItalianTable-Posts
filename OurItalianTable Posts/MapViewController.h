@@ -1,6 +1,6 @@
 //
 //  MapViewController.h
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 2/4/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
@@ -9,11 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "SplitViewBarButtonItemPresenter.h"
-#import "OLDPostRecord.h"
 
 @class MapViewController;
 
-@protocol MapViewControllerDelegate <NSObject>
+@protocol MapViewControllerDelegate
 
 -(void)didMapClick:(MapViewController *)sender
           geoNamed:(NSString *)region;
@@ -21,11 +20,13 @@
 
 @interface MapViewController : UIViewController <MKMapViewDelegate,SplitViewBarButtonItemPresenter>
 
+// outlets
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic,weak) IBOutlet UIToolbar *toolbar;
 @property (nonatomic,weak) UIBarButtonItem *rootPopoverButtonItem;
 
+// public properties
 @property (nonatomic,weak) id<MapViewControllerDelegate> delegate;
-
 @property (nonatomic,strong) NSArray *geoCoordinates;                        // annotations to be displayed
+
 @end

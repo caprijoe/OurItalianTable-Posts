@@ -451,6 +451,7 @@
         [segue.destinationViewController setDelegate:self];
     } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
         [segue.destinationViewController setDelegate:self];
+        [segue.destinationViewController setGeosInUseList:[self.geoList copy]];
         self.categoryPickerSegue = segue;
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
         // nothing to set for this one

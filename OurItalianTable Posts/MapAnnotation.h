@@ -1,6 +1,6 @@
 //
 //  MapAnnotation.h
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 2/4/12.
 //  Copyright (c) 2012 OurItalianTable. All rights reserved.

@@ -1,17 +1,17 @@
 //
 //  MapViewController.m
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 2/4/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
 #import "MapViewController.h"
-#import "postRecord.h"
+#import "PostRecord.h"
 #import "RegionAnnotation.h"
-#import "webViewController.h"
-#import "OITLaunchViewController.h"
+#import "WebViewController.h"
 #import "RegionAnnotationView.h"
+#import "OITLaunchViewController.h"
 
 #define ANNOTATION_ICON_HEIGHT 30
 
@@ -42,11 +42,14 @@
     // self button for detail splitViewController when in portrait
     [self setSplitViewBarButtonItem:rootPopoverButtonItem];
     
+    // setup the mapp type and set the UIMapView delegate
     self.mapView.mapType = MKMapTypeHybrid; // MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
     self.mapView.delegate = self;
-     
-    [self gotoLocation];    // finally goto Italy
     
+    // finally goto Italy
+    [self gotoLocation];    
+    
+    // add the incoming annotations
     [self.mapView addAnnotations:self.geoCoordinates];
 }
 
@@ -57,12 +60,10 @@
 {    
     static NSString *AnnotationViewID = @"annotationViewID";
     
-    RegionAnnotationView *annotationView =
-    (RegionAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    RegionAnnotationView *annotationView = (RegionAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    
     if (annotationView == nil)
-    {
         annotationView = [[RegionAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
-    }
     
     annotationView.annotation = annotation;
     
@@ -71,18 +72,12 @@
 
  -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    RegionAnnotation *thisAnnotation = [view annotation];    
+    // get the annotation clicked
+    RegionAnnotation *thisAnnotation = [view annotation];
+    
+    // perform the call back to the post view controller
     [self.delegate didMapClick:self geoNamed:thisAnnotation.regionName];
 } 
-
-- (void)viewDidUnload
-{
-    [self setMapView:nil];
-    [self setToolbar:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 #pragma mark - Rotation support
 

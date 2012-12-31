@@ -1,6 +1,6 @@
 //
 //  TOCViewController.m
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 4/27/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
@@ -11,6 +11,7 @@
 #define LAST_TOC_CATEGORY_KEY   @"LAST_TOC_CATEGORY_KEY"
 
 @interface TOCViewController ()
+@property (nonatomic, strong) AppDelegate *appDelegate;
 @property (nonatomic,strong) NSString *pickedCategory;          // category selected in first row of wheel
 @property (nonatomic, strong) NSString *pickedDetail;           // detail picked in second row of wheel based on first column selected
 @property (nonatomic, strong) NSDictionary *categoryDictionary; // dictionary of first and second columns picker
@@ -18,15 +19,9 @@
 @end
 
 @implementation TOCViewController
-@synthesize pickedCategory = _pickedCategory;
-@synthesize pickedDetail = _pickedDetail;
-@synthesize categoryDictionary = _categoryDictionary;
-@synthesize categoryHolder = _categoryHolder;
-@synthesize delegate = _delegate;
-@synthesize categorySegmentedController = _categorySegmentedController;
-@synthesize detailPicker = _detailPicker;
 
 #pragma mark - Private methods
+
 -(void)resetPickerWhenSegmentSelected {
     
     // save selected picker category to defaults
@@ -50,23 +45,30 @@
 {
     [super viewWillAppear:YES];
     
-    // set up filepath to PLIST for PickViewController and helpers
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
+    // setup appDelegate for accessing shared properties and methods
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // setup helper to hold first column picker content (load plist keys and sort)
-    self.categoryHolder = [[[[NSDictionary alloc] initWithContentsOfFile:filePath] allKeys] sortedArrayUsingSelector:@selector(compare:)];    
+    self.categoryHolder = [[self.appDelegate.categoryDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
     
-    // Load up category dictionary from PLIST. If incoming object is a NSDictionary, make the keys into an array
-    NSMutableDictionary *muteableCategoryDictionary = [[NSMutableDictionary alloc] init];
-    for (int i=0; i<[self.categoryHolder count]; i++) {
-        id temp = [[[NSDictionary alloc] initWithContentsOfFile:filePath] objectForKey:[self.categoryHolder objectAtIndex:i]];
-        if ([temp isKindOfClass:[NSDictionary class]]) {
-            [muteableCategoryDictionary setObject:[[temp allKeys] sortedArrayUsingSelector:@selector(compare:)] forKey:[self.categoryHolder objectAtIndex:i]]; 
+    // Using the geosInUseList passed from vc, filter the category dictionary down to those items in use (with the expections of 'Recipes')
+    NSMutableDictionary *muteableCategoryDictionary = [[NSMutableDictionary alloc] initWithCapacity:[self.appDelegate.categoryDictionary count]];
+    for (NSString *category in self.categoryHolder) {
+        if ([category isEqualToString:@"Recipes"]) {
+            
+            [muteableCategoryDictionary setObject:[[self.appDelegate.categoryDictionary[@"Recipes"] allKeys] sortedArrayUsingSelector:@selector(compare:)] forKey:@"Recipes"];
+        
         } else {
-            [muteableCategoryDictionary setObject:[temp sortedArrayUsingSelector:@selector(compare:)] forKey:[self.categoryHolder objectAtIndex:i]];
+                        
+            NSMutableArray *usedGeos = [NSMutableArray arrayWithArray:[self.appDelegate.categoryDictionary[category] allKeys]];
+            NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@" SELF IN %@", self.geosInUseList];
+            [usedGeos filterUsingPredicate:filterPredicate];
+            [muteableCategoryDictionary setObject:[usedGeos sortedArrayUsingSelector:@selector(compare:)] forKey:category];
         }
     }
+    
     self.categoryDictionary = [muteableCategoryDictionary copy];
+    
     
     // remove segments that came in from storyboard, initialize with categories
     [self.categorySegmentedController removeAllSegments];
