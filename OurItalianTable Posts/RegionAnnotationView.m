@@ -1,6 +1,6 @@
 //
 //  RegionAnnotationView.m
-//  RegionAnnotationView
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 12/29/11.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.

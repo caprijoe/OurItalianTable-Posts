@@ -18,7 +18,7 @@
 -(NSString *)subtitle 
 {
     
-    return [NSString stringWithFormat:@"%i travel posts",self.travelPostCount]; 
+    return nil;
 }
 
 -(CLLocationCoordinate2D) coordinate 
