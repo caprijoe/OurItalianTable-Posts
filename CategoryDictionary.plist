@@ -3,16 +3,24 @@
 <plist version="1.0">
 <dict>
 	<key>Recipes</key>
-	<array>
-		<string>Antipasti</string>
-		<string>Beverages</string>
-		<string>Dolci</string>
-		<string>Main Courses</string>
-		<string>Pasta, Risotto, Breads</string>
-		<string>Salads</string>
-		<string>Soups, Stews</string>
-		<string>Vegetables, Side Dishes</string>
-	</array>
+	<dict>
+		<key>Antipasti</key>
+		<array/>
+		<key>Beverages</key>
+		<array/>
+		<key>Dolci</key>
+		<array/>
+		<key>Main Courses</key>
+		<array/>
+		<key>Pasta, Risotto, Breads</key>
+		<array/>
+		<key>Salads</key>
+		<array/>
+		<key>Soups, Stews</key>
+		<array/>
+		<key>Vegetables, Side Dishes</key>
+		<array/>
+	</dict>
 	<key>Regions of Italy</key>
 	<dict>
 		<key>Abbruzzo</key>
