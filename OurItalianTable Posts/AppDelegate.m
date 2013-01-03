@@ -8,15 +8,10 @@
 
 #import "AppDelegate.h"
 
-#define POST_ICON_HEIGHT        48
-#define COREDB_NAME             @"OITPostsDatabase-V2.0"
-#define WORDPRESS_BUNDLE_FILE   @"WPExport"
-#define WORDPRESS_REMOTE_URL    @"http://www.ouritaliantable.com/OITLatest.xml"
-
 @interface AppDelegate()
 @property (nonatomic, strong) UIManagedDocument *postsDatabase;                               // core DB file
-@property (nonatomic, strong) BundleFillDatabaseFromXMLParser *bundleDatabaseFiller;              // filler object for bundle
-@property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *remoteDatabaseFiller;              // filled object for remote
+@property (nonatomic, strong) BundleFillDatabaseFromXMLParser *bundleDatabaseFiller;          // filler object for bundle
+@property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *remoteDatabaseFiller;          // filled object for remote
 @end
 
 @implementation AppDelegate
@@ -133,11 +128,14 @@
     
     // fail if can't find file
     NSAssert(filePath, @"Can't find CategoryDictionary plist bundle file");
+    
+    // load category dictionary for use by other methods
+    self.categoryDictionary = [[NSDictionary alloc] initWithContentsOfFile:filePath];
 
-    // load and sort (using dictionary) candidate regions and islands
+    // grab keys for "regions" and "islands" and add to candidateGeos dictionary
     NSMutableDictionary *mutableCandidateGeos = [NSMutableDictionary dictionary];
-    [mutableCandidateGeos addEntriesFromDictionary:[[NSDictionary alloc] initWithContentsOfFile:filePath][@"Regions of Italy"]];
-    [mutableCandidateGeos addEntriesFromDictionary:[[NSDictionary alloc] initWithContentsOfFile:filePath][@"Islands"]];
+    [mutableCandidateGeos addEntriesFromDictionary:self.categoryDictionary[@"Regions of Italy"]];
+    [mutableCandidateGeos addEntriesFromDictionary:self.categoryDictionary[@"Islands"]];
     
     // set up the dictionary for public use
     self.candidateGeos = [mutableCandidateGeos copy];
@@ -233,7 +231,7 @@
     NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
     
     // launch filler for remote
-    self.remoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.parentMOC withDelegate:self];
+    self.remoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.parentMOC withDelegate:self giveUpAfter:0.0];
 }
 
 -(void)useDocument {
@@ -283,7 +281,7 @@
     [self fillFromRemote];
 }
 
--(void)doneFillingFromRemote {
+-(void)doneFillingFromRemote:(BOOL)success {
      self.remoteDatabaseFiller = nil;
 }
 

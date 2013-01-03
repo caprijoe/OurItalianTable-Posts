@@ -8,18 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "ParseWordPressXML.h"
-#import "GetFileFromRemoteURL.h"
+#import "RemoteFileGetter.h"
+
+#define WORDPRESS_REMOTE_URL    @"http://www.ouritaliantable.com/OITLatest.xml"
+
 
 @protocol RemoteFillDatabaseFromXMLParserDelegate <NSObject>;
 
--(void)doneFillingFromRemote;
+-(void)doneFillingFromRemote:(BOOL)success;
 
 @end
 
-@interface RemoteFillDatabaseFromXMLParser : NSObject <GetFileFromRemoteURLDelegate, ParseWordPressXMLDelegate>
+@interface RemoteFillDatabaseFromXMLParser : NSObject <RemoteFileGetterDelegate, ParseWordPressXMLDelegate>
 
+// zero second means never time out
 -(id)initWithURL:(NSURL *)url
   usingParentMOC:(NSManagedObjectContext *)parentMOC
-    withDelegate:(id <RemoteFillDatabaseFromXMLParserDelegate>)delegate;
+    withDelegate:(id <RemoteFillDatabaseFromXMLParserDelegate>)delegate
+     giveUpAfter:(NSTimeInterval)seconds;
 
 @end
