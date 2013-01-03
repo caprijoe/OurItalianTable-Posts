@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-
 #import "OITLaunchViewController.h"
 
 @implementation OITLaunchViewController
