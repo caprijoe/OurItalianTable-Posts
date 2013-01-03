@@ -16,8 +16,9 @@
 #import "Post.h"
 #import "MapViewController.h"
 #import "RegionAnnotation.h"
+#import "RemoteFillDatabaseFromXMLParser.h"
 
-@interface GeneralizedPostsTableViewController : UITableViewController  <UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate>
+@interface GeneralizedPostsTableViewController : UITableViewController  <UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate>
 
 // public properties
 @property (nonatomic, strong) NSString *category;

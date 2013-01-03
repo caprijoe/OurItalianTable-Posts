@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *sortKey;
 @property (nonatomic, strong) NSString *sectionKey;
 @property (nonatomic, strong) NSString *rightSideSegueName;
+@property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @end
 
 @implementation GeneralizedPostsTableViewController
@@ -132,6 +133,35 @@
     self.navigationController.toolbarHidden = NO;
 }
 
+-(void)refreshTable {
+    
+    // set up URL to remote file
+    NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
+    
+    // launch filler for remote
+    self.thisRemoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.appDelegate.parentMOC withDelegate:self giveUpAfter:20.0];
+}
+
+-(void)doneFillingFromRemote:(BOOL)success {
+    
+    // release remote filler
+    self.thisRemoteDatabaseFiller = nil;
+    
+    if (success) {
+        
+        // set up a display dateformatter for today's date
+        NSDateFormatter *dataFormatter = [[NSDateFormatter alloc] init];
+        [dataFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm"];
+        
+        // set up to display today's date until refreshed again
+        NSString *lastUpdatedString = [NSString stringWithFormat:@"Last udpated on %@", [dataFormatter stringFromDate:[NSDate date]]];
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdatedString];
+    }
+        
+    // stop twirling ball
+    [self.refreshControl endRefreshing];
+}
+
 -(void)resetToAllEntries:(id)sender {
     
     // make sure search bar is reset
@@ -182,6 +212,20 @@
     // setup fetch controller
     [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
     
+    // Make UIRefreshControll conditional on iOS6 and greater
+    NSString *reqSysVerForRefresh = @"6.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+        
+    if ([currSysVer compare:reqSysVerForRefresh options:NSNumericSearch] != NSOrderedAscending) {
+        // if running on ios6 and above, include Facebook as an option
+        // setup refresh control
+        UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+        self.refreshControl = refreshControl;
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to refresh"];
+    }
+
+    // if on an ipad, set up right side of splitviewcontroller
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
     
