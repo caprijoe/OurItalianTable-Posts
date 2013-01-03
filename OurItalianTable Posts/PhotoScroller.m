@@ -1,6 +1,6 @@
 //
 //  PhotoScroller.m
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 3/3/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
@@ -15,13 +15,6 @@
 @end
 
 @implementation PhotoScroller
-
-@synthesize scrollView = _scrollView;
-@synthesize pageControl = _pageControl;
-@synthesize photoName = _photoName;
-@synthesize pageViews = _pageViews;
-@synthesize imagePaths = _imagePaths;
-@synthesize toolbar = _toolbar;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 #pragma mark - Private methods

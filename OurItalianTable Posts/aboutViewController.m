@@ -1,16 +1,12 @@
 //
 //  aboutViewController.m
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 5/5/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
 #import "aboutViewController.h"
-
-@interface aboutViewController ()
-
-@end
 
 @implementation aboutViewController
 @synthesize versionBuildDisplay = _versionBuildDisplay;
@@ -61,9 +57,12 @@
 }
 
 #pragma mark - Outlets
+
 // when done button pressed (on iPhone only) dismiss self
 - (IBAction)doneButton:(id)sender {
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     [self dismissModalViewControllerAnimated:YES];
+    
 }   
 @end

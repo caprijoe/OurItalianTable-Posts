@@ -1,6 +1,6 @@
 //
-//  splashScreen.h
-//  oitPosts
+//  SplashScreenController.h
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 2/1/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.

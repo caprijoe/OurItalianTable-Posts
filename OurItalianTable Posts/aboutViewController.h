@@ -1,6 +1,6 @@
 //
 //  aboutViewController.h
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 5/5/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
