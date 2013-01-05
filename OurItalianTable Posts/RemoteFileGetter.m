@@ -60,6 +60,8 @@ whenMoreRecentThan:(NSString *)date
 
 -(void)invokeTimeout {
     
+    NSLog(@"killed by timer");
+    
     // process timeout
     self.reach.reachableBlock = nil;
     
@@ -88,6 +90,8 @@ whenMoreRecentThan:(NSString *)date
             self.timer = [NSTimer scheduledTimerWithTimeInterval:self.seconds target:self selector:@selector(invokeTimeout) userInfo:nil repeats:NO];
         
         __weak RemoteFileGetter *selfInBlock = self;
+        
+        NSLog(@"waiting for internet connection");
         
         self.reach.reachableBlock = ^(Reachability * reachability)
         {
