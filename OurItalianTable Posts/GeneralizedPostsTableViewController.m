@@ -164,6 +164,9 @@
 
 -(void)resetToAllEntries:(id)sender {
     
+    if ([self isIOS6OrLater])
+        self.refreshControl = nil;
+    
     // make sure search bar is reset
     [self.searchDisplayController setActive:NO animated:YES];
     
@@ -180,6 +183,183 @@
     // reset table view to top (0,0) & reload table
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self.tableView reloadData];
+    
+    // re-setup refresh control
+    [self setupRefreshControl];
+}
+
+// load up the table thumbnnail, if not cached, cache it
+
+-(void)populateIconInDBUsing:(NSIndexPath *)indexPath {
+    
+    Post *postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    // check if icon is in CoreData DB, if so, just return it by reference
+    if (!postRecord.postIcon) {
+        dispatch_queue_t queue = dispatch_queue_create("get Icon",NULL);
+        dispatch_async(queue, ^{
+            
+            // make sure the URL string is not nil
+            if (postRecord.imageURLString) {
+                
+                // load data from URL
+                NSError *error = Nil;
+                NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:postRecord.imageURLString] options:NSDataReadingUncached error:&error];
+                
+                // if we got data AND no error, proceed. Else let the placeholder.png remain
+                if (data && !error)
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        // scale the incoming image to the icon size
+                        UIImage *iconImage = [self adjustImage:[UIImage imageWithData:data]];
+                        
+                        // load into correct tableview cell
+                    /*    cell.imageView.image = iconImage;
+                        [cell setNeedsLayout]; */
+                        
+                        // make sure the context still exists (could happen if view disappears), and update icon
+                        if (postRecord.managedObjectContext) {
+                            postRecord.postIcon = UIImageJPEGRepresentation(iconImage, 1.0);
+                        }
+                        
+                    });
+            }
+        });
+        dispatch_release(queue);
+    }
+}
+
+- (UIImage *)adjustImage:(UIImage *)image
+{
+    if (image.size.width != POST_ICON_HEIGHT && image.size.height != POST_ICON_HEIGHT)
+	{
+        
+        // Get base sizes
+        CGSize imageSize = image.size;
+        CGFloat sourceImageWidth = imageSize.width;
+        CGFloat sourceImageHeight = imageSize.height;
+        
+        CGSize targetSize = CGSizeMake(POST_ICON_HEIGHT, POST_ICON_HEIGHT);
+        CGFloat targetWidth = targetSize.width;
+        CGFloat targetHeight = targetSize.height;
+        
+        // Initialize
+        UIImage *newImage = [[UIImage alloc] init];
+        CGFloat scaleFactor = 0.0;
+        CGFloat scaledWidth = targetWidth;
+        CGFloat scaledHeight = targetHeight;
+        CGPoint thumbnailPoint = CGPointMake(0, 0);
+        
+        // Execute
+        if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
+            CGFloat widthFactor = targetWidth / sourceImageWidth;
+            CGFloat heightFactor = targetHeight / sourceImageHeight;
+            
+            if (widthFactor > heightFactor)
+                scaleFactor = widthFactor;  // scale to fit height
+            else
+                scaleFactor = heightFactor; // scale to fit width
+            
+            scaledWidth = sourceImageWidth * scaleFactor;
+            scaledHeight = sourceImageHeight * scaleFactor;
+            
+            // center the image
+            if (widthFactor > heightFactor)
+                thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+            else if (widthFactor < heightFactor)
+                thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+        }
+        
+        // do the crop
+        UIGraphicsBeginImageContext(targetSize);
+        CGRect thumbnailRect = CGRectZero;
+        thumbnailRect.origin = thumbnailPoint;
+        thumbnailRect.size.width = scaledWidth;
+        thumbnailRect.size.height = scaledHeight;
+        
+        [image drawInRect:thumbnailRect];
+        newImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        if (newImage == nil) NSLog(@"could not scale image");
+        
+        UIGraphicsEndImageContext();
+        
+        return newImage;
+    }
+    else
+        return image;
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    
+    Post *thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = thisPost.postName;
+    if (thisPost.postIcon)
+        cell.imageView.image = [UIImage imageWithData:thisPost.postIcon];
+    else
+        cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];
+}
+-(void)setupRefreshControl {
+        
+    if ([self isIOS6OrLater]) {
+        // if running on ios6 and above, include Facebook as an option
+        // setup refresh control
+        UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+        self.refreshControl = refreshControl;
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to refresh"];
+    }
+}
+
+-(BOOL)isIOS6OrLater {
+    // Make UIRefreshControl conditional on iOS6 and greater
+    NSString *reqSysVerForRefresh = @"6.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    if ([currSysVer compare:reqSysVerForRefresh options:NSNumericSearch] != NSOrderedAscending)
+        return YES;
+    else
+        return NO;
+}
+
+// private method used by UISearchDisplayDelegate
+-(BOOL)reviseFetchRequestUsing:(NSString *)searchString searchScope:(NSInteger)searchOption {
+    
+    NSString *topOrderPredicateString = self.favs ? @"(bookmarked == %@) AND " : @"(ANY whichCategories.categoryString =[cd] %@) AND ";
+    NSArray *topOrderPredicateInputs = self.favs ? @[@YES] : @[self.category];
+    
+    if ([searchString length]) {
+        switch (searchOption) {
+                
+                // "All" option
+            case 0:
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString, searchString, searchString]]];
+                break;
+                
+                // "Article" option
+            case 1:
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(postHTML contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
+                break;
+                
+                // "Tags" option
+            case 2:
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(ANY whichTags.tagString contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
+                break;
+                
+                // "Title" option
+            case 3:
+                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(postName contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    [[self fetchedResultsController] performFetch:NULL];
+    [self.tableView reloadData];
+    
+    return YES;
 }
 
 #pragma mark - View lifecycle
@@ -212,19 +392,9 @@
     // setup fetch controller
     [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
     
-    // Make UIRefreshControll conditional on iOS6 and greater
-    NSString *reqSysVerForRefresh = @"6.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-        
-    if ([currSysVer compare:reqSysVerForRefresh options:NSNumericSearch] != NSOrderedAscending) {
-        // if running on ios6 and above, include Facebook as an option
-        // setup refresh control
-        UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-        [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-        self.refreshControl = refreshControl;
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to refresh"];
-    }
-
+    // setup refresh control only for iOS6 and above
+    [self setupRefreshControl];
+    
     // if on an ipad, set up right side of splitviewcontroller
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
@@ -267,11 +437,60 @@
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate method(s)
--(void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    
-    [self.tableView reloadData];
-    
+
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [self.tableView beginUpdates];
 }
+
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    UITableView *tableView = [self.searchDisplayController isActive] ? self.searchDisplayController.searchResultsTableView : self.tableView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];;            
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray
+                                               arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    [self.tableView endUpdates];
+}
+
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -307,12 +526,10 @@
     }
 	
     // Configure cell
-    Post *thisPost = nil;
-    thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
     
-    cell.textLabel.text = thisPost.postName;
-    
-    [self.appDelegate populateIcon:thisPost forCell:cell forTableView:tableView forIndexPath:indexPath];
+    // load icon if needed into DB
+    [self populateIconInDBUsing:indexPath];
     
     return cell;
 }
@@ -358,47 +575,8 @@
     return [self reviseFetchRequestUsing:searchString searchScope:searchOption];
 }
 
-// private method used by UISearchDisplayDelegate
--(BOOL)reviseFetchRequestUsing:(NSString *)searchString searchScope:(NSInteger)searchOption {
-    
-    NSString *topOrderPredicateString = self.favs ? @"(bookmarked == %@) AND " : @"(ANY whichCategories.categoryString =[cd] %@) AND ";
-    NSArray *topOrderPredicateInputs = self.favs ? @[@YES] : @[self.category];
-    
-    if ([searchString length]) {
-        switch (searchOption) {
-                
-                // "All" option
-            case 0:
-                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString, searchString, searchString]]];
-                break;
-                
-                // "Article" option
-            case 1:
-                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(postHTML contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
-                break;
-                
-                // "Tags" option
-            case 2:
-                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(ANY whichTags.tagString contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
-                break;
-                
-                // "Title" option
-            case 3:
-                self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:[topOrderPredicateString stringByAppendingString:@"(postName contains[cd] %@)"] argumentArray:[topOrderPredicateInputs arrayByAddingObjectsFromArray:@[searchString]]];
-                break;
-                
-            default:
-                break;
-        }
-    }
-    
-    [[self fetchedResultsController] performFetch:NULL];
-    [self.tableView reloadData];
-    
-    return YES;
-}
-
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    
     [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
     [self resetToAllEntries:self];
 }
