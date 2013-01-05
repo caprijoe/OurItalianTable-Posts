@@ -14,7 +14,6 @@
 @property (nonatomic, strong) NSString *lastUpdateToDBDate;
 @property (nonatomic, strong) NSURLConnection *urlConnection;
 @property (nonatomic, strong) NSMutableData *incomingData;
-@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation AtomicGetFileFromRemoteURL
@@ -43,9 +42,6 @@ whenMoreRecentThan:(NSString *)date
         // test connection for success
         NSAssert(self.urlConnection != nil, @"Failure to create URL connection.");
         
-        // set up timer to exit if no response received
-//        self.timer = [NSTimer scheduledTimerWithTimeInterval:TIMEOUT_SECONDS target:self selector:@selector(timeoutURLGet) userInfo:nil repeats:NO];
-                
         // show in the status bar that network activity is starting
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     }
@@ -83,12 +79,6 @@ whenMoreRecentThan:(NSString *)date
     }
 }
 
--(void)timeoutURLGet {
-
-    [self handleError:nil];
-    
-}
-
 -(void)exitGetFileWithData:(NSData *)data
                withSuccess:(BOOL)success
         withLastUpdateDate:(NSString *)date {
@@ -109,13 +99,15 @@ whenMoreRecentThan:(NSString *)date
 
 - (void)handleError:(NSError *)error
 {
-    NSString *errorMessage = [error localizedDescription];
+/*    NSString *errorMessage = [error localizedDescription];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot update app because there is no Internet connection. Click OK to continue."
 														message:errorMessage
 													   delegate:nil
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
-    [alertView show];
+    [alertView show]; */
+    
+    NSLog(@"HTTP error = %@",[error localizedDescription]);
     
     [self.delegate didFinishLoadingURL:nil withSuccess:NO findingDate:nil];
     
@@ -127,9 +119,6 @@ whenMoreRecentThan:(NSString *)date
 // connection:didReceiveResponse
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    // got response, invalidate timer
-    [self.timer invalidate];
-    self.timer = nil;
     
     // when connection response received, create new empty data property
     self.incomingData = [NSMutableData data];
