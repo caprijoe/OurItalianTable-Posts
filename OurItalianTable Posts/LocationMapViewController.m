@@ -38,9 +38,11 @@
     [self.navigationController setToolbarHidden:YES];
     
     // set map type to regular map
-    self.mapView.mapType = MKMapTypeHybrid;   // also MKMapTypeSatellite or MKMapTypeHybrid
+    self.mapView.mapType = MKMapTypeHybrid;
     
-    [self gotoLocation];    // finally goto Italy
+    // finally goto location
+    [self gotoLocation];    
+    
     
     if ((self.locationRecord.latitude != 0) && (self.locationRecord.longitude != 0)) {
         MapAnnotation *mapObject = [[MapAnnotation alloc] init];
