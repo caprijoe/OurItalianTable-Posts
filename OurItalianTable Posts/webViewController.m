@@ -7,13 +7,9 @@
 //
 
 #import "WebViewController.h"
+#import "OITLaunchViewController.h"
 #import "PostDetailViewController.h"
 #import "LocationMapViewController.h"
-#import "OITLaunchViewController.h"
-#import <Social/Social.h>
-#import <Accounts/Accounts.h>
-
-#import <Twitter/Twitter.h>
 
 #define FAVORITES_KEY       @"FAVORITES_KEY"
 #define CSS_IMPORT_FILENAME @"HTMLStyles"

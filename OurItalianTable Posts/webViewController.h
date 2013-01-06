@@ -6,12 +6,13 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-#import "Post.h"
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
+#import <Twitter/Twitter.h>
 #import "SplitViewBarButtonItemPresenter.h"
-
-@class WebViewController;
+#import "Post.h"
 
 @protocol WebViewControllerDelegate
 -(void)didClickTag:(NSString *)tag;
