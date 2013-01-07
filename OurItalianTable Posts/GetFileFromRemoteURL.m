@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-#define REMOTE_LAST_MODIFIED_KEY        @"Last-Modified"
-
 #import "GetFileFromRemoteURL.h"
 
 @interface GetFileFromRemoteURL()
+@property (nonatomic, strong) NSURL *thisURL;
 @property (nonatomic, strong) NSURLConnection *urlConnection;                   // NSURLConnection - setup in init, delegate is self
+@property (nonatomic) BOOL networkErrorOccurred;
 @property (nonatomic, strong) NSMutableData *incomingData;                      // stores accumulated data
 @property (nonatomic, strong) id<GetFileFromRemoteURLDelegate> delegate;        // call back delegate
 @end
@@ -25,33 +25,69 @@
     // crash if we are not running on the main thread -- should have been called on main thread
     NSAssert([NSThread isMainThread], @"NSURLConnection not running on main thread");
     
-    // save delegate for later
+    // save ivars for later
     self.delegate = delegate;
+    self.thisURL = url;
     
-    // create NSURL connection and then create NSURLConnection -- delegate is self
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-    self.urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
     
-    // test connection for success
-    NSAssert(self.urlConnection != nil, @"Failure to create URL connection.");
-    
-    // show in the status bar that network activity is starting
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    Reachability * reach = [Reachability reachabilityWithHostname:[self.thisURL host]];
+        
+    [reach startNotifier];
+
+    [self startDownload];
     
     return self;
 }
 
 #pragma mark - Private methods
 
+-(void)startDownload {
+    
+    self.networkErrorOccurred = NO;
+    
+    // create NSURL connection and then create NSURLConnection -- delegate is self
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.thisURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    self.urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    
+    // test connection for success
+    NSAssert(self.urlConnection != nil, @"Failure to create URL connection.");
+    
+    // show in the status bar that network activity is starting
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;    
+}
+
+-(void)reachabilityChanged:(NSNotification*)note
+{
+    Reachability * reach = [note object];
+    
+    if([reach isReachable])
+    {
+        NSLog(@"Notification Says Reachable");
+        if (self.networkErrorOccurred)
+            [self startDownload];
+    }
+    else
+    {
+        NSLog(@"Notification Says Unreachable");
+    }
+}
+
+
 - (void)handleError:(NSError *)error
 {
     NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No connection to Internet"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot update app because there is no Internet connection. Click OK to continue."
 														message:errorMessage
 													   delegate:nil
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
     [alertView show];
+    
+    self.networkErrorOccurred = YES;
 }
 
 -(BOOL)continueWithRemoteFillUsingDate:(NSString*)remoteDateString {
@@ -90,6 +126,9 @@
     // no need to continue downloading because remote date is not greater than current date
     
     self.urlConnection = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
@@ -176,6 +215,8 @@
 {
     // release URL connection
     self.urlConnection = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     

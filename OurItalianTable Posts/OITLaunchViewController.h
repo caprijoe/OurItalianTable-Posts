@@ -21,6 +21,8 @@
 @property (nonatomic,weak) IBOutlet UIButton *wineButton;
 @property (nonatomic,weak) IBOutlet UIButton *wanderingsButton;
 @property (nonatomic,weak) IBOutlet UIButton *bookmarksButton;
+@property (weak, nonatomic) IBOutlet UIButton *familyButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 
 // rotation support
 @property (nonatomic,strong) UIBarButtonItem *rootPopoverButtonItem;            // "main menu" button for use by right controllers

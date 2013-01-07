@@ -198,6 +198,8 @@
                         <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="Tjg-Ah-tci">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <textInputTraits key="textInputTraits"/>
                             <scopeButtonTitles>
                                 <string>All</string>
@@ -264,7 +266,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="5328" y="-778"/>
+            <point key="canvasLocation" x="5328" y="-770"/>
         </scene>
         <!--Web View Controller - Web Post-->
         <scene sceneID="9QH-Vh-bge">
@@ -791,8 +793,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Jgq-Rr-Qsl"/>
         <segue reference="Q8M-qC-hNw"/>
+        <segue reference="ai6-RC-oW0"/>
         <segue reference="Z7d-sq-HTK"/>
     </inferredMetricsTieBreakers>
 </document>

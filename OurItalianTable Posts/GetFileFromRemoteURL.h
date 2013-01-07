@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
+
+#define REMOTE_LAST_MODIFIED_KEY        @"Last-Modified"
 
 @protocol GetFileFromRemoteURLDelegate <NSObject>;
 
