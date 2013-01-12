@@ -10,6 +10,7 @@
 #import "GeneralizedPostsTableViewController.h"
 #import "Post.h"
 #import "Tag.h"
+#import "AppDelegate.h"
 
 @class PostDetailViewController;
 
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *datePublished;
 @property (weak, nonatomic) IBOutlet UIView *tagsView;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 // Actions
 - (IBAction)doneButton:(id)sender;
