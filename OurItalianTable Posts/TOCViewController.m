@@ -45,8 +45,14 @@
 {
     [super viewWillAppear:YES];
     
+    // set background to white
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    
     // setup appDelegate for accessing shared properties and methods
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    // configure done button
+    [self.appDelegate configureButton:self.doneButton];
     
     // setup helper to hold first column picker content (load plist keys and sort)
     self.categoryHolder = [[self.appDelegate.categoryDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
@@ -69,7 +75,6 @@
     
     self.categoryDictionary = [muteableCategoryDictionary copy];
     
-    
     // remove segments that came in from storyboard, initialize with categories
     [self.categorySegmentedController removeAllSegments];
     int i=0;
@@ -77,6 +82,8 @@
         [self.categorySegmentedController insertSegmentWithTitle:[self.categoryHolder objectAtIndex:i] atIndex:i animated:YES];
         i++;
     }
+    
+    // configure segmented controller
 
     // get last selected category from defaults and use that (defaults value is offset by 1 -- so 1, 2, 3 is stored)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -98,12 +105,14 @@
     CGSize size = CGSizeMake(500, 400);
     self.contentSizeForViewInPopover = size;
     self.view.backgroundColor = [UIColor grayColor];
+    
 }
 
 - (void)viewDidUnload
 {
     [self setCategorySegmentedController:nil];
     [self setDetailPicker:nil];
+    [self setDoneButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
