@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "AppDelegate.h"
 #import "Post.h"
 #import "MapAnnotation.h"
 
@@ -18,6 +19,7 @@
 
 // outlets
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 // actions
 - (IBAction)doneButton:(id)sender;

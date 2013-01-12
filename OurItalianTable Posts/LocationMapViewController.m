@@ -37,6 +37,10 @@
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
     
+    // configure done button
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate configureButton:self.doneButton];
+    
     // set map type to regular map
     self.mapView.mapType = MKMapTypeHybrid;
     
@@ -96,5 +100,9 @@
 #pragma mark - Actions/Outlets
 - (IBAction)doneButton:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
+}
+- (void)viewDidUnload {
+    [self setDoneButton:nil];
+    [super viewDidUnload];
 }
 @end
