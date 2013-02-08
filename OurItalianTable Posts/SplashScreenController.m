@@ -11,18 +11,15 @@
 
 @implementation SplashScreenController
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
-@synthesize toolbar = _toolbar;
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+            
+    self.SplitViewBarButtonItem = self.rootPopoverButtonItem;
     
-    // on load, get root button from left nav controller top and display on right
-    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)(((UINavigationController *)(((UISplitViewController *)self.parentViewController).viewControllers)[0]).viewControllers)[0]).rootPopoverButtonItem;
-    
-    [self setSplitViewBarButtonItem:rootPopoverButtonItem];
 }
 
 #pragma mark - Rotation support
