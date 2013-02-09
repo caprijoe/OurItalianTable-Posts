@@ -118,10 +118,7 @@
     // construct custom label for context statement
     UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,250,20)];
     customLabel.text = context;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        customLabel.textColor = [UIColor darkGrayColor];
-    else
-        customLabel.textColor = [UIColor whiteColor];
+    customLabel.textColor = [UIColor whiteColor];
     customLabel.backgroundColor =  [UIColor clearColor];
     customLabel.font = [UIFont boldSystemFontOfSize:16.0];
     
