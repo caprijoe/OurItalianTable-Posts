@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "GeneralizedPostsTableViewController.h"
 #import "SplitViewBarButtonItemPresenter.h"
+#import "OITTabBarController.h"
 
 #define FOOD_CATEGORY       @"food"
 #define WINE_CATEGORY       @"wine"
 #define WANDERING_CATEGORY  @"wanderings"
 
-@interface OITLaunchViewController : UIViewController <UISplitViewControllerDelegate>;
+@interface OITLaunchViewController : UIViewController ;
 
 // outlets
-@property (nonatomic,weak) IBOutlet UIButton *foodButton;                      // for getting the font of 1st button
+@property (nonatomic,weak) IBOutlet UIButton *foodButton;
 @property (nonatomic,weak) IBOutlet UIButton *wineButton;
 @property (nonatomic,weak) IBOutlet UIButton *wanderingsButton;
 @property (nonatomic,weak) IBOutlet UIButton *bookmarksButton;
-@property (weak, nonatomic) IBOutlet UIButton *familyButton;
-@property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (nonatomic,weak) IBOutlet UIImageView *logo;
 
 // rotation support
 @property (nonatomic,strong) UIBarButtonItem *rootPopoverButtonItem;            // "main menu" button for use by right controllers
