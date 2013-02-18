@@ -50,70 +50,6 @@ whenMoreRecentThan:(NSString *)date
     
 }
 
-#pragma mark - Private methods
-
--(BOOL)continueWithRemoteFillUsingDate:(NSString*)remoteDateString {
-    
-    // setup date formatter
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
-    
-    if (self.lastUpdateToDBDate) {
-        // got a good string from NSUserDefaults
-        
-        // convert NSString date to NSTimeInterval
-        NSTimeInterval timeIntervalFromDefaults = [[dateFormatter dateFromString:self.lastUpdateToDBDate] timeIntervalSinceReferenceDate];
-        NSTimeInterval timeIntervalFromRemote = [[dateFormatter dateFromString:remoteDateString] timeIntervalSinceReferenceDate];
-        
-        if (timeIntervalFromRemote > timeIntervalFromDefaults) {
-            // update should occur
-            return YES;
-            
-        } else {
-            // update not needed
-            return NO;
-        }
-    } else {
-        // no defaults string found (must be first time), load needed
-        return YES;
-    }
-}
-
--(void)exitGetFileWithData:(NSData *)data
-               withSuccess:(BOOL)success
-        withLastUpdateDate:(NSString *)date {
-    
-    // nil out connection to dealloc
-    self.urlConnection = nil;
-    
-    // stop network indicator
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-    // call back and tell caller were done
-    [self.delegate didFinishLoadingURL:data withSuccess:success findingDate:date];
-    
-    // clear out any received date
-    self.incomingData = nil;
-    
-}
-
-- (void)handleError:(NSError *)error
-{
-/*    NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot update app because there is no Internet connection. Click OK to continue."
-														message:errorMessage
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-    [alertView show]; */
-    
-    NSLog(@"HTTP error = %@",[error localizedDescription]);
-    
-    [self.delegate didFinishLoadingURL:nil withSuccess:NO findingDate:nil];
-    
-}
-
-
 #pragma mark - NSURLConnection delegate methods
 
 // connection:didReceiveResponse
@@ -192,5 +128,67 @@ whenMoreRecentThan:(NSString *)date
     [self exitGetFileWithData:self.incomingData withSuccess:YES withLastUpdateDate:self.lastUpdateToDBDate];
 }
 
+#pragma mark - Private methods
+
+-(BOOL)continueWithRemoteFillUsingDate:(NSString*)remoteDateString {
+    
+    // setup date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
+    
+    if (self.lastUpdateToDBDate) {
+        // got a good string from NSUserDefaults
+        
+        // convert NSString date to NSTimeInterval
+        NSTimeInterval timeIntervalFromDefaults = [[dateFormatter dateFromString:self.lastUpdateToDBDate] timeIntervalSinceReferenceDate];
+        NSTimeInterval timeIntervalFromRemote = [[dateFormatter dateFromString:remoteDateString] timeIntervalSinceReferenceDate];
+        
+        if (timeIntervalFromRemote > timeIntervalFromDefaults) {
+            // update should occur
+            return YES;
+            
+        } else {
+            // update not needed
+            return NO;
+        }
+    } else {
+        // no defaults string found (must be first time), load needed
+        return YES;
+    }
+}
+
+-(void)exitGetFileWithData:(NSData *)data
+               withSuccess:(BOOL)success
+        withLastUpdateDate:(NSString *)date {
+    
+    // nil out connection to dealloc
+    self.urlConnection = nil;
+    
+    // stop network indicator
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    // call back and tell caller were done
+    [self.delegate didFinishLoadingURL:data withSuccess:success findingDate:date];
+    
+    // clear out any received date
+    self.incomingData = nil;
+    
+}
+
+- (void)handleError:(NSError *)error
+{
+    /*    NSString *errorMessage = [error localizedDescription];
+     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot update app because there is no Internet connection. Click OK to continue."
+     message:errorMessage
+     delegate:nil
+     cancelButtonTitle:@"OK"
+     otherButtonTitles:nil];
+     [alertView show]; */
+    
+    NSLog(@"HTTP error = %@",[error localizedDescription]);
+    
+    [self.delegate didFinishLoadingURL:nil withSuccess:NO findingDate:nil];
+    
+}
 
 @end
