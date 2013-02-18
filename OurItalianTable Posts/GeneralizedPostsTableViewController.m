@@ -61,10 +61,10 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    
+    [super viewDidAppear:animated];
+        
     // set up fetch controller, update context, setup refresh control and set detail split view
     [self resetToAllEntries];
     
@@ -125,7 +125,6 @@
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate method(s)
-
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
@@ -256,11 +255,6 @@
     [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
     [self resetToAllEntries];
     
-    // if on an ipad, reset right side too
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
-    
-
 }
 
 #pragma mark - External delegates
@@ -351,12 +345,6 @@
 {
     
     [self resetToAllEntries];
-    
-    // if on an ipad, reset right side too
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
-    
-
     
 }
 
@@ -484,6 +472,10 @@
     // reset fetch controller
     [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
     
+    // if on an ipad, reset right side too
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
+    
     // reset table view to top (0,0) & reload table
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self.tableView reloadData];
@@ -497,7 +489,7 @@
 -(void)populateIconInDBUsing:(NSIndexPath *)indexPath {
     
     Post *postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
+        
     // check if icon is in CoreData DB, if so, just return it by reference
     if (!postRecord.postIcon) {
         dispatch_queue_t queue = dispatch_queue_create("get Icon",NULL);
@@ -505,10 +497,13 @@
             
             // make sure the URL string is not nil
             if (postRecord.imageURLString) {
-                
+
                 // load data from URL
                 NSError *error = Nil;
                 NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:postRecord.imageURLString] options:NSDataReadingUncached error:&error];
+                
+                NSLog(@"got --> %@",postRecord.postName);
+
                 
                 // if we got data AND no error, proceed. Else let the placeholder.png remain
                 if (data && !error)
@@ -520,6 +515,10 @@
                         // make sure the context still exists (could happen if view disappears), and update icon
                         if (postRecord.managedObjectContext) {
                             postRecord.postIcon = UIImageJPEGRepresentation(iconImage, 1.0);
+                            
+                            // save any loaded changes at this point
+                            [self.appDelegate.parentMOC save:NULL];
+
                         }
                         
                     });
