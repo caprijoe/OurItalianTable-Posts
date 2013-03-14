@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define REMOTE_LAST_MODIFIED_KEY        @"Last-Modified"
-#define TIMEOUT_SECONDS                 10.0
+#define TIMEOUT_SECONDS                 20.0
 
 @protocol AtomicGetFileFromRemoteURLDelegate <NSObject>;
 
@@ -22,13 +22,13 @@
 -(void)didFinishLoadingURL:(NSData *)XMLfile
                withSuccess:(BOOL)success
                findingDate:(NSString *)date;
-
 @end
 
 @interface AtomicGetFileFromRemoteURL : NSObject <NSURLConnectionDelegate>
 
--(id)initWithURL:(NSURL *)url
-whenMoreRecentThan:(NSString *)date
-    withDelegate:(id <AtomicGetFileFromRemoteURLDelegate>)delegate;
+    -(id)initWithURL:(NSURL *)url
+  whenMoreRecentThan:(NSString *)date
+  expectingMIMETypes:(NSArray *)MIMEType
+        withDelegate:(id <AtomicGetFileFromRemoteURLDelegate>)delegate;
 
 @end

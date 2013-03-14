@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *lastUpdateToDBDate;
 @property (nonatomic, strong) NSURLConnection *urlConnection;
 @property (nonatomic, strong) NSMutableData *incomingData;
+@property (nonatomic, strong) NSArray *expectedMIMETypes;
 @end
 
 @implementation AtomicGetFileFromRemoteURL
@@ -22,6 +23,7 @@
 
 -(id)initWithURL:(NSURL *)url
 whenMoreRecentThan:(NSString *)date
+expectingMIMETypes:(NSArray *)MIMEType
     withDelegate:(id <AtomicGetFileFromRemoteURLDelegate>)delegate {
     
     self = [super init];
@@ -34,6 +36,7 @@ whenMoreRecentThan:(NSString *)date
         self.delegate = delegate;
         self.url = url;
         self.lastUpdateToDBDate = date;
+        self.expectedMIMETypes = MIMEType;
         
         // create NSURL connection and then create NSURLConnection -- delegate is self
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT_SECONDS];
@@ -59,8 +62,13 @@ whenMoreRecentThan:(NSString *)date
     // when connection response received, create new empty data property
     self.incomingData = [NSMutableData data];
     
-    if ([response respondsToSelector:@selector(allHeaderFields)])
-    {
+    NSLog(@"mime => %@",[response MIMEType]);
+    
+    if (![self.expectedMIMETypes containsObject:[response MIMEType]]) {
+        
+        [self exitGetFileWithData:nil withSuccess:NO withLastUpdateDate:nil];
+        
+    } else if ([response respondsToSelector:@selector(allHeaderFields)]) {
         NSDictionary *headers = [((NSHTTPURLResponse *)response) allHeaderFields];
         
         if ([self continueWithRemoteFillUsingDate:headers[REMOTE_LAST_MODIFIED_KEY]]) {
