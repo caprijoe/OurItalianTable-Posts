@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ParseWordPressXML.h"
-#import "RemoteFileGetter.h"
+#import "XMLFileGetter.h"
 
 #define WORDPRESS_REMOTE_URL    @"http://www.ouritaliantable.com/OITLatest.xml"
 
@@ -19,7 +19,7 @@
 
 @end
 
-@interface RemoteFillDatabaseFromXMLParser : NSObject <RemoteFileGetterDelegate, ParseWordPressXMLDelegate>
+@interface RemoteFillDatabaseFromXMLParser : NSObject <XMLFileGetterDelegate, ParseWordPressXMLDelegate>
 
 // zero second means never time out
 -(id)initWithURL:(NSURL *)url

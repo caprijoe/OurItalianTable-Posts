@@ -13,7 +13,7 @@
 @interface RemoteFillDatabaseFromXMLParser ()
 @property (nonatomic, strong) NSOperationQueue *queue;                          // queue for XML parsing
 @property (nonatomic, strong) NSManagedObjectContext *parentMOC;              // core DB file
-@property (nonatomic, strong) RemoteFileGetter *fileGetter;                 // object for remote file getter
+@property (nonatomic, strong) XMLFileGetter *fileGetter;                 // object for remote file getter
 @property (nonatomic, strong) ParseWordPressXML *parser;                        // object for XML parser
 @property (nonatomic, strong) id<RemoteFillDatabaseFromXMLParserDelegate> delegate;   // callback delegate for this class 
 @property (nonatomic, strong) NSString *lastUpdateDateFromDefaults;                 // date of last update, if not-nil -> save in NSUserDefaults
@@ -40,7 +40,7 @@
     self.lastUpdateDateFromDefaults = [defaults stringForKey:LAST_UPDATE_TO_CORE_DB];
     
     // kick off file get
-    self.fileGetter = [[RemoteFileGetter alloc] initWithURL:url whenMoreRecentThan:self.lastUpdateDateFromDefaults withDelegate:self giveUpAfter:self.seconds];
+    self.fileGetter = [[XMLFileGetter alloc] initWithURL:url whenMoreRecentThan:self.lastUpdateDateFromDefaults withDelegate:self giveUpAfter:self.seconds];
     
     return self;
 }
