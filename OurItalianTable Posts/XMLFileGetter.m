@@ -54,7 +54,7 @@ whenMoreRecentThan:(NSString *)date
     
     // launch the filegetter - must be on main thread because it's using NSURLConnection
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.fileGetter = [[AtomicGetFileFromRemoteURL alloc] initWithURL:self.url whenMoreRecentThan:self.lastUpdateToDBDate expectingMIMETypes:@[@"application/xml"] withDelegate:self];
+        self.fileGetter = [[AtomicGetFileFromRemoteURL alloc] initWithURL:self.url whenMoreRecentThan:self.lastUpdateToDBDate expectingMIMETypes:@[@"application/zip"] withDelegate:self];
     });    
 }
 
@@ -69,20 +69,47 @@ whenMoreRecentThan:(NSString *)date
     
 }
 
+-(NSData *)unZipFile:(NSData *)zipFile
+{
+    // write received NSData to a file in the tmp directory
+    NSString *zipFileURL = [NSTemporaryDirectory() stringByAppendingPathComponent:[self.url lastPathComponent]];
+    NSString *XMLFileURL = [NSTemporaryDirectory() stringByAppendingPathComponent:@"zipDir/our-italian-table.xml"];
+        
+    [zipFile writeToFile:zipFileURL atomically:NO];
+    
+    NSError *error;
+    
+    [SSZipArchive unzipFileAtPath:zipFileURL toDestination:[NSTemporaryDirectory() stringByAppendingPathComponent:@"zipDir"] overwrite:YES password:nil error:&error];
+    
+    return [NSData dataWithContentsOfFile:XMLFileURL];
+    
+}
+
 #pragma mark - External delegates
 
 -(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingDate:(NSString *)date 
 {
     
-    if (success) {
+    if (success && XMLfile) {
         
         // turn off Reachability
         self.reach = nil;
         
+        NSData *unZippedXMLfile = [self unZipFile:XMLfile];
+        
         // successfully loaded file or discovered remote file was of same date
-        [self.delegate didFinishLoadingRemoteFile:XMLfile withSuccess:success findingDate:date];
+        [self.delegate didFinishLoadingRemoteFile:unZippedXMLfile withSuccess:success findingDate:date];
     
-    } else {
+    } else if (success && !XMLfile) {
+        
+        // turn off Reachability
+        self.reach = nil;
+                
+        // successfully loaded file or discovered remote file was of same date
+        [self.delegate didFinishLoadingRemoteFile:nil withSuccess:success findingDate:date];
+        
+    }
+    else {
         
         // requeue file load when and if internet comes back
 

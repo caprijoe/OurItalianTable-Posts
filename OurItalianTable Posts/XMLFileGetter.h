@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
 #import "AtomicGetFileFromRemoteURL.h"
+#import "SSZipArchive.h"
 
 @protocol XMLFileGetterDelegate <NSObject>;
 
