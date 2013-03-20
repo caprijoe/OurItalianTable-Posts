@@ -37,7 +37,13 @@
         NSString *newURL = [self modifyURLToThumbnailFile:incomingURLString];
                         
         // try first with altereded ULR string to get thumbnail
-        self.iconGetter = [[AtomicGetFileFromRemoteURL alloc] initWithURL:[NSURL URLWithString:newURL] whenMoreRecentThan:nil expectingMIMETypes:@[@"image/jpeg", @"image/png"] withDelegate:self];
+        self.iconGetter = [[AtomicGetFileFromRemoteURL alloc] init];
+        self.iconGetter.url = [NSURL URLWithString:newURL];
+        self.iconGetter.lastUpdateToDBDate = nil;
+        self.iconGetter.expectedMIMETypes = @[@"image/jpeg", @"image/png"];
+        self.iconGetter.delegate = self;
+        
+        [self.iconGetter startFileDownload];
         
         if (!self.iconGetter) {
             
@@ -71,7 +77,13 @@
     } else if (self.numberOfAttempts == 1) {
         
         // could not get thumbnail file, now try with original URL
-        self.iconGetter = [[AtomicGetFileFromRemoteURL alloc] initWithURL:[NSURL URLWithString:self.originalURL] whenMoreRecentThan:nil expectingMIMETypes:@[@"image/jpeg", @"image/png"] withDelegate:self];
+        self.iconGetter = [[AtomicGetFileFromRemoteURL alloc] init];
+        self.iconGetter.url = [NSURL URLWithString:self.originalURL];
+        self.iconGetter.lastUpdateToDBDate = nil;
+        self.iconGetter.expectedMIMETypes = @[@"image/jpeg", @"image/png"];
+        self.iconGetter.delegate = self;
+        
+        [self.iconGetter startFileDownload];
         
         if (!self.iconGetter) {
             
