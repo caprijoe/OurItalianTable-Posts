@@ -9,11 +9,6 @@
 #import "XMLFileGetter.h"
 
 @interface XMLFileGetter ()
-@property (nonatomic, strong) NSURL *url;
-@property (nonatomic, strong) NSString *lastUpdateToDBDate;
-@property (nonatomic, strong) id<XMLFileGetterDelegate> delegate;
-@property (nonatomic) NSTimeInterval seconds;
-@property (nonatomic, strong) AtomicGetFileFromRemoteURL *fileGetter;
 @property (nonatomic, strong) Reachability *reach;
 @property (nonatomic, strong) NSTimer *timer;
 @end
@@ -22,41 +17,26 @@
 
 #pragma mark - Init method
 
--(id)initWithURL:(NSURL *)url
-whenMoreRecentThan:(NSString *)date
-    withDelegate:(id <XMLFileGetterDelegate>)delegate
-     giveUpAfter:(NSTimeInterval)seconds {
+-(id)init
+{
     
     self = [super init];
     if (self) {
         
-        // save ivars for later use
-        self.delegate = delegate;
-        self.url = url;
-        self.lastUpdateToDBDate = date;
-        self.seconds = seconds;
-        
+        // set ivars for getting XML file inside the ZIP file
+        self.expectedMIMETypes = @[@"application/zip"];
+                
         // set up Reachability class to help with internet errors        
         self.reach = [Reachability reachabilityWithHostname:[self.url host]];
         
         [self.reach startNotifier];
         
-        // kick off download.. might get error and will retry
-        [self startFileDownload];
     }
     
     return self;    
 }
 
 #pragma mark - Private methods
-
--(void)startFileDownload {
-    
-    // launch the filegetter - must be on main thread because it's using NSURLConnection
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.fileGetter = [[AtomicGetFileFromRemoteURL alloc] initWithURL:self.url whenMoreRecentThan:self.lastUpdateToDBDate expectingMIMETypes:@[@"application/zip"] withDelegate:self];
-    });    
-}
 
 -(void)invokeTimeout {
     
@@ -65,7 +45,8 @@ whenMoreRecentThan:(NSString *)date
     // process timeout
     self.reach.reachableBlock = nil;
     
-    [self.delegate didFinishLoadingRemoteFile:nil withSuccess:NO findingDate:nil];
+    [self.delegate didFinishLoadingURL:nil withSuccess:NO findingDate:nil];
+
     
 }
 
@@ -87,8 +68,11 @@ whenMoreRecentThan:(NSString *)date
 
 #pragma mark - External delegates
 
--(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingDate:(NSString *)date 
+-(void)exitGetFileWithData:(NSData *)XMLfile withSuccess:(BOOL)success withLastUpdateDate:(NSString *)date
 {
+    NSLog(@"exiting ...");
+    
+    [self prepareToExit];
     
     if (success && XMLfile) {
         
@@ -98,7 +82,8 @@ whenMoreRecentThan:(NSString *)date
         NSData *unZippedXMLfile = [self unZipFile:XMLfile];
         
         // successfully loaded file or discovered remote file was of same date
-        [self.delegate didFinishLoadingRemoteFile:unZippedXMLfile withSuccess:success findingDate:date];
+        [self.delegate didFinishLoadingURL:unZippedXMLfile withSuccess:success findingDate:date];
+
     
     } else if (success && !XMLfile) {
         
@@ -106,10 +91,9 @@ whenMoreRecentThan:(NSString *)date
         self.reach = nil;
                 
         // successfully loaded file or discovered remote file was of same date
-        [self.delegate didFinishLoadingRemoteFile:nil withSuccess:success findingDate:date];
-        
-    }
-    else {
+        [self.delegate didFinishLoadingURL:nil withSuccess:success findingDate:date];
+
+    } else {
         
         // requeue file load when and if internet comes back
 

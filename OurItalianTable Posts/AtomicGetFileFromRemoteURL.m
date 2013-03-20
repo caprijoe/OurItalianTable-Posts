@@ -9,37 +9,38 @@
 #import "AtomicGetFileFromRemoteURL.h"
 
 @interface AtomicGetFileFromRemoteURL ()
-@property (nonatomic, strong) NSURL *url;
-@property (nonatomic, strong) id<AtomicGetFileFromRemoteURLDelegate> delegate;
-@property (nonatomic, strong) NSString *lastUpdateToDBDate;
 @property (nonatomic, strong) NSURLConnection *urlConnection;
 @property (nonatomic, strong) NSMutableData *incomingData;
-@property (nonatomic, strong) NSArray *expectedMIMETypes;
 @end
 
 @implementation AtomicGetFileFromRemoteURL
 
 #pragma mark - Init method
 
--(id)initWithURL:(NSURL *)url
-whenMoreRecentThan:(NSString *)date
-expectingMIMETypes:(NSArray *)MIMEType
-    withDelegate:(id <AtomicGetFileFromRemoteURLDelegate>)delegate {
+-(id)init
+{
     
     self = [super init];
     if (self) {
+        // init stuff
+    }
+    
+    return self;
+    
+}
+
+-(void)startFileDownload {
+    
+    NSLog(@"start download");
+    
+    // launch the filegetter - must be on main thread because it's using NSURLConnection
+    dispatch_async(dispatch_get_main_queue(), ^{
         
         // crash if we are not running on the main thread -- should have been called on main thread
         NSAssert([NSThread isMainThread], @"NSURLConnection not running on main thread");
         
-        // save ivars for later
-        self.delegate = delegate;
-        self.url = url;
-        self.lastUpdateToDBDate = date;
-        self.expectedMIMETypes = MIMEType;
-        
         // create NSURL connection and then create NSURLConnection -- delegate is self
-        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT_SECONDS];
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:NSURLREQUEST_TIMEOUT_SECONDS];
         self.urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
         
         // test connection for success
@@ -47,9 +48,7 @@ expectingMIMETypes:(NSArray *)MIMEType
         
         // show in the status bar that network activity is starting
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    }
-    
-    return self;
+    });
     
 }
 
@@ -153,21 +152,27 @@ expectingMIMETypes:(NSArray *)MIMEType
         
         if (timeIntervalFromRemote > timeIntervalFromDefaults) {
             // update should occur
+            NSLog(@"will update 1");
             return YES;
             
         } else {
             // update not needed
+            NSLog(@"will NOT update -> %f, %f", timeIntervalFromDefaults, timeIntervalFromRemote);
+
             return NO;
         }
     } else {
         // no defaults string found (must be first time), load needed
+        NSLog(@"will update 2");
+
         return YES;
     }
 }
 
--(void)exitGetFileWithData:(NSData *)data
-               withSuccess:(BOOL)success
-        withLastUpdateDate:(NSString *)date {
+-(void)prepareToExit
+{
+    // stop connection
+    [self.urlConnection cancel];
     
     // nil out connection to dealloc
     self.urlConnection = nil;
@@ -175,14 +180,11 @@ expectingMIMETypes:(NSArray *)MIMEType
     // stop network indicator
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    // call back and tell caller were done
-    [self.delegate didFinishLoadingURL:data withSuccess:success findingDate:date];
-    
     // clear out any received date
     self.incomingData = nil;
-    
-}
 
+
+}
 - (void)handleError:(NSError *)error
 {
     /*    NSString *errorMessage = [error localizedDescription];
@@ -195,7 +197,18 @@ expectingMIMETypes:(NSArray *)MIMEType
     
     NSLog(@"HTTP error = %@",[error localizedDescription]);
     
-    [self.delegate didFinishLoadingURL:nil withSuccess:NO findingDate:nil];
+    [self exitGetFileWithData:nil withSuccess:NO withLastUpdateDate:nil];
+    
+}
+
+-(void)exitGetFileWithData:(NSData *)data
+               withSuccess:(BOOL)success
+        withLastUpdateDate:(NSString *)date {
+    
+    [self prepareToExit];
+    
+    // call back and tell caller were done
+    [self.delegate didFinishLoadingURL:data withSuccess:success findingDate:date];
     
 }
 

@@ -11,18 +11,10 @@
 #import "AtomicGetFileFromRemoteURL.h"
 #import "SSZipArchive.h"
 
-@protocol XMLFileGetterDelegate <NSObject>;
+@interface XMLFileGetter : AtomicGetFileFromRemoteURL;
 
--(void)didFinishLoadingRemoteFile:(NSData *)XMLfile
-                      withSuccess:(BOOL)success
-                      findingDate:(NSString *)date;
-@end
+@property (nonatomic) NSTimeInterval seconds;
 
-@interface XMLFileGetter : NSObject <AtomicGetFileFromRemoteURLDelegate>;
-
--(id)initWithURL:(NSURL *)url
-whenMoreRecentThan:(NSString *)date
-    withDelegate:(id <XMLFileGetterDelegate>)delegate
-     giveUpAfter:(NSTimeInterval)seconds;
+-(id)init;
 
 @end

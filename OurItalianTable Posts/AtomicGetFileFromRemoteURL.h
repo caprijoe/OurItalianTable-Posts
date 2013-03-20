@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define REMOTE_LAST_MODIFIED_KEY        @"Last-Modified"
-#define TIMEOUT_SECONDS                 20.0
+#define NSURLREQUEST_TIMEOUT_SECONDS                 20.0
 
 @protocol AtomicGetFileFromRemoteURLDelegate <NSObject>;
 
@@ -19,16 +19,23 @@
 // downloaded   data        YES             date returned
 // not needed   nil         YES             input date
 // error        nil         NO              nil
--(void)didFinishLoadingURL:(NSData *)XMLfile
-               withSuccess:(BOOL)success
-               findingDate:(NSString *)date;
+
+-(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingDate:(NSString *)date;
+
 @end
 
 @interface AtomicGetFileFromRemoteURL : NSObject <NSURLConnectionDelegate>
 
-    -(id)initWithURL:(NSURL *)url
-  whenMoreRecentThan:(NSString *)date
-  expectingMIMETypes:(NSArray *)MIMEType
-        withDelegate:(id <AtomicGetFileFromRemoteURLDelegate>)delegate;
+// all these properties must be set before "startFileDownload" can be called
+@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSString *lastUpdateToDBDate;
+@property (nonatomic, strong) id<AtomicGetFileFromRemoteURLDelegate> delegate;
+@property (nonatomic, strong) NSArray *expectedMIMETypes;
+
+-(id)init;
+-(void)startFileDownload;
+-(void)prepareToExit;
+-(void)exitGetFileWithData:(NSData *)data withSuccess:(BOOL)success withLastUpdateDate:(NSString *)date;
+
 
 @end

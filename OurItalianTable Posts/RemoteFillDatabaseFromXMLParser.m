@@ -40,7 +40,13 @@
     self.lastUpdateDateFromDefaults = [defaults stringForKey:LAST_UPDATE_TO_CORE_DB];
     
     // kick off file get
-    self.fileGetter = [[XMLFileGetter alloc] initWithURL:url whenMoreRecentThan:self.lastUpdateDateFromDefaults withDelegate:self giveUpAfter:self.seconds];
+    self.fileGetter = [[XMLFileGetter alloc] init];
+    self.fileGetter.url = url;
+    self.fileGetter.lastUpdateToDBDate = self.lastUpdateDateFromDefaults;
+    self.fileGetter.delegate = self;
+    self.fileGetter.seconds = seconds;
+    
+    [self.fileGetter startFileDownload];
     
     return self;
 }
@@ -48,7 +54,7 @@
 #pragma mark - External delegates - GetFileFromRemoteURL
 
 
--(void)didFinishLoadingRemoteFile:(NSData *)XMLfile withSuccess:(BOOL)success findingDate:(NSString *)date {
+-(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingDate:(NSString *)date {
     
     // release URL connection object
     self.fileGetter = nil;
