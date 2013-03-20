@@ -27,6 +27,8 @@
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, weak) id <ParseWordPressXMLDelegate> delegate;
 @property (nonatomic, strong) AppDelegate *appDelegate;
+@property                     BOOL inGPSTag;
+@property                     BOOL typeOfPost;
 
 @end
 
@@ -59,7 +61,7 @@
         [self.dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
                 
         // set up the XML elements that will be parsed
-        self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_META_DATA_TAG ,POST_GPS_COORDINATES_TAG];
+        self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_META_DATA_TAG ,POST_META_KEY, POST_META_VALUE, POST_TYPE];
     }
     return self;
 }
@@ -184,7 +186,14 @@
             self.storingElementOfInterest = NO;
             
             // look for specific end element and store the data away
-            if ([elementName isEqualToString:POST_LINK_TAG])
+            if ([elementName isEqualToString:POST_TYPE]) {
+                NSLog(@"post type = %@",trimmedString);
+                if ([trimmedString isEqualToString:@"post"])
+                    self.typeOfPost = YES;
+                else
+                    self.typeOfPost = NO;
+            }
+            else if ([elementName isEqualToString:POST_LINK_TAG])
             {
                 self.workingEntry.postURLString = trimmedString;
             }
@@ -209,7 +218,15 @@
                 
                 if  (match)
                 {
-                    self.workingEntry.imageURLString = [trimmedString substringWithRange:match.range];
+                    NSString *tempURLString = [trimmedString substringWithRange:match.range];
+                    
+                    // strip off "?w=" from URL
+                    NSRange range = [tempURLString rangeOfString:@"?w="];
+                    if (range.location != NSNotFound) {
+                        tempURLString = [tempURLString substringToIndex:range.location];
+                    }
+                    
+                    self.workingEntry.imageURLString = tempURLString;
                     self.workingEntry.postHTML = trimmedString;
                 }
             }
@@ -218,23 +235,27 @@
                 NSDate *pubDate = [self.dateFormatter dateFromString:trimmedString];
                 self.workingEntry.postPubDate = [pubDate timeIntervalSinceReferenceDate];
             }
-            else if ([elementName isEqualToString:POST_GPS_COORDINATES_TAG])
-            {
-                // look for format "GPS: <float>,<float>", if found, load into coodinate
-                NSRange where = [trimmedString rangeOfString:POST_GPS_COORDINATES_FLAG];
-                if (where.location!= NSNotFound)
-                {
-                    NSArray *floats = [[trimmedString substringFromIndex:where.length] componentsSeparatedByString:@","];
-                    self.workingEntry.latitude = [floats[0] doubleValue];
-                    self.workingEntry.longitude = [floats[1] doubleValue];
+            else if ([elementName isEqualToString:POST_META_KEY]) {
+                if ([trimmedString isEqualToString:@"gps_coordinates"]) {
+                    self.inGPSTag = YES;
+                }
+            }
+            else if ([elementName isEqualToString:POST_META_VALUE]) {
+                if (self.inGPSTag) {
+                    self.inGPSTag = NO;
+                    NSArray *floats = [trimmedString componentsSeparatedByString:@","];
+                    if ([floats count] == 2) {
+                        self.workingEntry.latitude = [floats[0] doubleValue];
+                        self.workingEntry.longitude = [floats[1] doubleValue];
+                    }
                 }
             }
         }
         else if ([elementName isEqualToString:TOP_LEVEL_TAG])
         // if top level tag end found, reset everything for next time around
         {
-            [Post createPostwithPostRecord:self.workingEntry
-                    inManagedObjectContext:self.backgroundMOC];
+            if (self.typeOfPost)
+                [Post createPostwithPostRecord:self.workingEntry inManagedObjectContext:self.backgroundMOC];
             self.workingEntry = nil;
         }
     }

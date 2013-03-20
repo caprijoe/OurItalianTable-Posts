@@ -10,6 +10,7 @@
 #define TOP_LEVEL_TAG                @"item"
 #define POST_TITLE_TAG                  @"title"
 #define POST_LINK_TAG                   @"link"
+#define POST_TYPE                       @"wp:post_type"
 #define POST_PUBLISH_DATE               @"pubDate"
 #define POST_AUTHOR_TAG                 @"dc:creator"
 #define POST_HTML_CONTENT_TAG           @"content:encoded"
@@ -21,4 +22,6 @@
 #define POST_META_DATA_CATEGORY                 @"category"
 #define POST_META_DATA_POSTTAG                  @"post_tag"
 #define POST_META_DATA_DESCRIPTION_ATTR     @"nicename"
+#define POST_META_KEY                   @"wp:meta_key"
+#define POST_META_VALUE                 @"wp:meta_value"
 // close top level tag
