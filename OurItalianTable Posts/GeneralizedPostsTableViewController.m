@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *rightSideSegueName;
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSMutableDictionary *downloadControl;
 @end
 
 @implementation GeneralizedPostsTableViewController
@@ -55,6 +56,9 @@
         self.sectionKey = @"geo";
         self.rightSideSegueName = @"Show Region Map";
     }
+    
+    // init download control dict
+    self.downloadControl = [[NSMutableDictionary alloc] init];
     
     // updates self.geoCoordinates, self.geoList
     [self setupGeoReferenceInfo];
@@ -340,6 +344,63 @@
     [self.tableView reloadData];
 }
 
+-(void)doneFillingFromRemote:(BOOL)success {
+    
+    // release remote filler
+    self.thisRemoteDatabaseFiller = nil;
+    
+    if (success) {
+        
+        // set up a display dateformatter for today's date
+        NSDateFormatter *dataFormatter = [[NSDateFormatter alloc] init];
+        [dataFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm"];
+        
+        // set up to display today's date until refreshed again
+        NSString *lastUpdatedString = [NSString stringWithFormat:@"Last udpated on %@", [dataFormatter stringFromDate:[NSDate date]]];
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdatedString];
+    }
+    
+    // stop twirling ball
+    [self.refreshControl endRefreshing];
+}
+
+-(void)iconDownloadComplete:(NSData *)iconData forPostID:(int64_t)postID withSucess:(BOOL)success
+{
+    if (iconData && success) {
+        
+        // get rid of the icondownloader
+        [self.downloadControl removeObjectForKey:[NSNumber numberWithInt:postID]];
+        
+        Post *thisPost = nil;
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+        request.predicate = [NSPredicate predicateWithFormat:@"postID = %i", postID];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"postID" ascending:YES];
+        request.sortDescriptors = @[sortDescriptor];
+        
+        NSError *error = nil;
+        NSArray *matches = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
+        
+        if (!matches || ([matches count] > 1)) {
+            
+            // handle error - nil matchs or more than 1
+            NSLog(@"error -- more than one match of Post returned from database");
+            
+        } else if ([matches count] == 0) {
+            
+            // no match found, insert
+            NSLog(@"error -- no post entry found");
+            
+        } else {
+            
+            // match found, update
+            thisPost = [matches lastObject];
+            thisPost.postIcon = iconData;
+            
+        }
+    }
+}
+
 #pragma mark - IBActions
 - (IBAction)refreshView:(id)sender
 {
@@ -438,25 +499,7 @@
     self.thisRemoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.appDelegate.parentMOC withDelegate:self giveUpAfter:20.0];
 }
 
--(void)doneFillingFromRemote:(BOOL)success {
-    
-    // release remote filler
-    self.thisRemoteDatabaseFiller = nil;
-    
-    if (success) {
-        
-        // set up a display dateformatter for today's date
-        NSDateFormatter *dataFormatter = [[NSDateFormatter alloc] init];
-        [dataFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm"];
-        
-        // set up to display today's date until refreshed again
-        NSString *lastUpdatedString = [NSString stringWithFormat:@"Last udpated on %@", [dataFormatter stringFromDate:[NSDate date]]];
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdatedString];
-    }
-    
-    // stop twirling ball
-    [self.refreshControl endRefreshing];
-}
+
 
 -(void)resetToAllEntries {
     
@@ -491,44 +534,17 @@
     Post *postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
     // check if icon is in CoreData DB, if so, just return it by reference
-    if (!postRecord.postIcon) {
-        dispatch_queue_t queue = dispatch_queue_create("get Icon",NULL);
-        dispatch_async(queue, ^{
-            
-            // make sure the URL string is not nil
-            if (postRecord.imageURLString) {
+    if (!postRecord.postIcon && postRecord.imageURLString) {
+        
+        IconDownloader *downloader = [[IconDownloader alloc] initWithURL:postRecord.imageURLString forPostID:postRecord.postID withDelegate:self];
 
-                // load data from URL
-                NSError *error = Nil;
-                NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:postRecord.imageURLString] options:NSDataReadingUncached error:&error];
-                
-                NSLog(@"got --> %@",postRecord.postName);
-
-                
-                // if we got data AND no error, proceed. Else let the placeholder.png remain
-                if (data && !error)
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        // scale the incoming image to the icon size
-                        UIImage *iconImage = [self adjustImage:[UIImage imageWithData:data]];
-                        
-                        // make sure the context still exists (could happen if view disappears), and update icon
-                        if (postRecord.managedObjectContext) {
-                            postRecord.postIcon = UIImageJPEGRepresentation(iconImage, 1.0);
-                            
-                            // save any loaded changes at this point
-                            [self.appDelegate.parentMOC save:NULL];
-
-                        }
-                        
-                    });
-            }
-        });
-        dispatch_release(queue);
+        if (downloader) {
+            [self.downloadControl setObject:downloader forKey:[NSNumber numberWithInt:postRecord.postID]];
+        }
     }
 }
 
-- (UIImage *)adjustImage:(UIImage *)image
+/* - (UIImage *)adjustImage:(UIImage *)image
 {
     if (image.size.width != POST_ICON_HEIGHT && image.size.height != POST_ICON_HEIGHT)
 	{
@@ -587,7 +603,7 @@
     }
     else
         return image;
-}
+} */
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     

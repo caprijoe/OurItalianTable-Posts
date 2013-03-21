@@ -18,8 +18,9 @@
 #import "MapViewController.h"
 #import "RegionAnnotation.h"
 #import "RemoteFillDatabaseFromXMLParser.h"
+#import "IconDownloader.h"
 
-@interface GeneralizedPostsTableViewController : UIViewController  <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate>
+@interface GeneralizedPostsTableViewController : UIViewController  <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, iconDownloaderDelegate>
 
 // public properties
 @property (nonatomic, strong) NSString *category;                   // food || wine || wanderings, favs == NO
