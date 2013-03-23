@@ -20,7 +20,7 @@
 #import "RemoteFillDatabaseFromXMLParser.h"
 #import "IconDownloader.h"
 
-@interface GeneralizedPostsTableViewController : UIViewController  <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, iconDownloaderDelegate>
+@interface GeneralizedPostsTableViewController : UIViewController  <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
 
 // public properties
 @property (nonatomic, strong) NSString *category;                   // food || wine || wanderings, favs == NO

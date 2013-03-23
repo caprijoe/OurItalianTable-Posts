@@ -9,14 +9,18 @@
 
 #define POST_ICON_HEIGHT        48
 
-@protocol iconDownloaderDelegate <NSObject>
+@protocol IconDownloaderDelegate <AtomicGetFileFromRemoteURLDelegate>
 
--(void)iconDownloadComplete:(NSData *)iconData forPostID:(int64_t)postID withSucess:(BOOL)success;
+// -(void)iconDownloadComplete:(NSData *)iconData forPostID:(int64_t)postID withSucess:(BOOL)success;
 
 @end
 
-@interface IconDownloader : NSObject <AtomicGetFileFromRemoteURLDelegate>
+@interface IconDownloader : AtomicGetFileFromRemoteURL;
 
--(id)initWithURL:(NSString *)incomingURLString forPostID:(int64_t)postID withDelegate:(id<iconDownloaderDelegate>)delegate;
+@property (nonatomic, strong) NSString *postID;
+@property (nonatomic, strong) NSURL *url;
+
+-(id)init;
+-(void)startFileDownload;
 
 @end

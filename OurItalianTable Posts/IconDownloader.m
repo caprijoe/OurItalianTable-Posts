@@ -6,13 +6,14 @@
 //  Copyright (c) 2013 Our Italian Table. All rights reserved.
 //
 
-#import "IconDownloader.h"
+#define IMAGE_THUMBNAIL_SIZE @"-150x150"
+
+#import "IconDownloader.h" 
+
 
 @interface IconDownloader()
 @property (nonatomic, strong) AtomicGetFileFromRemoteURL *iconGetter;
-@property (nonatomic, strong) id<iconDownloaderDelegate>delegate;
-@property (nonatomic) int64_t postID;
-@property (nonatomic, strong) NSString *originalURL;
+@property (nonatomic, strong) NSURL *originalURL;
 @property (nonatomic) int numberOfAttempts;
 @end
 
@@ -20,47 +21,35 @@
 
 #pragma mark - Init method
 
--(id)initWithURL:(NSString *)incomingURLString forPostID:(int64_t)postID withDelegate:(id<iconDownloaderDelegate>)delegate
+-(id)init
 {
-    self = [super init];
+    self= [super init];
     if (self) {
-        
-        self.delegate = delegate;
-        self.postID = postID;
-        self.originalURL = incomingURLString;
-        self.numberOfAttempts = 0;
-
-        // edit image URL to get path thumbnail instead, if available
-        // -- delete and existing dimension
-        // -- -150x150 to the primary URL
-        
-        NSString *newURL = [self modifyURLToThumbnailFile:incomingURLString];
-                        
-        // try first with altereded ULR string to get thumbnail
-        self.iconGetter = [[AtomicGetFileFromRemoteURL alloc] init];
-        self.iconGetter.url = [NSURL URLWithString:newURL];
-        self.iconGetter.lastUpdateToDBDate = nil;
         self.iconGetter.expectedMIMETypes = @[@"image/jpeg", @"image/png"];
-        self.iconGetter.delegate = self;
-        
-        [self.iconGetter startFileDownload];
-        
-        if (!self.iconGetter) {
-            
-            [self.delegate iconDownloadComplete:nil forPostID:0 withSucess:NO];
-            
-        } else {
-            
-            self.numberOfAttempts++;
-            
-        }
+        self.numberOfAttempts = 0;
     }
+    
     return self;
+}
+
+-(void)startFileDownload
+{
+    
+    // edit image URL to get path thumbnail instead, if available
+    // -- delete and existing dimension
+    // -- -150x150 to the primary URL
+    
+    self.originalURL = self.url;
+    
+    self.url = [self modifyURLToThumbnailFile:self.originalURL];
+    
+    // try first with altereded ULR string to get thumbnail
+    [super startFileDownload];
 }
 
 #pragma mark - External Delegate
 
--(void)didFinishLoadingURL:(NSData *)iconFile withSuccess:(BOOL)success findingDate:(NSString *)date
+-(void)exitGetFileWithData:(NSData *)iconFile withSuccess:(BOOL)success withLastUpdateDate:(NSString *)date
 {
     UIImage *newImage;
     
@@ -71,37 +60,23 @@
         
         NSData *iconData;
             iconData = UIImageJPEGRepresentation(newImage, 1.0);
-        
-        [self.delegate iconDownloadComplete:iconData forPostID:self.postID withSucess:YES];
+                
+        [self.delegate didFinishLoadingURL:iconData withSuccess:YES findingMetadata:self.postID];
         
     } else if (self.numberOfAttempts == 1) {
         
         // could not get thumbnail file, now try with original URL
-        self.iconGetter = [[AtomicGetFileFromRemoteURL alloc] init];
-        self.iconGetter.url = [NSURL URLWithString:self.originalURL];
-        self.iconGetter.lastUpdateToDBDate = nil;
-        self.iconGetter.expectedMIMETypes = @[@"image/jpeg", @"image/png"];
-        self.iconGetter.delegate = self;
+        self.iconGetter.url = self.originalURL;
         
         [self.iconGetter startFileDownload];
-        
-        if (!self.iconGetter) {
-            
-            [self.delegate iconDownloadComplete:nil forPostID:0 withSucess:NO];
-            
-        } else {
-            
-            self.numberOfAttempts++;
-            
-        }
-        
+                
     } else if (self.numberOfAttempts == 2) {
         
-        // failed on second attempt with original URL, fail out
-        [self.delegate iconDownloadComplete:nil forPostID:0 withSucess:NO];
+        // failed on second attempt with original URL, fail out        
+        [self.delegate didFinishLoadingURL:nil withSuccess:NO findingMetadata:nil];
+
         
     }
-        
 }
 
 #pragma mark - Private methods
@@ -124,13 +99,15 @@
     return newImage;
 }
 
--(NSString *)modifyURLToThumbnailFile:(NSString *)incomingURLString
+-(NSURL *)modifyURLToThumbnailFile:(NSURL *)incomingURL
 {
     
     // edit image URL to get path thumbnail instead, if available
-    // -- delete and existing dimension
+    // -- delete any existing dimension
     // -- -150x150 to the primary URL
-    // -- if malformed ULR (no extension), just return incoming
+    // -- if malformed URL (no extension), just return incoming
+    
+    NSString *incomingURLString = [incomingURL absoluteString];
     
     NSRange searchRange = [incomingURLString rangeOfString:@"." options:NSBackwardsSearch];
     if (searchRange.location != NSNotFound) {
@@ -138,7 +115,7 @@
         NSString *primaryURL = [incomingURLString stringByDeletingPathExtension];
         NSString *fileExtension = [incomingURLString pathExtension];
         
-        // look for trailing size information
+        // look for trailing size information -dddxddd[eol]
         NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"(-)(\\d+)(x)(\\d+)$" options:NSRegularExpressionCaseInsensitive error:nil];
         NSTextCheckingResult *match = [regex firstMatchInString:primaryURL options:0 range:NSMakeRange(0, [primaryURL length])];
         
@@ -149,14 +126,14 @@
         }
         
         // attach the thumbnail size for WP
-        primaryURL = [primaryURL stringByAppendingString:@"-150x150"];
+        primaryURL = [primaryURL stringByAppendingString:IMAGE_THUMBNAIL_SIZE];
         
-        return [primaryURL stringByAppendingPathExtension:fileExtension];
+        return [NSURL URLWithString:[primaryURL stringByAppendingPathExtension:fileExtension]];
         
     } else {
         
         // no extension, just return incoming
-        return incomingURLString;
+        return incomingURL;
         
     }
 }

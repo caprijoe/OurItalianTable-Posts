@@ -364,17 +364,17 @@
     [self.refreshControl endRefreshing];
 }
 
--(void)iconDownloadComplete:(NSData *)iconData forPostID:(int64_t)postID withSucess:(BOOL)success
+-(void)didFinishLoadingURL:(NSData *)iconData withSuccess:(BOOL)success findingMetadata:(NSString *)postID
 {
     if (iconData && success) {
         
         // get rid of the icondownloader
-        [self.downloadControl removeObjectForKey:[NSNumber numberWithInt:postID]];
+        [self.downloadControl removeObjectForKey:postID];
         
         Post *thisPost = nil;
         
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
-        request.predicate = [NSPredicate predicateWithFormat:@"postID = %i", postID];
+        request.predicate = [NSPredicate predicateWithFormat:@"postID = %i", [postID intValue]];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"postID" ascending:YES];
         request.sortDescriptors = @[sortDescriptor];
         
@@ -536,10 +536,15 @@
     // check if icon is in CoreData DB, if so, just return it by reference
     if (!postRecord.postIcon && postRecord.imageURLString) {
         
-        IconDownloader *downloader = [[IconDownloader alloc] initWithURL:postRecord.imageURLString forPostID:postRecord.postID withDelegate:self];
+        IconDownloader *downloader = [[IconDownloader alloc] init];
+        downloader.url = [NSURL URLWithString:postRecord.imageURLString];
+        downloader.postID = [NSString stringWithFormat:@"%lld",postRecord.postID];
+        downloader.delegate = self;
+        
 
         if (downloader) {
-            [self.downloadControl setObject:downloader forKey:[NSNumber numberWithInt:postRecord.postID]];
+            [self.downloadControl setObject:downloader forKey:downloader.postID];
+            [downloader startFileDownload];
         }
     }
 }
