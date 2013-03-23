@@ -30,9 +30,7 @@
 }
 
 -(void)startFileDownload {
-    
-    NSLog(@"start download");
-    
+        
     // launch the filegetter - must be on main thread because it's using NSURLConnection
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -208,7 +206,7 @@
     [self prepareToExit];
     
     // call back and tell caller were done
-    [self.delegate didFinishLoadingURL:data withSuccess:success findingDate:date];
+    [self.delegate didFinishLoadingURL:data withSuccess:success findingMetadata:date];
     
 }
 

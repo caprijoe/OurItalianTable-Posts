@@ -18,7 +18,7 @@
 
 @end
 
-@interface RemoteFillDatabaseFromXMLParser : NSObject <AtomicGetFileFromRemoteURLDelegate, ParseWordPressXMLDelegate>
+@interface RemoteFillDatabaseFromXMLParser : NSObject <XMLFileGetterDelegate, ParseWordPressXMLDelegate>
 
 // zero second means never time out
 -(id)initWithURL:(NSURL *)url

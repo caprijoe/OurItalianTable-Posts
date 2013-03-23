@@ -14,13 +14,13 @@
 @protocol AtomicGetFileFromRemoteURLDelegate <NSObject>;
 
 // call back when file load complete, not needed or error
-//              XMLfile     success         date
+//              XMLfile     success         metadata
 // -------------------------------------------------------
 // downloaded   data        YES             date returned
 // not needed   nil         YES             input date
 // error        nil         NO              nil
 
--(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingDate:(NSString *)date;
+-(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingMetadata:(NSString *)date;
 
 @end
 

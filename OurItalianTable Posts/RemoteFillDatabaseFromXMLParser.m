@@ -54,7 +54,7 @@
 #pragma mark - External delegates - GetFileFromRemoteURL
 
 
--(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingDate:(NSString *)date {
+-(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingMetadata:(NSString *)date {
     
     // release URL connection object
     self.fileGetter = nil;

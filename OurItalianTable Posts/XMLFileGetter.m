@@ -45,7 +45,7 @@
     // process timeout
     self.reach.reachableBlock = nil;
     
-    [self.delegate didFinishLoadingURL:nil withSuccess:NO findingDate:nil];
+    [self.delegate didFinishLoadingURL:nil withSuccess:NO findingMetadata:nil];
 
     
 }
@@ -82,7 +82,7 @@
         NSData *unZippedXMLfile = [self unZipFile:XMLfile];
         
         // successfully loaded file or discovered remote file was of same date
-        [self.delegate didFinishLoadingURL:unZippedXMLfile withSuccess:success findingDate:date];
+        [self.delegate didFinishLoadingURL:unZippedXMLfile withSuccess:success findingMetadata:date];
 
     
     } else if (success && !XMLfile) {
@@ -91,7 +91,7 @@
         self.reach = nil;
                 
         // successfully loaded file or discovered remote file was of same date
-        [self.delegate didFinishLoadingURL:nil withSuccess:success findingDate:date];
+        [self.delegate didFinishLoadingURL:nil withSuccess:success findingMetadata:date];
 
     } else {
         

@@ -1,5 +1,5 @@
 //
-//  RemoteFileGetter.h
+//  XMLFileGetter.h
 //  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 1/1/13.
@@ -10,6 +10,10 @@
 #import "Reachability.h"
 #import "AtomicGetFileFromRemoteURL.h"
 #import "SSZipArchive.h"
+
+@protocol XMLFileGetterDelegate <AtomicGetFileFromRemoteURLDelegate>
+
+@end
 
 @interface XMLFileGetter : AtomicGetFileFromRemoteURL;
 
