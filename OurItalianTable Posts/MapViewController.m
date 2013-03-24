@@ -34,13 +34,11 @@
 
 - (void)viewDidLoad
 {
-    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
+    // setup split bar button item
+    [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
     
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
-    
-    // self button for detail splitViewController when in portrait
-    [self setSplitViewBarButtonItem:rootPopoverButtonItem];
     
     // setup the mapp type and set the UIMapView delegate
     self.mapView.mapType = MKMapTypeHybrid; // MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
@@ -83,13 +81,11 @@
 
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
-    if (_splitViewBarButtonItem !=splitViewBarButtonItem) {
-        NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
-        if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-        if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
-        self.toolbar.items = toolbarsItems;
-        _splitViewBarButtonItem = splitViewBarButtonItem;
-    } 
+    NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
+    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
+    if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
+    self.toolbar.items = toolbarsItems;
+    _splitViewBarButtonItem = splitViewBarButtonItem;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -23,7 +23,6 @@
 // outlets
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic,weak) IBOutlet UIToolbar *toolbar;
-@property (nonatomic,weak) UIBarButtonItem *rootPopoverButtonItem;
 
 // public properties
 @property (nonatomic,weak) id<MapViewControllerDelegate> delegate;
