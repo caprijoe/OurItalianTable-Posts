@@ -235,8 +235,10 @@
     [self performSegueWithIdentifier:@"Push Web View" sender:self];
     
     // get rid of left side splitview
-    OITTabBarController *topVC = (OITTabBarController *)self.tabBarController;
-    [topVC.masterPopoverController dismissPopoverAnimated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        OITTabBarController *topVC = (OITTabBarController *)self.tabBarController;
+        [topVC.masterPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 #pragma mark - UISearchDelegate
@@ -411,22 +413,36 @@
 
 #pragma mark - Handle seques
 
+-(id)splitViewDetailWithBarButtonItem
+{
+    id detail = [self.splitViewController.viewControllers lastObject];
+    if (![detail respondsToSelector:@selector(setSplitViewBarButtonItem:)] || ![detail respondsToSelector:@selector(splitViewBarButtonItem)]) detail = nil;
+    return detail;
+}
+
+-(void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
+{
+    UIBarButtonItem *splitViewBarButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem];
+    [[self splitViewDetailWithBarButtonItem] setSplitViewBarButtonItem:nil];
+    if (splitViewBarButtonItem) [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"Push Web View"]) {
         [segue.destinationViewController setThisPost:self.webRecord];
         [segue.destinationViewController setDelegate:self];
-        [segue.destinationViewController setRootPopoverButtonItem:((OITTabBarController *)self.tabBarController).rootPopoverButtonItem];
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
         [segue.destinationViewController setDelegate:self];
         [segue.destinationViewController setGeosInUseList:[self.geoList copy]];
         self.categoryPickerSegue = segue;
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
-        [segue.destinationViewController setRootPopoverButtonItem:((OITTabBarController *)self.tabBarController).rootPopoverButtonItem];
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     } else if ([segue.identifier isEqualToString:@"Show Region Map"]) {
         [segue.destinationViewController setGeoCoordinates:[self.geoCoordinates copy]];
         [segue.destinationViewController setDelegate:self];
-        [segue.destinationViewController setRootPopoverButtonItem:((OITTabBarController *)self.tabBarController).rootPopoverButtonItem];
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     }
 }
 
