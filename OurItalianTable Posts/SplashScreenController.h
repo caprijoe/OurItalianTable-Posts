@@ -12,9 +12,6 @@
 
 @interface SplashScreenController : UIViewController <SplitViewBarButtonItemPresenter>
 
-// properties
-@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;
-
 // outlets
 @property (nonatomic,weak) IBOutlet UIToolbar *toolbar;             // toolbar for "bar button dance"
 
