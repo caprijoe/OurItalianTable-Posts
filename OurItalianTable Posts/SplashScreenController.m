@@ -17,8 +17,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-            
-    self.SplitViewBarButtonItem = self.rootPopoverButtonItem;
+                
+    [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
     
 }
 
@@ -26,13 +26,11 @@
 
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
-    if (_splitViewBarButtonItem !=splitViewBarButtonItem) {
-        NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
-        if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-        if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
-        self.toolbar.items = toolbarsItems;
-        _splitViewBarButtonItem = splitViewBarButtonItem;
-    }
+    NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
+    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
+    if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
+    self.toolbar.items = toolbarsItems;
+    _splitViewBarButtonItem = splitViewBarButtonItem;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
