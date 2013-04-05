@@ -13,6 +13,7 @@
 #import <Twitter/Twitter.h>
 #import "SplitViewBarButtonItemPresenter.h"
 #import "Post.h"
+#import "OITTabBarController.h"
 
 @protocol WebViewControllerDelegate
 -(void)didClickTag:(NSString *)tag;
@@ -23,11 +24,10 @@
 // outlets
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (nonatomic, weak) IBOutlet UIToolbar *topToolbar;
-@property (nonatomic, weak) IBOutlet UIToolbar *bottomToolbar;
 @property (nonatomic, weak) IBOutlet UINavigationItem *topNavBar;
 
 // public properties
-@property (nonatomic, strong) UIBarButtonItem *rootPopoverButtonItem;           // button for rotation support
 @property (nonatomic, strong) Post *thisPost;                                   // post to be displayed
 @property (nonatomic, strong) id <WebViewControllerDelegate> delegate;          // delegate call back for TAG button
+
 @end

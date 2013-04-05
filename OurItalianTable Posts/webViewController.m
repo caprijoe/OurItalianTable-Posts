@@ -39,95 +39,24 @@
     }
 }
 
-#pragma mark - Private methods
-
--(NSString *)grabTextFrom:(NSString *)incomingText
- viaRegularExpression:(NSString *)regexString {
-    
-    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:nil];
-    NSTextCheckingResult *result = [regex firstMatchInString:incomingText options:NSRegularExpressionCaseInsensitive range:NSMakeRange(0, [incomingText length])];
-    return [incomingText substringWithRange:result.range];
-}
-
--(NSString *)modifyCaptionBlock:(NSString *)originalCaptionBlock {
-    
-    NSString *alignmentAttributeText;                                                   // location for storing "align=" value
-    NSString *widthAttributeText;                                                       // location for storing "width=" value
-    NSString *captionAttributeText;                                                     // location for storing "caption=" value
-    NSString *captionText;                                                              // location for storing -></a>text[/caption]
-    NSString *imageTag;                                                                 // location for storing "<img ... />" tag
-    NSString *imageWidthOnTag;                                                          // width value on IMG tage
-    
-    imageTag = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"<img[^>]*>"];
-    imageWidthOnTag = [self grabTextFrom:imageTag viaRegularExpression:@"(?<= width=\").*?(?=\")"];
-    alignmentAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= align=\").*?(?=\")"];
-    // following not used, width on IMG tag used instead in case image has been resized
-    widthAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= width=\").*?(?=\")"];
-    captionAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= caption=\").*?(?=\")"];
-    captionText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
-        
-    return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, imageWidthOnTag, imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
-}
-
--(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
-    return [incomingText stringByReplacingOccurrencesOfString:@"\n\n" withString:@"<p>\n"];
-}
-
--(NSString *)modifyAllCaptionBlocks:(NSString *)incomingText {
-    // captionScanner - edit the caption to true <div> structures; change WP to div. see example below
-    
-    /* [caption id="attachment_156" align="alignleft" width="300" caption="Zuppa Gallurese"]<a href="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" /></a>[/caption] */
-    
-    /* <div class="alignleft" style="width:300 px;font-size:80%;text-align:center;"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" />Zuppa Gallurese</div> */
-    
-    NSScanner *captionScanner = [NSScanner scannerWithString:incomingText];
-    NSString *accumulatedHTML = [[NSString alloc] init];                            // location for building new html with replaced [catpion] structure
-    NSString *foundString;                                // location for text between "[caption]" blocks
-    NSString *captionBlock;;
-    
-    [captionScanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@""]];
-    
-    [captionScanner scanUpToString:@"[caption" intoString:&accumulatedHTML];
-    while(![captionScanner isAtEnd]) {
-        
-        [captionScanner scanUpToString:@"[/caption]" intoString:&captionBlock];        
-        [captionScanner scanString:@"[/caption]" intoString:NULL];
-        captionBlock = [captionBlock stringByAppendingString:@"[/caption]"];
-        
-        accumulatedHTML = [accumulatedHTML stringByAppendingString:[self modifyCaptionBlock:captionBlock]];
-        
-        [captionScanner scanUpToString:@"[caption" intoString:&foundString];
-        if (foundString)
-            accumulatedHTML = [accumulatedHTML stringByAppendingString:foundString];        
-    }
-    return accumulatedHTML;
-}
-
 #pragma mark - View lifecycle support
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // if on ipad, set the root menu button by grabbing from the top of left stack
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;
-        [self setSplitViewBarButtonItem:rootPopoverButtonItem];
+    // set the split view bar button item
+    [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
+    
+    // if not coordinates in post, delete compass icon (last object)
+    if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0) {
+        
+        NSMutableArray *toolbar = [self.topToolbar.items mutableCopy];
+        [toolbar removeLastObject];
+        self.topToolbar.items = [toolbar copy];
+
     }
     
-    // make sure bottom toolbar in nav controller is hidden
-    [self.navigationController setToolbarHidden:YES];
-    
-    // grab current toolbar
-    NSMutableArray *toolbar = [self.bottomToolbar.items mutableCopy];
-        
-    // if not coordinates in post, delete compass icon (position #2, index #1)
-    if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0)
-        [toolbar removeObjectAtIndex:1];
-    
-    // set new version of toolbar
-    self.bottomToolbar.items = [toolbar copy];
-    
-     // fix CRLFs & WP caption blocks so they show on in webview
+    // fix CRLFs & WP caption blocks so they show on in webview
     NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.thisPost.postHTML]];
             
     // Load up the style list, and the title and append
@@ -169,15 +98,13 @@
 
 #pragma mark - Rotation Support
 
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    if (_splitViewBarButtonItem !=splitViewBarButtonItem) {
-        NSMutableArray *toolbarsItems = [self.topToolbar.items mutableCopy];
-        if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-        if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
-        self.topToolbar.items = toolbarsItems;
-        _splitViewBarButtonItem = splitViewBarButtonItem;
-    }
+    NSMutableArray *toolbarsItems = [self.topToolbar.items mutableCopy];
+    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
+    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
+    self.topToolbar.items = toolbarsItems;
+    _splitViewBarButtonItem = barButtonItem;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -186,6 +113,86 @@
         return (interfaceOrientation == UIInterfaceOrientationPortrait);
     else  
         return YES;
+}
+
+#pragma mark - Private methods
+
+-(NSString *)grabTextFrom:(NSString *)incomingText
+     viaRegularExpression:(NSString *)regexString {
+    
+    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:nil];
+    NSTextCheckingResult *result = [regex firstMatchInString:incomingText options:NSMatchingReportProgress range:NSMakeRange(0, [incomingText length])];
+    return [incomingText substringWithRange:result.range];
+}
+
+-(NSString *)modifyCaptionBlock:(NSString *)originalCaptionBlock {
+    
+    NSString *alignmentAttributeText;                                                   // location for storing "align=" value
+    NSString *widthAttributeText;                                                       // location for storing "width=" value
+    NSString *captionAttributeText;                                                     // location for storing "caption=" value
+    NSString *captionText;                                                              // location for storing -></a>text[/caption]
+    NSString *imageTag;                                                                 // location for storing "<img ... />" tag
+    NSString *imageWidthOnTag;                                                          // width value on IMG tage
+    
+    imageTag = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"<img[^>]*>"];
+    imageWidthOnTag = [self grabTextFrom:imageTag viaRegularExpression:@"(?<= width=\").*?(?=\")"];
+    alignmentAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= align=\").*?(?=\")"];
+    // following not used, width on IMG tag used instead in case image has been resized
+    widthAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= width=\").*?(?=\")"];
+    captionAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= caption=\").*?(?=\")"];
+    captionText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
+    
+    return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, imageWidthOnTag, imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
+}
+
+-(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
+    
+    /* print string in hex
+     
+     NSMutableString *result = [[NSMutableString alloc] init];
+     const char *cstring = [incomingText UTF8String];
+     int i;
+     for (i=0; i<strlen(cstring); i++) {
+     [result appendString:[NSString stringWithFormat:@"%c[%02x]",cstring[i],cstring[i]]];
+     }
+     NSLog(@"hex--> %@",result); */
+    
+    
+    /*    return [incomingText stringByReplacingOccurrencesOfString:@"\n\n" withString:@"<p>\n"]; */
+    
+    return [incomingText stringByReplacingOccurrencesOfString:@"\x0D\x0A\x0D\x0A" withString:@"<p>\x0D\x0A"];
+    
+    
+}
+
+-(NSString *)modifyAllCaptionBlocks:(NSString *)incomingText {
+    // captionScanner - edit the caption to true <div> structures; change WP to div. see example below
+    
+    /* [caption id="attachment_156" align="alignleft" width="300" caption="Zuppa Gallurese"]<a href="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" /></a>[/caption] */
+    
+    /* <div class="alignleft" style="width:300 px;font-size:80%;text-align:center;"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" />Zuppa Gallurese</div> */
+    
+    NSScanner *captionScanner = [NSScanner scannerWithString:incomingText];
+    NSString *accumulatedHTML = [[NSString alloc] init];                            // location for building new html with replaced [catpion] structure
+    NSString *foundString;                                // location for text between "[caption]" blocks
+    NSString *captionBlock;;
+    
+    [captionScanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@""]];
+    
+    [captionScanner scanUpToString:@"[caption" intoString:&accumulatedHTML];
+    while(![captionScanner isAtEnd]) {
+        
+        [captionScanner scanUpToString:@"[/caption]" intoString:&captionBlock];
+        [captionScanner scanString:@"[/caption]" intoString:NULL];
+        captionBlock = [captionBlock stringByAppendingString:@"[/caption]"];
+        
+        accumulatedHTML = [accumulatedHTML stringByAppendingString:[self modifyCaptionBlock:captionBlock]];
+        
+        [captionScanner scanUpToString:@"[caption" intoString:&foundString];
+        if (foundString)
+            accumulatedHTML = [accumulatedHTML stringByAppendingString:foundString];
+    }
+    return accumulatedHTML;
 }
 
 #pragma mark - Action sheets
@@ -356,6 +363,11 @@
     [self presentActionSheetforSharingFromBarButton:sender];
 
 }
+
+- (IBAction)fireBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
  
 #pragma mark - External Delegates
 -(void)didClickTag:(NSString *)tag {
