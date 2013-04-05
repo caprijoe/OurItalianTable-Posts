@@ -11,7 +11,7 @@
 
 @implementation OITLaunchViewController
 
-
+#pragma mark - View lifecycle methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -36,7 +36,7 @@
     [self configureButtons];
     
     // put the splash screen up in the detail VC
-    [self resetDetailPanel];
+//    [self resetDetailPanel];
 }
 
 
@@ -66,11 +66,11 @@
 
 -(void)configureButtons {
     
-    // configure buttons
-    [self configureButton:self.foodButton withText:@"Food" withImage:[UIImage imageNamed:@"48-fork-and-knife.png"]];
-    [self configureButton:self.wineButton withText:@"Wine" withImage:[UIImage imageNamed:@"273-grapes.png"]];
-    [self configureButton:self.wanderingsButton withText:@"Wanderings" withImage:[UIImage imageNamed:@"103-map.png"]];
-    [self configureButton:self.bookmarksButton withText:@"Bookmarks" withImage:[UIImage imageNamed:@"58-bookmark.png"]];
+    for (UIButton *button in self.buttonArray) {
+        
+        // configure buttons
+        [self configureButton:button];
+    }
 
 }
 
@@ -80,7 +80,8 @@
         [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
 }
 
--(void)configureButton:(UIButton *)button withText:(NSString *)title withImage:(UIImage *)image {
+-(void)configureButton:(UIButton *)button
+{
     
     // Draw a custom gradient
     CAGradientLayer *btnGradient = [CAGradientLayer layer];
@@ -97,16 +98,12 @@
     [buttonLayer setCornerRadius:5.0f];
     
     // adjust title
-    [button setTitle:title forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont fontWithName:@"Palatino" size:24.0 ]];
     [button setTitleColor:[UIColor colorWithRed:(50.0/255.0) green:(79.0/255.0) blue:(133.0/255.0) alpha:1.0] forState:UIControlStateNormal];
-    
-    // adjust image
-    [button setImage:image forState:UIControlStateNormal];
-    
+        
     // adjust spacing between title and image
-    CGFloat textWidth = ([title sizeWithFont:[UIFont fontWithName:@"Palatino" size:24.0]]).width;
-    CGFloat imageWidth = image.size.width;
+    CGFloat textWidth = ([button.titleLabel.text sizeWithFont:[UIFont fontWithName:@"Palatino" size:24.0]]).width;
+    CGFloat imageWidth = button.imageView.image.size.width;
     CGFloat edgeSpacing = 15.0;
     CGFloat spacing = (button.bounds.size.width - (edgeSpacing*2) - imageWidth - textWidth);
     [button setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, spacing)];
@@ -158,8 +155,13 @@
     else  
         return YES;
 }
-- (IBAction)foodButtonClicked:(id)sender {
-    self.tabBarController.selectedIndex = 1;
+
+#pragma mark - IBActions
+
+- (IBAction)buttonClicked:(UIButton *)sender {
+    
+    // home is first tab so add one
+    self.tabBarController.selectedIndex = sender.tag + 1;
 }
 
 @end

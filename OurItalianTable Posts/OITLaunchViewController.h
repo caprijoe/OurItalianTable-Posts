@@ -18,11 +18,9 @@
 @interface OITLaunchViewController : UIViewController ;
 
 // outlets
-@property (nonatomic,weak) IBOutlet UIButton *foodButton;
-@property (nonatomic,weak) IBOutlet UIButton *wineButton;
-@property (nonatomic,weak) IBOutlet UIButton *wanderingsButton;
-@property (nonatomic,weak) IBOutlet UIButton *bookmarksButton;
+
 @property (nonatomic,weak) IBOutlet UIImageView *logo;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonArray;
 
 // rotation support
 @property (nonatomic,strong) UIBarButtonItem *rootPopoverButtonItem;            // "main menu" button for use by right controllers
