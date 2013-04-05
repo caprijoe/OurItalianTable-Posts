@@ -40,8 +40,6 @@
 
 -(void)invokeTimeout {
     
-    NSLog(@"killed by timer");
-    
     // process timeout
     self.reach.reachableBlock = nil;
     
@@ -70,7 +68,6 @@
 
 -(void)exitGetFileWithData:(NSData *)XMLfile withSuccess:(BOOL)success withLastUpdateDate:(NSString *)date
 {
-    NSLog(@"exiting ...");
     
     [self prepareToExit];
     
@@ -102,9 +99,7 @@
             self.timer = [NSTimer scheduledTimerWithTimeInterval:self.seconds target:self selector:@selector(invokeTimeout) userInfo:nil repeats:NO];
         
         __weak XMLFileGetter *selfInBlock = self;
-        
-        NSLog(@"waiting for internet connection");
-        
+                
         self.reach.reachableBlock = ^(Reachability * reachability)
         {
             [selfInBlock startFileDownload];
