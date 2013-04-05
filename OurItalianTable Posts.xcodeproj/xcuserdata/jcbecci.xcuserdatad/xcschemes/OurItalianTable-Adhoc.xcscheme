@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "69AD4889156054C9009976B8"
-               BuildableName = "OurItalianTable Posts.app"
+               BuildableName = "OurItalianTable.app"
                BlueprintName = "OurItalianTable Posts"
                ReferencedContainer = "container:OurItalianTable Posts.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69AD4889156054C9009976B8"
-            BuildableName = "OurItalianTable Posts.app"
+            BuildableName = "OurItalianTable.app"
             BlueprintName = "OurItalianTable Posts"
             ReferencedContainer = "container:OurItalianTable Posts.xcodeproj">
          </BuildableReference>
@@ -52,17 +52,12 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69AD4889156054C9009976B8"
-            BuildableName = "OurItalianTable Posts.app"
+            BuildableName = "OurItalianTable.app"
             BlueprintName = "OurItalianTable Posts"
             ReferencedContainer = "container:OurItalianTable Posts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
-         <AdditionalOption
-            key = "NSZombieEnabled"
-            value = "YES"
-            isEnabled = "YES">
-         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -75,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69AD4889156054C9009976B8"
-            BuildableName = "OurItalianTable Posts.app"
+            BuildableName = "OurItalianTable.app"
             BlueprintName = "OurItalianTable Posts"
             ReferencedContainer = "container:OurItalianTable Posts.xcodeproj">
          </BuildableReference>
@@ -85,7 +80,7 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Distribution"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
