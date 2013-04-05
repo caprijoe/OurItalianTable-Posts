@@ -2,8 +2,8 @@
 //  Category.m
 //  OurItalianTable Posts
 //
-//  Created by Joseph Becci on 12/21/12.
-//  Copyright (c) 2012 Our Italian Table. All rights reserved.
+//  Created by Joseph Becci on 3/16/13.
+//  Copyright (c) 2013 Our Italian Table. All rights reserved.
 //
 
 #import "Category.h"

@@ -33,7 +33,6 @@
     } else if ([matches count] == 0) {
         
         // no match found, insert
-        NSLog(@"inserting = %lli",postRecord.postID);
         thisPost = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:context];
         [self updatePost:thisPost withRecord:postRecord inManagedObjectContext:context];
         
@@ -41,7 +40,6 @@
         
         // match found, update
         thisPost = [matches lastObject];
-        NSLog(@"updating = %lli",postRecord.postID);
         [self updatePost:thisPost withRecord:postRecord inManagedObjectContext:context];
 
     }
