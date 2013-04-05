@@ -12,12 +12,12 @@
 
 
 @interface IconDownloader()
-@property (nonatomic, strong) AtomicGetFileFromRemoteURL *iconGetter;
 @property (nonatomic, strong) NSURL *originalURL;
 @property (nonatomic) int numberOfAttempts;
 @end
 
 @implementation IconDownloader
+@synthesize url = _url;
 
 #pragma mark - Init method
 
@@ -25,23 +25,38 @@
 {
     self= [super init];
     if (self) {
-        self.iconGetter.expectedMIMETypes = @[@"image/jpeg", @"image/png"];
+        self.expectedMIMETypes = @[@"image/jpeg", @"image/png"];
         self.numberOfAttempts = 0;
     }
     
     return self;
 }
 
+#pragma mark - Setters
+
+-(void)setUrl:(NSURL *)url
+{
+    // first time thru (url == nil), save URL and add URL with default thumbnail size
+    // after just set URL to incoming parm
+    
+    if (!_url) {
+        
+        // edit image URL to get path thumbnail instead, if available
+        // -- delete and existing dimension
+        // -- -150x150 to the primary URL
+        
+        self.originalURL = url;
+        
+        _url = [self modifyURLToThumbnailFile:self.originalURL];
+    } else
+        _url = url;
+}
+
 -(void)startFileDownload
 {
     
-    // edit image URL to get path thumbnail instead, if available
-    // -- delete and existing dimension
-    // -- -150x150 to the primary URL
-    
-    self.originalURL = self.url;
-    
-    self.url = [self modifyURLToThumbnailFile:self.originalURL];
+    // increment tries
+    self.numberOfAttempts++;
     
     // try first with altereded ULR string to get thumbnail
     [super startFileDownload];
@@ -51,12 +66,14 @@
 
 -(void)exitGetFileWithData:(NSData *)iconFile withSuccess:(BOOL)success withLastUpdateDate:(NSString *)date
 {
+    [super prepareToExit];
+    
     UIImage *newImage;
     
     if (iconFile && success)
     {
+        
         newImage = [self createAndAdjustImage:iconFile];
-        self.iconGetter = nil;
         
         NSData *iconData;
             iconData = UIImageJPEGRepresentation(newImage, 1.0);
@@ -64,17 +81,16 @@
         [self.delegate didFinishLoadingURL:iconData withSuccess:YES findingMetadata:self.postID];
         
     } else if (self.numberOfAttempts == 1) {
-        
+                
         // could not get thumbnail file, now try with original URL
-        self.iconGetter.url = self.originalURL;
+        self.url = self.originalURL;
         
-        [self.iconGetter startFileDownload];
+        [self startFileDownload];
                 
     } else if (self.numberOfAttempts == 2) {
-        
+                
         // failed on second attempt with original URL, fail out        
         [self.delegate didFinishLoadingURL:nil withSuccess:NO findingMetadata:nil];
-
         
     }
 }
