@@ -6,12 +6,14 @@
 //  Copyright (c) 2012 Joseph Becci. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
 
 @interface AppDelegate()
 @property (nonatomic, strong) UIManagedDocument *postsDatabase;                               // core DB file
 @property (nonatomic, strong) BundleFillDatabaseFromXMLParser *bundleDatabaseFiller;          // filler object for bundle
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *remoteDatabaseFiller;          // filled object for remote
+@property (nonatomic) int networkActivityCount;
 @end
 
 @implementation AppDelegate
@@ -20,6 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    NSLog(@"app start");
     
     // alloc init core database object
     NSURL *documentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -64,52 +68,6 @@
 
 #pragma mark - Shared methods for use in other classes
 
-// load up the table thumbnnail, if not cached, cache it
--(void)populateIcon:(Post *)postRecord
-            forCell:(UITableViewCell *)cell
-       forTableView:(UITableView *)tableView
-       forIndexPath:(NSIndexPath *)indexPath {
-    
-    // check if icon is in CoreData DB, if so, just return it by reference
-    if (postRecord.postIcon) {
-        cell.imageView.image = [UIImage imageWithData:postRecord.postIcon];
-        
-    // else if not found, load from internet. if can't load, just leave placeholder.png for cell
-    } else {
-        cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];
-        dispatch_queue_t queue = dispatch_queue_create("get Icon",NULL);
-        dispatch_async(queue, ^{
-            
-            // make sure the URL string is not nil
-            if (postRecord.imageURLString) {
-                
-                // load data from URL
-                NSError *error = Nil;
-                NSData *data =[NSData dataWithContentsOfURL:[NSURL URLWithString:postRecord.imageURLString] options:NSDataReadingUncached error:&error];
-                
-                // if we got data AND no error, proceed. Else let the placeholder.png remain
-                if (data && !error)
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        // scale the incoming image to the icon size
-                        UIImage *iconImage = [self adjustImage:[UIImage imageWithData:data]];
-                        
-                        // load into correct tableview cell
-                        UITableViewCell *correctCell = [tableView cellForRowAtIndexPath:indexPath];
-                        correctCell.imageView.image = iconImage;
-                        [correctCell setNeedsLayout];
-                        
-                        // make sure the context still exists (could happen if view disappears), and update icon
-                        if (postRecord.managedObjectContext)
-                            postRecord.postIcon = UIImageJPEGRepresentation(iconImage, 1.0);
-                        
-                    });
-            }
-        });
-        dispatch_release(queue);
-    }
-}
-
 // change display category to the one that WordPress knows
 -(NSString *)fixCategory:(NSString *)category {
     NSString *lc = [category lowercaseString];
@@ -117,6 +75,54 @@
     NSString *noQuote = [noComma stringByReplacingOccurrencesOfString:@"'" withString:@""];
     NSString *addHyphen = [noQuote stringByReplacingOccurrencesOfString:@" " withString:@"-"];
     return addHyphen;
+}
+
+// This class does not touch the background color, text color or text font of the original button
+-(void)configureButton:(UIButton *)button {
+        
+    // set background color - override storyboard
+    [button setBackgroundColor:[UIColor blackColor]];
+    
+    // adjust corners
+    CALayer *buttonLayer = [button layer];
+    [buttonLayer setMasksToBounds:YES];
+    [buttonLayer setCornerRadius:5.0f];
+    
+    // Draw a custom gradient
+    CAGradientLayer *shineLayer = [CAGradientLayer layer];
+    shineLayer.frame = button.bounds;
+    shineLayer.colors = [NSArray arrayWithObjects:
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.75f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.0f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.0f alpha:0.4f].CGColor,
+                         nil];
+    shineLayer.locations = [NSArray arrayWithObjects:
+                            [NSNumber numberWithFloat:0.0f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.8f],
+                            [NSNumber numberWithFloat:1.0f],
+                            nil];
+    [buttonLayer addSublayer:shineLayer];
+    
+}
+
+-(void)startStopNetworkActivityIndicator:(BOOL)flag {
+    
+    if (flag) {
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        self.networkActivityCount++;
+
+        
+    } else {
+        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        self.networkActivityCount--;
+        
+    }
 }
 
 #pragma mark - Private methods
@@ -134,7 +140,7 @@
 
     // grab keys for "regions" and "islands" and add to candidateGeos dictionary
     NSMutableDictionary *mutableCandidateGeos = [NSMutableDictionary dictionary];
-    [mutableCandidateGeos addEntriesFromDictionary:self.categoryDictionary[@"Regions of Italy"]];
+    [mutableCandidateGeos addEntriesFromDictionary:self.categoryDictionary[@"Regions"]];
     [mutableCandidateGeos addEntriesFromDictionary:self.categoryDictionary[@"Islands"]];
     
     // set up the dictionary for public use
@@ -151,69 +157,9 @@
     self.candidateGeoSlugs = [muteableCandidateGeoSlugs copy];    
 }
 
-- (UIImage *)adjustImage:(UIImage *)image
-{
-    if (image.size.width != POST_ICON_HEIGHT && image.size.height != POST_ICON_HEIGHT)
-	{
-        
-        // Get base sizes
-        CGSize imageSize = image.size;
-        CGFloat sourceImageWidth = imageSize.width;
-        CGFloat sourceImageHeight = imageSize.height;
-        
-        CGSize targetSize = CGSizeMake(POST_ICON_HEIGHT, POST_ICON_HEIGHT);
-        CGFloat targetWidth = targetSize.width;
-        CGFloat targetHeight = targetSize.height;
-        
-        // Initialize
-        UIImage *newImage = [[UIImage alloc] init];
-        CGFloat scaleFactor = 0.0;
-        CGFloat scaledWidth = targetWidth;
-        CGFloat scaledHeight = targetHeight;
-        CGPoint thumbnailPoint = CGPointMake(0, 0);
-        
-        // Execute
-        if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
-            CGFloat widthFactor = targetWidth / sourceImageWidth;
-            CGFloat heightFactor = targetHeight / sourceImageHeight;
-            
-            if (widthFactor > heightFactor)
-                scaleFactor = widthFactor;  // scale to fit height
-            else
-                scaleFactor = heightFactor; // scale to fit width
-            
-            scaledWidth = sourceImageWidth * scaleFactor;
-            scaledHeight = sourceImageHeight * scaleFactor;
-            
-            // center the image
-            if (widthFactor > heightFactor)
-                thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
-            else if (widthFactor < heightFactor)
-                thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
-        }
-        
-        // do the crop
-        UIGraphicsBeginImageContext(targetSize);
-        CGRect thumbnailRect = CGRectZero;
-        thumbnailRect.origin = thumbnailPoint;
-        thumbnailRect.size.width = scaledWidth;
-        thumbnailRect.size.height = scaledHeight;
-        
-        [image drawInRect:thumbnailRect];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        if (newImage == nil) NSLog(@"could not scale image");
-        
-        UIGraphicsEndImageContext();
-        
-        return newImage;
-    }
-    else
-        return image;
-}
-
 -(void)fillFromBundle {
     
+    NSLog(@"start fill bundle");
     // set up URL to read XML file in bundle
     NSString *path = [[NSBundle mainBundle] pathForResource:WORDPRESS_BUNDLE_FILE ofType:@"xml"];
     
@@ -226,6 +172,7 @@
 }
 
 -(void)fillFromRemote {
+    NSLog(@"start fill from remote");
     
     // set up URL to remote file
     NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
@@ -277,11 +224,15 @@
 #pragma mark - External delegates
 
 -(void)doneFillingFromBundle {
+    NSLog(@"end fill bundle");
+
     self.bundleDatabaseFiller = nil;
     [self fillFromRemote];
 }
 
 -(void)doneFillingFromRemote:(BOOL)success {
+    NSLog(@"end fill remote");
+
      self.remoteDatabaseFiller = nil;
 }
 

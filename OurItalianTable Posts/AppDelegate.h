@@ -31,10 +31,7 @@
 
 //public shared methods
 -(NSString *)fixCategory:(NSString *)category;
-
--(void)populateIcon:(Post *)postRecord
-            forCell:(UITableViewCell *)cell
-       forTableView:(UITableView *)tableView
-       forIndexPath:(NSIndexPath *)indexPath;
+-(void)configureButton:(UIButton *)button;
+-(void)startStopNetworkActivityIndicator:(BOOL)flag;
 
 @end
