@@ -30,12 +30,6 @@
     self.versionBuildDisplay.text = [self getAppVersion];
 }
 
-- (void)viewDidUnload {
-    [self setTxtDisplay:nil];
-    [self setVersionBuildDisplay:nil];
-    [super viewDidUnload];
-}
-
 #pragma mark - Rotation support
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -56,13 +50,9 @@
         return UIInterfaceOrientationMaskAll;
 }
 
-#pragma mark - Outlets
+#pragma mark - IBActions
+- (IBAction)fireBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
-// when done button pressed (on iPhone only) dismiss self
-- (IBAction)doneButton:(id)sender {
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    [self dismissModalViewControllerAnimated:YES];
-    
-}   
 @end
