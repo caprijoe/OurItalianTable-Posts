@@ -63,15 +63,14 @@
     // updates self.geoCoordinates, self.geoList
     [self setupGeoReferenceInfo];
     
+    // load up the entries
+    [self resetToAllEntries];    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-        
-    // set up fetch controller, update context, setup refresh control and set detail split view
-    [self resetToAllEntries];
-    
+            
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -274,7 +273,8 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     
     // get root view controllers popover button from left side and make it appear
-    UIBarButtonItem *rootPopoverButtonItem = ((OITTabBarController *)self.tabBarController).rootPopoverButtonItem;
+    UIBarButtonItem *rootPopoverButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem];
+//    UIBarButtonItem *rootPopoverButtonItem = ((OITTabBarController *)self.tabBarController).rootPopoverButtonItem;
     
     [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
 #pragma clang diagnostic pop
@@ -308,7 +308,9 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     
     // get root view controllers popover button from left side and make it appear
-    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[self.navigationController viewControllers][0]).rootPopoverButtonItem;
+//    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[self.navigationController viewControllers][0]).rootPopoverButtonItem;
+    UIBarButtonItem *rootPopoverButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem];
+
     
     [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
 #pragma clang diagnostic pop
