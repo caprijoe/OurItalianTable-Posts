@@ -7,7 +7,6 @@
 //
 
 #import "ParseWordPressXML.h"
-#import "GetFileFromRemoteURL.h"
 #import "PostRecord.h"
 #import "Post+Create.h"
 #import "AppDelegate.h"
@@ -187,7 +186,6 @@
             
             // look for specific end element and store the data away
             if ([elementName isEqualToString:POST_TYPE]) {
-                NSLog(@"post type = %@",trimmedString);
                 if ([trimmedString isEqualToString:@"post"])
                     self.typeOfPost = YES;
                 else
