@@ -7,6 +7,7 @@
 //
 
 #import "AtomicGetFileFromRemoteURL.h"
+#import "AppDelegate.h"
 
 @interface AtomicGetFileFromRemoteURL ()
 @property (nonatomic, strong) NSURLConnection *urlConnection;
@@ -34,6 +35,10 @@
     // launch the filegetter - must be on main thread because it's using NSURLConnection
     dispatch_async(dispatch_get_main_queue(), ^{
         
+        // show in the status bar that network activity is starting
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate startStopNetworkActivityIndicator:YES];
+        
         // crash if we are not running on the main thread -- should have been called on main thread
         NSAssert([NSThread isMainThread], @"NSURLConnection not running on main thread");
         
@@ -44,8 +49,6 @@
         // test connection for success
         NSAssert(self.urlConnection != nil, @"Failure to create URL connection.");
         
-        // show in the status bar that network activity is starting
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     });
     
 }
@@ -58,9 +61,7 @@
     
     // when connection response received, create new empty data property
     self.incomingData = [NSMutableData data];
-    
-    NSLog(@"mime => %@",[response MIMEType]);
-    
+        
     if (![self.expectedMIMETypes containsObject:[response MIMEType]]) {
         
         [self exitGetFileWithData:nil withSuccess:NO withLastUpdateDate:nil];
@@ -150,19 +151,14 @@
         
         if (timeIntervalFromRemote > timeIntervalFromDefaults) {
             // update should occur
-            NSLog(@"will update 1");
             return YES;
             
         } else {
             // update not needed
-            NSLog(@"will NOT update -> %f, %f", timeIntervalFromDefaults, timeIntervalFromRemote);
-
             return NO;
         }
     } else {
         // no defaults string found (must be first time), load needed
-        NSLog(@"will update 2");
-
         return YES;
     }
 }
@@ -175,12 +171,12 @@
     // nil out connection to dealloc
     self.urlConnection = nil;
     
-    // stop network indicator
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    // decrement network activity indicator
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate startStopNetworkActivityIndicator:NO];
     
     // clear out any received date
     self.incomingData = nil;
-
 
 }
 - (void)handleError:(NSError *)error
