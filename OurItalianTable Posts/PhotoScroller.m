@@ -135,4 +135,11 @@
     [self loadVisiblePages];
 }
 
+#pragma mark - IBActions
+
+- (IBAction)fireBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
+
 @end
