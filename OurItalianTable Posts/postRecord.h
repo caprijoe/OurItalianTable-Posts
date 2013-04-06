@@ -6,18 +6,17 @@
 @interface PostRecord : NSObject
 
 @property (nonatomic, strong) NSString *postName;
-@property (nonatomic) int64_t postID;
+@property (nonatomic, strong) NSNumber *postID;
 @property (nonatomic, strong) UIImage  *postIcon;
 @property (nonatomic, strong) NSString *postAuthor;
 @property (nonatomic, strong) NSString *imageURLString;
 @property (nonatomic, strong) NSString *postURLString;
 @property (nonatomic, strong) NSString *postHTML;
-@property (nonatomic) NSTimeInterval postPubDate;
+@property (nonatomic, strong) NSDate   *postPubDate;
 @property (nonatomic, strong) NSMutableArray *postCategories;
 @property (nonatomic, strong) NSMutableArray *postTags;
-@property (nonatomic) float latitude;
-@property (nonatomic) float longitude;
+@property (nonatomic, strong) NSNumber *latitude;
+@property (nonatomic, strong) NSNumber *longitude;
 @property (nonatomic, strong) NSString * geo;
-
 
 @end

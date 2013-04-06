@@ -21,12 +21,12 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
         
-    return [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:self.entry.postPubDate]];
+    return [formatter stringFromDate:self.entry.postPubDate];
 }
 
 -(CLLocationCoordinate2D) coordinate 
 {
-    return CLLocationCoordinate2DMake(self.entry.latitude, self.entry.longitude);
+    return CLLocationCoordinate2DMake([self.entry.latitude floatValue], [self.entry.longitude floatValue]);
 }
 
 @end

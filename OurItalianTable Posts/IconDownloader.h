@@ -11,13 +11,11 @@
 
 @protocol IconDownloaderDelegate <AtomicGetFileFromRemoteURLDelegate>
 
-// -(void)iconDownloadComplete:(NSData *)iconData forPostID:(int64_t)postID withSucess:(BOOL)success;
-
 @end
 
 @interface IconDownloader : AtomicGetFileFromRemoteURL;
 
-@property (nonatomic, strong) NSString *postID;
+@property (nonatomic, strong) NSNumber *postID;
 @property (nonatomic, strong) NSURL *url;
 
 -(id)init;

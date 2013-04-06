@@ -18,7 +18,7 @@
     Post *thisPost = nil;
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
-    request.predicate = [NSPredicate predicateWithFormat:@"postID = %i", postRecord.postID];
+    request.predicate = [NSPredicate predicateWithFormat:@"postID = %@", postRecord.postID];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"postID" ascending:YES];
     request.sortDescriptors = @[sortDescriptor];
     
@@ -74,9 +74,7 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     // load categories into table
     for (NSString *categoryItem in postRecord.postCategories) {
         [thisPost addWhichCategoriesObject:[Category createCategoryWithString:categoryItem inManagedObjectContext:context]];
-    }
-    
-    
+    }    
 }
 
 @end

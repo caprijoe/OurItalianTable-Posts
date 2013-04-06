@@ -19,8 +19,8 @@
 {
     // center map on coordinates of post
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = self.locationRecord.latitude;
-    newRegion.center.longitude = self.locationRecord.longitude;
+    newRegion.center.latitude = [self.locationRecord.latitude floatValue];
+    newRegion.center.longitude = [self.locationRecord.longitude floatValue];
 
     newRegion.span.latitudeDelta = 9;
     newRegion.span.longitudeDelta = 4;

@@ -216,7 +216,7 @@
     
     UIActionSheet *actionSheet;
     
-    if (self.thisPost.bookmarked)              // is currently a favorite
+    if ([self.thisPost.bookmarked boolValue])              // is currently a favorite
         actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:REMOVE_BUTTON, nil];
     else 
         actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:ADD_BUTTON, nil];
@@ -253,9 +253,9 @@
         NSString *choice = [actionSheet buttonTitleAtIndex:buttonIndex];
         
         if ([choice isEqualToString:ADD_BUTTON]) {
-            self.thisPost.bookmarked = YES;
+            self.thisPost.bookmarked = @YES;
         } else if ([choice isEqualToString:REMOVE_BUTTON]) {
-            self.thisPost.bookmarked = NO;
+            self.thisPost.bookmarked = @NO;
         }
                 
     } else if ([self.currentActionSheet isEqualToString: SHARE_TITLE]) {

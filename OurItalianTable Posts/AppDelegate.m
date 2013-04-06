@@ -197,8 +197,8 @@
             [self.parentMOC setPersistentStoreCoordinator:[self.postsDatabase.managedObjectContext persistentStoreCoordinator]];
                         
             // coreDB opened, now fill from bundle
-//            [self fillFromBundle];
-            [self fillFromRemote];
+            [self fillFromBundle];
+//            [self fillFromRemote];
 
             
         }];

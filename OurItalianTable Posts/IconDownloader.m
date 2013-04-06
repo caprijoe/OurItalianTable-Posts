@@ -78,7 +78,7 @@
         NSData *iconData;
             iconData = UIImageJPEGRepresentation(newImage, 1.0);
                 
-        [self.delegate didFinishLoadingURL:iconData withSuccess:YES findingMetadata:self.postID];
+        [self.delegate didFinishLoadingURL:iconData withSuccess:YES findingMetadata:[self.postID stringValue]];
         
     } else if (self.numberOfAttempts == 1) {
                 

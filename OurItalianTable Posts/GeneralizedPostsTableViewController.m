@@ -378,7 +378,7 @@
         Post *thisPost = nil;
         
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
-        request.predicate = [NSPredicate predicateWithFormat:@"postID = %i", [postID intValue]];
+        request.predicate = [NSPredicate predicateWithFormat:@"postID = %@", [NSNumber numberWithInt:[postID intValue]]];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"postID" ascending:YES];
         request.sortDescriptors = @[sortDescriptor];
         
@@ -556,9 +556,8 @@
         
         IconDownloader *downloader = [[IconDownloader alloc] init];
         downloader.url = [NSURL URLWithString:postRecord.imageURLString];
-        downloader.postID = [NSString stringWithFormat:@"%lld",postRecord.postID];
+        downloader.postID = postRecord.postID;
         downloader.delegate = self;
-        
 
         if (downloader) {
             [self.downloadControl setObject:downloader forKey:downloader.postID];

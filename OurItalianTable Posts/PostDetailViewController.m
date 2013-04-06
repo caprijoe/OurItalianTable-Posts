@@ -34,7 +34,7 @@
     // set date published
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
-    self.datePublished.text = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceReferenceDate:self.postDetail.postPubDate]];
+    self.datePublished.text = [formatter stringFromDate:self.postDetail.postPubDate];
     
     // set author picture
     UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.postDetail.postAuthor ofType:@"jpg"]];

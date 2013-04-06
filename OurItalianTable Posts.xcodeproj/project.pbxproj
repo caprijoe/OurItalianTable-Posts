@@ -35,9 +35,6 @@
 		6962484B16F2FCF900909B9B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 6962484516F2FCF900909B9B /* unzip.c */; };
 		6962484C16F2FCF900909B9B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 6962484716F2FCF900909B9B /* zip.c */; };
 		6962484E16F2FD7D00909B9B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6962484D16F2FD7D00909B9B /* libz.dylib */; };
-		6962485116F5845E00909B9B /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 6962485016F5845E00909B9B /* Post.m */; };
-		6962485416F5845E00909B9B /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6962485316F5845E00909B9B /* Tag.m */; };
-		6962485716F5845E00909B9B /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 6962485616F5845E00909B9B /* Category.m */; };
 		696831E6164DD2DF001215EC /* 100px-Capri-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */; };
 		696831E7164DD2DF001215EC /* Pantelleria-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */; };
 		696831EA164DD3B7001215EC /* Regione_Puglia-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */; };
@@ -131,6 +128,9 @@
 		69D1D96A168EA99800540CD9 /* HTMLStyles.html in Resources */ = {isa = PBXBuildFile; fileRef = 69D1D969168EA99800540CD9 /* HTMLStyles.html */; };
 		69D33DB516BA4A7F00B5AC00 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69D33DB416BA4A7F00B5AC00 /* iPad.storyboard */; };
 		69D33DB816BE4D5900B5AC00 /* OITTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */; };
+		69D9493E170F6764005A5B15 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D9493D170F6764005A5B15 /* Tag.m */; };
+		69D94941170F6764005A5B15 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D94940170F6764005A5B15 /* Category.m */; };
+		69D94944170F6764005A5B15 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D94943170F6764005A5B15 /* Post.m */; };
 		69DAE4E715CDB75E002CA239 /* Dragos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E615CDB75E002CA239 /* Dragos.jpg */; };
 		69DAE4EB15CDD146002CA239 /* 42-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E915CDD146002CA239 /* 42-info.png */; };
 		69DAE4EC15CDD146002CA239 /* 42-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4EA15CDD146002CA239 /* 42-info@2x.png */; };
@@ -180,12 +180,6 @@
 		6962484716F2FCF900909B9B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
 		6962484816F2FCF900909B9B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		6962484D16F2FD7D00909B9B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6962484F16F5845E00909B9B /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		6962485016F5845E00909B9B /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
-		6962485216F5845E00909B9B /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		6962485316F5845E00909B9B /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		6962485516F5845E00909B9B /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
-		6962485616F5845E00909B9B /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "100px-Capri-Stemma.png"; sourceTree = "<group>"; };
 		696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pantelleria-Stemma.png"; sourceTree = "<group>"; };
 		696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Regione_Puglia-Stemma.png"; sourceTree = "<group>"; };
@@ -309,6 +303,12 @@
 		69D33DB416BA4A7F00B5AC00 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		69D33DB616BE4D5900B5AC00 /* OITTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITTabBarController.h; sourceTree = "<group>"; };
 		69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITTabBarController.m; sourceTree = "<group>"; };
+		69D9493C170F6764005A5B15 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		69D9493D170F6764005A5B15 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		69D9493F170F6764005A5B15 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		69D94940170F6764005A5B15 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		69D94942170F6764005A5B15 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		69D94943170F6764005A5B15 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		69DAE4E615CDB75E002CA239 /* Dragos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dragos.jpg; sourceTree = "<group>"; };
 		69DAE4E915CDD146002CA239 /* 42-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info.png"; sourceTree = "<group>"; };
 		69DAE4EA15CDD146002CA239 /* 42-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info@2x.png"; sourceTree = "<group>"; };
@@ -385,12 +385,12 @@
 			isa = PBXGroup;
 			children = (
 				697111DE166DD7C1006D93DB /* OITPosts.xcdatamodel */,
-				6962484F16F5845E00909B9B /* Post.h */,
-				6962485016F5845E00909B9B /* Post.m */,
-				6962485516F5845E00909B9B /* Category.h */,
-				6962485616F5845E00909B9B /* Category.m */,
-				6962485216F5845E00909B9B /* Tag.h */,
-				6962485316F5845E00909B9B /* Tag.m */,
+				69D94942170F6764005A5B15 /* Post.h */,
+				69D94943170F6764005A5B15 /* Post.m */,
+				69D9493F170F6764005A5B15 /* Category.h */,
+				69D94940170F6764005A5B15 /* Category.m */,
+				69D9493C170F6764005A5B15 /* Tag.h */,
+				69D9493D170F6764005A5B15 /* Tag.m */,
 				697111E5166DD7C1006D93DB /* Post+Create.h */,
 				697111E6166DD7C1006D93DB /* Post+Create.m */,
 				697111E7166DD7C1006D93DB /* Tag+Create.h */,
@@ -788,10 +788,10 @@
 				6962484A16F2FCF900909B9B /* mztools.c in Sources */,
 				6962484B16F2FCF900909B9B /* unzip.c in Sources */,
 				6962484C16F2FCF900909B9B /* zip.c in Sources */,
-				6962485116F5845E00909B9B /* Post.m in Sources */,
-				6962485416F5845E00909B9B /* Tag.m in Sources */,
-				6962485716F5845E00909B9B /* Category.m in Sources */,
 				69CA4C5C16FE623900F9AD0F /* BookmarksTableViewController.m in Sources */,
+				69D9493E170F6764005A5B15 /* Tag.m in Sources */,
+				69D94941170F6764005A5B15 /* Category.m in Sources */,
+				69D94944170F6764005A5B15 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
