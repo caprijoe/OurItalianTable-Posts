@@ -202,7 +202,7 @@
             else if ([elementName isEqualToString:POST_ID_NUM_TAG])
             {        
                 int i = [trimmedString intValue];
-                self.workingEntry.postID = i;
+                self.workingEntry.postID = [NSNumber numberWithInt: i];
             }
             else if ([elementName isEqualToString:POST_AUTHOR_TAG])
             {
@@ -230,8 +230,7 @@
             }
             else if ([elementName isEqualToString:POST_PUBLISH_DATE])
             {
-                NSDate *pubDate = [self.dateFormatter dateFromString:trimmedString];
-                self.workingEntry.postPubDate = [pubDate timeIntervalSinceReferenceDate];
+                self.workingEntry.postPubDate = [self.dateFormatter dateFromString:trimmedString];;
             }
             else if ([elementName isEqualToString:POST_META_KEY]) {
                 if ([trimmedString isEqualToString:@"gps_coordinates"]) {
@@ -243,8 +242,8 @@
                     self.inGPSTag = NO;
                     NSArray *floats = [trimmedString componentsSeparatedByString:@","];
                     if ([floats count] == 2) {
-                        self.workingEntry.latitude = [floats[0] doubleValue];
-                        self.workingEntry.longitude = [floats[1] doubleValue];
+                        self.workingEntry.latitude = [NSNumber numberWithFloat:[floats[0] floatValue]];
+                        self.workingEntry.longitude = [NSNumber numberWithFloat:[floats[1] floatValue]];
                     }
                 }
             }
