@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSData *dataToParse;                      // XML data load in from disk
 @property (nonatomic, strong) PostRecord *workingEntry;                 // current post being parsed
 @property (nonatomic, strong) Post *post;
-@property (nonatomic, strong) NSMutableString *workingPropertyString;
+@property (nonatomic, strong) NSString *workingPropertyString;
 @property (nonatomic, strong) NSArray *elementsToParse;                 // XML tags to parse
 @property                     BOOL storingElementOfInterest;
 @property (nonatomic, strong) NSManagedObjectContext *parentMOC;
@@ -52,7 +52,6 @@
         self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
         // set "global" variables
-        self.workingPropertyString = [NSMutableString string];
         self.storingElementOfInterest = NO;
         
         // setup date formatter
@@ -181,7 +180,7 @@
                                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             // clear the string for next time around
-            [self.workingPropertyString setString:@""];
+            self.workingPropertyString = [NSString string];
             self.storingElementOfInterest = NO;
             
             // look for specific end element and store the data away
@@ -262,7 +261,7 @@
 {
     if (self.workingEntry && self.storingElementOfInterest)
     {
-        [self.workingPropertyString appendString:string];
+        self.workingPropertyString = [self.workingPropertyString stringByAppendingString:string];
     }
 }
 
