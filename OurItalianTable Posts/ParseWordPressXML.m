@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Joseph Becci. All rights reserved.
 //
 
+#define BATCH_SAVE_COUNT 50
+
 #import "ParseWordPressXML.h"
 #import "PostRecord.h"
 #import "Post+Create.h"
@@ -19,15 +21,17 @@
 @property (nonatomic, strong) PostRecord *workingEntry;                 // current post being parsed
 @property (nonatomic, strong) Post *post;
 @property (nonatomic, strong) NSString *workingPropertyString;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, strong) NSArray *elementsToParse;                 // XML tags to parse
 @property                     BOOL storingElementOfInterest;
 @property (nonatomic, strong) NSManagedObjectContext *parentMOC;
 @property (nonatomic, strong) NSManagedObjectContext *backgroundMOC;
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic, weak) id <ParseWordPressXMLDelegate> delegate;
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property                     BOOL inGPSTag;
-@property                     BOOL typeOfPost;
+@property                     BOOL postTypeOfPost;
+@property                     BOOL postStatusOfPublish;
+@property                     int postCount;
 
 @end
 
@@ -51,15 +55,18 @@
         // set the app delegate for accessing shared methods
         self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        // set "global" variables
-        self.storingElementOfInterest = NO;
-        
         // setup date formatter
         self.dateFormatter = [[NSDateFormatter alloc] init];
-        [self.dateFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ssss zzz"];
+        [self.dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [self.dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+        [self.dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+
+        
+        // set "global" variables
+        self.storingElementOfInterest = NO;
                 
         // set up the XML elements that will be parsed
-        self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_META_DATA_TAG ,POST_META_KEY, POST_META_VALUE, POST_TYPE];
+        self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_META_DATA_TAG ,POST_META_KEY, POST_META_VALUE, POST_TYPE, POST_STATUS];
     }
     return self;
 }
@@ -84,24 +91,8 @@
         
         if (![self isCancelled])
         {
-            // push to parent
-            NSError *error;
-            if (![self.backgroundMOC save:&error])
-            {
-                // handle error
-                NSLog(@"error saving background MOC = %@",error);
-            }
-            
-            // save parent to disk asynchronously
-            [self.parentMOC performBlock:^{
-                NSError *error;
-                if (![self.parentMOC save:&error])
-                {
-                    // handle error
-                    NSLog(@"error saving parent MOC = %@",error);
-
-                }
-            }];
+            // save everything
+            [self saveWhenReady:0];
             
             // notify our AppDelegate that the parsing is complete
             [self.delegate didFinishParsing];
@@ -111,6 +102,112 @@
         self.dataToParse = nil;
         
     }];
+}
+
+#pragma mark - Private methods
+-(void)saveWhenReady:(int)postCount {
+    
+    // save when postCount == 0 || divisable by constant
+    if (!postCount || !(postCount % BATCH_SAVE_COUNT)) {
+        // push to parent
+        NSError *error;
+        if (![self.backgroundMOC save:&error])
+        {
+            // handle error
+            NSLog(@"error saving background MOC = %@",error);
+        }
+        
+        // save parent to disk asynchronously
+        [self.backgroundMOC.parentContext performBlock:^{
+            NSError *error;
+            if (![self.parentMOC save:&error])
+            {
+                // handle error
+                NSLog(@"error saving parent MOC = %@",error);
+                
+            }
+        }];
+    }
+}
+
+-(void)storeAwayElement:elementName usingString:trimmedString {
+    
+    // look for specific end element and store the data away
+    if ([elementName isEqualToString:POST_TYPE]) {
+        if ([trimmedString isEqualToString:@"post"])
+            self.postTypeOfPost = YES;
+        else
+            self.postTypeOfPost = NO;
+    }
+    else if ([elementName isEqualToString:POST_LINK_TAG])
+    {
+        self.workingEntry.postURLString = trimmedString;
+    }
+    else if ([elementName isEqualToString:POST_TITLE_TAG])
+    {
+        self.workingEntry.postName = trimmedString;
+    }
+    else if ([elementName isEqualToString:POST_ID_NUM_TAG])
+    {
+        int i = [trimmedString intValue];
+        self.workingEntry.postID = [NSNumber numberWithInt: i];
+    }
+    else if ([elementName isEqualToString:POST_AUTHOR_TAG])
+    {
+        self.workingEntry.postAuthor = trimmedString;
+    }
+    else if ([elementName isEqualToString:POST_HTML_CONTENT_TAG])
+    {
+        // Look for the src= attribute (should only be on IMG tag
+        NSRange attributeMatch = [trimmedString rangeOfString:@" src=\""];
+        
+        if (attributeMatch.location != NSNotFound) {
+            
+            // set up new search range (right after src=" to EOL) - start of URL is urlSearch.location
+            NSRange urlSearch = {attributeMatch.location + attributeMatch.length,[trimmedString length] - (attributeMatch.location + attributeMatch.length)};
+            
+            // look for the end quote
+            NSRange urlMatch = [trimmedString rangeOfString:@"\"" options:0 range:urlSearch];
+            
+            // pull out the URL
+            NSString *tempURLString = [trimmedString substringWithRange:NSMakeRange(urlSearch.location, urlMatch.location - urlSearch.location)];
+            
+            // strip off "?w=" from URL
+            NSRange range = [tempURLString rangeOfString:@"?w="];
+            if (range.location != NSNotFound) {
+                tempURLString = [tempURLString substringToIndex:range.location];
+            }
+            
+            self.workingEntry.imageURLString = tempURLString;
+            self.workingEntry.postHTML = trimmedString;
+        }
+    }
+    else if ([elementName isEqualToString:POST_PUBLISH_DATE])
+    {
+        self.workingEntry.postPubDate = [self.dateFormatter dateFromString:trimmedString];
+        
+    }
+    else if([elementName isEqualToString:POST_STATUS]) {
+        if ([trimmedString isEqualToString:@"publish"])
+            self.postStatusOfPublish = YES;
+        else
+            self.postStatusOfPublish = NO;
+    }
+    else if ([elementName isEqualToString:POST_META_KEY]) {
+        if ([trimmedString isEqualToString:@"gps_coordinates"]) {
+            self.inGPSTag = YES;
+        }
+    }
+    else if ([elementName isEqualToString:POST_META_VALUE]) {
+        if (self.inGPSTag) {
+            self.inGPSTag = NO;
+            NSArray *floats = [trimmedString componentsSeparatedByString:@","];
+            if ([floats count] == 2) {
+                self.workingEntry.latitude = [NSNumber numberWithFloat:[floats[0] floatValue]];
+                self.workingEntry.longitude = [NSNumber numberWithFloat:[floats[1] floatValue]];
+            }
+        }
+    }    
 }
 
 
@@ -128,12 +225,21 @@
         self.workingEntry.postCategories = [[NSMutableArray alloc] init];
         self.workingEntry.postTags = [[NSMutableArray alloc] init];
         self.workingEntry.geo = @"elsewhere";
+
+        // assume this is a post and published until we find otherwise
+        self.postTypeOfPost = YES;
+        self.postStatusOfPublish = YES;
+
     }
     
     // set BOOL to YES if one of the element tags is found
     self.storingElementOfInterest = [self.elementsToParse containsObject:elementName];
     if (self.storingElementOfInterest)
     {
+        // clear out string for capture of this element
+        self.workingPropertyString = [NSString string];
+        
+        // look to see if a post_meta attribute is found on the start tag
         NSString *attrContent = attributeDict[POST_META_DATA_DESCRIPTION_ATTR];
         
         // strip off attributes and contents if the self-contained meta data tag found
@@ -171,7 +277,7 @@
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
 {
-    if (self.workingEntry)
+    if (self.workingEntry && self.postTypeOfPost && self.postStatusOfPublish)
 	{
         if (self.storingElementOfInterest)
         {
@@ -180,79 +286,23 @@
                                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             // clear the string for next time around
-            self.workingPropertyString = [NSString string];
             self.storingElementOfInterest = NO;
             
-            // look for specific end element and store the data away
-            if ([elementName isEqualToString:POST_TYPE]) {
-                if ([trimmedString isEqualToString:@"post"])
-                    self.typeOfPost = YES;
-                else
-                    self.typeOfPost = NO;
-            }
-            else if ([elementName isEqualToString:POST_LINK_TAG])
-            {
-                self.workingEntry.postURLString = trimmedString;
-            }
-            else if ([elementName isEqualToString:POST_TITLE_TAG])
-            {        
-                self.workingEntry.postName = trimmedString;
-            }
-            else if ([elementName isEqualToString:POST_ID_NUM_TAG])
-            {        
-                int i = [trimmedString intValue];
-                self.workingEntry.postID = [NSNumber numberWithInt: i];
-            }
-            else if ([elementName isEqualToString:POST_AUTHOR_TAG])
-            {
-                self.workingEntry.postAuthor = trimmedString;
-            }
-            else if ([elementName isEqualToString:POST_HTML_CONTENT_TAG])
-            {
-                // look for first -->scr="image url"<-- in the HTML
-                NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"(?<= src=\").*?(?=\")" options:NSRegularExpressionCaseInsensitive error:nil];
-                NSTextCheckingResult *match = [regex firstMatchInString:trimmedString options:0 range:NSMakeRange(0, [trimmedString length])];
-                
-                if  (match)
-                {
-                    NSString *tempURLString = [trimmedString substringWithRange:match.range];
-                    
-                    // strip off "?w=" from URL
-                    NSRange range = [tempURLString rangeOfString:@"?w="];
-                    if (range.location != NSNotFound) {
-                        tempURLString = [tempURLString substringToIndex:range.location];
-                    }
-                    
-                    self.workingEntry.imageURLString = tempURLString;
-                    self.workingEntry.postHTML = trimmedString;
-                }
-            }
-            else if ([elementName isEqualToString:POST_PUBLISH_DATE])
-            {
-                self.workingEntry.postPubDate = [self.dateFormatter dateFromString:trimmedString];;
-            }
-            else if ([elementName isEqualToString:POST_META_KEY]) {
-                if ([trimmedString isEqualToString:@"gps_coordinates"]) {
-                    self.inGPSTag = YES;
-                }
-            }
-            else if ([elementName isEqualToString:POST_META_VALUE]) {
-                if (self.inGPSTag) {
-                    self.inGPSTag = NO;
-                    NSArray *floats = [trimmedString componentsSeparatedByString:@","];
-                    if ([floats count] == 2) {
-                        self.workingEntry.latitude = [NSNumber numberWithFloat:[floats[0] floatValue]];
-                        self.workingEntry.longitude = [NSNumber numberWithFloat:[floats[1] floatValue]];
-                    }
-                }
-            }
+            // store away trimmed string to the element that matches it.... multiple ivars accessed in this method
+            [self storeAwayElement:elementName usingString:trimmedString];
+            
         }
         else if ([elementName isEqualToString:TOP_LEVEL_TAG])
         // if top level tag end found, reset everything for next time around
         {
-            if (self.typeOfPost)
+            if (self.postTypeOfPost && self.postStatusOfPublish) {
                 [Post createPostwithPostRecord:self.workingEntry inManagedObjectContext:self.backgroundMOC];
+                self.postCount++;
+                [self saveWhenReady:self.postCount];
+            }
             self.workingEntry = nil;
+        } else {
+            // found a tag we don't care about .. do nothing
         }
     }
 }
