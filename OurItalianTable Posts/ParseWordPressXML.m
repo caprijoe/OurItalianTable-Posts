@@ -66,7 +66,7 @@
         self.storingElementOfInterest = NO;
                 
         // set up the XML elements that will be parsed
-        self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_META_DATA_TAG ,POST_META_KEY, POST_META_VALUE, POST_TYPE, POST_STATUS];
+        self.elementsToParse = @[POST_LINK_TAG, POST_TITLE_TAG, POST_ID_NUM_TAG, POST_HTML_CONTENT_TAG, POST_AUTHOR_TAG, POST_PUBLISH_DATE, POST_CATEGORY_TAG ,POST_META_KEY, POST_META_VALUE, POST_TYPE, POST_STATUS];
     }
     return self;
 }
@@ -128,6 +128,36 @@
             }
         }];
     }
+}
+
+-(void)storeAwayCategoriesAndTagsFromDict:attributeDict {
+    
+    if ([attributeDict[@"domain"] isEqualToString:@"category"])
+    {
+        [self.workingEntry.postCategories addObject:attributeDict[@"nicename"]];
+        
+        // is the attribute text(subset) in the slug cross walk dictionary?
+        NSSet *resultsSet = [self.appDelegate.candidateGeoSlugs keysOfEntriesPassingTest:^BOOL(id key, id obj, BOOL *stop) {
+            NSRange range = [attributeDict[@"nicename"] rangeOfString:(NSString *)key];
+            if (range.location != NSNotFound) {
+                *stop = YES;
+                return YES;
+            } else
+                return NO;
+        }];
+        
+        NSString *finalGeo = [self.appDelegate.candidateGeoSlugs objectForKey:[resultsSet anyObject]];
+        
+        if (finalGeo)
+            self.workingEntry.geo = finalGeo;
+        
+    }
+    // if domain == post_tag, process
+    else if ([attributeDict[@"domain"] isEqualToString:@"post_tag"])
+    {
+        [self.workingEntry.postTags addObject:attributeDict[@"nicename"]];
+    }
+    
 }
 
 -(void)storeAwayElement:elementName usingString:trimmedString {
@@ -239,37 +269,14 @@
         // clear out string for capture of this element
         self.workingPropertyString = [NSString string];
         
-        // look to see if a post_meta attribute is found on the start tag
-        NSString *attrContent = attributeDict[POST_META_DATA_DESCRIPTION_ATTR];
-        
-        // strip off attributes and contents if the self-contained meta data tag found
-        if ([elementName isEqualToString:POST_META_DATA_TAG])
-        {
-            if ([attributeDict[POST_META_DATA_TYPE_ATTR] isEqualToString:POST_META_DATA_CATEGORY])
-            {
-                [self.workingEntry.postCategories addObject:attrContent];
+        // category tag example --
+        // <category domain="category" nicename="food">
+        // <category domain="post_tag" nicename="pasta">
                 
-                // is the attribute text(subset) in the slug cross walk dictionary?
-                NSSet *resultsSet = [self.appDelegate.candidateGeoSlugs keysOfEntriesPassingTest:^BOOL(id key, id obj, BOOL *stop) {
-                    NSRange range = [attrContent rangeOfString:(NSString *)key];
-                    if (range.location != NSNotFound) {
-                        *stop = YES;
-                        return YES;
-                    } else
-                        return NO;
-                }];
-                
-                NSString *finalGeo = [self.appDelegate.candidateGeoSlugs objectForKey:[resultsSet anyObject]];
-                
-                if (finalGeo)
-                    self.workingEntry.geo = finalGeo;
-                
-            }
-            else if ([attributeDict[POST_META_DATA_TYPE_ATTR] isEqualToString:POST_META_DATA_POSTTAG])
-            {
-                [self.workingEntry.postTags addObject:attrContent];
-            } 
-        }
+        // if domain == category, process
+        if ([elementName isEqualToString:POST_CATEGORY_TAG])
+            [self storeAwayCategoriesAndTagsFromDict:attributeDict];
+
     }
 }
 
@@ -285,7 +292,7 @@
             NSString *trimmedString = [self.workingPropertyString stringByTrimmingCharactersInSet:
                                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
-            // clear the string for next time around
+            // reset storingElementOfInterest for inspection of next go around
             self.storingElementOfInterest = NO;
             
             // store away trimmed string to the element that matches it.... multiple ivars accessed in this method
@@ -295,12 +302,14 @@
         else if ([elementName isEqualToString:TOP_LEVEL_TAG])
         // if top level tag end found, reset everything for next time around
         {
-            if (self.postTypeOfPost && self.postStatusOfPublish) {
-                [Post createPostwithPostRecord:self.workingEntry inManagedObjectContext:self.backgroundMOC];
-                self.postCount++;
-                [self saveWhenReady:self.postCount];
-            }
+            
+            // should only have gotten here if this is a real post and published .. save it...
+            [Post createPostwithPostRecord:self.workingEntry inManagedObjectContext:self.backgroundMOC];
+            [self saveWhenReady:++self.postCount];
+            
+            // hit end tag so clear for next trip with top level tag
             self.workingEntry = nil;
+            
         } else {
             // found a tag we don't care about .. do nothing
         }

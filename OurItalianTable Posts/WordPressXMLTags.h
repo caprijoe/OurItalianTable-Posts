@@ -18,11 +18,7 @@
 #define POST_GPS_COORDINATES_FLAG       @"GPS:"
 #define POST_ID_NUM_TAG                 @"wp:post_id"
 #define POST_STATUS                     @"wp:status"
-#define POST_META_DATA_TAG              @"category"
-#define POST_META_DATA_TYPE_ATTR            @"domain"
-#define POST_META_DATA_CATEGORY                 @"category"
-#define POST_META_DATA_POSTTAG                  @"post_tag"
-#define POST_META_DATA_DESCRIPTION_ATTR     @"nicename"
+#define POST_CATEGORY_TAG               @"category"
 #define POST_META_KEY                   @"wp:meta_key"
 #define POST_META_VALUE                 @"wp:meta_value"
 // close top level tag
