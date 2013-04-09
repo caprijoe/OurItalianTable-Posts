@@ -401,6 +401,9 @@
             thisPost = [matches lastObject];
             thisPost.postIcon = iconData;
             
+            // save any loaded changes at this point
+            [thisPost.managedObjectContext save:NULL];    // save any loaded changes at this point
+            
         }
     }
 }
