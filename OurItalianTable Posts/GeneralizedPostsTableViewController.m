@@ -23,9 +23,249 @@
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
+@property (nonatomic)         BOOL scrollingAnimationActive;
 @end
 
 @implementation GeneralizedPostsTableViewController
+
+#pragma mark - Private methods
+
+-(void)setupGeoReferenceInfo {
+    // updates self.geoCoordinates, self.geoList
+    
+    // get the list of DISTINCT geos in DB
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:self.appDelegate.parentMOC];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    request.entity = entity;
+    request.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
+    request.resultType = NSDictionaryResultType;
+    request.returnsDistinctResults = YES;
+    request.propertiesToFetch = @[@"geo"];
+    
+    // Execute the fetch.
+    NSError *error;
+    NSArray *objects = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
+    
+    // Assuming we got at least one, build the list of Annotations
+    if (objects == nil) {
+        
+        // Handle the error.
+        
+    } else {
+        
+        // build the region list and annotations object
+        self.geoList = [NSMutableArray arrayWithCapacity:[objects count]];
+        self.geoCoordinates = [[NSMutableArray alloc] initWithCapacity:[self.geoList count]];
+        
+        for (NSDictionary *region in objects) {
+            
+            // load into region list
+            [self.geoList addObject:region[@"geo"]];
+            
+            // if there is annotation information, load into annotation object list
+            NSArray *geoInfo = self.appDelegate.candidateGeos[region[@"geo"]];
+            
+            if ([geoInfo count] > 2) {
+                
+                // create an annotation object with the coordinates
+                RegionAnnotation *annotationObject = [[RegionAnnotation alloc] init];
+                
+                annotationObject.regionName = region[@"geo"];
+                annotationObject.latitude = [(NSNumber *)[geoInfo objectAtIndex:0] floatValue];
+                annotationObject.longitude = [(NSNumber *)[geoInfo objectAtIndex:1] floatValue];
+                annotationObject.flagURL = [geoInfo objectAtIndex:2];
+                [self.geoCoordinates addObject:annotationObject];
+                
+            }
+        }
+    }
+}
+
+// update context at bottom of tableviewcontroller
+-(void)updateContext:(NSString *)detail {
+    
+    self.contextLabel.text = detail;
+    
+}
+
+-(void)refreshTable {
+    
+    // set up URL to remote file
+    NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
+    
+    // launch filler for remote
+    self.thisRemoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.appDelegate.parentMOC withDelegate:self giveUpAfter:20.0];
+}
+
+-(void)resetToAllEntries {
+    
+    if ([self isIOS6OrLater])
+        self.refreshControl = nil;
+    
+    // make sure search bar is reset
+    [self.searchDisplayController setActive:NO animated:YES];
+    
+    // reset context label
+    [self updateContext:@"Our Italian Table"];
+    
+    // reset fetch controller
+    [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
+    
+    // if on an ipad, reset right side too
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
+    
+    // warn cellforviewatindexpath that a scroll animation is starting
+    self.scrollingAnimationActive = YES;
+    
+    // reset table view to top (0,0) & reload table
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    [self.tableView reloadData];
+    
+    // re-setup refresh control
+    [self setupRefreshControl];
+}
+
+// load up the table thumbnnail, if not cached, cache it
+
+-(void)populateIconInDBUsing:(NSIndexPath *)indexPath {
+    
+    Post *postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    // check if icon is in CoreData DB, if so, just return it by reference
+    if (!postRecord.postIcon && postRecord.imageURLString) {
+        
+        IconDownloader *downloader = [[IconDownloader alloc] init];
+        downloader.url = [NSURL URLWithString:postRecord.imageURLString];
+        downloader.postID = postRecord.postID;
+        downloader.delegate = self;
+        
+        if (downloader) {
+            [self.downloadControl setObject:downloader forKey:downloader.postID];
+            [downloader startFileDownload];
+        }
+    }
+}
+
+/* - (UIImage *)adjustImage:(UIImage *)image
+ {
+ if (image.size.width != POST_ICON_HEIGHT && image.size.height != POST_ICON_HEIGHT)
+ {
+ 
+ // Get base sizes
+ CGSize imageSize = image.size;
+ CGFloat sourceImageWidth = imageSize.width;
+ CGFloat sourceImageHeight = imageSize.height;
+ 
+ CGSize targetSize = CGSizeMake(POST_ICON_HEIGHT, POST_ICON_HEIGHT);
+ CGFloat targetWidth = targetSize.width;
+ CGFloat targetHeight = targetSize.height;
+ 
+ // Initialize
+ UIImage *newImage = [[UIImage alloc] init];
+ CGFloat scaleFactor = 0.0;
+ CGFloat scaledWidth = targetWidth;
+ CGFloat scaledHeight = targetHeight;
+ CGPoint thumbnailPoint = CGPointMake(0, 0);
+ 
+ // Execute
+ if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
+ CGFloat widthFactor = targetWidth / sourceImageWidth;
+ CGFloat heightFactor = targetHeight / sourceImageHeight;
+ 
+ if (widthFactor > heightFactor)
+ scaleFactor = widthFactor;  // scale to fit height
+ else
+ scaleFactor = heightFactor; // scale to fit width
+ 
+ scaledWidth = sourceImageWidth * scaleFactor;
+ scaledHeight = sourceImageHeight * scaleFactor;
+ 
+ // center the image
+ if (widthFactor > heightFactor)
+ thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+ else if (widthFactor < heightFactor)
+ thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+ }
+ 
+ // do the crop
+ UIGraphicsBeginImageContext(targetSize);
+ CGRect thumbnailRect = CGRectZero;
+ thumbnailRect.origin = thumbnailPoint;
+ thumbnailRect.size.width = scaledWidth;
+ thumbnailRect.size.height = scaledHeight;
+ 
+ [image drawInRect:thumbnailRect];
+ newImage = UIGraphicsGetImageFromCurrentImageContext();
+ 
+ if (newImage == nil) NSLog(@"could not scale image");
+ 
+ UIGraphicsEndImageContext();
+ 
+ return newImage;
+ }
+ else
+ return image;
+ } */
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    
+    Post *thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = thisPost.postName;
+    if (thisPost.postIcon)
+        cell.imageView.image = [UIImage imageWithData:thisPost.postIcon];
+    else
+        cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];
+}
+
+-(void)setupRefreshControl {
+    
+    if ([self isIOS6OrLater]) {
+        // if running on ios6 and above, include Facebook as an option
+        // setup refresh control
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to refresh"];
+        [self.tableView addSubview:self.refreshControl];
+    }
+}
+
+-(BOOL)isIOS6OrLater {
+    // Make UIRefreshControl conditional on iOS6 and greater
+    NSString *reqSysVerForRefresh = @"6.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    if ([currSysVer compare:reqSysVerForRefresh options:NSNumericSearch] != NSOrderedAscending)
+        return YES;
+    else
+        return NO;
+}
+
+-(BOOL)reviseFetchRequestUsing:(NSString *)searchString
+{
+    
+    if (self.favs) {
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"((bookmarked == YES) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))", searchString, searchString, searchString];
+    } else {
+        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"((ANY whichCategories.categoryString =[cd] %@) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@)))", self.category, searchString, searchString, searchString];
+    }
+    
+    [[self fetchedResultsController] performFetch:NULL];
+    [self.tableView reloadData];
+    
+    return YES;
+}
+
+// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+- (void)loadImagesForOnscreenRows
+{
+    NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+    
+    for (NSIndexPath *indexPath in visiblePaths)
+    {
+        [self populateIconInDBUsing:indexPath];
+    }
+}
 
 #pragma mark - View lifecycle
 
@@ -64,7 +304,8 @@
     [self setupGeoReferenceInfo];
     
     // load up the entries
-    [self resetToAllEntries];    
+    [self resetToAllEntries];
+    self.scrollingAnimationActive = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -218,8 +459,12 @@
     // Configure cell
     [self configureCell:cell atIndexPath:indexPath];
     
-    // load icon if needed into DB
-    [self populateIconInDBUsing:indexPath];
+    if (self.tableView.dragging == NO && self.tableView.decelerating == NO && !self.scrollingAnimationActive) {
+        
+        // load icon if needed into DB
+        [self populateIconInDBUsing:indexPath];
+        
+    }
     
     return cell;
 }
@@ -238,6 +483,30 @@
         OITTabBarController *topVC = (OITTabBarController *)self.tabBarController;
         [topVC.masterPopoverController dismissPopoverAnimated:YES];
     }
+}
+
+#pragma mark - Deferred image loading (UIScrollViewDelegate)
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
+}
+
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    
+    // indicate animation scrolling is done
+    self.scrollingAnimationActive = NO;
+    
+    [self loadImagesForOnscreenRows];
 }
 
 #pragma mark - UISearchDelegate
@@ -451,231 +720,5 @@
     }
 }
 
-#pragma mark - Private methods
-
--(void)setupGeoReferenceInfo {
-// updates self.geoCoordinates, self.geoList
-    
-    // get the list of DISTINCT geos in DB
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:self.appDelegate.parentMOC];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = entity;
-    request.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
-    request.resultType = NSDictionaryResultType;
-    request.returnsDistinctResults = YES;
-    request.propertiesToFetch = @[@"geo"];
-    
-    // Execute the fetch.
-    NSError *error;
-    NSArray *objects = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
-    
-    // Assuming we got at least one, build the list of Annotations
-    if (objects == nil) {
-        
-        // Handle the error.
-        
-    } else {
-        
-        // build the region list and annotations object
-        self.geoList = [NSMutableArray arrayWithCapacity:[objects count]];
-        self.geoCoordinates = [[NSMutableArray alloc] initWithCapacity:[self.geoList count]];
-        
-        for (NSDictionary *region in objects) {
-            
-            // load into region list
-            [self.geoList addObject:region[@"geo"]];
-            
-            // if there is annotation information, load into annotation object list
-            NSArray *geoInfo = self.appDelegate.candidateGeos[region[@"geo"]];
-            
-            if ([geoInfo count] > 2) {
-                
-                // create an annotation object with the coordinates
-                RegionAnnotation *annotationObject = [[RegionAnnotation alloc] init];
-                
-                annotationObject.regionName = region[@"geo"];
-                annotationObject.latitude = [(NSNumber *)[geoInfo objectAtIndex:0] floatValue];
-                annotationObject.longitude = [(NSNumber *)[geoInfo objectAtIndex:1] floatValue];
-                annotationObject.flagURL = [geoInfo objectAtIndex:2];
-                [self.geoCoordinates addObject:annotationObject];
-                
-            }
-        }
-    }
-}
-
-// update context at bottom of tableviewcontroller
--(void)updateContext:(NSString *)detail {
-        
-    self.contextLabel.text = detail;
-    
-}
-
--(void)refreshTable {
-    
-    // set up URL to remote file
-    NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
-    
-    // launch filler for remote
-    self.thisRemoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.appDelegate.parentMOC withDelegate:self giveUpAfter:20.0];
-}
-
-
-
--(void)resetToAllEntries {
-    
-    if ([self isIOS6OrLater])
-        self.refreshControl = nil;
-    
-    // make sure search bar is reset
-    [self.searchDisplayController setActive:NO animated:YES];
-    
-    // reset context label
-    [self updateContext:@"Our Italian Table"];
-    
-    // reset fetch controller
-    [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
-    
-    // if on an ipad, reset right side too
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
-    
-    // reset table view to top (0,0) & reload table
-    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-    [self.tableView reloadData];
-    
-    // re-setup refresh control
-    [self setupRefreshControl];
-}
-
-// load up the table thumbnnail, if not cached, cache it
-
--(void)populateIconInDBUsing:(NSIndexPath *)indexPath {
-    
-    Post *postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-    // check if icon is in CoreData DB, if so, just return it by reference
-    if (!postRecord.postIcon && postRecord.imageURLString) {
-        
-        IconDownloader *downloader = [[IconDownloader alloc] init];
-        downloader.url = [NSURL URLWithString:postRecord.imageURLString];
-        downloader.postID = postRecord.postID;
-        downloader.delegate = self;
-
-        if (downloader) {
-            [self.downloadControl setObject:downloader forKey:downloader.postID];
-            [downloader startFileDownload];
-        }
-    }
-}
-
-/* - (UIImage *)adjustImage:(UIImage *)image
-{
-    if (image.size.width != POST_ICON_HEIGHT && image.size.height != POST_ICON_HEIGHT)
-	{
-        
-        // Get base sizes
-        CGSize imageSize = image.size;
-        CGFloat sourceImageWidth = imageSize.width;
-        CGFloat sourceImageHeight = imageSize.height;
-        
-        CGSize targetSize = CGSizeMake(POST_ICON_HEIGHT, POST_ICON_HEIGHT);
-        CGFloat targetWidth = targetSize.width;
-        CGFloat targetHeight = targetSize.height;
-        
-        // Initialize
-        UIImage *newImage = [[UIImage alloc] init];
-        CGFloat scaleFactor = 0.0;
-        CGFloat scaledWidth = targetWidth;
-        CGFloat scaledHeight = targetHeight;
-        CGPoint thumbnailPoint = CGPointMake(0, 0);
-        
-        // Execute
-        if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
-            CGFloat widthFactor = targetWidth / sourceImageWidth;
-            CGFloat heightFactor = targetHeight / sourceImageHeight;
-            
-            if (widthFactor > heightFactor)
-                scaleFactor = widthFactor;  // scale to fit height
-            else
-                scaleFactor = heightFactor; // scale to fit width
-            
-            scaledWidth = sourceImageWidth * scaleFactor;
-            scaledHeight = sourceImageHeight * scaleFactor;
-            
-            // center the image
-            if (widthFactor > heightFactor)
-                thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
-            else if (widthFactor < heightFactor)
-                thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
-        }
-        
-        // do the crop
-        UIGraphicsBeginImageContext(targetSize);
-        CGRect thumbnailRect = CGRectZero;
-        thumbnailRect.origin = thumbnailPoint;
-        thumbnailRect.size.width = scaledWidth;
-        thumbnailRect.size.height = scaledHeight;
-        
-        [image drawInRect:thumbnailRect];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        if (newImage == nil) NSLog(@"could not scale image");
-        
-        UIGraphicsEndImageContext();
-        
-        return newImage;
-    }
-    else
-        return image;
-} */
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    
-    Post *thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = thisPost.postName;
-    if (thisPost.postIcon)
-        cell.imageView.image = [UIImage imageWithData:thisPost.postIcon];
-    else
-        cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];
-}
-
--(void)setupRefreshControl {
-    
-    if ([self isIOS6OrLater]) {
-        // if running on ios6 and above, include Facebook as an option
-        // setup refresh control
-        self.refreshControl = [[UIRefreshControl alloc] init];
-        [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to refresh"];
-        [self.tableView addSubview:self.refreshControl];
-    }
-}
-
--(BOOL)isIOS6OrLater {
-    // Make UIRefreshControl conditional on iOS6 and greater
-    NSString *reqSysVerForRefresh = @"6.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    
-    if ([currSysVer compare:reqSysVerForRefresh options:NSNumericSearch] != NSOrderedAscending)
-        return YES;
-    else
-        return NO;
-}
-
--(BOOL)reviseFetchRequestUsing:(NSString *)searchString
-{
-    
-    if (self.favs) {
-        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"((bookmarked == YES) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))", searchString, searchString, searchString];
-    } else {
-        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"((ANY whichCategories.categoryString =[cd] %@) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@)))", self.category, searchString, searchString, searchString];
-    }
-    
-    [[self fetchedResultsController] performFetch:NULL];
-    [self.tableView reloadData];
-    
-    return YES;
-}
 
 @end
