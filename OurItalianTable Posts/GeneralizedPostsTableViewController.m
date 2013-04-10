@@ -120,7 +120,6 @@
     
     // reset table view to top (0,0) & reload table
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-    [self.tableView reloadData];
     
     // re-setup refresh control
     [self setupRefreshControl];
