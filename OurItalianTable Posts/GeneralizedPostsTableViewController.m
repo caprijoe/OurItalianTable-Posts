@@ -28,6 +28,60 @@
 
 @implementation GeneralizedPostsTableViewController
 
+#pragma mark - View lifecycle
+
+-(void)viewDidLoad
+{
+    
+    [super viewDidLoad];
+    
+    // setup appDelegate for accessing shared properties and methods
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    // set up UITableView delegate and source
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    // setup fetchcontroller one-time variable inputs
+    if (self.favs || [self.category isEqualToString:FOOD_CATEGORY] || [self.category isEqualToString:WINE_CATEGORY]) {
+        
+        // sort FOOD, WINE and Bookmarked tables by reverse pubdate and don't use sections
+        self.sortKey = @"postPubDate";
+        self.sectionKey = nil;
+        self.rightSideSegueName = @"Reset Splash View";
+        
+    } else if ([self.category isEqualToString:WANDERING_CATEGORY]) {
+        
+        // if TRAVEL is selected, sort by the geo name
+        self.sortKey = @"geo";
+        self.sectionKey = @"geo";
+        self.rightSideSegueName = @"Show Region Map";
+    }
+    
+    // init download control dict
+    self.downloadControl = [[NSMutableDictionary alloc] init];
+    
+    // updates self.geoCoordinates, self.geoList
+    [self setupGeoReferenceInfo];
+    
+    // load up the entries
+    [self resetToAllEntries];
+    self.scrollingAnimationActive = NO;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    
+    // save any loaded changes at this point
+    [self.appDelegate.parentMOC save:NULL];
+    
+}
+
 #pragma mark - Private methods
 
 -(void)setupGeoReferenceInfo {
@@ -266,59 +320,6 @@
     }
 }
 
-#pragma mark - View lifecycle
-
--(void)viewDidLoad
-{
-    
-    [super viewDidLoad];
-    
-    // setup appDelegate for accessing shared properties and methods
-    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    // set up UITableView delegate and source
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    
-    // setup fetchcontroller one-time variable inputs
-    if (self.favs || [self.category isEqualToString:FOOD_CATEGORY] || [self.category isEqualToString:WINE_CATEGORY]) {
-        
-        // sort FOOD, WINE and Bookmarked tables by reverse pubdate and don't use sections
-        self.sortKey = @"postPubDate";
-        self.sectionKey = nil;
-        self.rightSideSegueName = @"Reset Splash View";
-        
-    } else if ([self.category isEqualToString:WANDERING_CATEGORY]) {
-        
-        // if TRAVEL is selected, sort by the geo name
-        self.sortKey = @"geo";
-        self.sectionKey = @"geo";
-        self.rightSideSegueName = @"Show Region Map";
-    }
-    
-    // init download control dict
-    self.downloadControl = [[NSMutableDictionary alloc] init];
-    
-    // updates self.geoCoordinates, self.geoList
-    [self setupGeoReferenceInfo];
-    
-    // load up the entries
-    [self resetToAllEntries];
-    self.scrollingAnimationActive = NO;
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-            
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    
-    // save any loaded changes at this point
-    [self.appDelegate.parentMOC save:NULL];
-    
-}
 
 #pragma mark - Rotation support
 
