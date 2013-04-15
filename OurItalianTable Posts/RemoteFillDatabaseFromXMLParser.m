@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-#define LAST_UPDATE_TO_CORE_DB  @"LAST_UPDATE_TO_CORE_DB_DATE"
-
 #import "RemoteFillDatabaseFromXMLParser.h"
 
 @interface RemoteFillDatabaseFromXMLParser ()
@@ -70,6 +68,12 @@
         // create a parser from the ParseWordPressXML class and add to an NSOperationQueue, will call back when done
         self.parser = [[ParseWordPressXML alloc] initWithData:XMLfile usingParentMOC:self.parentMOC withDelegate:self];
         [self.queue addOperation:self.parser];
+        
+    } else if (success && !XMLfile) {
+        // checked for updates successfully, but none found
+        self.parser = nil;
+        
+        [self.delegate doneFillingFromRemote:YES];
         
     } else {
         
