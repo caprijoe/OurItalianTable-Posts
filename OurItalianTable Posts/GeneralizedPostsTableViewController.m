@@ -108,11 +108,13 @@
     // Execute the fetch.
     NSError *error;
     NSArray *objects = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
+    if (error) NSLog(@"error at geoReferenceInfo = %@",error);
     
     // Assuming we got at least one, build the list of Annotations
     if (objects == nil) {
         
         // Handle the error.
+        NSLog(@"nil array returned at geoReferenceInfo build");
         
     } else {
         
