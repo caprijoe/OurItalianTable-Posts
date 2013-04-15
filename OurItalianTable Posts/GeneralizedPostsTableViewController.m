@@ -24,9 +24,24 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
 @property (nonatomic)         BOOL scrollingAnimationActive;
+@property (nonatomic, strong) UIActivityIndicatorView *initialLoadSpinner;
 @end
 
 @implementation GeneralizedPostsTableViewController
+
+#pragma mark - Setters/Getters
+
+-(UIActivityIndicatorView *)initialLoadSpinner {
+    
+    if (!_initialLoadSpinner) {
+        _initialLoadSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _initialLoadSpinner.center = CGPointMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0);
+        _initialLoadSpinner.backgroundColor = [UIColor grayColor];
+        _initialLoadSpinner.hidesWhenStopped = YES;
+    }
+
+    return _initialLoadSpinner;
+}
 
 #pragma mark - View lifecycle
 
@@ -67,12 +82,6 @@
     // load up the entries
     [self resetToAllEntries];
     self.scrollingAnimationActive = NO;
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -153,8 +162,10 @@
 
 -(void)resetToAllEntries {
     
-    if ([self isIOS6OrLater])
-        self.refreshControl = nil;
+    // stop the spinning ball in case it's there
+    if ([self isIOS6OrLater]) {
+        [self.refreshControl endRefreshing];
+    }
     
     // make sure search bar is reset
     [self.searchDisplayController setActive:NO animated:YES];
@@ -175,7 +186,7 @@
     // reset table view to top (0,0) & reload table
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     
-    // re-setup refresh control
+    // setup the refresh control but only the first time
     [self setupRefreshControl];
 }
 
@@ -200,67 +211,6 @@
     }
 }
 
-/* - (UIImage *)adjustImage:(UIImage *)image
- {
- if (image.size.width != POST_ICON_HEIGHT && image.size.height != POST_ICON_HEIGHT)
- {
- 
- // Get base sizes
- CGSize imageSize = image.size;
- CGFloat sourceImageWidth = imageSize.width;
- CGFloat sourceImageHeight = imageSize.height;
- 
- CGSize targetSize = CGSizeMake(POST_ICON_HEIGHT, POST_ICON_HEIGHT);
- CGFloat targetWidth = targetSize.width;
- CGFloat targetHeight = targetSize.height;
- 
- // Initialize
- UIImage *newImage = [[UIImage alloc] init];
- CGFloat scaleFactor = 0.0;
- CGFloat scaledWidth = targetWidth;
- CGFloat scaledHeight = targetHeight;
- CGPoint thumbnailPoint = CGPointMake(0, 0);
- 
- // Execute
- if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
- CGFloat widthFactor = targetWidth / sourceImageWidth;
- CGFloat heightFactor = targetHeight / sourceImageHeight;
- 
- if (widthFactor > heightFactor)
- scaleFactor = widthFactor;  // scale to fit height
- else
- scaleFactor = heightFactor; // scale to fit width
- 
- scaledWidth = sourceImageWidth * scaleFactor;
- scaledHeight = sourceImageHeight * scaleFactor;
- 
- // center the image
- if (widthFactor > heightFactor)
- thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
- else if (widthFactor < heightFactor)
- thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
- }
- 
- // do the crop
- UIGraphicsBeginImageContext(targetSize);
- CGRect thumbnailRect = CGRectZero;
- thumbnailRect.origin = thumbnailPoint;
- thumbnailRect.size.width = scaledWidth;
- thumbnailRect.size.height = scaledHeight;
- 
- [image drawInRect:thumbnailRect];
- newImage = UIGraphicsGetImageFromCurrentImageContext();
- 
- if (newImage == nil) NSLog(@"could not scale image");
- 
- UIGraphicsEndImageContext();
- 
- return newImage;
- }
- else
- return image;
- } */
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     Post *thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -272,14 +222,39 @@
 }
 
 -(void)setupRefreshControl {
-    
+
+    // if running on ios6 and above, include refreshControl as an option
     if ([self isIOS6OrLater]) {
-        // if running on ios6 and above, include Facebook as an option
+        
         // setup refresh control
         self.refreshControl = [[UIRefreshControl alloc] init];
         [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to refresh"];
+        [self setupRefreshControlTitle];
         [self.tableView addSubview:self.refreshControl];
+    }
+}
+
+-(void)setupRefreshControlTitle {
+    
+    if ([self isIOS6OrLater]) {
+        // if running on ios6 and above, include refreshControl as an option
+        
+        // get NSUserDefaults object with date of last download file (if present)
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *lastUpdateDateFromDefaults = [defaults stringForKey:LAST_UPDATE_TO_CORE_DB];
+        
+        // contrusct the string to be displayed
+        NSString *displayString;
+        if (lastUpdateDateFromDefaults)
+            displayString = [NSString stringWithFormat:@"Last update on %@",lastUpdateDateFromDefaults]    ;
+        else
+            displayString = @"Pull down to refresh";
+        
+        //update UIRefreshControl message
+        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:displayString];
+        
+        // stop twirling ball
+        [self.refreshControl endRefreshing];
     }
 }
 
@@ -318,6 +293,19 @@
     {
         [self populateIconInDBUsing:indexPath];
     }
+}
+
+-(void)showActivityViewer
+{
+    
+    [self.view addSubview:self.initialLoadSpinner];
+    [self.initialLoadSpinner startAnimating];
+}
+
+-(void)stopActivityViewer {
+    
+    [self.initialLoadSpinner stopAnimating];
+    
 }
 
 
@@ -428,6 +416,11 @@
 {
     tableView.rowHeight = CUSTOM_ROW_HIEGHT;
     
+    if (section == 0 && [[self.fetchedResultsController sections][section] numberOfObjects] == 0)
+        [self showActivityViewer];
+    else
+        [self stopActivityViewer];
+    
     return [[self.fetchedResultsController sections][section] numberOfObjects];
     
 }
@@ -447,6 +440,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+        
     static NSString *CellIdentifier = @"Post Description";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -543,7 +537,6 @@
     
     // get root view controllers popover button from left side and make it appear
     UIBarButtonItem *rootPopoverButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem];
-//    UIBarButtonItem *rootPopoverButtonItem = ((OITTabBarController *)self.tabBarController).rootPopoverButtonItem;
     
     [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
 #pragma clang diagnostic pop
@@ -622,19 +615,8 @@
     // release remote filler
     self.thisRemoteDatabaseFiller = nil;
     
-    if (success) {
-        
-        // set up a display dateformatter for today's date
-        NSDateFormatter *dataFormatter = [[NSDateFormatter alloc] init];
-        [dataFormatter setDateFormat:@"EEE, dd MMM yyyy HH:mm"];
-        
-        // set up to display today's date until refreshed again
-        NSString *lastUpdatedString = [NSString stringWithFormat:@"Last udpated on %@", [dataFormatter stringFromDate:[NSDate date]]];
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdatedString];
-    }
-    
-    // stop twirling ball
-    [self.refreshControl endRefreshing];
+    // reset the refresh control and stop spinning
+    [self setupRefreshControlTitle];
 }
 
 -(void)didFinishLoadingURL:(NSData *)iconData withSuccess:(BOOL)success findingMetadata:(NSString *)postID
