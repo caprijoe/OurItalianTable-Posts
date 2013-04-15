@@ -9,6 +9,8 @@
 #import "Post+Create.h"
 #import "Tag+Create.h"
 #import "Category+Create.h"
+#import "Tag+CreateMany.h"
+#import "Category+CreateMany.h"
 
 @implementation Post (Create)
 
@@ -65,16 +67,20 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     
     thisPost.whichCategories = nil;
     thisPost.whichTags = nil;
-    
+        
     // load tags into table
-    for (NSString *tagItem in postRecord.postTags) {
+/*    for (NSString *tagItem in postRecord.postTags) {
         [thisPost addWhichTagsObject:[Tag createTagWithString:tagItem inManagedObjectContext:context]];
-    }
+    } */
+    
+    [thisPost addWhichTags:[Tag createTagsWithString:postRecord.postTags inManagedObjectContext:context]];
     
     // load categories into table
-    for (NSString *categoryItem in postRecord.postCategories) {
+/*    for (NSString *categoryItem in postRecord.postCategories) {
         [thisPost addWhichCategoriesObject:[Category createCategoryWithString:categoryItem inManagedObjectContext:context]];
-    }    
+    } */
+    
+    [thisPost addWhichCategories:[Category createCategoriesWithString:postRecord.postCategories inManagedObjectContext:context]];
 }
 
 @end
