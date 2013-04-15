@@ -257,7 +257,11 @@
         } else if ([choice isEqualToString:REMOVE_BUTTON]) {
             self.thisPost.bookmarked = @NO;
         }
-                
+        
+        // save any loaded changes at this point
+        [self.thisPost.managedObjectContext save:NULL];    // save any loaded changes at this point
+
+        
     } else if ([self.currentActionSheet isEqualToString: SHARE_TITLE]) {
         if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString: EMAIL_BUTTON]) {
             [self shareViaEmail];
