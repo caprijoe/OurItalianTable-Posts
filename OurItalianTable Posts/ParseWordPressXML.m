@@ -132,32 +132,27 @@
 
 -(void)storeAwayCategoriesAndTagsFromDict:attributeDict {
     
+    // category tag example --
+    // <category domain="category" nicename="food">
+    // <category domain="post_tag" nicename="pasta">
+    
+    // if domain == category, process
     if ([attributeDict[@"domain"] isEqualToString:@"category"])
     {
+        // store the category away for if this is a real post
         [self.workingEntry.postCategories addObject:attributeDict[@"nicename"]];
         
-        // is the attribute text(subset) in the slug cross walk dictionary?
-        NSSet *resultsSet = [self.appDelegate.candidateGeoSlugs keysOfEntriesPassingTest:^BOOL(id key, id obj, BOOL *stop) {
-            NSRange range = [attributeDict[@"nicename"] rangeOfString:(NSString *)key];
-            if (range.location != NSNotFound) {
-                *stop = YES;
-                return YES;
-            } else
-                return NO;
-        }];
-        
-        NSString *finalGeo = [self.appDelegate.candidateGeoSlugs objectForKey:[resultsSet anyObject]];
-        
-        if (finalGeo)
-            self.workingEntry.geo = finalGeo;
-        
+        // if this is a valid geo, store away
+        if(self.appDelegate.candidateGeoSlugs[attributeDict[@"nicename"]])
+            self.workingEntry.geo = self.appDelegate.candidateGeoSlugs[attributeDict[@"nicename"]];
+                
     }
     // if domain == post_tag, process
     else if ([attributeDict[@"domain"] isEqualToString:@"post_tag"])
     {
+        // store the tag away for if this is a real post
         [self.workingEntry.postTags addObject:attributeDict[@"nicename"]];
     }
-    
 }
 
 -(void)storeAwayElement:elementName usingString:trimmedString {
@@ -268,11 +263,7 @@
     {
         // clear out string for capture of this element
         self.workingPropertyString = [NSString string];
-        
-        // category tag example --
-        // <category domain="category" nicename="food">
-        // <category domain="post_tag" nicename="pasta">
-                
+                        
         // if domain == category, process
         if ([elementName isEqualToString:POST_CATEGORY_TAG])
             [self storeAwayCategoriesAndTagsFromDict:attributeDict];
