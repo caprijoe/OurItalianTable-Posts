@@ -25,7 +25,7 @@
 {
     [super viewWillAppear:YES];
     
-    // set background to white
+    // set background to light gray
     self.view.backgroundColor = [UIColor lightGrayColor];
     
     // setup appDelegate for accessing shared properties and methods
