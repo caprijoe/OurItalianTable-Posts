@@ -12,33 +12,13 @@
 
 @interface TOCViewController ()
 @property (nonatomic, strong) AppDelegate *appDelegate;
-@property (nonatomic,strong) NSString *pickedCategory;          // category selected in first row of wheel
+@property (nonatomic, strong) NSString *pickedCategory;         // category selected in first row of wheel
 @property (nonatomic, strong) NSString *pickedDetail;           // detail picked in second row of wheel based on first column selected
-@property (nonatomic, strong) NSDictionary *categoryDictionary; // dictionary of first and second columns picker
 @property (nonatomic, strong) NSArray *categoryHolder;          // helper to hold first column of dictionary
+@property (nonatomic, strong) NSArray *pickerContentsHolder;    // hold the contents of each of the three potential pickers
 @end
 
 @implementation TOCViewController
-
-#pragma mark - Private methods
-
--(void)resetPickerWhenSegmentSelected {
-    
-    // save selected picker category to defaults
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:self.categorySegmentedController.selectedSegmentIndex+1 forKey:LAST_TOC_CATEGORY_KEY];
-    [defaults synchronize];
-    
-    // load pickedCategory based on selectedSegmentIndex
-    self.pickedCategory = [self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex];    
-    
-    // set initial position of picker wheel to row 1 and load into pickedDetail variable
-    [self.detailPicker selectRow:0 inComponent:0 animated:NO];
-    self.pickedDetail = [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:0];
-    
-    // reload picker
-    [self.detailPicker reloadAllComponents];
-}
 
 #pragma mark - View lifecycle support 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,67 +34,89 @@
     // configure done button
     [self.appDelegate configureButton:self.doneButton];
     
-    // setup helper to hold first column picker content (load plist keys and sort)
-    self.categoryHolder = [[self.appDelegate.categoryDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
-    
-    // Using the geosInUseList passed from vc, filter the category dictionary down to those items in use (with the expections of 'Recipes')
-    NSMutableDictionary *muteableCategoryDictionary = [[NSMutableDictionary alloc] initWithCapacity:[self.appDelegate.categoryDictionary count]];
-    for (NSString *category in self.categoryHolder) {
-        if ([category isEqualToString:@"Recipes"]) {
-            
-            [muteableCategoryDictionary setObject:[[self.appDelegate.categoryDictionary[@"Recipes"] allKeys] sortedArrayUsingSelector:@selector(compare:)] forKey:@"Recipes"];
+    // setup reference arrays
+    {
+        // the categories in the segmented controller
+        self.categoryHolder = [[self.appDelegate.categoryDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
         
-        } else {
-                        
-            NSMutableArray *usedGeos = [NSMutableArray arrayWithArray:[self.appDelegate.categoryDictionary[category] allKeys]];
-            NSPredicate *filterPredicate = [NSPredicate predicateWithFormat:@" SELF IN %@", self.geosInUseList];
-            [usedGeos filterUsingPredicate:filterPredicate];
-            [muteableCategoryDictionary setObject:[usedGeos sortedArrayUsingSelector:@selector(compare:)] forKey:category];
+        // an array with each object the picker contents depending on which segmented button is clicked
+        NSMutableArray *tempPickerContents = [NSMutableArray array];
+        for (NSArray *category in self.categoryHolder) {
+            [tempPickerContents addObject:[[self.appDelegate.categoryDictionary[category] allKeys] sortedArrayUsingSelector:@selector(compare:)]];
+        }
+        self.pickerContentsHolder = [tempPickerContents copy];
+    }
+    
+    // setup segmented controller
+    {
+        // remove segments that came in from storyboard
+        [self.categorySegmentedController removeAllSegments];
+        
+        // initialize with categories from the pre-loaded dictionary from the appDelegate
+        int i=0;
+        for (NSArray *segment in [[self.appDelegate.categoryDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
+            [self.categorySegmentedController insertSegmentWithTitle:[self.categoryHolder objectAtIndex:i] atIndex:i animated:YES];
+            i++;
         }
     }
     
-    self.categoryDictionary = [muteableCategoryDictionary copy];
-    
-    // remove segments that came in from storyboard, initialize with categories
-    [self.categorySegmentedController removeAllSegments];
-    int i=0;
-    for (NSArray *segment in self.categoryHolder) {
-        [self.categorySegmentedController insertSegmentWithTitle:[self.categoryHolder objectAtIndex:i] atIndex:i animated:YES];
-        i++;
-    }
-    
     // configure segmented controller
+    self.categorySegmentedController.selectedSegmentIndex = [self getLastSelectedSegmentedController];
+    
+    // setup the picker
+    [self resetPickerWhenSegmentSelected];
+    
+}
 
-    // get last selected category from defaults and use that (defaults value is offset by 1 -- so 1, 2, 3 is stored)
+-(void)viewDidLoad {
+    
+    [super viewDidLoad];
+
+    CGSize size = CGSizeMake(500, 400);
+    self.contentSizeForViewInPopover = size;
+    self.view.backgroundColor = [UIColor grayColor];
+
+}
+
+#pragma mark - Private methods
+
+-(void)saveLastSelectedSegmentedController:(int)lastSegment {
+    
+    // save away last segment clicked .. only non-zero #s can be saved in NSUserDefaults so offset by one
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:lastSegment+1 forKey:LAST_TOC_CATEGORY_KEY];
+    [defaults synchronize];
+    
+}
+
+-(int)getLastSelectedSegmentedController {
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int lastCategory = [defaults integerForKey:LAST_TOC_CATEGORY_KEY];
     
     if (lastCategory) {
-        self.categorySegmentedController.selectedSegmentIndex = lastCategory - 1;
+        return lastCategory - 1;
     } else {
-        self.categorySegmentedController.selectedSegmentIndex = 0;
         [defaults setInteger:1 forKey:LAST_TOC_CATEGORY_KEY];
-        [defaults synchronize];        
+        [defaults synchronize];
+        return 0;
     }
-    
-    [self resetPickerWhenSegmentSelected];
 }
 
--(void)viewDidLoad {
-    [super viewDidLoad];
-    CGSize size = CGSizeMake(500, 400);
-    self.contentSizeForViewInPopover = size;
-    self.view.backgroundColor = [UIColor grayColor];
+-(void)resetPickerWhenSegmentSelected {
     
-}
-
-- (void)viewDidUnload
-{
-    [self setCategorySegmentedController:nil];
-    [self setDetailPicker:nil];
-    [self setDoneButton:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    // save selected picker category to defaults
+    [self saveLastSelectedSegmentedController:self.categorySegmentedController.selectedSegmentIndex];
+    
+    // load pickedCategory based on selectedSegmentIndex
+    self.pickedCategory = [self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex];
+    
+    // set initial position of picker wheel to row 1 and load into pickedDetail variable
+    [self.detailPicker selectRow:0 inComponent:0 animated:NO];
+    self.pickedDetail = self.pickerContentsHolder[self.categorySegmentedController.selectedSegmentIndex][0];
+    
+    // reload picker
+    [self.detailPicker reloadAllComponents];
 }
 
 #pragma mark - Rotation Support
@@ -143,16 +145,10 @@
     return 1;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    self.pickedDetail = [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:row];
-}
-
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 {
     if (self.categorySegmentedController.selectedSegmentIndex >=0) {
-        int i = [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] count];
-        return i;
+        return [self.pickerContentsHolder[self.categorySegmentedController.selectedSegmentIndex] count];
     } else {
         return 0;
     }
@@ -160,7 +156,12 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
-    return [[self.categoryDictionary objectForKey:[self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex]] objectAtIndex:row];
+    return self.pickerContentsHolder[self.categorySegmentedController.selectedSegmentIndex][row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    self.pickedDetail = self.pickerContentsHolder[self.categorySegmentedController.selectedSegmentIndex][row];
 }
 
 #pragma mark - IBActions

@@ -21,12 +21,11 @@
 
 // delegate for callback from popover/modal, invoked when search button clicked
 @property (nonatomic, strong) id<TOCViewController> delegate;
-@property (nonatomic, strong) NSArray *geosInUseList;
 
 // Outlets
 @property (nonatomic, weak) IBOutlet UISegmentedControl *categorySegmentedController;
 @property (nonatomic, weak) IBOutlet UIPickerView *detailPicker;
-@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (nonatomic, weak) IBOutlet UIButton *doneButton;
 
 // Actions
 - (IBAction)selectCategorySegment:(id)sender;   // wheel for selecting detail TOC item
