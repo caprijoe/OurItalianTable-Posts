@@ -23,7 +23,6 @@
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
-@property (nonatomic)         BOOL scrollingAnimationActive;
 @property (nonatomic, strong) UIActivityIndicatorView *initialLoadSpinner;
 @end
 
@@ -81,7 +80,6 @@
     
     // load up the entries
     [self resetToAllEntries];
-    self.scrollingAnimationActive = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -181,9 +179,6 @@
     // if on an ipad, reset right side too
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
-    
-    // warn cellforviewatindexpath that a scroll animation is starting
-    self.scrollingAnimationActive = YES;
     
     // reset table view to top (0,0) & reload table
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
@@ -295,10 +290,6 @@
     {
         [self populateIconInDBUsing:indexPath];
     }
-    
-    // indicate animation scrolling is done
-    self.scrollingAnimationActive = NO;
-
 }
 
 -(void)showActivityViewer
@@ -459,13 +450,12 @@
     // Configure cell
     [self configureCell:cell atIndexPath:indexPath];
     
-    if (self.tableView.dragging == NO && self.tableView.decelerating == NO && !self.scrollingAnimationActive) {
+    if (self.tableView.dragging == NO && self.tableView.decelerating == NO) {
         
         // load icon if needed into DB
         [self populateIconInDBUsing:indexPath];
         
-    } else
-        NSLog(@"won't load --> %i, dragging = %d, decelerating = %d, scrollingAnimationActive = %d",indexPath.row, self.tableView.dragging, self.tableView.decelerating, self.scrollingAnimationActive);
+    }
     
     return cell;
 }
