@@ -295,6 +295,10 @@
     {
         [self populateIconInDBUsing:indexPath];
     }
+    
+    // indicate animation scrolling is done
+    self.scrollingAnimationActive = NO;
+
 }
 
 -(void)showActivityViewer
@@ -418,10 +422,10 @@
 {
     tableView.rowHeight = CUSTOM_ROW_HIEGHT;
     
-    if (section == 0 && [[self.fetchedResultsController sections][section] numberOfObjects] == 0)
+/*    if (section == 0 && [[self.fetchedResultsController sections][section] numberOfObjects] == 0)
         [self showActivityViewer];
     else
-        [self stopActivityViewer];
+        [self stopActivityViewer]; */
     
     return [[self.fetchedResultsController sections][section] numberOfObjects];
     
@@ -460,7 +464,8 @@
         // load icon if needed into DB
         [self populateIconInDBUsing:indexPath];
         
-    }
+    } else
+        NSLog(@"won't load --> %i, dragging = %d, decelerating = %d, scrollingAnimationActive = %d",indexPath.row, self.tableView.dragging, self.tableView.decelerating, self.scrollingAnimationActive);
     
     return cell;
 }
@@ -498,11 +503,9 @@
 }
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    
-    // indicate animation scrolling is done
-    self.scrollingAnimationActive = NO;
-    
+        
     [self loadImagesForOnscreenRows];
+    
 }
 
 #pragma mark - UISearchDelegate
@@ -572,9 +575,7 @@
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     
     // get root view controllers popover button from left side and make it appear
-//    UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[self.navigationController viewControllers][0]).rootPopoverButtonItem;
     UIBarButtonItem *rootPopoverButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem];
-
     
     [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
 #pragma clang diagnostic pop
@@ -693,7 +694,6 @@
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
         [segue.destinationViewController setDelegate:self];
-        [segue.destinationViewController setGeosInUseList:[self.geoList copy]];
         self.categoryPickerSegue = segue;
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
@@ -703,6 +703,5 @@
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     }
 }
-
 
 @end
