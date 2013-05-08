@@ -42,6 +42,13 @@
     return _initialLoadSpinner;
 }
 
+-(UIRefreshControl *)refreshControl {
+    
+    if (!_refreshControl)
+        _refreshControl = [[UIRefreshControl alloc] init];
+    return _refreshControl;
+}
+
 #pragma mark - View lifecycle
 
 -(void)viewDidLoad
@@ -78,8 +85,18 @@
     // updates self.geoCoordinates, self.geoList
     [self setupGeoReferenceInfo];
     
-    // load up the entries
+    // setup the refresh control but only the first time
+    [self setupRefreshControl];
+    
+    // load up table
     [self resetToAllEntries];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [self resetRightSide];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -160,6 +177,14 @@
     self.thisRemoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.appDelegate.parentMOC withDelegate:self giveUpAfter:20.0];
 }
 
+-(void)resetRightSide {
+    
+    // if on an ipad, reset right side too
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
+    
+}
+
 -(void)resetToAllEntries {
     
     // stop the spinning ball in case it's there
@@ -177,14 +202,11 @@
     [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
     
     // if on an ipad, reset right side too
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
+    [self resetRightSide];
     
     // reset table view to top (0,0) & reload table
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     
-    // setup the refresh control but only the first time
-    [self setupRefreshControl];
 }
 
 // load up the table thumbnnail, if not cached, cache it
@@ -224,7 +246,6 @@
     if ([self isIOS6OrLater]) {
         
         // setup refresh control
-        self.refreshControl = [[UIRefreshControl alloc] init];
         [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
         [self setupRefreshControlTitle];
         [self.tableView addSubview:self.refreshControl];
@@ -554,7 +575,8 @@
     else
         self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) AND (ANY whichTags.tagString =[cd] %@)", self.category, tag];
     
-    [[self fetchedResultsController] performFetch:NULL];
+    NSError *error;
+    [[self fetchedResultsController] performFetch:&error];
     
     // update context at bottom of view
     [self updateContext:tag];
