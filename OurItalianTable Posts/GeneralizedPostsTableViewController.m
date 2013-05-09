@@ -192,9 +192,6 @@
         [self.refreshControl endRefreshing];
     }
     
-    // make sure search bar is reset
-    [self.searchDisplayController setActive:NO animated:YES];
-    
     // reset context label
     [self updateContext:@"Our Italian Table"];
     
@@ -383,27 +380,25 @@
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    UITableView *tableView = [self.searchDisplayController isActive] ? self.searchDisplayController.searchResultsTableView : self.tableView;
-    
+        
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];;            
+            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];;            
             break;
             
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray
+            [self.tableView deleteRowsAtIndexPaths:[NSArray
                                                arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray
+            [self.tableView insertRowsAtIndexPaths:[NSArray
                                                arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
@@ -519,25 +514,39 @@
     
 }
 
-#pragma mark - UISearchDelegate
-
--(void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
-    tableView.rowHeight = CUSTOM_ROW_HIEGHT;
-}
-
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    
-    // update context at bottom of pane
-    [self updateContext:searchString];
-    
-    // do the refetch
-    return [self reviseFetchRequestUsing:searchString];
-}
+#pragma mark - UISearchBarDelegate
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     
-    [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
+    // reset to original state
     [self resetToAllEntries];
+    
+    // dismiss keyboard and clear out search bar
+    [searchBar resignFirstResponder];
+    searchBar.text = nil;
+    
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    // dismiss keyboard
+    [searchBar resignFirstResponder];
+    
+    // hack to leave cancel button enabled
+    for (id subview in [searchBar subviews]) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            [subview setEnabled:YES];
+        }
+    }
+    
+    // set the context field
+    [self updateContext:searchBar.text];
+    
+    // refetch based on search string
+    [self reviseFetchRequestUsing:searchBar.text];
+    
+    // clear out search bar
+    searchBar.text = nil;
     
 }
 
