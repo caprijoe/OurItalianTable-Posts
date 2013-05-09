@@ -20,14 +20,6 @@
     [self configureView];    
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    // make sure the toolbar at bottom of screen is hidden
-    self.navigationController.toolbarHidden = YES;
-}
-
 -(void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
@@ -36,8 +28,8 @@
     [self configureButtons];
     
     // put the splash screen up in the detail VC
-//    [self resetDetailPanel];
-}
+    [self resetDetailPanel];
+} 
 
 
 #pragma mark - Private methods
@@ -142,7 +134,7 @@
         OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
         [topVC.masterPopoverController dismissPopoverAnimated:YES];
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
-        [segue.destinationViewController setRootPopoverButtonItem:((OITTabBarController *)self.tabBarController).rootPopoverButtonItem];
+        // nothing to set
     }
 }
 
