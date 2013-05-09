@@ -460,10 +460,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" barStyle="blackOpaque" id="In0-hy-BYG">
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" showsCancelButton="YES" id="In0-hy-BYG">
                                 <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="zMa-21-Gkq" id="eYB-7A-nxX"/>
                                 </connections>
@@ -483,29 +487,11 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="contextLabel" destination="MkA-tN-abD" id="zUl-mA-GQT"/>
-                        <outlet property="searchDisplayController" destination="jhZ-61-TBJ" id="yKv-DH-zki"/>
                         <outlet property="tableView" destination="Im0-KM-e3Q" id="QAS-MS-VFn"/>
                         <outlet property="toolbar" destination="iwY-rI-IMm" id="2GO-0Q-dfL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mo-9z-Y7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Ibf-bz-HTA">
-                    <connections>
-                        <outlet property="delegate" destination="zMa-21-Gkq" id="PFv-Of-ONh"/>
-                        <outlet property="searchContentsController" destination="zMa-21-Gkq" id="oXh-ug-ewc"/>
-                        <outlet property="searchResultsDataSource" destination="zMa-21-Gkq" id="r1w-AS-t7n"/>
-                        <outlet property="searchResultsDelegate" destination="zMa-21-Gkq" id="vSl-z1-yaf"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="jhZ-61-TBJ">
-                    <connections>
-                        <outlet property="delegate" destination="zMa-21-Gkq" id="eej-aa-KGl"/>
-                        <outlet property="searchBar" destination="In0-hy-BYG" id="89J-s5-wBn"/>
-                        <outlet property="searchContentsController" destination="zMa-21-Gkq" id="raG-ay-g3f"/>
-                        <outlet property="searchResultsDataSource" destination="zMa-21-Gkq" id="Uyc-wZ-0ff"/>
-                        <outlet property="searchResultsDelegate" destination="zMa-21-Gkq" id="tf3-lc-3im"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="974" y="-652"/>
         </scene>
@@ -559,7 +545,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" barStyle="blackOpaque" id="fH0-q7-YwJ">
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" showsCancelButton="YES" id="fH0-q7-YwJ">
                                 <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -588,23 +574,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GtN-WA-iMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="YNq-k3-2RE">
-                    <connections>
-                        <outlet property="delegate" destination="YrJ-h9-Ehe" id="CAs-Rz-XRT"/>
-                        <outlet property="searchContentsController" destination="YrJ-h9-Ehe" id="TnM-Zk-0jC"/>
-                        <outlet property="searchResultsDataSource" destination="YrJ-h9-Ehe" id="LvZ-ii-Iqa"/>
-                        <outlet property="searchResultsDelegate" destination="YrJ-h9-Ehe" id="czd-Wq-Qfr"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="cQ0-aE-ZRf">
-                    <connections>
-                        <outlet property="delegate" destination="YrJ-h9-Ehe" id="gnI-gs-hqN"/>
-                        <outlet property="searchBar" destination="fH0-q7-YwJ" id="g0K-HC-TWA"/>
-                        <outlet property="searchContentsController" destination="YrJ-h9-Ehe" id="gXL-eL-L5R"/>
-                        <outlet property="searchResultsDataSource" destination="YrJ-h9-Ehe" id="EE7-1W-59N"/>
-                        <outlet property="searchResultsDelegate" destination="YrJ-h9-Ehe" id="oa4-Qr-2u4"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2108" y="-660"/>
         </scene>
@@ -674,22 +643,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eaX-ai-aqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="QmL-JZ-kye">
-                    <connections>
-                        <outlet property="delegate" destination="e0g-Zx-Ca0" id="hqA-KP-cQa"/>
-                        <outlet property="searchContentsController" destination="e0g-Zx-Ca0" id="IxR-8B-sik"/>
-                        <outlet property="searchResultsDataSource" destination="e0g-Zx-Ca0" id="ZZn-t5-dwP"/>
-                        <outlet property="searchResultsDelegate" destination="e0g-Zx-Ca0" id="vvy-f4-1Zc"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="BgT-cL-S7q">
-                    <connections>
-                        <outlet property="delegate" destination="e0g-Zx-Ca0" id="4qf-YF-Ujz"/>
-                        <outlet property="searchContentsController" destination="e0g-Zx-Ca0" id="1g7-Rf-LEu"/>
-                        <outlet property="searchResultsDataSource" destination="e0g-Zx-Ca0" id="ahp-zJ-OjH"/>
-                        <outlet property="searchResultsDelegate" destination="e0g-Zx-Ca0" id="CmD-c4-f0K"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3120" y="-668"/>
         </scene>
@@ -743,7 +696,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" barStyle="blackOpaque" id="KbQ-F9-3pn">
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" showsCancelButton="YES" id="KbQ-F9-3pn">
                                 <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -773,23 +726,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5N-GF-Kzb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="HTG-Pw-OME">
-                    <connections>
-                        <outlet property="delegate" destination="LiJ-ig-6Ww" id="eOn-qt-yhn"/>
-                        <outlet property="searchContentsController" destination="LiJ-ig-6Ww" id="Tyw-oc-3ue"/>
-                        <outlet property="searchResultsDataSource" destination="LiJ-ig-6Ww" id="WMb-Rg-Tel"/>
-                        <outlet property="searchResultsDelegate" destination="LiJ-ig-6Ww" id="VGk-Vd-YqV"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="y3Q-0E-cgp">
-                    <connections>
-                        <outlet property="delegate" destination="LiJ-ig-6Ww" id="kXg-KF-0ro"/>
-                        <outlet property="searchBar" destination="KbQ-F9-3pn" id="12M-RN-trt"/>
-                        <outlet property="searchContentsController" destination="LiJ-ig-6Ww" id="OsO-t3-aSM"/>
-                        <outlet property="searchResultsDataSource" destination="LiJ-ig-6Ww" id="JLN-Li-MSh"/>
-                        <outlet property="searchResultsDelegate" destination="LiJ-ig-6Ww" id="sfY-8a-voF"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="4250" y="-684"/>
         </scene>
@@ -987,89 +923,6 @@
         <image name="mbecci.jpg" width="420" height="420"/>
         <image name="ouritaliantable-original-crop.jpg" width="454" height="451"/>
     </resources>
-    <classes>
-        <class className="BookmarksTableViewController" superclassName="GeneralizedPostsTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookmarksTableViewController.h"/>
-        </class>
-        <class className="FoodTableViewController" superclassName="GeneralizedPostsTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FoodTableViewController.h"/>
-        </class>
-        <class className="GeneralizedPostsTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GeneralizedPostsTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="contextLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="LocationMapViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LocationMapViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButton:"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="OITLaunchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OITLaunchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="logo" candidateClass="UIImageView"/>
-                <relationship kind="outletCollection" name="buttonArray" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="PhotoScroller" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoScroller.h"/>
-            <relationships>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="photoName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="PostDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneButton:"/>
-                <relationship kind="outlet" name="authorPicture" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="datePublished" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="postTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="TOCViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOCViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goSearch:"/>
-                <relationship kind="action" name="selectCategorySegment:"/>
-                <relationship kind="outlet" name="categorySegmentedController" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="detailPicker" candidateClass="UIPickerView"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="WanderingsTableViewController" superclassName="GeneralizedPostsTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WanderingsTableViewController.h"/>
-        </class>
-        <class className="WebViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="topNavBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="WineTableViewController" superclassName="GeneralizedPostsTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WineTableViewController.h"/>
-        </class>
-        <class className="aboutViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/aboutViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="fireBackButton:"/>
-                <relationship kind="outlet" name="txtDisplay" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="versionBuildDisplay" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -1077,6 +930,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="pHB-aT-m04"/>
-        <segue reference="FQy-UO-Fda"/>
+        <segue reference="ayJ-bA-icr"/>
     </inferredMetricsTieBreakers>
 </document>
