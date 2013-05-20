@@ -750,7 +750,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6K1-Sp-cDF"/>
-                                    <barButtonItem title="Index" id="I7b-4v-Lh4"/>
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Uj8-yv-m7O">
@@ -801,7 +800,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vyv-aZ-2lW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4708" y="-1360"/>
+            <point key="canvasLocation" x="4624" y="-1360"/>
         </scene>
         <!--Bookmarks Table View Controller - Bookmarks-->
         <scene sceneID="siv-dM-jTg">
@@ -906,7 +905,6 @@
         <class className="GeneralizedPostsTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GeneralizedPostsTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="refreshView:"/>
                 <relationship kind="outlet" name="contextLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
@@ -990,6 +988,7 @@
         <class className="aboutViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/aboutViewController.h"/>
             <relationships>
+                <relationship kind="action" name="fireBackButton:"/>
                 <relationship kind="outlet" name="txtDisplay" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="versionBuildDisplay" candidateClass="UILabel"/>
             </relationships>
@@ -1001,8 +1000,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tzs-Jd-JNQ"/>
-        <segue reference="C3z-8x-LWY"/>
         <segue reference="1Kf-wz-Ep8"/>
+        <segue reference="VA7-60-x7r"/>
+        <segue reference="C9B-HA-Q4R"/>
     </inferredMetricsTieBreakers>
 </document>
