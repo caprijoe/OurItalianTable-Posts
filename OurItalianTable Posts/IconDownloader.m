@@ -25,7 +25,7 @@
 {
     self= [super init];
     if (self) {
-        self.expectedMIMETypes = @[@"image/jpeg", @"image/png"];
+        self.expectedMIMETypes = @[@"image/jpeg", @"image/png", @"image/gif"];
         self.numberOfAttempts = 0;
     }
     
