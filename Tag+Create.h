@@ -13,5 +13,4 @@
 + (Tag *)createTagWithString:(NSString *)tagString
       inManagedObjectContext:(NSManagedObjectContext *)context;
 
-
 @end

@@ -68,18 +68,10 @@ inManagedObjectContext:(NSManagedObjectContext *)context {
     thisPost.whichCategories = nil;
     thisPost.whichTags = nil;
         
-    // load tags into table
-/*    for (NSString *tagItem in postRecord.postTags) {
-        [thisPost addWhichTagsObject:[Tag createTagWithString:tagItem inManagedObjectContext:context]];
-    } */
-    
+    // load tags into table    
     [thisPost addWhichTags:[Tag createTagsWithString:postRecord.postTags inManagedObjectContext:context]];
     
-    // load categories into table
-/*    for (NSString *categoryItem in postRecord.postCategories) {
-        [thisPost addWhichCategoriesObject:[Category createCategoryWithString:categoryItem inManagedObjectContext:context]];
-    } */
-    
+    // load categories into table    
     [thisPost addWhichCategories:[Category createCategoriesWithString:postRecord.postCategories inManagedObjectContext:context]];
 }
 
