@@ -6,6 +6,10 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
+#import "Post.h"
+#import "OITTabBarController.h"
+#import "AppDelegate.h"
+#import "OITLaunchViewController.h"
 #import "GeneralizedPostsTableViewController.h"
 
 #define CUSTOM_ROW_HIEGHT    60.0
@@ -83,7 +87,7 @@
     self.downloadControl = [[NSMutableDictionary alloc] init];
     
     // updates self.geoCoordinates, self.geoList
-    [self setupGeoReferenceInfo];
+//    [self setupGeoReferenceInfo];
     
     // setup the refresh control but only the first time
     [self setupRefreshControl];
@@ -107,59 +111,6 @@
 }
 
 #pragma mark - Private methods
-
--(void)setupGeoReferenceInfo {
-    // updates self.geoCoordinates, self.geoList
-    
-    // get the list of DISTINCT geos in DB
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:self.appDelegate.parentMOC];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = entity;
-    request.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
-    request.resultType = NSDictionaryResultType;
-    request.returnsDistinctResults = YES;
-    request.propertiesToFetch = @[@"geo"];
-    
-    // Execute the fetch.
-    NSError *error;
-    NSArray *objects = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
-    if (error) NSLog(@"error at geoReferenceInfo = %@",error);
-    
-    // Assuming we got at least one, build the list of Annotations
-    if (objects == nil) {
-        
-        // Handle the error.
-        NSLog(@"nil array returned at geoReferenceInfo build");
-        
-    } else {
-        
-        // build the region list and annotations object
-        self.geoList = [NSMutableArray arrayWithCapacity:[objects count]];
-        self.geoCoordinates = [[NSMutableArray alloc] initWithCapacity:[self.geoList count]];
-        
-        for (NSDictionary *region in objects) {
-            
-            // load into region list
-            [self.geoList addObject:region[@"geo"]];
-            
-            // if there is annotation information, load into annotation object list
-            NSArray *geoInfo = self.appDelegate.candidateGeos[region[@"geo"]];
-            
-            if ([geoInfo count] > 2) {
-                
-                // create an annotation object with the coordinates
-                RegionAnnotation *annotationObject = [[RegionAnnotation alloc] init];
-                
-                annotationObject.regionName = region[@"geo"];
-                annotationObject.latitude = [(NSNumber *)[geoInfo objectAtIndex:0] floatValue];
-                annotationObject.longitude = [(NSNumber *)[geoInfo objectAtIndex:1] floatValue];
-                annotationObject.flagURL = [geoInfo objectAtIndex:2];
-                [self.geoCoordinates addObject:annotationObject];
-                
-            }
-        }
-    }
-}
 
 // update context at bottom of tableviewcontroller
 -(void)updateContext:(NSString *)detail {
@@ -410,6 +361,11 @@
             
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            
+            if ([self.rightSideSegueName isEqualToString: @"Show Region Map"] && (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad))
+                [self performSegueWithIdentifier:@"Show Region Map" sender:self];
+
+            
             break;
             
         case NSFetchedResultsChangeDelete:
@@ -419,6 +375,8 @@
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    
+    
     // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
     [self.tableView endUpdates];
 }
@@ -553,7 +511,7 @@
 #pragma mark - External delegates
 
 -(void)didMapClick:(MapViewController *)sender
-          geoNamed:(NSString *)region {
+     sectionNumber:(NSInteger)section {
     
     // force the root controller on screen (should not be on screen now because last selection was detailed popover)
     // suppress ARC warning about memory leak - not an issue
@@ -567,11 +525,11 @@
 #pragma clang diagnostic pop
     
     // scroll to correct position of table for region clicked
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:[self.geoList indexOfObject:region]];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     // update context field at bottom of screen
-    [self updateContext:region];
+    [self updateContext:[self.tableView.dataSource tableView:self.tableView titleForHeaderInSection:section]];
 }
 
 -(void)didClickTag:(NSString *)tag {
@@ -719,7 +677,7 @@
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     } else if ([segue.identifier isEqualToString:@"Show Region Map"]) {
-        [segue.destinationViewController setGeoCoordinates:[self.geoCoordinates copy]];
+//        [segue.destinationViewController setGeoCoordinates:[self.geoCoordinates copy]];
         [segue.destinationViewController setDelegate:self];
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     }

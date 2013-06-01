@@ -8,15 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "AppDelegate.h"
-#import "OITLaunchViewController.h"
-#import "OITTabBarController.h"
+
 #import "WebViewController.h"
 #import "TOCViewController.h"
 #import "PostDetailViewController.h"
-#import "Post.h"
 #import "MapViewController.h"
-#import "RegionAnnotation.h"
 #import "RemoteFillDatabaseFromXMLParser.h"
 #import "IconDownloader.h"
 
