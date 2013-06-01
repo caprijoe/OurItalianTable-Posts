@@ -129,7 +129,7 @@
 
 -(void)setupReferenceProperties {
     
-    // load filepath to bundle plist
+    // load filepath to bundle CategoryDictionary plist
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
     
     // fail if can't find file
@@ -197,8 +197,8 @@
             [self.parentMOC setPersistentStoreCoordinator:[self.postsDatabase.managedObjectContext persistentStoreCoordinator]];
                         
             // coreDB opened, now fill from bundle
-            [self fillFromBundle];
-//            [self fillFromRemote];
+//            [self fillFromBundle];
+            [self fillFromRemote];
 
             
         }];
