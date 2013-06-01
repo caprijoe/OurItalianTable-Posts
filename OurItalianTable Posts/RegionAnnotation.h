@@ -15,5 +15,6 @@
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @property (nonatomic, strong) NSString *flagURL;
+@property (nonatomic) NSInteger correspondingSection;
 
 @end
