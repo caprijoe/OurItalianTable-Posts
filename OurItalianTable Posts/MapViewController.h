@@ -15,7 +15,7 @@
 @protocol MapViewControllerDelegate
 
 -(void)didMapClick:(MapViewController *)sender
-          geoNamed:(NSString *)region;
+     sectionNumber:(NSInteger)section;
 @end
 
 @interface MapViewController : UIViewController <MKMapViewDelegate,SplitViewBarButtonItemPresenter>
@@ -26,6 +26,6 @@
 
 // public properties
 @property (nonatomic,weak) id<MapViewControllerDelegate> delegate;
-@property (nonatomic,strong) NSArray *geoCoordinates;                        // annotations to be displayed
+@property (nonatomic,strong) NSMutableArray *geoCoordinates;                        // annotations to be displayed
 
 @end
