@@ -27,24 +27,11 @@
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
-@property (nonatomic, strong) UIActivityIndicatorView *initialLoadSpinner;
 @end
 
 @implementation GeneralizedPostsTableViewController
 
 #pragma mark - Setters/Getters
-
--(UIActivityIndicatorView *)initialLoadSpinner {
-    
-    if (!_initialLoadSpinner) {
-        _initialLoadSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        _initialLoadSpinner.center = CGPointMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0);
-        _initialLoadSpinner.backgroundColor = [UIColor grayColor];
-        _initialLoadSpinner.hidesWhenStopped = YES;
-    }
-
-    return _initialLoadSpinner;
-}
 
 -(UIRefreshControl *)refreshControl {
     
@@ -261,20 +248,6 @@
     }
 }
 
--(void)showActivityViewer
-{
-    
-    [self.view addSubview:self.initialLoadSpinner];
-    [self.initialLoadSpinner startAnimating];
-}
-
--(void)stopActivityViewer {
-    
-    [self.initialLoadSpinner stopAnimating];
-    
-}
-
-
 #pragma mark - Rotation support
 
 - (WebViewController *)splitWebViewController
@@ -386,11 +359,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     tableView.rowHeight = CUSTOM_ROW_HIEGHT;
-    
-/*    if (section == 0 && [[self.fetchedResultsController sections][section] numberOfObjects] == 0)
-        [self showActivityViewer];
-    else
-        [self stopActivityViewer]; */
     
     return [[self.fetchedResultsController sections][section] numberOfObjects];
     
@@ -677,7 +645,6 @@
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     } else if ([segue.identifier isEqualToString:@"Show Region Map"]) {
-//        [segue.destinationViewController setGeoCoordinates:[self.geoCoordinates copy]];
         [segue.destinationViewController setDelegate:self];
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     }
