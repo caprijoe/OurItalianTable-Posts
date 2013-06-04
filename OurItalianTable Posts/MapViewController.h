@@ -25,7 +25,7 @@
 @property (nonatomic,weak) IBOutlet UIToolbar *toolbar;
 
 // public properties
-@property (nonatomic,weak) id<MapViewControllerDelegate> delegate;
-@property (nonatomic,strong) NSMutableArray *geoCoordinates;                        // annotations to be displayed
+@property (nonatomic, strong) id<MapViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSMutableArray *geoCoordinates;                        // annotations to be displayed
 
 @end
