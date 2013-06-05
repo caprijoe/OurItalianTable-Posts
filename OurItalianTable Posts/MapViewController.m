@@ -19,28 +19,30 @@
 @implementation MapViewController
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
-
 -(void)setupGeoReferenceInfo {
     // updates self.geoCoordinates, self.geoList
     
     // setup appDelegate for accessing shared properties and methods
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
     
-    // get the list of DISTINCT geos in DB
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:appDelegate.parentMOC];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    request.entity = entity;
-    request.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"wanderings"];
-    request.resultType = NSDictionaryResultType;
-    request.returnsDistinctResults = YES;
-    request.propertiesToFetch = @[@"geo"];
-    
-    // Execute the fetch.
-    NSError *error;
-    NSArray *objects = [appDelegate.parentMOC executeFetchRequest:request error:&error];
-    if (error) NSLog(@"error at geoReferenceInfo = %@",error);
-    
+    // setup the MOC for background processing
+    NSManagedObjectContext *backgroundMOC = [[NSManagedObjectContext alloc] init];
+    [backgroundMOC setPersistentStoreCoordinator:[appDelegate.parentMOC persistentStoreCoordinator]];
+            
+        // get the list of DISTINCT geos in DB
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:appDelegate.parentMOC];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        request.entity = entity;
+        request.predicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"wanderings"];
+        request.resultType = NSDictionaryResultType;
+        request.returnsDistinctResults = YES;
+        request.propertiesToFetch = @[@"geo"];
+        
+        // Execute the fetch.
+        NSError *error;
+        NSArray *objects = [appDelegate.parentMOC executeFetchRequest:request error:&error];
+        if (error) NSLog(@"error at geoReferenceInfo = %@",error);
+            
     // Assuming we got at least one, build the list of Annotations
     if (objects == nil) {
         
@@ -51,6 +53,8 @@
         
         // build the region list and annotations object
         self.geoCoordinates = [[NSMutableArray alloc] init];
+        
+        [self.mapView removeAnnotations:[self.mapView annotations]];
         
         int i = 0;
         for (NSDictionary *region in objects) {
@@ -69,6 +73,7 @@
                 annotationObject.flagURL = [geoInfo objectAtIndex:2];
                 annotationObject.correspondingSection = i++;
                 [self.geoCoordinates addObject:annotationObject];
+                [self.mapView addAnnotation:annotationObject];
                 
             }
         }
@@ -81,8 +86,8 @@
     MKCoordinateRegion newRegion;
     newRegion.center.latitude = 42;
     newRegion.center.longitude = 12.264425;
-    newRegion.span.latitudeDelta = 15;
-    newRegion.span.longitudeDelta = 10;
+    newRegion.span.latitudeDelta = 10;
+    newRegion.span.longitudeDelta = 8;
     
     [self.mapView setRegion:newRegion animated:YES];
 }
@@ -92,23 +97,44 @@
 - (void)viewDidLoad
 {
     
+    [super viewDidLoad];
+    
     // setup split bar button item
     [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
     
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     
-    [self setupGeoReferenceInfo];
+    [super viewWillAppear:animated];
     
     // setup the mapp type and set the UIMapView delegate
     self.mapView.mapType = MKMapTypeHybrid; // MKMapTypeStandard;   // also MKMapTypeSatellite or MKMapTypeHybrid
     self.mapView.delegate = self;
     
     // finally goto Italy
-    [self gotoLocation];    
+    [self gotoLocation];
     
-    // add the incoming annotations
-    [self.mapView addAnnotations:self.geoCoordinates];
+    // clear and reload annotations
+    [self setupGeoReferenceInfo];
+
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    self.mapView.delegate = nil;
+}
+
+-(void)tableDidUpdate {
+    
+    [self setupGeoReferenceInfo];
+    
 }
 
 #pragma mark -
