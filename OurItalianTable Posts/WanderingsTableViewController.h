@@ -1,5 +1,5 @@
 //
-//  WineTableViewController.h
+//  WanderingsTableViewController.h
 //  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 2/8/13.

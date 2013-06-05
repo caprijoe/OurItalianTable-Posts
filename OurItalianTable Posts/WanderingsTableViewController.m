@@ -8,11 +8,8 @@
 
 #import "WanderingsTableViewController.h"
 
-@interface WanderingsTableViewController ()
-
-@end
-
 @implementation WanderingsTableViewController
+
 @synthesize category = _category;
 
 #pragma mark - Setters/Getters
