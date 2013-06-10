@@ -39,17 +39,19 @@
     // first time thru (url == nil), save URL and add URL with default thumbnail size
     // after just set URL to incoming parm
     
-    if (!_url) {
+    if (url) {
         
-        // edit image URL to get path thumbnail instead, if available
-        // -- delete and existing dimension
-        // -- -150x150 to the primary URL
-        
-        self.originalURL = url;
-        
-        _url = [self modifyURLToThumbnailFile:self.originalURL];
-    } else
-        _url = url;
+        if (!_url) {
+            
+            // edit image URL to get path thumbnail instead, if available
+            // -- delete and existing dimension
+            // -- -150x150 to the primary URL
+            
+            self.originalURL = url;
+            _url = [self modifyURLToThumbnailFile:self.originalURL];
+        } else
+            _url = url;
+    }
 }
 
 -(void)startFileDownload
