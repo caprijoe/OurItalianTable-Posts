@@ -73,9 +73,6 @@
     // init download control dict
     self.downloadControl = [[NSMutableDictionary alloc] init];
     
-    // updates self.geoCoordinates, self.geoList
-//    [self setupGeoReferenceInfo];
-    
     // setup the refresh control but only the first time
     [self setupRefreshControl];
     
@@ -84,13 +81,16 @@
 
 }
 
--(void)viewWillAppear:(BOOL)animated {
+-(void)viewDidAppear:(BOOL)animated {
     
+    [super viewDidAppear:animated];
     [self resetRightSide];
 
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
     
     // save any loaded changes at this point
     [self.appDelegate.parentMOC save:NULL];
@@ -116,6 +116,8 @@
 }
 
 -(void)resetRightSide {
+    
+    DLog(@"resetRightSide");
     
     // if on an ipad, reset right side too
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -154,7 +156,7 @@
     if (!postRecord.postIcon && postRecord.imageURLString) {
         
         IconDownloader *downloader = [[IconDownloader alloc] init];
-        downloader.url = [NSURL URLWithString:postRecord.imageURLString];
+        downloader.url = [NSURL URLWithString:[postRecord.imageURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         downloader.postID = postRecord.postID;
         downloader.delegate = self;
         
