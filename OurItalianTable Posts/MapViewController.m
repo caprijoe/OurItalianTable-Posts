@@ -16,11 +16,50 @@
 
 #define ANNOTATION_ICON_HEIGHT 30
 
+@interface MapViewController ();
+@property (nonatomic) BOOL needRegionUpdate;
+@end
+
 @implementation MapViewController
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+//    [self updateRegion];
+}
+
+-(void)updateRegion
+{
+    
+    self.needRegionUpdate = NO;
+    CGRect boundingRect;
+    BOOL started = NO;
+    
+    for (id<MKAnnotation>annotation in self.mapView.annotations) {
+        CGRect annotationRect = CGRectMake(annotation.coordinate.latitude, annotation.coordinate.longitude, 0, 0);
+        if (!started) {
+            started = YES;
+            boundingRect = annotationRect;
+        } else {
+            boundingRect = CGRectUnion(boundingRect, annotationRect);
+        }
+    }
+    
+    if (started) {
+        boundingRect = CGRectInset(boundingRect, -0.2, -0.2);
+        if ((boundingRect.size.width < 20) && (boundingRect.size.height <20)) {
+            MKCoordinateRegion region;
+            region.center.latitude = boundingRect.origin.x + boundingRect.size.width / 2;
+            region.center.longitude = boundingRect.origin.y + boundingRect.size.height / 2;
+            region.span.latitudeDelta = boundingRect.size.height;
+            region.span.longitudeDelta = boundingRect.size.height;
+            [self.mapView setRegion:region animated:YES];
+            
+        }
+    }
+}
+
 -(void)setupGeoReferenceInfo {
-    // updates self.geoCoordinates, self.geoList
     
     // setup appDelegate for accessing shared properties and methods
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -51,10 +90,7 @@
         
     } else {
         
-        // build the region list and annotations object
-        self.geoCoordinates = [[NSMutableArray alloc] init];
-        
-        [self.mapView removeAnnotations:[self.mapView annotations]];
+        // load up annotations for geos found in DB, set section # for click back
         
         int i = 0;
         for (NSDictionary *region in objects) {
@@ -72,7 +108,6 @@
                 annotationObject.longitude = [(NSNumber *)[geoInfo objectAtIndex:1] floatValue];
                 annotationObject.flagURL = [geoInfo objectAtIndex:2];
                 annotationObject.correspondingSection = i++;
-                [self.geoCoordinates addObject:annotationObject];
                 [self.mapView addAnnotation:annotationObject];
                 
             }
@@ -86,7 +121,7 @@
     MKCoordinateRegion newRegion;
     newRegion.center.latitude = 42;
     newRegion.center.longitude = 12.264425;
-    newRegion.span.latitudeDelta = 10;
+    newRegion.span.latitudeDelta = 15;
     newRegion.span.longitudeDelta = 8;
     
     [self.mapView setRegion:newRegion animated:YES];
@@ -118,10 +153,17 @@
     // finally goto Italy
     [self gotoLocation];
     
+//    self.mapView.centerCoordinate = CLLocationCoordinate2DMake(42, 12.264425);
+    
     // clear and reload annotations
     [self setupGeoReferenceInfo];
-
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    [self updateRegion];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -129,12 +171,6 @@
     [super viewWillDisappear:animated];
     
     self.mapView.delegate = nil;
-}
-
--(void)tableDidUpdate {
-    
-    [self setupGeoReferenceInfo];
-    
 }
 
 #pragma mark -

@@ -27,6 +27,5 @@
 
 // public properties
 @property (nonatomic, strong) id<MapViewControllerDelegate> delegate;
-@property (nonatomic, strong) NSMutableArray *geoCoordinates;                        // annotations to be displayed
 
 @end
