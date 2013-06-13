@@ -108,33 +108,35 @@
 
 #pragma mark - Segue support
 
+-(id)splitViewDetailWithBarButtonItem
+{
+    id detail = [self.splitViewController.viewControllers lastObject];
+    if (![detail respondsToSelector:@selector(setSplitViewBarButtonItem:)] || ![detail respondsToSelector:@selector(splitViewBarButtonItem)]) detail = nil;
+    return detail;
+}
+
+-(void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
+{
+    UIBarButtonItem *splitViewBarButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem ];
+    [[self splitViewDetailWithBarButtonItem] setSplitViewBarButtonItem:nil];
+    if (splitViewBarButtonItem) [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"Push Food"]) {
-        [segue.destinationViewController setCategory:FOOD_CATEGORY];
-        [segue.destinationViewController setFavs:NO];
-        [self resetDetailPanel];
-    } else if ([segue.identifier isEqualToString:@"Push Wine"]) {
-        [segue.destinationViewController setCategory:WINE_CATEGORY];
-        [segue.destinationViewController setFavs:NO];
-        [self resetDetailPanel];
-    } else if ([segue.identifier isEqualToString:@"Push Travel"]) {
-        [segue.destinationViewController setCategory:WANDERING_CATEGORY];
-        [segue.destinationViewController setFavs:NO];
+
+    if ([segue.identifier isEqualToString:@"Push Family"]) {
         
-        // get rid of left side splitview, segue to map to navigate
-        OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
+        // get rid of left side splitview, segue to photo scroller
+        OITLaunchViewController *topVC = (OITLaunchViewController *)self.splitViewController.viewControllers[0];
         [topVC.masterPopoverController dismissPopoverAnimated:YES];
-        
-    } else if ([segue.identifier isEqualToString:@"Push Favorites"]) {
-        [segue.destinationViewController setFavs:YES];
-        [self resetDetailPanel];
-    } else if ([segue.identifier isEqualToString:@"Push Family"]) {
-        
-        // get rid of left side splitview, segue to map to navigate
-        OITLaunchViewController *topVC = [[self.navigationController viewControllers] objectAtIndex:0];
-        [topVC.masterPopoverController dismissPopoverAnimated:YES];
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
+
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
-        // nothing to set
+        
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
+
+    } else if ([segue.identifier isEqualToString:@"Push About"]) {
+        // do nothing
     }
 }
 
