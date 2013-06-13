@@ -54,20 +54,18 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
+    // set the button for portrait mode
+    [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];    
     
     // make sure bottom toolbar in nav controller is hidden
     [self.navigationController setToolbarHidden:YES];
     
     // set window title
     self.title = @"The Family";
-    
-    // if on iPad, on load, get root button from left nav controller top and display on right
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        UIBarButtonItem *rootPopoverButtonItem = ((OITLaunchViewController *)[((UINavigationController *)[((UISplitViewController *)self.parentViewController).viewControllers objectAtIndex:0]).viewControllers objectAtIndex:0]).rootPopoverButtonItem;    
-        [self setSplitViewBarButtonItem:rootPopoverButtonItem];
-    }
-    
+        
     // get image names from PLIST
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"NextImage" ofType:@"plist"];
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
@@ -98,15 +96,6 @@
     [self loadVisiblePages];
 }
 
-- (void)viewDidUnload {
-    [self setPhotoName:nil];
-    [super viewDidUnload];
-    
-    self.scrollView = nil;
-    self.pageControl = nil;
-    self.pageViews = nil;
-}
-
 #pragma mark - Rotation support
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -119,13 +108,11 @@
 
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
-    if (_splitViewBarButtonItem !=splitViewBarButtonItem) {
-        NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
-        if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-        if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
-        self.toolbar.items = toolbarsItems;
-        _splitViewBarButtonItem = splitViewBarButtonItem;
-    }
+    NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
+    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
+    if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
+    self.toolbar.items = toolbarsItems;
+    _splitViewBarButtonItem = splitViewBarButtonItem;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -139,7 +126,6 @@
 
 - (IBAction)fireBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 @end
