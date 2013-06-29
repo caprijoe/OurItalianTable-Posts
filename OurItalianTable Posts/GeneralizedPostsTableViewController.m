@@ -93,7 +93,9 @@
     [super viewWillDisappear:animated];
     
     // save any loaded changes at this point
-    [self.appDelegate.parentMOC save:NULL];
+    [self.appDelegate.parentMOC performBlockAndWait:^{
+        [self.appDelegate.parentMOC save:NULL];
+    }];
     
 }
 
@@ -112,7 +114,9 @@
     NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
     
     // launch filler for remote
-    self.thisRemoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.appDelegate.parentMOC withDelegate:self giveUpAfter:20.0];
+    [self.appDelegate.parentMOC performBlock:^{
+        self.thisRemoteDatabaseFiller = [[RemoteFillDatabaseFromXMLParser alloc] initWithURL:remoteURL usingParentMOC:self.appDelegate.parentMOC withDelegate:self giveUpAfter:20.0];
+    }];
 }
 
 -(void)resetRightSide {
@@ -288,12 +292,16 @@
     request.predicate = self.favs ? [NSPredicate predicateWithFormat:@"bookmarked == %@", @YES] : [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
     
     // setup controller
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.appDelegate.parentMOC sectionNameKeyPath:sectionKey cacheName:nil];
-    self.fetchedResultsController.delegate = self;
+    __block NSError *error = nil;
+
+    [self.appDelegate.parentMOC performBlockAndWait:^{
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.appDelegate.parentMOC sectionNameKeyPath:sectionKey cacheName:nil];
+        self.fetchedResultsController.delegate = self;
+        
+        // Perform fetch and reload table
+        [self.fetchedResultsController performFetch:&error];
+    }];
     
-    // Perform fetch and reload table
-    NSError *error = nil;
-    [self.fetchedResultsController performFetch:&error];
     [self.tableView reloadData];
 }
 
@@ -306,7 +314,7 @@
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-        
+            
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
@@ -585,8 +593,12 @@
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"postID" ascending:YES];
         request.sortDescriptors = @[sortDescriptor];
         
-        NSError *error = nil;
-        NSArray *matches = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
+        __block NSError *error = nil;
+        __block NSArray *matches;
+        
+        [self.appDelegate.parentMOC performBlockAndWait:^{
+            matches = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
+        }];
         
         if (!matches || ([matches count] > 1)) {
             
