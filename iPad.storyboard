@@ -507,7 +507,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="jzS-2w-9Hr" kind="popover" popoverAnchorView="Up0-V9-R4i" id="aDY-gI-UVz">
+                                    <segue destination="jzS-2w-9Hr" kind="popover" identifier="Push About" popoverAnchorView="Up0-V9-R4i" id="aDY-gI-UVz">
                                         <popoverArrowDirection key="popoverArrowDirection" left="YES"/>
                                     </segue>
                                 </connections>
@@ -522,7 +522,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="efU-7f-UBu" kind="replace" splitViewControllerTargetIndex="1" id="zQs-JZ-fnH"/>
+                                    <segue destination="efU-7f-UBu" kind="replace" identifier="Push Family" splitViewControllerTargetIndex="1" id="qUU-db-xZd"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="hcQ-pU-rpi">
@@ -988,7 +988,6 @@
         <class className="aboutViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/aboutViewController.h"/>
             <relationships>
-                <relationship kind="action" name="fireBackButton:"/>
                 <relationship kind="outlet" name="txtDisplay" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="versionBuildDisplay" candidateClass="UILabel"/>
             </relationships>
@@ -1001,7 +1000,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="1Kf-wz-Ep8"/>
+        <segue reference="ZQ6-IT-DfC"/>
         <segue reference="VA7-60-x7r"/>
-        <segue reference="C9B-HA-Q4R"/>
     </inferredMetricsTieBreakers>
 </document>

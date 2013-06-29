@@ -295,7 +295,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="hFq-gk-njK">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <barButtonItem title="Back" id="nug-z6-rVG">
@@ -306,15 +306,15 @@
                                 </items>
                             </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="B77-hh-UDW">
-                                <rect key="frame" x="20" y="394" width="280" height="21"/>
+                                <rect key="frame" x="20" y="401" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" id="du7-f4-vt1">
-                                <rect key="frame" x="0.0" y="64" width="320" height="322"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="342"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="V4f-QM-nNY" id="8RA-uO-b8Y"/>
                                 </connections>
@@ -923,6 +923,94 @@
         <image name="mbecci.jpg" width="420" height="420"/>
         <image name="ouritaliantable-original-crop.jpg" width="454" height="451"/>
     </resources>
+    <classes>
+        <class className="BookmarksTableViewController" superclassName="GeneralizedPostsTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BookmarksTableViewController.h"/>
+        </class>
+        <class className="FoodTableViewController" superclassName="GeneralizedPostsTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FoodTableViewController.h"/>
+        </class>
+        <class className="GeneralizedPostsTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GeneralizedPostsTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshView:"/>
+                <relationship kind="outlet" name="contextLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="LocationMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LocationMapViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneButton:"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="OITLaunchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OITLaunchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buttonClicked:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="logo" candidateClass="UIImageView"/>
+                <relationship kind="outletCollection" name="buttonArray" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="PhotoScroller" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PhotoScroller.h"/>
+            <relationships>
+                <relationship kind="action" name="fireBackButton:"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="photoName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="PostDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneButton:"/>
+                <relationship kind="outlet" name="authorPicture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="datePublished" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="postTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="TOCViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TOCViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goSearch:"/>
+                <relationship kind="action" name="selectCategorySegment:"/>
+                <relationship kind="outlet" name="categorySegmentedController" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="detailPicker" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="WanderingsTableViewController" superclassName="GeneralizedPostsTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WanderingsTableViewController.h"/>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addToFavorites:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="fireBackButton:"/>
+                <relationship kind="action" name="sharePost:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="topNavBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="WineTableViewController" superclassName="GeneralizedPostsTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WineTableViewController.h"/>
+        </class>
+        <class className="aboutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/aboutViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="txtDisplay" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="versionBuildDisplay" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
