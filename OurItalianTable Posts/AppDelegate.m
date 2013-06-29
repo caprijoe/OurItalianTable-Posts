@@ -23,8 +23,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    NSLog(@"app start");
-    
     // alloc init core database object
     NSURL *documentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSURL *databaseURL = [documentsDirectory URLByAppendingPathComponent:COREDB_NAME];
@@ -159,7 +157,6 @@
 
 -(void)fillFromBundle {
     
-    NSLog(@"start fill bundle");
     // set up URL to read XML file in bundle
     NSString *path = [[NSBundle mainBundle] pathForResource:WORDPRESS_BUNDLE_FILE ofType:@"xml"];
     
@@ -172,7 +169,6 @@
 }
 
 -(void)fillFromRemote {
-    NSLog(@"start fill from remote");
     
     // set up URL to remote file
     NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
@@ -226,14 +222,12 @@
 #pragma mark - External delegates
 
 -(void)doneFillingFromBundle {
-    NSLog(@"end fill bundle");
 
     self.bundleDatabaseFiller = nil;
     [self fillFromRemote];
 }
 
 -(void)doneFillingFromRemote:(BOOL)success {
-    NSLog(@"end fill remote");
 
      self.remoteDatabaseFiller = nil;
 }
