@@ -46,13 +46,14 @@
 		</array>
 		<key>Emilia-Romagna</key>
 		<array>
-			<real>44.5075</real>
-			<real>11.351389</real>
+			<real>44.75</real>
+			<integer>12</integer>
+			<string>200px-Emilia-Romagna-Bandiera.png</string>
 		</array>
 		<key>Friuli-Venezia Giulia</key>
 		<array>
 			<real>46.165</real>
-			<real>12.9053</real>
+			<real>12.5</real>
 			<string>Friuli-Venezia_Giulia-Flag.png</string>
 		</array>
 		<key>Lazio</key>
