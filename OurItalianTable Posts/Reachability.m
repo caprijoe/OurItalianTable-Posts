@@ -99,6 +99,12 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
 @synthesize reachabilityObject;
 
 #pragma mark - class constructor methods
+
++(Reachability*)reachabilityWithHostName:(NSString*)hostname
+{
+    return [Reachability reachabilityWithHostname:hostname];
+}
+
 +(Reachability*)reachabilityWithHostname:(NSString*)hostname
 {
     SCNetworkReachabilityRef ref = SCNetworkReachabilityCreateWithName(NULL, [hostname UTF8String]);
@@ -507,6 +513,15 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
         [[NSNotificationCenter defaultCenter] postNotificationName:kReachabilityChangedNotification 
                                                             object:self];
     });
+}
+
+#pragma mark - Debug Description
+
+- (NSString *) description;
+{
+    NSString *description = [NSString stringWithFormat:@"<%@: %#x>",
+                             NSStringFromClass([self class]), (unsigned int) self];
+    return description;
 }
 
 @end
