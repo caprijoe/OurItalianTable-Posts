@@ -7,6 +7,7 @@
 //
 
 #import "RemoteFillDatabaseFromXMLParser.h"
+#import "SharedUserDefaults.h"
 
 @interface RemoteFillDatabaseFromXMLParser ()
 @property (nonatomic, strong) NSOperationQueue *queue;                          // queue for XML parsing
@@ -34,8 +35,7 @@
     self.seconds = seconds;
     
     // get NSUserDefaults object with date of last download file (if present)
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.lastUpdateDateFromDefaults = [defaults stringForKey:LAST_UPDATE_TO_CORE_DB];
+    self.lastUpdateDateFromDefaults = [[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_UPDATE_TO_CORE_DB];
     
     // kick off file get
     self.fileGetter = [[XMLFileGetter alloc] init];
