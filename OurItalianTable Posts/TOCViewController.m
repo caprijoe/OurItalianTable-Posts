@@ -7,8 +7,7 @@
 //
 
 #import "TOCViewController.h"
-
-#define LAST_TOC_CATEGORY_KEY   @"LAST_TOC_CATEGORY_KEY"
+#import "SharedUserDefaults.h"
 
 @interface TOCViewController ()
 @property (nonatomic, strong) AppDelegate *appDelegate;
@@ -83,24 +82,14 @@
 -(void)saveLastSelectedSegmentedController:(int)lastSegment {
     
     // save away last segment clicked .. only non-zero #s can be saved in NSUserDefaults so offset by one
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:lastSegment+1 forKey:LAST_TOC_CATEGORY_KEY];
-    [defaults synchronize];
+    [[SharedUserDefaults sharedSingleton] setObjectWithKey:LAST_TOC_CATEGORY_KEY withObject:[NSNumber numberWithInt:lastSegment]];
     
 }
 
 -(int)getLastSelectedSegmentedController {
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    int lastCategory = [defaults integerForKey:LAST_TOC_CATEGORY_KEY];
-    
-    if (lastCategory) {
-        return lastCategory - 1;
-    } else {
-        [defaults setInteger:1 forKey:LAST_TOC_CATEGORY_KEY];
-        [defaults synchronize];
-        return 0;
-    }
+        
+    return [[[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_TOC_CATEGORY_KEY] intValue];
+            
 }
 
 -(void)resetPickerWhenSegmentSelected {
