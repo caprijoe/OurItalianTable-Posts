@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "OITLaunchViewController.h"
 #import "GeneralizedPostsTableViewController.h"
+#import "SharedUserDefaults.h"
 
 #define CUSTOM_ROW_HIEGHT    60.0
 
@@ -199,8 +200,7 @@
         // if running on ios6 and above, include refreshControl as an option
         
         // get NSUserDefaults object with date of last download file (if present)
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *lastUpdateDateFromDefaults = [defaults stringForKey:LAST_UPDATE_TO_CORE_DB];
+        NSString *lastUpdateDateFromDefaults = [[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_UPDATE_TO_CORE_DB];
         
         // contrusct the string to be displayed
         NSString *displayString;
