@@ -41,12 +41,14 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    NSLog(@"ouritaliantable will resign.");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -57,11 +59,24 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    NSLog(@"ouritaliantable will become active.");
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    NSLog(@"ouritaliantable will terminate.");
+    
+    [self.postsDatabase closeWithCompletionHandler:^(BOOL success) {
+        
+        if (success)
+            NSLog(@"successfully closed core data");
+        else
+            NSLog(@"error closing core data");
+        
+    }];
+    
 }
 
 #pragma mark - Shared methods for use in other classes
@@ -155,19 +170,6 @@
     self.candidateGeoSlugs = [muteableCandidateGeoSlugs copy];    
 }
 
--(void)fillFromBundle {
-    
-    // set up URL to read XML file in bundle
-    NSString *path = [[NSBundle mainBundle] pathForResource:WORDPRESS_BUNDLE_FILE ofType:@"xml"];
-    
-    NSAssert(path, @"Unable to find bundle file");
-    
-    NSURL *bundleUrl = [NSURL fileURLWithPath:path];
-    
-    // launch filler for bundle
-    self.bundleDatabaseFiller = [[BundleFillDatabaseFromXMLParser alloc] initWithURL:bundleUrl usingParentMOC:self.parentMOC withDelegate:self];
-}
-
 -(void)fillFromRemote {
     
     // set up URL to remote file
@@ -181,6 +183,7 @@
     
     // if database does not exist, fill with fileFromBundle and then fillFromRemote
     if (![[NSFileManager defaultManager] fileExistsAtPath:[self.postsDatabase.fileURL path]]) {
+        NSLog(@"DB does not exist... create it..");
         
         // if DB does not exist, create and open
         [self.postsDatabase saveToURL:self.postsDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
@@ -191,16 +194,19 @@
             // setup parent MOC with NSMainQueueConcurrencyType
             self.parentMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
             [self.parentMOC setPersistentStoreCoordinator:[self.postsDatabase.managedObjectContext persistentStoreCoordinator]];
+            
+            // post notificaiton that DB opened and MOC available
+            [[NSNotificationCenter defaultCenter] postNotificationName:COREDB_OPENED_NOTIFICATION object:self];
                         
-            // coreDB opened, now fill from bundle
-//            [self fillFromBundle];
             [self fillFromRemote];
-
             
         }];
         
     // if database does exist, just fillFromRemote - will update if remote file date has changed
     } else  if (self.postsDatabase.documentState == UIDocumentStateClosed) {
+        
+        NSLog(@"DB does exist... open it..");
+
         
         // if DB exists and is not open, open it
         [self.postsDatabase openWithCompletionHandler:^(BOOL success) {
@@ -212,6 +218,9 @@
             self.parentMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
             [self.parentMOC setPersistentStoreCoordinator:[self.postsDatabase.managedObjectContext persistentStoreCoordinator]];
             
+            // post notificaiton that DB opened and MOC available
+            [[NSNotificationCenter defaultCenter] postNotificationName:COREDB_OPENED_NOTIFICATION object:self];
+            
             // coreDB opened, assume previously filled from bundle. now fill from remotr
             [self fillFromRemote];
 
@@ -220,12 +229,6 @@
 }
 
 #pragma mark - External delegates
-
--(void)doneFillingFromBundle {
-
-    self.bundleDatabaseFiller = nil;
-    [self fillFromRemote];
-}
 
 -(void)doneFillingFromRemote:(BOOL)success {
 

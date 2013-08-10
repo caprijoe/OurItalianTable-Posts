@@ -12,11 +12,12 @@
 #import "ParseWordPressXML.h"
 #import "Post.h"
 
-#define POST_ICON_HEIGHT        48
-#define COREDB_NAME             @"OITPostsDatabase-V2.0"
-#define WORDPRESS_BUNDLE_FILE   @"WPExport"
+#define POST_ICON_HEIGHT            48
+#define COREDB_NAME                 @"OITPostsDatabase-V2.0"
+#define WORDPRESS_BUNDLE_FILE       @"WPExport"
+#define COREDB_OPENED_NOTIFICATION  @"OITUIManagedDocumentOpened"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, BundleFillDatabaseFromXMLParserDelegate, RemoteFillDatabaseFromXMLParserDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, RemoteFillDatabaseFromXMLParserDelegate>
 
 // public properties
 @property (nonatomic, strong) UIWindow *window;
