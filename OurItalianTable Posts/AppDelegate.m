@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
+#import "SharedUserDefaults.h"
 
 @interface AppDelegate()
 @property (nonatomic, strong) UIManagedDocument *postsDatabase;                               // core DB file
@@ -68,7 +69,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     NSLog(@"ouritaliantable will terminate.");
     
+    [[SharedUserDefaults sharedSingleton] setObjectWithKey:@"TERMINATED_AT" withObject:[NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterFullStyle]];
+    
     [self.postsDatabase closeWithCompletionHandler:^(BOOL success) {
+        
+        [[SharedUserDefaults sharedSingleton] setObjectWithKey:@"DB_CLOSE_SUCCESS" withObject:[NSNumber numberWithBool:success]];
         
         if (success)
             NSLog(@"successfully closed core data");
@@ -210,13 +215,17 @@
         
         // if DB exists and is not open, open it
         [self.postsDatabase openWithCompletionHandler:^(BOOL success) {
-            
+            NSLog(@"openwithcompletionhandler complete");
             // if open failed, abort
             NSAssert(success, @"Core Data open failed");
 
             // setup parent MOC with NSMainQueueConcurrencyType
             self.parentMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+            NSLog(@"NSManagedObjectContext alloc complete");
+
             [self.parentMOC setPersistentStoreCoordinator:[self.postsDatabase.managedObjectContext persistentStoreCoordinator]];
+            NSLog(@"setPersistentStoreCoordinator");
+
             
             // post notificaiton that DB opened and MOC available
             [[NSNotificationCenter defaultCenter] postNotificationName:COREDB_OPENED_NOTIFICATION object:self];
