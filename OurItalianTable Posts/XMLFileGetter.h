@@ -20,5 +20,6 @@
 @property (nonatomic) NSTimeInterval seconds;
 
 -(id)init;
+-(void)startFileDownload;
 
 @end

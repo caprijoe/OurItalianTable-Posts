@@ -7,6 +7,7 @@
 //
 
 #import "XMLFileGetter.h"
+#import "SharedUserDefaults.h"
 
 @interface XMLFileGetter ()
 @property (nonatomic, strong) Reachability *reach;
@@ -26,14 +27,34 @@
         // set ivars for getting XML file inside the ZIP file
         self.expectedMIMETypes = @[@"application/zip"];
                 
-        // set up Reachability class to help with internet errors        
-        self.reach = [Reachability reachabilityWithHostname:[self.url host]];
-        
-        [self.reach startNotifier];
-        
     }
     
     return self;    
+}
+
+-(void)startFileDownload {
+    
+    // set up Reachability class to help with internet errors
+    self.reach = [Reachability reachabilityWithHostname:[self.url host]];
+    
+    // if "update over cellular" is NOT set, then deem cell NOT reachable
+    if ([[[SharedUserDefaults sharedSingleton] getObjectWithKey:UPDATE_OVER_CELLULAR] isEqual: @NO]) {
+        self.reach.reachableOnWWAN = NO;
+        NSLog(@"update over cell set to %@", [[SharedUserDefaults sharedSingleton] getObjectWithKey:UPDATE_OVER_CELLULAR]);
+    }
+    
+    self.reach.reachableBlock = ^(Reachability *reach) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            NSLog(@"reachable");
+            [super startFileDownload];
+            
+        });
+    };
+    
+    [self.reach startNotifier];
+        
 }
 
 #pragma mark - Private methods
