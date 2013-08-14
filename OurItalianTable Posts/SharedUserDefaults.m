@@ -23,8 +23,9 @@
         // set up defaults
         
         // Last Table of Contents selected defaults to the first one
-        NSDictionary *appDefaults = @{LAST_TOC_CATEGORY_KEY: @0,
-                                      UPDATE_OVER_CELLULAR: @YES};
+        NSDictionary *appDefaults = @{LAST_TOC_CATEGORY_KEY: @0
+//                                      ,UPDATE_OVER_CELLULAR: @YES
+                                      };
         
         // set defaults
         [self.defaults registerDefaults:appDefaults];
