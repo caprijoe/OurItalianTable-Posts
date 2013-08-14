@@ -20,6 +20,12 @@
     self.splitViewController.delegate = self;
 }
 
+-(void)didReceiveMemoryWarning {
+    
+    NSLog(@"ouritaliantable did receive memory warning");
+    
+}
+
 #pragma mark - UISplitViewController delgates
 
 - (id <SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
