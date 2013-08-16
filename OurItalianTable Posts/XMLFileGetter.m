@@ -8,10 +8,10 @@
 
 #import "XMLFileGetter.h"
 #import "SharedUserDefaults.h"
+#import "OHAlertView.h"
 
 @interface XMLFileGetter ()
 @property (nonatomic, strong) Reachability *reach;
-@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation XMLFileGetter
@@ -36,39 +36,74 @@
     
     // set up Reachability class to help with internet errors
     self.reach = [Reachability reachabilityWithHostname:[self.url host]];
-    
-    // if "update over cellular" is NOT set, then deem cell NOT reachable
-    if ([[[SharedUserDefaults sharedSingleton] getObjectWithKey:UPDATE_OVER_CELLULAR] isEqual: @NO]) {
-        self.reach.reachableOnWWAN = NO;
-        NSLog(@"update over cell set to %@", [[SharedUserDefaults sharedSingleton] getObjectWithKey:UPDATE_OVER_CELLULAR]);
-    }
+    __weak XMLFileGetter *weakSelf = self;
     
     self.reach.reachableBlock = ^(Reachability *reach) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           
-            NSLog(@"reachable");
-            [super startFileDownload];
             
+            NSLog(@"reachable");
+            
+            // if we have a wi-fi connection, just start
+            if ([weakSelf.reach isReachableViaWiFi]) {
+                
+                [super startFileDownload];
+                
+            } else {
+                // assume it's a WAN connection
+                
+                // if the download preference has not been set, ask for it...
+                if (![[SharedUserDefaults sharedSingleton] getObjectWithKey:UPDATE_OVER_CELLULAR]) {
+                    
+                    // ask the user preference
+                    [OHAlertView showAlertWithTitle:@"Question?" message:@"You currently only have a cellular connection. OK to download Our Italian Table updates over cellular?" cancelButton:@"NO" okButton:@"YES" onButtonTapped:^(OHAlertView* alert, NSInteger buttonIndex)
+                     {
+                         if (buttonIndex == alert.cancelButtonIndex) {
+                             
+                             // save it, if NO for cellular, skip download
+                             [[SharedUserDefaults sharedSingleton] setObjectWithKey:UPDATE_OVER_CELLULAR withObject:@NO];
+                             
+                             [OHAlertView showAlertWithTitle:@"Perference set!" message:@"Go to Settings App > ouritaliantable to change" dismissButton:@"OK"];
+                             
+                         } else {
+                             
+                             // save it and if OK for cellular, start the download
+                             [[SharedUserDefaults sharedSingleton] setObjectWithKey:UPDATE_OVER_CELLULAR withObject:@YES];
+                             
+                             [super startFileDownload];
+                             
+                             [OHAlertView showAlertWithTitle:@"Perference set!" message:@"Go to Settings App > ouritaliantable to change" dismissButton:@"OK"];
+                         }
+                     }];
+                    
+                } else if ([[[SharedUserDefaults sharedSingleton] getObjectWithKey:UPDATE_OVER_CELLULAR] isEqual: @YES]) {
+                    // if WAN and preference is YES, start download
+                    
+                    [super startFileDownload];
+                } else {
+                    // if WAN and preference is NO, exit signally failure
+                    
+                    [weakSelf exitGetFileWithData:nil withSuccess:NO withLastUpdateDate:nil];
+
+                }
+            }
         });
     };
     
-    [self.reach startNotifier];
+    self.reach.unreachableBlock = ^(Reachability *reach) {
+      
+        NSLog(@"not reachable, do nothing");
         
+        // exit signally failure
+        [weakSelf exitGetFileWithData:nil withSuccess:NO withLastUpdateDate:nil];
+        
+    };
+    
+    [self.reach startNotifier];
+    
 }
 
 #pragma mark - Private methods
-
--(void)invokeTimeout {
-    
-    // process timeout
-    self.reach.reachableBlock = nil;
-    
-    [self.delegate didFinishLoadingURL:nil withSuccess:NO findingMetadata:nil];
-
-    
-}
-
 -(NSData *)unZipFile:(NSData *)zipFile
 {
     // write received NSData to a file in the tmp directory
@@ -113,18 +148,8 @@
 
     } else {
         
-        // requeue file load when and if internet comes back
-
-        // if seconds passed in, set up a time out
-        if (self.seconds)
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:self.seconds target:self selector:@selector(invokeTimeout) userInfo:nil repeats:NO];
-        
-        __weak XMLFileGetter *selfInBlock = self;
-                
-        self.reach.reachableBlock = ^(Reachability * reachability)
-        {
-            [selfInBlock startFileDownload];
-        };        
+        // signal failure to delegate
+        [self.delegate didFinishLoadingURL:nil withSuccess:NO findingMetadata:nil];
     }
 }
 
