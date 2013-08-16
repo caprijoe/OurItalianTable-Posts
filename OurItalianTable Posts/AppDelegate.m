@@ -15,6 +15,7 @@
 @property (nonatomic, strong) BundleFillDatabaseFromXMLParser *bundleDatabaseFiller;          // filler object for bundle
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *remoteDatabaseFiller;          // filled object for remote
 @property (nonatomic) int networkActivityCount;
+
 @end
 
 @implementation AppDelegate
@@ -25,15 +26,15 @@
 {
     
     // alloc init core database object
-    NSURL *documentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *documentsDirectory = [self applicationDocumentsDirectory];
     NSURL *databaseURL = [documentsDirectory URLByAppendingPathComponent:COREDB_NAME];
     self.postsDatabase = [[UIManagedDocument alloc] initWithFileURL:databaseURL];
-    
+        
     // setup public reference properties
     [self setupReferenceProperties];
     
     // use doc, create or open depending on current state
-    [self useDocument];    
+    [self useDocument];
     
     return YES;
 }
@@ -68,20 +69,6 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     NSLog(@"ouritaliantable will terminate.");
-    
-    [[SharedUserDefaults sharedSingleton] setObjectWithKey:@"TERMINATED_AT" withObject:[NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterFullStyle]];
-    
-    [self.postsDatabase closeWithCompletionHandler:^(BOOL success) {
-        
-        [[SharedUserDefaults sharedSingleton] setObjectWithKey:@"DB_CLOSE_SUCCESS" withObject:[NSNumber numberWithBool:success]];
-        
-        if (success)
-            NSLog(@"successfully closed core data");
-        else
-            NSLog(@"error closing core data");
-        
-    }];
-    
 }
 
 #pragma mark - Shared methods for use in other classes
@@ -211,7 +198,6 @@
     } else  if (self.postsDatabase.documentState == UIDocumentStateClosed) {
         
         NSLog(@"DB does exist... open it..");
-
         
         // if DB exists and is not open, open it
         [self.postsDatabase openWithCompletionHandler:^(BOOL success) {
@@ -221,11 +207,8 @@
 
             // setup parent MOC with NSMainQueueConcurrencyType
             self.parentMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-            NSLog(@"NSManagedObjectContext alloc complete");
 
             [self.parentMOC setPersistentStoreCoordinator:[self.postsDatabase.managedObjectContext persistentStoreCoordinator]];
-            NSLog(@"setPersistentStoreCoordinator");
-
             
             // post notificaiton that DB opened and MOC available
             [[NSNotificationCenter defaultCenter] postNotificationName:COREDB_OPENED_NOTIFICATION object:self];
@@ -243,5 +226,14 @@
 
      self.remoteDatabaseFiller = nil;
 }
+
+#pragma mark - Application's Documents directory
+
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 
 @end
