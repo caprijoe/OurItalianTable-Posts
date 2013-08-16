@@ -77,9 +77,14 @@
     // setup the refresh control but only the first time
     [self setupRefreshControl];
     
-    // load up table
-    [self resetToAllEntries];
-
+    // load up table if MOC available, otherwise setup notification
+    if (self.appDelegate.parentMOC) {
+        NSLog(@"MOC available, using");
+        [self resetToAllEntries];
+    } else {
+        NSLog(@"MOC NOT available, setting up Notification");
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedDBOpenedNotification:) name:COREDB_OPENED_NOTIFICATION object:nil];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -122,8 +127,6 @@
 
 -(void)resetRightSide {
     
-    DLog(@"resetRightSide");
-    
     // if on an ipad, reset right side too
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
@@ -152,7 +155,6 @@
 }
 
 // load up the table thumbnnail, if not cached, cache it
-
 -(void)populateIconInDBUsing:(NSIndexPath *)indexPath {
     
     Post *postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -254,6 +256,16 @@
     }
 }
 
+-(void)receivedDBOpenedNotification:(NSNotification *)notification {
+    
+    NSLog(@"got opened notication");
+    
+    [self resetToAllEntries];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
+
 #pragma mark - Rotation support
 
 - (WebViewController *)splitWebViewController
@@ -293,13 +305,15 @@
     
     // setup controller
     __block NSError *error = nil;
-
+    
     [self.appDelegate.parentMOC performBlockAndWait:^{
+                
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.appDelegate.parentMOC sectionNameKeyPath:sectionKey cacheName:nil];
         self.fetchedResultsController.delegate = self;
         
         // Perform fetch and reload table
         [self.fetchedResultsController performFetch:&error];
+        
     }];
     
     [self.tableView reloadData];
@@ -369,7 +383,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     tableView.rowHeight = CUSTOM_ROW_HIEGHT;
-    
+        
     return [[self.fetchedResultsController sections][section] numberOfObjects];
     
 }
