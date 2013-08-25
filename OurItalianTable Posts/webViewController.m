@@ -10,6 +10,7 @@
 #import "OITLaunchViewController.h"
 #import "PostDetailViewController.h"
 #import "LocationMapViewController.h"
+#import "SharedUserDefaults.h"
 
 #define FAVORITES_KEY       @"FAVORITES_KEY"
 #define CSS_IMPORT_FILENAME @"HTMLStyles"
@@ -210,8 +211,7 @@
 -(void)presentActionSheetforBookmarkFromBarButton:(UIBarButtonItem *)button {
     
     // determine if post is currently in favorites
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *favorites = [[defaults objectForKey:FAVORITES_KEY] mutableCopy];
+    NSMutableArray *favorites = [[[SharedUserDefaults sharedSingleton] getObjectWithKey:FAVORITES_KEY] mutableCopy];
     if (!favorites) favorites = [NSMutableArray array];
     
     UIActionSheet *actionSheet;
