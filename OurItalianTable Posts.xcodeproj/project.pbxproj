@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		690EA7EB17B9C7770003B09E /* OHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690EA7EA17B9C7770003B09E /* OHAlertView.m */; };
 		690FD205176B751B00C5F952 /* PhotoScrollerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690FD1FE176AA28900C5F952 /* PhotoScrollerViewController.m */; };
 		690FD206176B751B00C5F952 /* PhotoModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690FD204176B74FF00C5F952 /* PhotoModelController.m */; };
 		690FD20A176B7DB100C5F952 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690FD209176B7D9700C5F952 /* ImageViewController.m */; };
@@ -23,13 +24,15 @@
 		6912BB8315CF34C90014BB6F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */; };
 		6912BB8415CF35010014BB6F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7015CF2F6D0014BB6F /* Default.png */; };
 		691477DC164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */; };
-		691E62A41692AB0700467600 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E62A31692AB0700467600 /* Reachability.m */; };
 		691E62A71692D23300467600 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691E62A61692D23300467600 /* SystemConfiguration.framework */; };
 		691E62AA1693869C00467600 /* AtomicGetFileFromRemoteURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E62A91693869C00467600 /* AtomicGetFileFromRemoteURL.m */; };
 		691E62AD1693B0B300467600 /* XMLFileGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E62AC1693B0B300467600 /* XMLFileGetter.m */; };
 		6927DAEB16D1F47E0092365E /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6927DAEA16D1F47E0092365E /* IconDownloader.m */; };
 		692EE52416C5D817007F49B2 /* FoodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692EE52316C5D817007F49B2 /* FoodTableViewController.m */; };
 		693731C5165DFC87005AE8F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492315605A8C009976B8 /* CoreLocation.framework */; };
+		695BB7101791401100BFD1D5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 695BB70F1791401100BFD1D5 /* Settings.bundle */; };
+		695BB713179145A200BFD1D5 /* SharedUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 695BB712179145A200BFD1D5 /* SharedUserDefaults.m */; };
+		695BB71717936C5000BFD1D5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 695BB71517936B9500BFD1D5 /* Reachability.m */; };
 		695BE0331646337C0009EBFE /* RegionAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 695BE03216462EB00009EBFE /* RegionAnnotationView.m */; };
 		695BE034164634EE0009EBFE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD4892156054C9009976B8 /* CoreGraphics.framework */; };
 		6962483E16F2FCEF00909B9B /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 6962483D16F2FCEE00909B9B /* SSZipArchive.m */; };
@@ -117,7 +120,6 @@
 		69AD495C15622719009976B8 /* Dad and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD495B15622718009976B8 /* Dad and Joey.jpg */; };
 		69AD495D1569CC76009976B8 /* The Drago Grandparents.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49381560877D009976B8 /* The Drago Grandparents.jpg */; };
 		69B5AA6316A7D81B005B7F9C /* ouritaliantable-original-transparent.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */; };
-		69B5AA6616B7804E005B7F9C /* WPExport.xml in Resources */ = {isa = PBXBuildFile; fileRef = 69B5AA6516B7804E005B7F9C /* WPExport.xml */; };
 		69C259B91627938600E0BC40 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69C259B81627938600E0BC40 /* Default-568h@2x.png */; };
 		69C259C116279C9100E0BC40 /* OITNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C259C016279C9100E0BC40 /* OITNavController.m */; };
 		69C9510A1628DB00001147D6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C951091628DB00001147D6 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -147,6 +149,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		690EA7E917B9C7760003B09E /* OHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAlertView.h; sourceTree = "<group>"; };
+		690EA7EA17B9C7770003B09E /* OHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHAlertView.m; sourceTree = "<group>"; };
 		690FD1FD176AA28900C5F952 /* PhotoScrollerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoScrollerViewController.h; sourceTree = "<group>"; };
 		690FD1FE176AA28900C5F952 /* PhotoScrollerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoScrollerViewController.m; sourceTree = "<group>"; };
 		690FD203176B74FF00C5F952 /* PhotoModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoModelController.h; sourceTree = "<group>"; };
@@ -166,8 +170,6 @@
 		6912BB7F15CF34660014BB6F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coat_of_arms_of_Sicily.svg.png; sourceTree = "<group>"; };
-		691E62A21692AB0700467600 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		691E62A31692AB0700467600 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		691E62A61692D23300467600 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		691E62A81693869C00467600 /* AtomicGetFileFromRemoteURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicGetFileFromRemoteURL.h; sourceTree = "<group>"; };
 		691E62A91693869C00467600 /* AtomicGetFileFromRemoteURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicGetFileFromRemoteURL.m; sourceTree = "<group>"; };
@@ -178,6 +180,11 @@
 		692EE52216C5D817007F49B2 /* FoodTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodTableViewController.h; sourceTree = "<group>"; };
 		692EE52316C5D817007F49B2 /* FoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTableViewController.m; sourceTree = "<group>"; };
 		693731C2165DFC71005AE8F1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		695BB70F1791401100BFD1D5 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		695BB711179145A200BFD1D5 /* SharedUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedUserDefaults.h; sourceTree = "<group>"; };
+		695BB712179145A200BFD1D5 /* SharedUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedUserDefaults.m; sourceTree = "<group>"; };
+		695BB71417936B9500BFD1D5 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		695BB71517936B9500BFD1D5 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		695BE03116462EB00009EBFE /* RegionAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegionAnnotationView.h; sourceTree = "<group>"; };
 		695BE03216462EB00009EBFE /* RegionAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotationView.m; sourceTree = "<group>"; };
 		6962483C16F2FCEE00909B9B /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
@@ -298,7 +305,6 @@
 		69AD49411560877F009976B8 /* Aunt Mary.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aunt Mary.JPG"; sourceTree = "<group>"; };
 		69AD495B15622718009976B8 /* Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dad and Joey.jpg"; sourceTree = "<group>"; };
 		69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ouritaliantable-original-transparent.gif"; sourceTree = "<group>"; };
-		69B5AA6516B7804E005B7F9C /* WPExport.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = WPExport.xml; sourceTree = "<group>"; };
 		69C259B81627938600E0BC40 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		69C259BF16279C9100E0BC40 /* OITNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITNavController.h; sourceTree = "<group>"; };
 		69C259C016279C9100E0BC40 /* OITNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITNavController.m; sourceTree = "<group>"; };
@@ -458,8 +464,8 @@
 				697111F9166DE13B006D93DB /* WordPressXMLTags.h */,
 				697111FA166DE13B006D93DB /* PostRecord.h */,
 				697111FB166DE13B006D93DB /* PostRecord.m */,
-				691E62A21692AB0700467600 /* Reachability.h */,
-				691E62A31692AB0700467600 /* Reachability.m */,
+				695BB71417936B9500BFD1D5 /* Reachability.h */,
+				695BB71517936B9500BFD1D5 /* Reachability.m */,
 			);
 			name = CoreDataInitialization;
 			sourceTree = "<group>";
@@ -572,6 +578,10 @@
 				69AD48C9156056A9009976B8 /* PostDetailViewController.m */,
 				6962483C16F2FCEE00909B9B /* SSZipArchive.h */,
 				6962483D16F2FCEE00909B9B /* SSZipArchive.m */,
+				695BB711179145A200BFD1D5 /* SharedUserDefaults.h */,
+				695BB712179145A200BFD1D5 /* SharedUserDefaults.m */,
+				690EA7E917B9C7760003B09E /* OHAlertView.h */,
+				690EA7EA17B9C7770003B09E /* OHAlertView.m */,
 				697111EB166DD7D8006D93DB /* CoreData */,
 			);
 			path = "OurItalianTable Posts";
@@ -580,9 +590,9 @@
 		69AD4895156054C9009976B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				695BB70F1791401100BFD1D5 /* Settings.bundle */,
 				6982328B169963CB003D43AB /* iPhone.storyboard */,
 				69D33DB416BA4A7F00B5AC00 /* iPad.storyboard */,
-				69B5AA6516B7804E005B7F9C /* WPExport.xml */,
 				69D1D969168EA99800540CD9 /* HTMLStyles.html */,
 				69AD4896156054C9009976B8 /* OurItalianTable Posts-Info.plist */,
 				69AD4897156054C9009976B8 /* InfoPlist.strings */,
@@ -775,9 +785,9 @@
 				69823293169A45C8003D43AB /* 53-house.png in Resources */,
 				69823294169A45C8003D43AB /* 53-house@2x.png in Resources */,
 				69B5AA6316A7D81B005B7F9C /* ouritaliantable-original-transparent.gif in Resources */,
-				69B5AA6616B7804E005B7F9C /* WPExport.xml in Resources */,
 				69D33DB516BA4A7F00B5AC00 /* iPad.storyboard in Resources */,
 				69892A751755CD8300AD7957 /* 200px-Emilia-Romagna-Bandiera.png in Resources */,
+				695BB7101791401100BFD1D5 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +798,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				695BB71717936C5000BFD1D5 /* Reachability.m in Sources */,
 				690FD20A176B7DB100C5F952 /* ImageViewController.m in Sources */,
 				690FD205176B751B00C5F952 /* PhotoScrollerViewController.m in Sources */,
 				690FD206176B751B00C5F952 /* PhotoModelController.m in Sources */,
@@ -814,7 +825,6 @@
 				697111FF166DE13B006D93DB /* ParseWordPressXML.m in Sources */,
 				69711200166DE13B006D93DB /* PostRecord.m in Sources */,
 				697559E5168E6C850076DFED /* GeneralizedPostsTableViewController.m in Sources */,
-				691E62A41692AB0700467600 /* Reachability.m in Sources */,
 				691E62AA1693869C00467600 /* AtomicGetFileFromRemoteURL.m in Sources */,
 				691E62AD1693B0B300467600 /* XMLFileGetter.m in Sources */,
 				69D33DB816BE4D5900B5AC00 /* OITTabBarController.m in Sources */,
@@ -834,6 +844,8 @@
 				69DF6B2E1759BC3C00EA1289 /* Post.m in Sources */,
 				69DF6B311759BC3C00EA1289 /* Tag.m in Sources */,
 				69DF6B341759BC3C00EA1289 /* Category.m in Sources */,
+				695BB713179145A200BFD1D5 /* SharedUserDefaults.m in Sources */,
+				690EA7EB17B9C7770003B09E /* OHAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
