@@ -96,7 +96,7 @@
     if (![self.lastUpdateDateFromDefaults isEqualToString:self.lastUpdateDateFromRemote]) {
         
         // finished parsing sucessfully, update NSUserDefaults with last update date
-        [[SharedUserDefaults sharedSingleton] setObjectWithKey:LAST_UPDATE_TO_CORE_DB withObject:self.lastUpdateDateFromDefaults];
+        [[SharedUserDefaults sharedSingleton] setObjectWithKey:LAST_UPDATE_TO_CORE_DB withObject:self.lastUpdateDateFromRemote];
 
     }
     
