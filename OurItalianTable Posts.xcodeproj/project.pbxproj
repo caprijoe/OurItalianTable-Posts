@@ -51,7 +51,6 @@
 		696831F6164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831F3164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png */; };
 		697111ED166DD7FB006D93DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697111EC166DD7FB006D93DB /* CoreData.framework */; };
 		697111F0166DD927006D93DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111EF166DD927006D93DB /* AppDelegate.m */; };
-		697111FC166DE13B006D93DB /* BundleFillDatabaseFromXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111F2166DE13B006D93DB /* BundleFillDatabaseFromXMLParser.m */; };
 		697111FD166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111F4166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m */; };
 		697111FF166DE13B006D93DB /* ParseWordPressXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111F8166DE13B006D93DB /* ParseWordPressXML.m */; };
 		69711200166DE13B006D93DB /* PostRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111FB166DE13B006D93DB /* PostRecord.m */; };
@@ -216,8 +215,6 @@
 		697111EC166DD7FB006D93DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		697111EE166DD927006D93DB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		697111EF166DD927006D93DB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		697111F1166DE13B006D93DB /* BundleFillDatabaseFromXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BundleFillDatabaseFromXMLParser.h; sourceTree = "<group>"; };
-		697111F2166DE13B006D93DB /* BundleFillDatabaseFromXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BundleFillDatabaseFromXMLParser.m; sourceTree = "<group>"; };
 		697111F3166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteFillDatabaseFromXMLParser.h; sourceTree = "<group>"; };
 		697111F4166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteFillDatabaseFromXMLParser.m; sourceTree = "<group>"; };
 		697111F7166DE13B006D93DB /* ParseWordPressXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseWordPressXML.h; sourceTree = "<group>"; };
@@ -451,8 +448,6 @@
 		69711201166DE148006D93DB /* CoreDataInitialization */ = {
 			isa = PBXGroup;
 			children = (
-				697111F1166DE13B006D93DB /* BundleFillDatabaseFromXMLParser.h */,
-				697111F2166DE13B006D93DB /* BundleFillDatabaseFromXMLParser.m */,
 				697111F3166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.h */,
 				697111F4166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m */,
 				691E62AB1693B0B300467600 /* XMLFileGetter.h */,
@@ -820,7 +815,6 @@
 				69DFEA2615C5EF8900CDABA1 /* RegionAnnotation.m in Sources */,
 				69C259C116279C9100E0BC40 /* OITNavController.m in Sources */,
 				697111F0166DD927006D93DB /* AppDelegate.m in Sources */,
-				697111FC166DE13B006D93DB /* BundleFillDatabaseFromXMLParser.m in Sources */,
 				697111FD166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m in Sources */,
 				697111FF166DE13B006D93DB /* ParseWordPressXML.m in Sources */,
 				69711200166DE13B006D93DB /* PostRecord.m in Sources */,
