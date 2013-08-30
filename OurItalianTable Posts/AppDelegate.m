@@ -12,7 +12,6 @@
 
 @interface AppDelegate()
 @property (nonatomic, strong) UIManagedDocument *postsDatabase;                               // core DB file
-@property (nonatomic, strong) BundleFillDatabaseFromXMLParser *bundleDatabaseFiller;          // filler object for bundle
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *remoteDatabaseFiller;          // filled object for remote
 @property (nonatomic) int networkActivityCount;
 
