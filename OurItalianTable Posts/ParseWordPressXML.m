@@ -209,7 +209,8 @@
     }
     else if ([elementName isEqualToString:POST_PUBLISH_DATE])
     {
-        self.workingEntry.postPubDate = [self.dateFormatter dateFromString:trimmedString];
+        // store date as string, delay NSDateFormatter until sure it's a good post
+        self.workingEntry.postPubDateAsString = trimmedString;
         
     }
     else if([elementName isEqualToString:POST_STATUS]) {
@@ -295,6 +296,11 @@
         {
             
             // should only have gotten here if this is a real post and published .. save it...
+            
+            // delay NSDateFormatter conversion till last minute for good post
+            self.workingEntry.postPubDate = [self.dateFormatter dateFromString:self.workingEntry.postPubDateAsString];
+
+            
             [Post createPostwithPostRecord:self.workingEntry inManagedObjectContext:self.backgroundMOC];
             [self saveWhenReady:++self.postCount];
             
