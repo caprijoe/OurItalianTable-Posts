@@ -7,7 +7,6 @@
 //
 
 #import "Post+Create.h"
-#import "Tag+Create.h"
 #import "Category+Create.h"
 #import "Tag+CreateMany.h"
 #import "Category+CreateMany.h"
