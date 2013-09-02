@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "RemoteFillDatabaseFromXMLParser.h"
-#import "ParseWordPressXML.h"
 #import "Post.h"
 
 #define POST_ICON_HEIGHT            48
