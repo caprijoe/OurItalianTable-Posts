@@ -7,7 +7,6 @@
 //
 
 #import "Post+Create.h"
-#import "Category+Create.h"
 #import "Tag+CreateMany.h"
 #import "Category+CreateMany.h"
 
@@ -16,38 +15,81 @@
 + (Post *)createPostwithPostRecord:(PostRecord *)postRecord
             inManagedObjectContext:(NSManagedObjectContext *)context {
     
+    static NSNumber *initialLoad;
+    
+    if (!initialLoad) {
+        
+        initialLoad = [self determineIfInitialLoad:context];
+        
+    }
+    
     Post *thisPost = nil;
     
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
-    request.predicate = [NSPredicate predicateWithFormat:@"postID = %@", postRecord.postID];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"postID" ascending:YES];
-    request.sortDescriptors = @[sortDescriptor];
-    
-    NSError *error = nil;
-    NSArray *matches = [context executeFetchRequest:request error:&error];
-    
-    if (!matches || ([matches count] > 1)) {
+    if ([initialLoad isEqualToNumber:@YES]) {
         
-        // handle error - nil matchs or more than 1
-        NSLog(@"error -- more than one match of Post returned from database");
-        
-    } else if ([matches count] == 0) {
-        
-        // no match found, insert
-        thisPost = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:context];
-        [self updatePost:thisPost withRecord:postRecord inManagedObjectContext:context];
+        thisPost = [self createNewPostWithRecord:postRecord inManagedObjectContext:context];
         
     } else {
         
-        // match found, update
-        thisPost = [matches lastObject];
-        [self updatePost:thisPost withRecord:postRecord inManagedObjectContext:context];
-
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+        request.predicate = [NSPredicate predicateWithFormat:@"postID = %@", postRecord.postID];
+        request.sortDescriptors = nil;
+        
+        NSError *error = nil;
+        NSArray *matches = [context executeFetchRequest:request error:&error];
+        
+        if (!matches || ([matches count] > 1)) {
+            
+            // handle error - nil matchs or more than 1
+            NSLog(@"error -- more than one match of Post returned from database");
+            
+        } else if ([matches count] == 0) {
+            
+            // no match found, insert
+            thisPost = [self createNewPostWithRecord:postRecord inManagedObjectContext:context];
+            
+        } else {
+            
+            // match found, update
+            thisPost = [matches lastObject];
+            [self updatePost:thisPost withRecord:postRecord inManagedObjectContext:context];
+            
+        }
     }
     
     return thisPost;
-    
 };
+
++(NSNumber *)determineIfInitialLoad:(NSManagedObjectContext *)context {
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+    request.predicate = nil;
+    request.sortDescriptors = nil;
+    
+    NSError *error;
+    NSUInteger count = [context countForFetchRequest:request error:&error];
+    
+    if (count == NSNotFound) {
+        
+        NSLog(@"An error occured determining post count");
+        return nil;
+        
+    } else if (count == 0) {
+        return @YES;
+    } else {
+        return @NO;
+    }    
+}
+
++(Post *)createNewPostWithRecord:(PostRecord *)postRecord
+          inManagedObjectContext:(NSManagedObjectContext *)context {
+    
+    Post* thisPost = [NSEntityDescription insertNewObjectForEntityForName:@"Post" inManagedObjectContext:context];
+    [self updatePost:thisPost withRecord:postRecord inManagedObjectContext:context];
+    
+    return thisPost;
+    
+}
 
 +(void)     updatePost:(Post *)thisPost
             withRecord:(PostRecord *)postRecord

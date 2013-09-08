@@ -10,33 +10,57 @@
 
 @implementation Category (CreateMany)
 
++(Category *)findOrCreateCategory:(NSString *)categoryString inManagedObjectContext:(NSManagedObjectContext *)context {
+    
+    // static to hold the tag listing
+    static NSMutableDictionary *categoryListing;
+    
+    // if it hasn't been alloc-ed, do it
+    if (!categoryListing) {
+        
+        categoryListing = [[NSMutableDictionary alloc] init];
+        
+        // find out which of those tags are already in the database
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
+        request.predicate = nil;
+        request.sortDescriptors = nil;
+        
+        NSError *error = nil;
+        NSArray *tagsInDatabase = [[context executeFetchRequest:request error:&error] mutableCopy];
+        
+        // build a dictionary of the tags with the tagString as the key
+        for (Category *thisCategory in tagsInDatabase)
+            [categoryListing setObject:thisCategory forKey:thisCategory.categoryString];
+    }
+    
+    // see if the tag is in the dictionary
+    Category *foundCategory = [categoryListing objectForKey:categoryString];
+    
+    if (foundCategory) {
+        // if found in dictionary, return obj
+        return foundCategory;
+        
+    } else {
+        // if not, create it, add to dictionary and return it
+        Category *thisCategory = [NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:context];
+        thisCategory.categoryString = categoryString;
+        [categoryListing setObject:thisCategory forKey:categoryString];
+        return thisCategory;
+    }
+}
+
+
 + (NSSet *)createCategoriesWithString:(NSArray *)categoryStrings
          inManagedObjectContext:(NSManagedObjectContext *)context {
-    
-    // create an initial set of categories that need relationships created
-    NSMutableSet *categorySet = [NSMutableSet setWithArray:categoryStrings];
-    
-    // find out which of those categories are already in the database
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
-    request.predicate = [NSPredicate predicateWithFormat:@"categoryString IN %@", categoryStrings];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"categoryString" ascending:YES];
-    request.sortDescriptors = @[sortDescriptor];
-    
-    NSError *error = nil;
-    NSArray *matches = [context executeFetchRequest:request error:&error];
-    
+
     // set up a destination set for all objects to be returned back to caller
-    NSMutableSet *allCategories = [NSMutableSet setWithArray:matches];
+    NSMutableSet *allCategories = [[NSMutableSet alloc] initWithCapacity:[categoryStrings count]];
     
-    // remove those tags that are already in the database
-    [categorySet minusSet:[NSSet setWithArray:[matches valueForKey:@"categoryString"]]];
-    
-    // insert the new tags into the database and add to destination set
-    for (NSString *newCategory in categorySet) {
+    // find or create the tags
+    for (NSString *thisCategory in categoryStrings) {
         
-        Category *thisCategory = [NSEntityDescription insertNewObjectForEntityForName:@"Category" inManagedObjectContext:context];
-        thisCategory.categoryString = newCategory;
-        [allCategories addObject:thisCategory];
+        [allCategories addObject:[self findOrCreateCategory:thisCategory inManagedObjectContext:context]];
+        
     }
     
     return allCategories;
