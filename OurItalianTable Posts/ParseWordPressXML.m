@@ -130,7 +130,7 @@
     }
 }
 
--(void)storeAwayCategoriesAndTagsFromDict:attributeDict {
+-(void)storeAwayCategoriesAndTagsFromDict:(NSDictionary *)attributeDict {
     
     // category tag example --
     // <category domain="category" nicename="food">
@@ -155,7 +155,7 @@
     }
 }
 
--(void)storeAwayElement:elementName usingString:trimmedString {
+-(void)storeAwayElement:(NSString *)elementName usingString:(NSString *)trimmedString {
     
     // look for specific end element and store the data away
     if ([elementName isEqualToString:POST_TYPE]) {
