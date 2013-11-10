@@ -45,7 +45,7 @@
     OITTitleView.font = [UIFont fontWithName:@"Palatino" size:24.0 ];
     OITTitleView.backgroundColor = [UIColor clearColor];
     OITTitleView.textColor = [UIColor whiteColor];
-    OITTitleView.textAlignment = UITextAlignmentCenter;
+    OITTitleView.textAlignment = NSTextAlignmentCenter ;
     OITTitleView.text = @"Our Italian Table";
     self.navigationItem.titleView = OITTitleView;
     
