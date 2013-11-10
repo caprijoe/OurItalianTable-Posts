@@ -119,6 +119,6 @@
 
 #pragma mark - Outlets/Actions
 - (IBAction)doneButton:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 @end

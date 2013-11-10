@@ -99,7 +99,7 @@
 
 #pragma mark - Actions/Outlets
 - (IBAction)doneButton:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 - (void)viewDidUnload {
     [self setDoneButton:nil];
