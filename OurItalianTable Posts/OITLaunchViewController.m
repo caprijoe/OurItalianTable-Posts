@@ -24,21 +24,10 @@
 -(void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-    NSLog(@"viewDidAppear");
 
     // put the splash screen up in the detail VC
     [self resetDetailPanel];
 } 
-
-/* -(void)viewWillLayoutSubviews {
-    
-    [super viewWillLayoutSubviews];
-    NSLog(@"viewWillLayoutSubviews");
-    
-    // configure title, logo, etc in this view
-    [self configureView];
-
-} */
 
 #pragma mark - Private methods
 
