@@ -15,6 +15,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // configure title, logo, etc in this view
+    [self configureView];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -26,7 +30,7 @@
     [self resetDetailPanel];
 } 
 
--(void)viewWillLayoutSubviews {
+/* -(void)viewWillLayoutSubviews {
     
     [super viewWillLayoutSubviews];
     NSLog(@"viewWillLayoutSubviews");
@@ -34,10 +38,7 @@
     // configure title, logo, etc in this view
     [self configureView];
 
-    // configure custome buttons
-    [self configureButtons];
-    
-}
+} */
 
 #pragma mark - Private methods
 
@@ -47,15 +48,6 @@
     UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Lemons.png"]];
     self.view.backgroundColor = background;
     
-    // set a custom title in the launch controller
-    UILabel *OITTitleView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 440.0, 44.0)];
-    OITTitleView.font = [UIFont fontWithName:@"Palatino" size:24.0 ];
-    OITTitleView.backgroundColor = [UIColor clearColor];
-    OITTitleView.textColor = [UIColor whiteColor];
-    OITTitleView.textAlignment = NSTextAlignmentCenter ;
-    OITTitleView.text = @"Our Italian Table";
-    self.navigationItem.titleView = OITTitleView;
-    
     // configure logo
     [self.view setOpaque:NO];
     self.logo.image = [UIImage imageNamed:@"ouritaliantable-original-transparent.gif"];
@@ -63,53 +55,10 @@
     self.logo.opaque = NO;
 }
 
--(void)configureButtons {
-    
-    for (UIButton *button in self.buttonArray) {
-        
-        // configure buttons
-        [self configureButton:button];
-    }
-
-}
-
 // reset right side splash screen when left side appears or disappears
 -(void)resetDetailPanel {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
-}
-
--(void)configureButton:(UIButton *)button
-{
-    
-    // Draw a custom gradient
-    CAGradientLayer *btnGradient = [CAGradientLayer layer];
-    btnGradient.frame = button.bounds;
-    btnGradient.colors = [NSArray arrayWithObjects:
-                          (id)[[UIColor colorWithRed:155.0f / 255.0f green:167.0f / 255.0f blue:15.0f / 255.0f alpha:1.0f] CGColor],
-                          (id)[[UIColor colorWithRed:238.0f / 255.0f green:240.0f / 255.0f blue:214.0f / 255.0f alpha:1.0f] CGColor],
-                          nil];
-    [button.layer insertSublayer:btnGradient atIndex:0];
-    
-    // adjust corners
-    CALayer *buttonLayer = [button layer];
-    [buttonLayer setMasksToBounds:YES];
-    [buttonLayer setCornerRadius:5.0f];
-    
-    // adjust title
-    [button.titleLabel setFont:[UIFont fontWithName:@"Palatino" size:24.0 ]];
-    [button setTitleColor:[UIColor colorWithRed:(50.0/255.0) green:(79.0/255.0) blue:(133.0/255.0) alpha:1.0] forState:UIControlStateNormal];
-        
-    // adjust spacing between title and image
-    CGFloat textWidth = ([button.titleLabel.text sizeWithFont:[UIFont fontWithName:@"Palatino" size:24.0]]).width;
-    CGFloat imageWidth = button.imageView.image.size.width;
-    CGFloat edgeSpacing = 15.0;
-    CGFloat spacing = (button.bounds.size.width - (edgeSpacing*2) - imageWidth - textWidth);
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, spacing)];
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, spacing, 0, 0)];
-    
-    // bring image to front
-    [button bringSubviewToFront:button.imageView];
 }
 
 
@@ -145,14 +94,6 @@
     } else if ([segue.identifier isEqualToString:@"Push About"]) {
         // do nothing
     }
-}
-
-#pragma mark - IBActions
-
-- (IBAction)buttonClicked:(UIButton *)sender {
-    
-    // home is first tab so add one
-    self.tabBarController.selectedIndex = sender.tag + 1;
 }
 
 @end
