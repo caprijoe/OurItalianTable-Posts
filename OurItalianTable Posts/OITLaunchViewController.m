@@ -15,22 +15,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // configure title, logo, etc in this view
-    [self configureView];    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-    
-    // configure custome buttons
-    [self configureButtons];
-    
+    NSLog(@"viewDidAppear");
+
     // put the splash screen up in the detail VC
     [self resetDetailPanel];
 } 
 
+-(void)viewWillLayoutSubviews {
+    
+    [super viewWillLayoutSubviews];
+    NSLog(@"viewWillLayoutSubviews");
+    
+    // configure title, logo, etc in this view
+    [self configureView];
+
+    // configure custome buttons
+    [self configureButtons];
+    
+}
 
 #pragma mark - Private methods
 
@@ -138,16 +145,6 @@
     } else if ([segue.identifier isEqualToString:@"Push About"]) {
         // do nothing
     }
-}
-
-#pragma mark - Rotation support (iOS 5)
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    else  
-        return YES;
 }
 
 #pragma mark - IBActions
