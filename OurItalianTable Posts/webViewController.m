@@ -292,7 +292,7 @@
         [mailer setMessageBody:self.loadedHTML isHTML:YES];
         
         mailer.modalPresentationStyle = UIModalPresentationPageSheet;
-        [self presentModalViewController:mailer animated:YES];
+        [self presentViewController:mailer animated:YES completion:NULL];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot send email" message:@"Unable to send email from this device. Make sure you have setup at least one email account" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
@@ -300,15 +300,15 @@
 }
 
 -(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - Share post via Twitter
 
 -(void)shareViaTweet {
     
-    if ([TWTweetComposeViewController canSendTweet]) {
-        TWTweetComposeViewController *tweetController = [[TWTweetComposeViewController alloc] init];
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        SLComposeViewController *tweetController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         [tweetController setInitialText:self.thisPost.postName];
         [tweetController addImage:[UIImage imageWithData: self.thisPost.postIcon]];
         [tweetController addURL:[NSURL URLWithString:self.thisPost.postURLstring]];
@@ -353,7 +353,7 @@
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - IBActions
