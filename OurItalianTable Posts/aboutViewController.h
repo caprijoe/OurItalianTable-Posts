@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "OITViewController.h"
 
-@interface aboutViewController : UIViewController
+@interface aboutViewController : OITViewController
 
 // outlets
 @property (nonatomic, weak) IBOutlet UITextView *txtDisplay;                // box for displaying about text

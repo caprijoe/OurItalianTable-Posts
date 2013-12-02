@@ -9,8 +9,6 @@
 #import "aboutViewController.h"
 
 @implementation aboutViewController
-@synthesize versionBuildDisplay = _versionBuildDisplay;
-@synthesize txtDisplay = _txtDisplay;
 
 #pragma mark Private methods
 
@@ -27,28 +25,30 @@
     NSString *filepath = [[NSBundle mainBundle] pathForResource:@"bios" ofType:@"txt"];
     NSString *txtContents = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
     self.txtDisplay.text = txtContents;
+    
+    // setup app version info
     self.versionBuildDisplay.text = [self getAppVersion];
+    
+    // setup fonts
+    [self setupFonts];
 }
 
-#pragma mark - Rotation support
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    else  
-        return YES;
+#pragma mark - Dynamic type support
+-(void)setupFonts {
+    
+    self.txtDisplay.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.versionBuildDisplay.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    
 }
 
--(BOOL)shouldAutorotate {
-    return YES;
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
+    
+    // override from abstract class
+    [self setupFonts];
+    [self.view setNeedsLayout];
+    
 }
 
--(NSUInteger)supportedInterfaceOrientations {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return UIInterfaceOrientationMaskPortrait;
-    else
-        return UIInterfaceOrientationMaskAll;
-}
 
 #pragma mark - IBActions
 - (IBAction)fireBackButton:(id)sender {
