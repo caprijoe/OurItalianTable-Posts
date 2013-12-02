@@ -71,6 +71,7 @@
 		69823294169A45C8003D43AB /* 53-house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69823292169A45C8003D43AB /* 53-house@2x.png */; };
 		69892A751755CD8300AD7957 /* 200px-Emilia-Romagna-Bandiera.png in Resources */ = {isa = PBXBuildFile; fileRef = 69892A741755CD8300AD7957 /* 200px-Emilia-Romagna-Bandiera.png */; };
 		6989AC421647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */; };
+		698D8FF117DD3AFE00C53459 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6962484D16F2FD7D00909B9B /* libz.dylib */; };
 		699558DF15706A0800B25C6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558DE15706A0800B25C6D /* AboutViewController.m */; };
 		699558E215706BE300B25C6D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558E115706BE300B25C6D /* WebViewController.m */; };
 		699BD5AF164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */; };
@@ -129,6 +130,7 @@
 		69D1D96A168EA99800540CD9 /* HTMLStyles.html in Resources */ = {isa = PBXBuildFile; fileRef = 69D1D969168EA99800540CD9 /* HTMLStyles.html */; };
 		69D33DB516BA4A7F00B5AC00 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69D33DB416BA4A7F00B5AC00 /* iPad.storyboard */; };
 		69D33DB816BE4D5900B5AC00 /* OITTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */; };
+		69D71FC0184BD8AA00FD7E86 /* OITViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D71FBF184BD8AA00FD7E86 /* OITViewController.m */; };
 		69DAE4E715CDB75E002CA239 /* Dragos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E615CDB75E002CA239 /* Dragos.jpg */; };
 		69DAE4EB15CDD146002CA239 /* 42-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E915CDD146002CA239 /* 42-info.png */; };
 		69DAE4EC15CDD146002CA239 /* 42-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4EA15CDD146002CA239 /* 42-info@2x.png */; };
@@ -311,6 +313,8 @@
 		69D33DB416BA4A7F00B5AC00 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		69D33DB616BE4D5900B5AC00 /* OITTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITTabBarController.h; sourceTree = "<group>"; };
 		69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITTabBarController.m; sourceTree = "<group>"; };
+		69D71FBE184BD8AA00FD7E86 /* OITViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITViewController.h; sourceTree = "<group>"; };
+		69D71FBF184BD8AA00FD7E86 /* OITViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITViewController.m; sourceTree = "<group>"; };
 		69DAE4E615CDB75E002CA239 /* Dragos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dragos.jpg; sourceTree = "<group>"; };
 		69DAE4E915CDD146002CA239 /* 42-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info.png"; sourceTree = "<group>"; };
 		69DAE4EA15CDD146002CA239 /* 42-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info@2x.png"; sourceTree = "<group>"; };
@@ -339,6 +343,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				698D8FF117DD3AFE00C53459 /* libz.dylib in Frameworks */,
 				6982328016993EA7003D43AB /* QuartzCore.framework in Frameworks */,
 				691E62A71692D23300467600 /* SystemConfiguration.framework in Frameworks */,
 				697111ED166DD7FB006D93DB /* CoreData.framework in Frameworks */,
@@ -520,6 +525,8 @@
 		69AD4894156054C9009976B8 /* OurItalianTable Posts */ = {
 			isa = PBXGroup;
 			children = (
+				69D71FBE184BD8AA00FD7E86 /* OITViewController.h */,
+				69D71FBF184BD8AA00FD7E86 /* OITViewController.m */,
 				697111EE166DD927006D93DB /* AppDelegate.h */,
 				697111EF166DD927006D93DB /* AppDelegate.m */,
 				69711201166DE148006D93DB /* CoreDataInitialization */,
@@ -651,6 +658,7 @@
 				69AD4886156054C9009976B8 /* Sources */,
 				69AD4887156054C9009976B8 /* Frameworks */,
 				69AD4888156054C9009976B8 /* Resources */,
+				698D8FF217DD935B00C53459 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -668,8 +676,13 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = oitPosts;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Our Italian Table";
+				TargetAttributes = {
+					69AD4889156054C9009976B8 = {
+						DevelopmentTeam = 2TU4F86D2T;
+					};
+				};
 			};
 			buildConfigurationList = 69AD4884156054C9009976B8 /* Build configuration list for PBXProject "OurItalianTable Posts" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -776,6 +789,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		698D8FF217DD935B00C53459 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# get current version number\nversion=$(/usr/libexec/PlistBuddy -c \"print:CFBundleVersion\" \"$CONFIGURATION_BUILD_DIR/$INFOPLIST_PATH\")\n# update bundle\n#/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:1:DefaultValue $version\" \"/Users/jcbecci/xcode/OurItalianTable Posts/OurItalianTable Posts/Settings.bundle/Root.plist\"\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:1:DefaultValue $version\" \"$SRCROOT/OurItalianTable Posts/Settings.bundle/Root.plist\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		69AD4886156054C9009976B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -818,6 +847,7 @@
 				6962484B16F2FCF900909B9B /* unzip.c in Sources */,
 				6962484C16F2FCF900909B9B /* zip.c in Sources */,
 				69CA4C5C16FE623900F9AD0F /* BookmarksTableViewController.m in Sources */,
+				69D71FC0184BD8AA00FD7E86 /* OITViewController.m in Sources */,
 				69FBB5351711279F002F6E4D /* Tag+CreateMany.m in Sources */,
 				69FBB53817121DA9002F6E4D /* Category+CreateMany.m in Sources */,
 				69DF6B2B1759AF5500EA1289 /* OITPosts.xcdatamodel in Sources */,
@@ -847,9 +877,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -865,8 +896,11 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PROVISIONING_PROFILE = "AB389B72-78B9-4D4B-AF79-10E332948BF8";
@@ -879,12 +913,13 @@
 		6925878C170E764700E8E01B /* Ad-Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurItalianTable Posts/OurItalianTable Posts-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
 				INFOPLIST_FILE = "OurItalianTable Posts/OurItalianTable Posts-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A0D602E1-FF81-47E5-A6EA-E0AE9C00F075";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0D602E1-FF81-47E5-A6EA-E0AE9C00F075";
@@ -896,9 +931,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -914,10 +950,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "B05E4BC5-BFC7-4BC4-9497-B3FE899D5A49";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B05E4BC5-BFC7-4BC4-9497-B3FE899D5A49";
 				SDKROOT = iphoneos;
@@ -929,9 +969,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -940,8 +981,11 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -956,7 +1000,7 @@
 		69AD48A3156054C9009976B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurItalianTable Posts/OurItalianTable Posts-Prefix.pch";
@@ -966,6 +1010,7 @@
 				);
 				HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
 				INFOPLIST_FILE = "OurItalianTable Posts/OurItalianTable Posts-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "AB5628CC-9FD9-4693-95B0-DCA91358E01D";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB5628CC-9FD9-4693-95B0-DCA91358E01D";
@@ -976,12 +1021,13 @@
 		69AD48A4156054C9009976B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurItalianTable Posts/OurItalianTable Posts-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
 				INFOPLIST_FILE = "OurItalianTable Posts/OurItalianTable Posts-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8C466461-CE9F-452A-944D-C313810730C8";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C466461-CE9F-452A-944D-C313810730C8";
