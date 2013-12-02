@@ -25,10 +25,10 @@
 
 // Must be overridden, abstract method to handle text change
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    // adjust the layout of the cells
-    [self.view setNeedsLayout];
-    
-    // refresh view...
+
+    // should be overridden
+    NSAssert(NO,  @"This is an abstract method and must be overridden");
+
 }
 
 @end
