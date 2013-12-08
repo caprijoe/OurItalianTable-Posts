@@ -17,7 +17,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     self.backgroundImageView.image = [UIImage imageNamed:self.imageFilename];
     self.titleLabel.text = [self.imageFilename stringByDeletingPathExtension];
 
