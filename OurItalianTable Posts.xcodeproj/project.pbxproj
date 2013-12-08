@@ -40,6 +40,8 @@
 		6962484A16F2FCF900909B9B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 6962484316F2FCF900909B9B /* mztools.c */; };
 		6962484B16F2FCF900909B9B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 6962484516F2FCF900909B9B /* unzip.c */; };
 		6962484C16F2FCF900909B9B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 6962484716F2FCF900909B9B /* zip.c */; };
+		6964B65D184C5A5F00207020 /* NewPhotoScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6964B65C184C5A5F00207020 /* NewPhotoScroller.m */; };
+		6964B660184C5D6800207020 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6964B65F184C5D6800207020 /* PageContentViewController.m */; };
 		696831E6164DD2DF001215EC /* 100px-Capri-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */; };
 		696831E7164DD2DF001215EC /* Pantelleria-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */; };
 		696831EA164DD3B7001215EC /* Regione_Puglia-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */; };
@@ -197,6 +199,10 @@
 		6962484716F2FCF900909B9B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
 		6962484816F2FCF900909B9B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		6962484D16F2FD7D00909B9B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		6964B65B184C5A5F00207020 /* NewPhotoScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPhotoScroller.h; sourceTree = "<group>"; };
+		6964B65C184C5A5F00207020 /* NewPhotoScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPhotoScroller.m; sourceTree = "<group>"; };
+		6964B65E184C5D6800207020 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
+		6964B65F184C5D6800207020 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
 		696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "100px-Capri-Stemma.png"; sourceTree = "<group>"; };
 		696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pantelleria-Stemma.png"; sourceTree = "<group>"; };
 		696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Regione_Puglia-Stemma.png"; sourceTree = "<group>"; };
@@ -541,6 +547,10 @@
 				69AD48C5156056A9009976B8 /* SplitViewBarButtonItemPresenter.h */,
 				699558DD15706A0800B25C6D /* AboutViewController.h */,
 				699558DE15706A0800B25C6D /* AboutViewController.m */,
+				6964B65B184C5A5F00207020 /* NewPhotoScroller.h */,
+				6964B65C184C5A5F00207020 /* NewPhotoScroller.m */,
+				6964B65E184C5D6800207020 /* PageContentViewController.h */,
+				6964B65F184C5D6800207020 /* PageContentViewController.m */,
 				69AD48B7156056A9009976B8 /* PhotoScroller.h */,
 				69AD48B8156056A9009976B8 /* PhotoScroller.m */,
 				690FD1FD176AA28900C5F952 /* PhotoScrollerViewController.h */,
@@ -839,6 +849,7 @@
 				69D33DB816BE4D5900B5AC00 /* OITTabBarController.m in Sources */,
 				692EE52416C5D817007F49B2 /* FoodTableViewController.m in Sources */,
 				69F7856016C73A0D0060AAE9 /* WineTableViewController.m in Sources */,
+				6964B660184C5D6800207020 /* PageContentViewController.m in Sources */,
 				69F7856516C74AAC0060AAE9 /* WanderingsTableViewController.m in Sources */,
 				6927DAEB16D1F47E0092365E /* IconDownloader.m in Sources */,
 				6962483E16F2FCEF00909B9B /* SSZipArchive.m in Sources */,
@@ -849,6 +860,7 @@
 				69CA4C5C16FE623900F9AD0F /* BookmarksTableViewController.m in Sources */,
 				69D71FC0184BD8AA00FD7E86 /* OITViewController.m in Sources */,
 				69FBB5351711279F002F6E4D /* Tag+CreateMany.m in Sources */,
+				6964B65D184C5A5F00207020 /* NewPhotoScroller.m in Sources */,
 				69FBB53817121DA9002F6E4D /* Category+CreateMany.m in Sources */,
 				69DF6B2B1759AF5500EA1289 /* OITPosts.xcdatamodel in Sources */,
 				69DF6B2E1759BC3C00EA1289 /* Post.m in Sources */,
