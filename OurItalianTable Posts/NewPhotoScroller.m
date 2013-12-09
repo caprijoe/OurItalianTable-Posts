@@ -49,6 +49,7 @@
 
 }
 
+#pragma mark - Private methods
 - (PageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
     if (([self.pageImageFilenames count] == 0) || (index >= [self.pageImageFilenames count])) {
@@ -63,7 +64,7 @@
     return pageContentViewController;
 }
 
-#pragma mark - Page View Controller Data Source
+#pragma mark - UIPageViewControllerDataSourceDelegate methods
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
