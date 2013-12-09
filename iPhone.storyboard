@@ -1185,7 +1185,6 @@
                             <constraint firstItem="cNB-6z-Ker" firstAttribute="leading" secondItem="ReK-wn-HWO" secondAttribute="leading" id="kLr-iA-oD2"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="cNB-6z-Ker" id="d2E-TY-My3"/>
                         <outlet property="titleLabel" destination="Q0I-uE-a1m" id="6Yk-Sn-G7n"/>
@@ -1223,7 +1222,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FQy-UO-Fda"/>
-        <segue reference="pHB-aT-m04"/>
+        <segue reference="FPp-bm-IgP"/>
+        <segue reference="Eoe-gX-8JG"/>
     </inferredMetricsTieBreakers>
 </document>

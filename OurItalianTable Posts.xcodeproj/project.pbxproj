@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		690EA7EB17B9C7770003B09E /* OHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690EA7EA17B9C7770003B09E /* OHAlertView.m */; };
-		690FD205176B751B00C5F952 /* PhotoScrollerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690FD1FE176AA28900C5F952 /* PhotoScrollerViewController.m */; };
-		690FD206176B751B00C5F952 /* PhotoModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690FD204176B74FF00C5F952 /* PhotoModelController.m */; };
-		690FD20A176B7DB100C5F952 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690FD209176B7D9700C5F952 /* ImageViewController.m */; };
 		6912BB6915CDDAA10014BB6F /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6715CDDAA10014BB6F /* 71-compass.png */; };
 		6912BB6A15CDDAA10014BB6F /* 71-compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */; };
 		6912BB6D15CF2F2A0014BB6F /* oitIcon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6C15CF2F2A0014BB6F /* oitIcon-57x57.png */; };
@@ -82,7 +79,6 @@
 		69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69AD4897156054C9009976B8 /* InfoPlist.strings */; };
 		69AD489B156054C9009976B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD489A156054C9009976B8 /* main.m */; };
 		69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48AE156056A9009976B8 /* OITLaunchViewController.m */; };
-		69AD48D1156056A9009976B8 /* PhotoScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48B8156056A9009976B8 /* PhotoScroller.m */; };
 		69AD48D3156056A9009976B8 /* TOCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48BC156056A9009976B8 /* TOCViewController.m */; };
 		69AD48D6156056A9009976B8 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C2156056A9009976B8 /* MapAnnotation.m */; };
 		69AD48D7156056A9009976B8 /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C4156056A9009976B8 /* SplashScreenController.m */; };
@@ -151,12 +147,6 @@
 /* Begin PBXFileReference section */
 		690EA7E917B9C7760003B09E /* OHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAlertView.h; sourceTree = "<group>"; };
 		690EA7EA17B9C7770003B09E /* OHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHAlertView.m; sourceTree = "<group>"; };
-		690FD1FD176AA28900C5F952 /* PhotoScrollerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoScrollerViewController.h; sourceTree = "<group>"; };
-		690FD1FE176AA28900C5F952 /* PhotoScrollerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoScrollerViewController.m; sourceTree = "<group>"; };
-		690FD203176B74FF00C5F952 /* PhotoModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoModelController.h; sourceTree = "<group>"; };
-		690FD204176B74FF00C5F952 /* PhotoModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoModelController.m; sourceTree = "<group>"; };
-		690FD208176B7D9700C5F952 /* ImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
-		690FD209176B7D9700C5F952 /* ImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		6912BB6715CDDAA10014BB6F /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
 		6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass@2x.png"; sourceTree = "<group>"; };
 		6912BB6C15CF2F2A0014BB6F /* oitIcon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oitIcon-57x57.png"; sourceTree = "<group>"; };
@@ -257,8 +247,6 @@
 		69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OurItalianTable Posts-Prefix.pch"; sourceTree = "<group>"; };
 		69AD48AD156056A9009976B8 /* OITLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITLaunchViewController.h; sourceTree = "<group>"; };
 		69AD48AE156056A9009976B8 /* OITLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITLaunchViewController.m; sourceTree = "<group>"; };
-		69AD48B7156056A9009976B8 /* PhotoScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoScroller.h; sourceTree = "<group>"; };
-		69AD48B8156056A9009976B8 /* PhotoScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoScroller.m; sourceTree = "<group>"; };
 		69AD48BB156056A9009976B8 /* TOCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCViewController.h; sourceTree = "<group>"; };
 		69AD48BC156056A9009976B8 /* TOCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCViewController.m; sourceTree = "<group>"; };
 		69AD48BF156056A9009976B8 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -368,6 +356,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		690E702A18550F3E002D6633 /* Home Tab Info Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				699558DD15706A0800B25C6D /* AboutViewController.h */,
+				699558DE15706A0800B25C6D /* AboutViewController.m */,
+				6964B65B184C5A5F00207020 /* NewPhotoScroller.h */,
+				6964B65C184C5A5F00207020 /* NewPhotoScroller.m */,
+				6964B65E184C5D6800207020 /* PageContentViewController.h */,
+				6964B65F184C5D6800207020 /* PageContentViewController.m */,
+			);
+			name = "Home Tab Info Controllers";
+			sourceTree = "<group>";
+		};
 		6912BB8515CF351F0014BB6F /* Launch/Icon Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,20 +546,7 @@
 				69AD48C3156056A9009976B8 /* SplashScreenController.h */,
 				69AD48C4156056A9009976B8 /* SplashScreenController.m */,
 				69AD48C5156056A9009976B8 /* SplitViewBarButtonItemPresenter.h */,
-				699558DD15706A0800B25C6D /* AboutViewController.h */,
-				699558DE15706A0800B25C6D /* AboutViewController.m */,
-				6964B65B184C5A5F00207020 /* NewPhotoScroller.h */,
-				6964B65C184C5A5F00207020 /* NewPhotoScroller.m */,
-				6964B65E184C5D6800207020 /* PageContentViewController.h */,
-				6964B65F184C5D6800207020 /* PageContentViewController.m */,
-				69AD48B7156056A9009976B8 /* PhotoScroller.h */,
-				69AD48B8156056A9009976B8 /* PhotoScroller.m */,
-				690FD1FD176AA28900C5F952 /* PhotoScrollerViewController.h */,
-				690FD1FE176AA28900C5F952 /* PhotoScrollerViewController.m */,
-				690FD203176B74FF00C5F952 /* PhotoModelController.h */,
-				690FD204176B74FF00C5F952 /* PhotoModelController.m */,
-				690FD208176B7D9700C5F952 /* ImageViewController.h */,
-				690FD209176B7D9700C5F952 /* ImageViewController.m */,
+				690E702A18550F3E002D6633 /* Home Tab Info Controllers */,
 				692C1F681734B142005F0804 /* Table View Controllers */,
 				69AD48C1156056A9009976B8 /* MapAnnotation.h */,
 				69AD48C2156056A9009976B8 /* MapAnnotation.m */,
@@ -821,15 +809,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				695BB71717936C5000BFD1D5 /* Reachability.m in Sources */,
-				690FD20A176B7DB100C5F952 /* ImageViewController.m in Sources */,
-				690FD205176B751B00C5F952 /* PhotoScrollerViewController.m in Sources */,
-				690FD206176B751B00C5F952 /* PhotoModelController.m in Sources */,
 				69CBD0E6167D40E500A313FB /* MapViewController.m in Sources */,
 				69711205166EE785006D93DB /* Post+Create.m in Sources */,
 				695BE0331646337C0009EBFE /* RegionAnnotationView.m in Sources */,
 				69AD489B156054C9009976B8 /* main.m in Sources */,
 				69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */,
-				69AD48D1156056A9009976B8 /* PhotoScroller.m in Sources */,
 				69AD48D3156056A9009976B8 /* TOCViewController.m in Sources */,
 				69AD48D6156056A9009976B8 /* MapAnnotation.m in Sources */,
 				69AD48D7156056A9009976B8 /* SplashScreenController.m in Sources */,
