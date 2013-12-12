@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OITLaunchViewController.h"
-#import "SplitViewBarButtonItemPresenter.h"
+#import "OITSplitDetailViewController.h"
 #import "PageContentViewController.h"
 
-@interface NewPhotoScroller : UIViewController <SplitViewBarButtonItemPresenter, UIPageViewControllerDataSource>
+@interface NewPhotoScroller : OITViewController <UIPageViewControllerDataSource, SplitViewBarButtonItemPresenter>
 
 @end

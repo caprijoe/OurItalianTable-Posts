@@ -104,7 +104,6 @@
 }
 
 #pragma mark - Rotation support
-
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
     self.navigationItem.leftBarButtonItem = splitViewBarButtonItem;

@@ -11,8 +11,6 @@
 #import "OITTabBarController.h"
 
 @interface SplashScreenController : UIViewController <SplitViewBarButtonItemPresenter>
-
-// outlets
-@property (nonatomic,weak) IBOutlet UIToolbar *toolbar;             // toolbar for "bar button dance"
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end

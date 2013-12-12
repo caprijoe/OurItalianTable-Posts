@@ -17,33 +17,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="ouritaliantable-original-crop.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6OM-je-M7J">
-                                <rect key="frame" x="0.0" y="42" width="768" height="982"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ouritaliantable-original-crop.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6OM-je-M7J">
+                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="Hjg-sk-MvE">
-                                <rect key="frame" x="0.0" y="0.0" width="899" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maE-eU-afi">
+                                <rect key="frame" x="0.0" y="20" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="nR6-1J-Ggb"/>
+                                </constraints>
                                 <items/>
                             </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Food, wine and wanderings from our beloved Italy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmY-YZ-34X">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6OM-je-M7J" firstAttribute="leading" secondItem="XJA-qb-DDx" secondAttribute="leading" id="6Th-pX-imk"/>
+                            <constraint firstItem="6OM-je-M7J" firstAttribute="leading" secondItem="maE-eU-afi" secondAttribute="leading" id="Co1-U8-xgN"/>
+                            <constraint firstItem="maE-eU-afi" firstAttribute="top" secondItem="PHT-bN-LNZ" secondAttribute="bottom" constant="20" symbolic="YES" id="Gcs-Dv-GHA"/>
+                            <constraint firstItem="6OM-je-M7J" firstAttribute="top" secondItem="maE-eU-afi" secondAttribute="bottom" id="eth-Py-CMi"/>
+                            <constraint firstAttribute="trailing" secondItem="maE-eU-afi" secondAttribute="trailing" id="m5j-Jz-x6f"/>
+                            <constraint firstItem="6OM-je-M7J" firstAttribute="trailing" secondItem="maE-eU-afi" secondAttribute="trailing" id="n5m-Ht-TLZ"/>
+                            <constraint firstAttribute="bottom" secondItem="6OM-je-M7J" secondAttribute="bottom" id="t9n-hA-7oP"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="TQy-1N-8M9"/>
                     <connections>
-                        <outlet property="toolbar" destination="Hjg-sk-MvE" id="PfJ-mx-iql"/>
+                        <outlet property="toolbar" destination="maE-eU-afi" id="pSb-Q8-11b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcx-S1-ho7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3370" y="401"/>
+            <point key="canvasLocation" x="3500" y="1673"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="SEt-dQ-CQn">
@@ -51,8 +57,8 @@
                 <splitViewController id="Xxx-oO-I4m" sceneMemberID="viewController">
                     <toolbarItems/>
                     <connections>
-                        <segue destination="nbh-0g-5oO" kind="relationship" relationship="detailViewController" id="WWG-eN-8GU"/>
                         <segue destination="M2f-k1-UK5" kind="relationship" relationship="masterViewController" id="XdI-MV-hog"/>
+                        <segue destination="nbh-0g-5oO" kind="relationship" relationship="detailViewController" id="gsz-kC-6Xt"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gql-p7-S3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,18 +77,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FTZ-mk-h6R">
-                                <rect key="frame" x="0.0" y="44" width="768" height="980"/>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FTZ-mk-h6R">
+                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="aYb-PT-7Ua">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYb-PT-7Ua">
+                                <rect key="frame" x="0.0" y="20" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Q9G-up-EAq"/>
                                     <barButtonItem image="42-info.png" style="plain" id="yOr-eC-5mD">
-                                        <inset key="imageInsets" minX="2" minY="3" maxX="-1" maxY="-1"/>
                                         <connections>
                                             <segue destination="rjg-hJ-4cF" kind="popover" identifier="Push Post Detail" popoverAnchorBarButtonItem="yOr-eC-5mD" id="Wtp-Ei-WZh">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -95,13 +100,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="bookmarks" id="6RI-aX-WBE">
-                                        <inset key="imageInsets" minX="-4" minY="0.0" maxX="4" maxY="0.0"/>
                                         <connections>
                                             <action selector="addToFavorites:" destination="DNG-Wr-sV2" id="bzm-2K-ber"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem image="71-compass.png" style="plain" id="h0B-4J-fSd">
-                                        <inset key="imageInsets" minX="4" minY="2" maxX="-4" maxY="-2"/>
                                         <connections>
                                             <segue destination="f1d-aY-Cx0" kind="popover" identifier="Push Location Map" popoverAnchorBarButtonItem="h0B-4J-fSd" id="HqC-hA-HKE">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -112,6 +115,15 @@
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aYb-PT-7Ua" firstAttribute="top" secondItem="RPQ-pB-zzP" secondAttribute="bottom" id="6bo-m2-p8o"/>
+                            <constraint firstItem="FTZ-mk-h6R" firstAttribute="leading" secondItem="aYb-PT-7Ua" secondAttribute="leading" id="6pi-vK-EXE"/>
+                            <constraint firstAttribute="bottom" secondItem="FTZ-mk-h6R" secondAttribute="bottom" id="8u1-vk-Agl"/>
+                            <constraint firstItem="FTZ-mk-h6R" firstAttribute="leading" secondItem="unM-Mb-ojo" secondAttribute="leading" id="Itl-tX-Smj"/>
+                            <constraint firstItem="aYb-PT-7Ua" firstAttribute="trailing" secondItem="FTZ-mk-h6R" secondAttribute="trailing" id="Jq4-jb-vZq"/>
+                            <constraint firstAttribute="trailing" secondItem="FTZ-mk-h6R" secondAttribute="trailing" id="LFt-um-B5n"/>
+                            <constraint firstItem="FTZ-mk-h6R" firstAttribute="top" secondItem="aYb-PT-7Ua" secondAttribute="bottom" id="w11-sX-yRT"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Web Post" id="geP-oR-Mf1">
@@ -126,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXF-Jg-bEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4740" y="632"/>
+            <point key="canvasLocation" x="6066" y="1704"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="eE1-h3-Aja">
@@ -167,7 +179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l22-H2-I6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6256" y="-2546"/>
+            <point key="canvasLocation" x="7824" y="-4194"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="nmd-bc-SLg">
@@ -246,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ts-VD-zGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5973" y="1968"/>
+            <point key="canvasLocation" x="7333" y="864"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="j7S-GD-Ep3">
@@ -299,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pz2-FB-MRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5998" y="615"/>
+            <point key="canvasLocation" x="7977" y="-417"/>
         </scene>
         <!--Location Map View Controller-->
         <scene sceneID="woe-If-thO">
@@ -332,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GWG-qZ-fBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5993" y="3228"/>
+            <point key="canvasLocation" x="7361" y="2596"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="moh-h0-Ize">
@@ -369,7 +381,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="803"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Up0-V9-R4i">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Up0-V9-R4i">
                                 <rect key="frame" x="21" y="686" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -383,7 +395,7 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfx-gF-8R1">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfx-gF-8R1">
                                 <rect key="frame" x="21" y="738" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -422,7 +434,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="logo" destination="hcQ-pU-rpi" id="paU-q9-zab"/>
-                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="ZQ6-IT-DfC"/>
+                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="4ux-IV-P00"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hLs-dV-xtF" sceneMemberID="firstResponder"/>
@@ -441,7 +453,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="APd-ms-bx9">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APd-ms-bx9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
@@ -460,8 +472,8 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WIT-A2-Df9">
-                                <rect key="frame" x="0.0" y="88" width="320" height="764"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WIT-A2-Df9">
+                                <rect key="frame" x="0.0" y="177" width="320" height="675"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -484,16 +496,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" barStyle="black" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aV5-Ga-drJ">
-                                <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                            <searchBar contentMode="redraw" misplaced="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aV5-Ga-drJ">
+                                <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="5jD-Rt-mYd" id="EXq-XO-RXt"/>
                                 </connections>
                             </searchBar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4DI-TX-JgW">
-                                <rect key="frame" x="64" y="0.0" width="192" height="44"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4DI-TX-JgW">
+                                <rect key="frame" x="58" y="35" width="192" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -501,6 +513,23 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4DI-TX-JgW" firstAttribute="leading" secondItem="66Y-wT-ueW" secondAttribute="leading" constant="64" id="2sz-Ig-joG"/>
+                            <constraint firstAttribute="bottom" secondItem="WIT-A2-Df9" secondAttribute="bottom" id="5Yg-4W-agE"/>
+                            <constraint firstItem="aV5-Ga-drJ" firstAttribute="leading" secondItem="66Y-wT-ueW" secondAttribute="leading" id="7ci-iq-lGJ"/>
+                            <constraint firstItem="WIT-A2-Df9" firstAttribute="top" secondItem="aV5-Ga-drJ" secondAttribute="bottom" id="7fK-xd-ANC"/>
+                            <constraint firstItem="aV5-Ga-drJ" firstAttribute="top" secondItem="4DI-TX-JgW" secondAttribute="bottom" id="Ao9-Lr-Wif"/>
+                            <constraint firstAttribute="trailing" secondItem="WIT-A2-Df9" secondAttribute="trailing" id="I58-ea-2yj"/>
+                            <constraint firstItem="4DI-TX-JgW" firstAttribute="centerX" secondItem="APd-ms-bx9" secondAttribute="centerX" id="SZl-2c-00T"/>
+                            <constraint firstItem="APd-ms-bx9" firstAttribute="top" secondItem="L1f-kO-Rw5" secondAttribute="bottom" constant="15" id="Swn-lF-IcG"/>
+                            <constraint firstItem="aV5-Ga-drJ" firstAttribute="leading" secondItem="WIT-A2-Df9" secondAttribute="leading" id="VN7-Qu-dqf"/>
+                            <constraint firstItem="APd-ms-bx9" firstAttribute="top" secondItem="4DI-TX-JgW" secondAttribute="top" id="caR-8A-SX9"/>
+                            <constraint firstItem="APd-ms-bx9" firstAttribute="leading" secondItem="aV5-Ga-drJ" secondAttribute="leading" id="dOr-LJ-Og8"/>
+                            <constraint firstItem="APd-ms-bx9" firstAttribute="top" secondItem="66Y-wT-ueW" secondAttribute="top" constant="20" symbolic="YES" id="gX9-Da-2Av"/>
+                            <constraint firstItem="WIT-A2-Df9" firstAttribute="trailing" secondItem="aV5-Ga-drJ" secondAttribute="trailing" id="osT-kA-DhT"/>
+                            <constraint firstItem="APd-ms-bx9" firstAttribute="trailing" secondItem="aV5-Ga-drJ" secondAttribute="trailing" id="qKX-L2-piE"/>
+                            <constraint firstItem="aV5-Ga-drJ" firstAttribute="top" secondItem="APd-ms-bx9" secondAttribute="bottom" id="wva-mc-fSl"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Food" image="48-fork-and-knife.png" id="9qL-15-1g2"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -508,8 +537,8 @@
                         <outlet property="contextLabel" destination="4DI-TX-JgW" id="lPo-QA-p5R"/>
                         <outlet property="tableView" destination="WIT-A2-Df9" id="nyp-uO-qGC"/>
                         <outlet property="toolbar" destination="APd-ms-bx9" id="N7a-BD-Dlf"/>
-                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="n1r-Np-Wnf"/>
                         <segue destination="DNG-Wr-sV2" kind="replace" identifier="Push Web View" splitViewControllerTargetIndex="1" id="Irs-f4-ma9"/>
+                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="v8W-oC-W9x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ua-Ex-jlT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -595,8 +624,8 @@
                         <outlet property="contextLabel" destination="RGz-Kr-T9u" id="nAi-ZG-gNu"/>
                         <outlet property="tableView" destination="zT3-d0-KYd" id="mez-8r-fzG"/>
                         <outlet property="toolbar" destination="hXH-BD-1mv" id="fF5-An-Ljd"/>
-                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="KW6-iq-FBu"/>
                         <segue destination="DNG-Wr-sV2" kind="replace" identifier="Push Web View" splitViewControllerTargetIndex="1" id="yR0-TS-OSj"/>
+                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="EFJ-JN-nHp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qwd-oV-VnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -667,9 +696,9 @@
                         <outlet property="contextLabel" destination="yVF-3m-95J" id="gdN-0n-Gkz"/>
                         <outlet property="tableView" destination="Uj8-yv-m7O" id="Ire-4q-zGM"/>
                         <outlet property="toolbar" destination="vzh-kk-YUU" id="tGf-7w-xfH"/>
-                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="C9B-HA-Q4R"/>
                         <segue destination="DNG-Wr-sV2" kind="replace" identifier="Push Web View" splitViewControllerTargetIndex="1" id="VA7-60-x7r"/>
                         <segue destination="ua4-gW-DO5" kind="replace" identifier="Show Region Map" splitViewControllerTargetIndex="1" id="LWO-vg-g5F"/>
+                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="Cu7-kK-P6i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vyv-aZ-2lW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -750,8 +779,8 @@
                         <outlet property="contextLabel" destination="zhL-7R-IhC" id="tZn-uJ-eqo"/>
                         <outlet property="tableView" destination="CJd-f0-VAt" id="AJQ-xM-i9V"/>
                         <outlet property="toolbar" destination="S4X-BR-DEX" id="XTc-YV-Ey9"/>
-                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="C3z-8x-LWY"/>
                         <segue destination="DNG-Wr-sV2" kind="replace" identifier="Push Web View" splitViewControllerTargetIndex="1" id="tzs-Jd-JNQ"/>
+                        <segue destination="nbh-0g-5oO" kind="replace" identifier="Reset Splash View" splitViewControllerTargetIndex="1" id="4ZW-YD-3N5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lb1-zS-aDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -767,7 +796,7 @@
                         <viewControllerLayoutGuide type="bottom" id="LGm-0v-7bi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wfj-1t-3gL">
-                        <rect key="frame" x="0.0" y="64" width="768" height="4672"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="6208"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mbecci.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="0QI-KD-lqV">
@@ -787,14 +816,14 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oz4-fg-5v3">
-                                <rect key="frame" x="20" y="128" width="728" height="4476"/>
+                                <rect key="frame" x="20" y="128" width="728" height="5988"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="vVersion (build Build)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="3ex-Xi-Q6S">
-                                <rect key="frame" x="19" y="4659" width="728" height="14"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="vVersion (build Build)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="3ex-Xi-Q6S">
+                                <rect key="frame" x="19" y="6195" width="728" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -832,7 +861,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Info" image="42-info.png" id="ye6-Nc-EBv"/>
                     <navigationItem key="navigationItem" id="HDg-r1-YY8"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="200" height="400"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="600"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -843,7 +872,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="004-xc-0Gu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4484" y="-6344"/>
+            <point key="canvasLocation" x="5276" y="-6728"/>
         </scene>
         <!--New Photo Scroller-->
         <scene sceneID="SoZ-bR-Vbn">
@@ -863,7 +892,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="haN-Gv-wxN" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2142" y="-3528"/>
+            <point key="canvasLocation" x="2174" y="-5368"/>
         </scene>
         <!--Page Content View Controller-->
         <scene sceneID="hQv-HU-Lw8">
@@ -906,7 +935,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQ9-Va-AJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3301" y="-2877"/>
+            <point key="canvasLocation" x="3333" y="-4717"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="egw-fA-nsW">
@@ -914,11 +943,12 @@
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="aEe-kb-NPo" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NOf-sj-egi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3301" y="-4082"/>
+            <point key="canvasLocation" x="3333" y="-5922"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zdi-iX-wLN">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OGM-io-dl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wT7-9v-u9z" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rsN-iE-2qC">
@@ -930,9 +960,8 @@
                         <segue destination="iFl-lk-Qfh" kind="relationship" relationship="rootViewController" id="h6t-IF-j6p"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OGM-io-dl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1168" y="-3528"/>
+            <point key="canvasLocation" x="1200" y="-5368"/>
         </scene>
     </scenes>
     <resources>
@@ -953,8 +982,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VA7-60-x7r"/>
-        <segue reference="ZQ6-IT-DfC"/>
-        <segue reference="1Kf-wz-Ep8"/>
+        <segue reference="Irs-f4-ma9"/>
+        <segue reference="v8W-oC-W9x"/>
+        <segue reference="Isu-Tq-XXl"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -34,9 +34,11 @@
     id detailVC = [self.splitViewController.viewControllers lastObject];
     if ([detailVC isKindOfClass:[UINavigationController class]])
         detailVC = [((UINavigationController *)detailVC).viewControllers firstObject];
-    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)]) {
+//    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)]) {
+//        detailVC = nil;
+//    }
+    if (![detailVC respondsToSelector:@selector(setSplitViewBarButtonItem:)])
         detailVC = nil;
-    }
     return detailVC;
 }
 

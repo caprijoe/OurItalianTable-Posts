@@ -23,20 +23,12 @@
 }
 
 #pragma mark - Rotation support
-
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
     if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-    if(splitViewBarButtonItem) [toolbarsItems insertObject:splitViewBarButtonItem atIndex:0];
+    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
     self.toolbar.items = toolbarsItems;
-    _splitViewBarButtonItem = splitViewBarButtonItem;
+    _splitViewBarButtonItem = barButtonItem;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-	return YES;
-}
-
 @end
