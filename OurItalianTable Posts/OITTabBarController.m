@@ -28,9 +28,12 @@
 
 #pragma mark - UISplitViewController delgates
 
+// if detail controller responds to SplitViewBarButtonItemPresenter, return it's <id>, else return nil
 - (id <SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
 {
     id detailVC = [self.splitViewController.viewControllers lastObject];
+    if ([detailVC isKindOfClass:[UINavigationController class]])
+        detailVC = [((UINavigationController *)detailVC).viewControllers firstObject];
     if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)]) {
         detailVC = nil;
     }
@@ -41,6 +44,8 @@
   shouldHideViewController:(UIViewController *)vc
              inOrientation:(UIInterfaceOrientation)orientation
 {
+    // if there's a qualifying dvc, showhide if in portrait
+    NSLog(@"shouldHide, dvt = %@",[self splitViewBarButtonItemPresenter]);
     return [self splitViewBarButtonItemPresenter] ? UIInterfaceOrientationIsPortrait(orientation) : NO;
 }
 
@@ -49,6 +54,8 @@
          withBarButtonItem:(UIBarButtonItem *)barButtonItem
       forPopoverController:(UIPopoverController *)pc
 {
+    // if there's a qualifying dvc, on willHide, assign button to setter
+    NSLog(@"willHide, dvt = %@",[self splitViewBarButtonItemPresenter]);
     barButtonItem.title = @"Menu";
     self.rootPopoverButtonItem = barButtonItem;
     self.masterPopoverController = pc;
@@ -59,32 +66,11 @@
     willShowViewController:(UIViewController *)aViewController
  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
+    // if there's a qualifying dvc, on willShow, assign nil to setter
+    NSLog(@"willShow, dvt = %@",[self splitViewBarButtonItemPresenter]);
     self.rootPopoverButtonItem = nil;
     self.masterPopoverController = nil;
     [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
-}
-
-#pragma mark - Rotation support (iOS 6)
-
--(BOOL)shouldAutorotate {
-    return YES;
-}
-
--(NSUInteger)supportedInterfaceOrientations {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return UIInterfaceOrientationMaskPortrait;
-    else
-        return UIInterfaceOrientationMaskAll;
-}
-
-#pragma mark - Rotation support (iOS 5)
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    else
-        return YES;
 }
 
 @end
