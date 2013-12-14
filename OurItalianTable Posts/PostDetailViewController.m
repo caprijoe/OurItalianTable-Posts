@@ -11,13 +11,16 @@
 @implementation PostDetailViewController
 
 #pragma mark - View lifecycle
-
 -(void)viewDidLoad {
     
     [super viewDidLoad];
     
     CGSize size = CGSizeMake(300,600);
-    self.contentSizeForViewInPopover = size;
+    //  self.contentSizeForViewInPopover = size;
+    [self setPreferredContentSize:size];
+
+    // setup fonts
+    [self setupFonts];
     
 }
 
@@ -86,6 +89,23 @@
     }];
 }
 
+#pragma mark - Dynamic type support
+-(void)setupFonts {
+    
+    self.postTitle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    self.datePublished.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    
+}
+
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
+    
+    // override from abstract class
+    [self setupFonts];
+    [self.view setNeedsLayout];
+    
+}
+
+#pragma mark - Selector for custom button
 -(void)takeAction:(UIButton *)button {
     
     // call back with button pressed
@@ -93,7 +113,7 @@
      
 }
 
-#pragma mark - Outlets/Actions
+#pragma mark - Actions
 - (IBAction)doneButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

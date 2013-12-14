@@ -26,6 +26,7 @@
 
 // properties to be set
 @property (nonatomic,strong) Post *postDetail; // post for which detail will be displayed
+@property (nonatomic, strong) UIPopoverController *popover; // this popover controller if it IS a popovercontroller, other nil
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *authorPicture;
