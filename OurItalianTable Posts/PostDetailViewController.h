@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OITViewController.h"
 #import "GeneralizedPostsTableViewController.h"
 #import "Post.h"
 #import "Tag.h"
@@ -18,7 +19,7 @@
 -(void)didClickTag:(NSString *)tag;
 @end
 
-@interface PostDetailViewController : UIViewController
+@interface PostDetailViewController : OITViewController
 
 // delegate to pass along call back from detail controller
 @property (nonatomic, weak) id <PostsDetailViewControllerDelegate> delegate;
@@ -31,7 +32,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *datePublished;
 @property (weak, nonatomic) IBOutlet UIView *tagsView;
-@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 // Actions
 - (IBAction)doneButton:(id)sender;
