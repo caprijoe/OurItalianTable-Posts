@@ -382,7 +382,6 @@
                     <connections>
                         <outlet property="authorPicture" destination="AgX-d2-Gbw" id="NqX-BB-9qa"/>
                         <outlet property="datePublished" destination="Pef-xC-o98" id="lSm-cl-cAP"/>
-                        <outlet property="doneButton" destination="PwS-wT-31L" id="a9p-YG-VWa"/>
                         <outlet property="postTitle" destination="01S-gf-3a2" id="X8e-1o-kBt"/>
                         <outlet property="tagsView" destination="kAT-OD-nnU" id="sGI-Fe-8jR"/>
                     </connections>
