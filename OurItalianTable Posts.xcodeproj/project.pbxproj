@@ -116,11 +116,11 @@
 		69AD495D1569CC76009976B8 /* The Drago Grandparents.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49381560877D009976B8 /* The Drago Grandparents.jpg */; };
 		69B5AA6316A7D81B005B7F9C /* ouritaliantable-original-transparent.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */; };
 		69C259B91627938600E0BC40 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69C259B81627938600E0BC40 /* Default-568h@2x.png */; };
-		69C259C116279C9100E0BC40 /* OITNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C259C016279C9100E0BC40 /* OITNavController.m */; };
 		69C9510A1628DB00001147D6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C951091628DB00001147D6 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		69C9510D1628DB0D001147D6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C9510C1628DB0D001147D6 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		69CA4C5C16FE623900F9AD0F /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CA4C5B16FE623900F9AD0F /* BookmarksTableViewController.m */; };
 		69CBD0E6167D40E500A313FB /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C0156056A9009976B8 /* MapViewController.m */; };
+		69CC84D51859397700B1F053 /* OITSplitDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */; };
 		69D00B4B15BCEDDA007050E3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D00B4A15BCEDDA007050E3 /* MessageUI.framework */; };
 		69D00B4D15BCEDF5007050E3 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D00B4C15BCEDF5007050E3 /* Twitter.framework */; };
 		69D00B5015BCF1CF007050E3 /* LocationMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D00B4F15BCF1CF007050E3 /* LocationMapViewController.m */; };
@@ -292,12 +292,12 @@
 		69AD495B15622718009976B8 /* Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dad and Joey.jpg"; sourceTree = "<group>"; };
 		69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ouritaliantable-original-transparent.gif"; sourceTree = "<group>"; };
 		69C259B81627938600E0BC40 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		69C259BF16279C9100E0BC40 /* OITNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITNavController.h; sourceTree = "<group>"; };
-		69C259C016279C9100E0BC40 /* OITNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITNavController.m; sourceTree = "<group>"; };
 		69C951091628DB00001147D6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		69C9510C1628DB0D001147D6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		69CA4C5A16FE621B00F9AD0F /* BookmarksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksTableViewController.h; sourceTree = "<group>"; };
 		69CA4C5B16FE623900F9AD0F /* BookmarksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksTableViewController.m; sourceTree = "<group>"; };
+		69CC84D31859397700B1F053 /* OITSplitDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITSplitDetailViewController.h; sourceTree = "<group>"; };
+		69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITSplitDetailViewController.m; sourceTree = "<group>"; };
 		69D00B4A15BCEDDA007050E3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		69D00B4C15BCEDF5007050E3 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		69D00B4E15BCF1CF007050E3 /* LocationMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMapViewController.h; sourceTree = "<group>"; };
@@ -534,13 +534,13 @@
 			children = (
 				69D71FBE184BD8AA00FD7E86 /* OITViewController.h */,
 				69D71FBF184BD8AA00FD7E86 /* OITViewController.m */,
+				69CC84D31859397700B1F053 /* OITSplitDetailViewController.h */,
+				69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */,
 				697111EE166DD927006D93DB /* AppDelegate.h */,
 				697111EF166DD927006D93DB /* AppDelegate.m */,
 				69711201166DE148006D93DB /* CoreDataInitialization */,
 				69D33DB616BE4D5900B5AC00 /* OITTabBarController.h */,
 				69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */,
-				69C259BF16279C9100E0BC40 /* OITNavController.h */,
-				69C259C016279C9100E0BC40 /* OITNavController.m */,
 				69AD48AD156056A9009976B8 /* OITLaunchViewController.h */,
 				69AD48AE156056A9009976B8 /* OITLaunchViewController.m */,
 				69AD48C3156056A9009976B8 /* SplashScreenController.h */,
@@ -811,6 +811,7 @@
 				695BB71717936C5000BFD1D5 /* Reachability.m in Sources */,
 				69CBD0E6167D40E500A313FB /* MapViewController.m in Sources */,
 				69711205166EE785006D93DB /* Post+Create.m in Sources */,
+				69CC84D51859397700B1F053 /* OITSplitDetailViewController.m in Sources */,
 				695BE0331646337C0009EBFE /* RegionAnnotationView.m in Sources */,
 				69AD489B156054C9009976B8 /* main.m in Sources */,
 				69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */,
@@ -822,7 +823,6 @@
 				699558E215706BE300B25C6D /* WebViewController.m in Sources */,
 				69D00B5015BCF1CF007050E3 /* LocationMapViewController.m in Sources */,
 				69DFEA2615C5EF8900CDABA1 /* RegionAnnotation.m in Sources */,
-				69C259C116279C9100E0BC40 /* OITNavController.m in Sources */,
 				697111F0166DD927006D93DB /* AppDelegate.m in Sources */,
 				697111FD166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m in Sources */,
 				697111FF166DE13B006D93DB /* ParseWordPressXML.m in Sources */,

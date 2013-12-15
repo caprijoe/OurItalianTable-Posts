@@ -22,6 +22,7 @@
 @property (nonatomic,strong) UIStoryboardSegue* detailsViewSeque;   // saved segue for return from "Details" button
 @property (nonatomic,strong) NSString *loadedHTML;                  // HTML code that was loaded -- for e-mailing
 @property (nonatomic,strong) NSString *currentActionSheet;          // current sheet to figure clicked button
+@property (nonatomic,weak)   UIPopoverController *infoPopover;      // the info popover, if on screen
 @end
 
 @implementation WebViewController
@@ -75,10 +76,13 @@
     self.loadedHTML = finalHTMLstring;                                  
 }
 
-- (void)viewDidUnload {
-    [self setTopToolbar:nil];
-    [self setTopNavBar:nil];
-    [super viewDidUnload];
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    // get rid of any left over popovers
+    [self.infoPopover dismissPopoverAnimated:YES];
+    
 }
 
 #pragma mark - Segue support
@@ -87,6 +91,11 @@
     if ([segue.identifier isEqualToString:@"Push Post Detail"]) {
         [segue.destinationViewController setPostDetail:self.thisPost];
         [segue.destinationViewController setDelegate:self];
+        
+        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
+            self.infoPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+            [segue.destinationViewController setPopover:self.infoPopover];
+        }
         self.detailsViewSeque = segue;
     } else if ([segue.identifier isEqualToString:@"Push Location Map"]) {
         [segue.destinationViewController setLocationRecord:self.thisPost];

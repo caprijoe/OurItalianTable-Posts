@@ -29,6 +29,10 @@
     // setup app version info
     self.versionBuildDisplay.text = [self getAppVersion];
     
+    CGSize size = CGSizeMake(300,600);
+    //  self.contentSizeForViewInPopover = size;
+    [self setPreferredContentSize:size];
+    
     // setup fonts
     [self setupFonts];
 }
