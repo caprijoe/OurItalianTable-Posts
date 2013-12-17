@@ -28,9 +28,7 @@
 @implementation WebViewController
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
-#pragma mark - Setter
-
-#pragma mark - Rotation support
+#pragma mark - Setters
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     NSMutableArray *toolbarsItems = [self.topToolbar.items mutableCopy];
