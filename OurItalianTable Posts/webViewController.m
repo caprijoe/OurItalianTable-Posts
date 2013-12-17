@@ -30,6 +30,16 @@
 
 #pragma mark - Setter
 
+#pragma mark - Rotation support
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    NSMutableArray *toolbarsItems = [self.topToolbar.items mutableCopy];
+    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
+    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
+    self.topToolbar.items = toolbarsItems;
+    _splitViewBarButtonItem = barButtonItem;
+}
+
 -(void)setThisPost:(Post *)thisPost
 {
     _thisPost = thisPost;
