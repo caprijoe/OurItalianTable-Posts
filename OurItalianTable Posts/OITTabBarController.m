@@ -33,11 +33,8 @@
 {
     id detailVC = [self.splitViewController.viewControllers lastObject];
     if ([detailVC isKindOfClass:[UINavigationController class]])
-        detailVC = [((UINavigationController *)detailVC).viewControllers firstObject];
-//    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)]) {
-//        detailVC = nil;
-//    }
-    if (![detailVC respondsToSelector:@selector(setSplitViewBarButtonItem:)])
+    detailVC = [((UINavigationController *)detailVC).viewControllers firstObject];
+    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)])
         detailVC = nil;
     return detailVC;
 }
@@ -59,7 +56,6 @@
     // if there's a qualifying dvc, on willHide, assign button to setter
     NSLog(@"willHide, dvt = %@",[self splitViewBarButtonItemPresenter]);
     barButtonItem.title = @"Menu";
-    self.rootPopoverButtonItem = barButtonItem;
     self.masterPopoverController = pc;
     [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = barButtonItem;
 }
@@ -70,7 +66,6 @@
 {
     // if there's a qualifying dvc, on willShow, assign nil to setter
     NSLog(@"willShow, dvt = %@",[self splitViewBarButtonItemPresenter]);
-    self.rootPopoverButtonItem = nil;
     self.masterPopoverController = nil;
     [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
 }
