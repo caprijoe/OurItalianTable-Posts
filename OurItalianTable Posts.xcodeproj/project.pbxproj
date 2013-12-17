@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6905154E18606FEA009F3BC4 /* OITSplitMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */; };
 		690EA7EB17B9C7770003B09E /* OHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690EA7EA17B9C7770003B09E /* OHAlertView.m */; };
 		6912BB6915CDDAA10014BB6F /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6715CDDAA10014BB6F /* 71-compass.png */; };
 		6912BB6A15CDDAA10014BB6F /* 71-compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */; };
@@ -145,6 +146,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6905154C18606FEA009F3BC4 /* OITSplitMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITSplitMasterViewController.h; sourceTree = "<group>"; };
+		6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITSplitMasterViewController.m; sourceTree = "<group>"; };
 		690EA7E917B9C7760003B09E /* OHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAlertView.h; sourceTree = "<group>"; };
 		690EA7EA17B9C7770003B09E /* OHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHAlertView.m; sourceTree = "<group>"; };
 		6912BB6715CDDAA10014BB6F /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
@@ -534,6 +537,8 @@
 			children = (
 				69D71FBE184BD8AA00FD7E86 /* OITViewController.h */,
 				69D71FBF184BD8AA00FD7E86 /* OITViewController.m */,
+				6905154C18606FEA009F3BC4 /* OITSplitMasterViewController.h */,
+				6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */,
 				69CC84D31859397700B1F053 /* OITSplitDetailViewController.h */,
 				69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */,
 				697111EE166DD927006D93DB /* AppDelegate.h */,
@@ -809,6 +814,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				695BB71717936C5000BFD1D5 /* Reachability.m in Sources */,
+				6905154E18606FEA009F3BC4 /* OITSplitMasterViewController.m in Sources */,
 				69CBD0E6167D40E500A313FB /* MapViewController.m in Sources */,
 				69711205166EE785006D93DB /* Post+Create.m in Sources */,
 				69CC84D51859397700B1F053 /* OITSplitDetailViewController.m in Sources */,
