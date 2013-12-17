@@ -1,13 +1,12 @@
 //
-//  webViewController.m
-//  oitWebViewController
+//  WebViewController.m
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 12/29/11.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
 #import "WebViewController.h"
-#import "OITLaunchViewController.h"
 #import "PostDetailViewController.h"
 #import "LocationMapViewController.h"
 #import "SharedUserDefaults.h"
@@ -19,10 +18,11 @@
 
 @interface WebViewController() <PostsDetailViewControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>;
 @property (nonatomic,strong) NSString *cssHTMLHeader;               // CSS Header to be stuck in front of HTML
-@property (nonatomic,strong) UIStoryboardSegue* detailsViewSeque;   // saved segue for return from "Details" button
 @property (nonatomic,strong) NSString *loadedHTML;                  // HTML code that was loaded -- for e-mailing
 @property (nonatomic,strong) NSString *currentActionSheet;          // current sheet to figure clicked button
-@property (nonatomic,weak)   UIPopoverController *infoPopover;      // the info popover, if on screen
+@property (nonatomic,weak)   UIPopoverController *detailPopover;      // the info popover, if on screen
+@property (nonatomic,weak)   UIPopoverController *locationPopover;  // the location popover, if on screen
+
 @end
 
 @implementation WebViewController
@@ -33,6 +33,8 @@
 -(void)setThisPost:(Post *)thisPost
 {
     _thisPost = thisPost;
+    
+    // if we haven't loaded the css header, do it now...
     if(!self.cssHTMLHeader) {
         NSString *path = [[NSBundle mainBundle] pathForResource:CSS_IMPORT_FILENAME ofType:@"html"];
         NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
@@ -49,25 +51,20 @@
     // set the split view bar button item
     [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
     
-    // if not coordinates in post, delete compass icon (last object)
-    if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0) {
-        
+    // if no coordinates in post, delete compass icon (last object)
+    if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0)
+    {
         NSMutableArray *toolbar = [self.topToolbar.items mutableCopy];
         [toolbar removeLastObject];
         self.topToolbar.items = [toolbar copy];
-
     }
     
     // fix CRLFs & WP caption blocks so they show on in webview
     NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.thisPost.postHTML]];
             
     // Load up the style list, and the title and append
-    NSString *titleTags = [NSString stringWithFormat:@"<h3>%@</h3>",self.thisPost.postName];
+    NSString *titleTags = [NSString stringWithFormat:@"<h1>%@</h1>",self.thisPost.postName];
     NSString *finalHTMLstring = [[self.cssHTMLHeader stringByAppendingString:titleTags] stringByAppendingString:modifiedHTML];
-    
-    // remove "compass" icon if coordinates are absent
-    if (self.thisPost.latitude == 0 && self.thisPost.latitude == 0)
-        self.topNavBar.rightBarButtonItem = Nil;
     
     //show webview
     [self.webView loadHTMLString:finalHTMLstring baseURL:nil];
@@ -81,7 +78,8 @@
     [super viewWillDisappear:animated];
     
     // get rid of any left over popovers
-    [self.infoPopover dismissPopoverAnimated:YES];
+    [self.detailPopover dismissPopoverAnimated:YES];
+    [self.locationPopover dismissPopoverAnimated:YES];
     
 }
 
@@ -92,40 +90,32 @@
         [segue.destinationViewController setPostDetail:self.thisPost];
         [segue.destinationViewController setDelegate:self];
         
+        // if we're segueing to a popover, save it in self and in the destination controller
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
-            self.infoPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-            [segue.destinationViewController setPopover:self.infoPopover];
+            self.detailPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
         }
-        self.detailsViewSeque = segue;
     } else if ([segue.identifier isEqualToString:@"Push Location Map"]) {
         [segue.destinationViewController setLocationRecord:self.thisPost];
+        
+        // if we're segueing to a popover, save it in self and in the destination controller
+        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
+            self.locationPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        }
     }
 }
 
--(void)performSegueWhenInfoButtonPressed:(UIButton *)button {
-    [self performSegueWithIdentifier:@"Push Post Detail" sender:self];
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+    if ([identifier isEqualToString:@"Push Post Detail"]) {
+        return self.detailPopover ? NO: YES;
+    } else if ([identifier isEqualToString:@"Push Location Map"]) {
+        return self.locationPopover ? NO : YES;
+    } else {
+        return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+    }
 }
 
-#pragma mark - Rotation Support
-
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    NSMutableArray *toolbarsItems = [self.topToolbar.items mutableCopy];
-    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
-    self.topToolbar.items = toolbarsItems;
-    _splitViewBarButtonItem = barButtonItem;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    else  
-        return YES;
-}
-
-#pragma mark - Private methods
+#pragma mark - Private methods for editing HTML
 
 -(NSString *)grabTextFrom:(NSString *)incomingText
      viaRegularExpression:(NSString *)regexString {
@@ -152,7 +142,7 @@
     captionAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= caption=\").*?(?=\")"];
     captionText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
     
-    return [[NSString alloc] initWithFormat:@"<div class=\"%@\" style=\"width:%@ px;font-size:80%%;text-align:center;\">%@%@</div>", alignmentAttributeText, imageWidthOnTag, imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
+    return [[NSString alloc] initWithFormat:@"<div class=\"%@ captionfont\" style=\"width:%@ px;text-align:center;\">%@%@</div>", alignmentAttributeText, imageWidthOnTag, imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
 }
 
 -(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
@@ -171,7 +161,6 @@
     /*    return [incomingText stringByReplacingOccurrencesOfString:@"\n\n" withString:@"<p>\n"]; */
     
     return [incomingText stringByReplacingOccurrencesOfString:@"\x0D\x0A\x0D\x0A" withString:@"<p>\x0D\x0A"];
-    
     
 }
 
@@ -226,9 +215,17 @@
     UIActionSheet *actionSheet;
     
     if ([self.thisPost.bookmarked boolValue])              // is currently a favorite
-        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:REMOVE_BUTTON, nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE
+                                                  delegate:self
+                                         cancelButtonTitle:CANCEL_BUTTON
+                                    destructiveButtonTitle:nil
+                                         otherButtonTitles:REMOVE_BUTTON, nil];
     else 
-        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles:ADD_BUTTON, nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE
+                                                  delegate:self
+                                         cancelButtonTitle:CANCEL_BUTTON
+                                    destructiveButtonTitle:nil
+                                         otherButtonTitles:ADD_BUTTON, nil];
     
     self.currentActionSheet = BOOKMARKS_TITLE;
     
@@ -237,18 +234,13 @@
 
 -(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button {
     
-    NSString *reqSysVerForFB = @"6.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    
     UIActionSheet *actionSheet;
     
-    if ([currSysVer compare:reqSysVerForFB options:NSNumericSearch] != NSOrderedAscending) {
-        // if running on ios6 and above, include Facebook as an option
-        actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles: EMAIL_BUTTON, SMS_BUTTON, TWEET_BUTTON, FACEBOOK_BUTTON, nil];
-    } else {
-        // if running a version less than ios6, don't include Facebook
-        actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE delegate:self cancelButtonTitle:CANCEL_BUTTON destructiveButtonTitle:nil otherButtonTitles: EMAIL_BUTTON, SMS_BUTTON, TWEET_BUTTON, nil];
-    }
+    actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE
+                                              delegate:self
+                                     cancelButtonTitle:CANCEL_BUTTON
+                                destructiveButtonTitle:nil
+                                     otherButtonTitles: EMAIL_BUTTON, SMS_BUTTON, TWEET_BUTTON, FACEBOOK_BUTTON, nil];
     
     self.currentActionSheet = SHARE_TITLE;
     [actionSheet showFromBarButtonItem:button animated:YES];
@@ -284,6 +276,19 @@
     }
 }
 
+#pragma mark - Support for each sharing method
+-(void)showSimpleAlertWithTitle:(NSString *)title withMessage:(NSString *)message
+{
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles: nil];
+    [alert show];
+}
+
+
 #pragma mark - Share post via e-mail
 
 -(void)shareViaEmail {
@@ -303,8 +308,8 @@
         mailer.modalPresentationStyle = UIModalPresentationPageSheet;
         [self presentViewController:mailer animated:YES completion:NULL];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot send email" message:@"Unable to send email from this device. Make sure you have setup at least one email account" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
+        [self showSimpleAlertWithTitle:@"Cannot send email"
+                           withMessage:@"Unable to send email from this device. Make sure you have setup at least one email account"];
     }
 }
 
@@ -323,8 +328,8 @@
         [tweetController addURL:[NSURL URLWithString:self.thisPost.postURLstring]];
         [self presentViewController:tweetController animated:YES completion:nil];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Tweet" message:@"Unable to send Tweet from this device. Make sure Tweeter is available and you have set up Tweeter with at least one account." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [self showSimpleAlertWithTitle:@"Cannot Tweet"
+                           withMessage:@"Unable to send Tweet from this device. Make sure Tweeter is available and you have set up Tweeter with at least one account."];
     }
 }
 
@@ -341,8 +346,8 @@
         [self presentViewController:facebookController animated:YES completion:nil];
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot post to Facebook" message:@"Unable to post to Facebook from this device. Make sure Facebook is available and you have set up Facebook with at least one account in Settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [self showSimpleAlertWithTitle:@"Cannot post to Facebook"
+                           withMessage:@"Unable to post to Facebook from this device. Make sure Facebook is available and you have set up Facebook with at least one account in Settings."];
     }
 }
 
@@ -356,8 +361,8 @@
         [self presentViewController:messageController animated:YES completion:nil];
         messageController.messageComposeDelegate = self;
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot send Message (SMS)" message:@"Unable to send a Message (SMS) from this device. Make sure iOS Messages is set up and you have logged in."  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
+        [self showSimpleAlertWithTitle:@"Cannot send Message (SMS)"
+                           withMessage:@"Unable to send a Message (SMS) from this device. Make sure iOS Messages is set up and you have logged in."];
     }
 }
 
@@ -366,7 +371,6 @@
 }
 
 #pragma mark - IBActions
-
 - (IBAction)addToFavorites:(UIBarButtonItem *)sender {
     
     [self presentActionSheetforBookmarkFromBarButton:sender];
@@ -385,14 +389,7 @@
 #pragma mark - External Delegates
 -(void)didClickTag:(NSString *)tag {
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        [[(UIStoryboardPopoverSegue*)self.detailsViewSeque popoverController] dismissPopoverAnimated:YES];
-    else {
-        [self.detailsViewSeque.destinationViewController dismissModalViewControllerAnimated:YES];
-    }
-    
-    if (self.delegate)
-        [self.delegate didClickTag:tag];
+    [self.delegate didClickTag:tag];
 }
 
 @end

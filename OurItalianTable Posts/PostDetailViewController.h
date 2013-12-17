@@ -24,9 +24,8 @@
 // delegate to pass along call back from detail controller
 @property (nonatomic, weak) id <PostsDetailViewControllerDelegate> delegate;
 
-// properties to be set
+// public properties
 @property (nonatomic,strong) Post *postDetail; // post for which detail will be displayed
-@property (nonatomic, strong) UIPopoverController *popover; // this popover controller if it IS a popovercontroller, other nil
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *authorPicture;
