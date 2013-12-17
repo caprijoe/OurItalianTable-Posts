@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "OITSplitMasterViewController.h"
 #import "WebViewController.h"
 #import "TOCViewController.h"
 #import "PostDetailViewController.h"
@@ -16,7 +17,7 @@
 #import "RemoteFillDatabaseFromXMLParser.h"
 #import "IconDownloader.h"
 
-@interface GeneralizedPostsTableViewController : UIViewController  <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
+@interface GeneralizedPostsTableViewController : OITSplitMasterViewController <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
 
 // public properties
 @property (nonatomic, strong) NSString *category;                   // food || wine || wanderings, favs == NO

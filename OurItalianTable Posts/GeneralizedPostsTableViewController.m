@@ -87,13 +87,6 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    
-    [super viewDidAppear:animated];
-    [self resetRightSide];
-
-}
-
 -(void)viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
@@ -275,14 +268,6 @@
         hvc = nil;
     }
     return hvc;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    else
-        return YES;
 }
 
 #pragma mark - Core data helper
@@ -646,21 +631,6 @@
 }
 
 #pragma mark - Handle seques
-
--(id)splitViewDetailWithBarButtonItem
-{
-    id detail = [self.splitViewController.viewControllers lastObject];
-    if (![detail respondsToSelector:@selector(setSplitViewBarButtonItem:)] || ![detail respondsToSelector:@selector(splitViewBarButtonItem)]) detail = nil;
-    return detail;
-}
-
--(void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
-{
-    UIBarButtonItem *splitViewBarButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem];
-    [[self splitViewDetailWithBarButtonItem] setSplitViewBarButtonItem:nil];
-    if (splitViewBarButtonItem) [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"Push Web View"]) {

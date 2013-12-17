@@ -51,28 +51,13 @@
 
 
 #pragma mark - Segue support
-
--(id)splitViewDetailWithBarButtonItem
-{
-    id detail = [self.splitViewController.viewControllers lastObject];
-    if (![detail respondsToSelector:@selector(setSplitViewBarButtonItem:)] || ![detail respondsToSelector:@selector(splitViewBarButtonItem)]) detail = nil;
-    return detail;
-}
-
--(void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
-{
-    UIBarButtonItem *splitViewBarButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem ];
-    [[self splitViewDetailWithBarButtonItem] setSplitViewBarButtonItem:nil];
-    if (splitViewBarButtonItem) [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     if ([segue.identifier isEqualToString:@"Push Family"]) {
         
         // get rid of left side splitview, segue to photo scroller
         OITLaunchViewController *topVC = (OITLaunchViewController *)self.splitViewController.viewControllers[0];
-        [topVC.masterPopoverController dismissPopoverAnimated:YES];
+//        [topVC.masterPopoverController dismissPopoverAnimated:YES];
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
 
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {

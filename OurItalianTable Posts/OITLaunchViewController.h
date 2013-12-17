@@ -8,20 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "GeneralizedPostsTableViewController.h"
-#import "SplitViewBarButtonItemPresenter.h"
+#import "OITSplitMasterViewController.h"
 #import "OITTabBarController.h"
 
 #define FOOD_CATEGORY       @"food"
 #define WINE_CATEGORY       @"wine"
 #define WANDERING_CATEGORY  @"wanderings"
 
-@interface OITLaunchViewController : UIViewController ;
+@interface OITLaunchViewController : OITSplitMasterViewController;
 
 // outlets
 @property (nonatomic,weak) IBOutlet UIImageView *logo;
 
 // rotation support
-@property (nonatomic,strong) UIBarButtonItem *rootPopoverButtonItem;            // "main menu" button for use by right controllers
 @property (nonatomic,strong) UIPopoverController *masterPopoverController;      // left master popover for dismissing by right as needed
 
 @end
