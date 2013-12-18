@@ -347,7 +347,7 @@
                                 </constraints>
                                 <state key="normal" title="The Family"/>
                                 <connections>
-                                    <segue destination="wT7-9v-u9z" kind="replace" identifier="Push Family" splitViewControllerTargetIndex="1" id="Vl7-Cj-K0e"/>
+                                    <segue destination="iFl-lk-Qfh" kind="replace" identifier="Push Family" splitViewControllerTargetIndex="1" id="oAn-9l-F1b"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="hcQ-pU-rpi">
@@ -784,12 +784,37 @@
                         <viewControllerLayoutGuide type="bottom" id="i9f-yo-STA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jGE-fo-deG">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3P3-NX-x4g">
+                                <rect key="frame" x="0.0" y="20" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6yF-qy-2KN">
+                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6yF-qy-2KN" firstAttribute="leading" secondItem="jGE-fo-deG" secondAttribute="leading" id="1Ds-M2-zI5"/>
+                            <constraint firstItem="6yF-qy-2KN" firstAttribute="top" secondItem="3P3-NX-x4g" secondAttribute="bottom" id="RNr-Oj-Zja"/>
+                            <constraint firstAttribute="trailing" secondItem="6yF-qy-2KN" secondAttribute="trailing" id="bjq-PF-m5M"/>
+                            <constraint firstItem="6yF-qy-2KN" firstAttribute="trailing" secondItem="3P3-NX-x4g" secondAttribute="trailing" id="dfI-kT-DbS"/>
+                            <constraint firstItem="6yF-qy-2KN" firstAttribute="leading" secondItem="3P3-NX-x4g" secondAttribute="leading" id="e34-Hj-25g"/>
+                            <constraint firstAttribute="bottom" secondItem="6yF-qy-2KN" secondAttribute="bottom" id="gwJ-Wq-vCg"/>
+                            <constraint firstItem="3P3-NX-x4g" firstAttribute="top" secondItem="MyV-0L-fTZ" secondAttribute="bottom" constant="20" symbolic="YES" id="vuF-dZ-T0Q"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="CDo-sV-Y9U"/>
+                    <connections>
+                        <outlet property="mainView" destination="6yF-qy-2KN" id="1cK-ga-LLJ"/>
+                        <outlet property="toolbar" destination="3P3-NX-x4g" id="b87-hF-mvj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="haN-Gv-wxN" sceneMemberID="firstResponder"/>
             </objects>
@@ -841,28 +866,12 @@
         <!--Page View Controller-->
         <scene sceneID="egw-fA-nsW">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="aEe-kb-NPo" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="aEe-kb-NPo" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NOf-sj-egi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3333" y="-5922"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="zdi-iX-wLN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wT7-9v-u9z" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rsN-iE-2qC">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="iFl-lk-Qfh" kind="relationship" relationship="rootViewController" id="h6t-IF-j6p"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OGM-io-dl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1200" y="-5368"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="fXq-vi-3B7">
@@ -987,7 +996,7 @@
                         <viewControllerLayoutGuide type="bottom" id="pKA-Es-HGo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WjG-Dw-CEp">
-                        <rect key="frame" x="0.0" y="64" width="768" height="2304"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="3648"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mbecci.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oTQ-9c-XWd">
@@ -1005,14 +1014,14 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26k-QG-nj3">
-                                <rect key="frame" x="20" y="128" width="728" height="2103"/>
+                                <rect key="frame" x="20" y="128" width="728" height="3402"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="vVersion (build Build)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="q0m-H6-C0U">
-                                <rect key="frame" x="20" y="2270" width="728" height="14"/>
+                                <rect key="frame" x="20" y="3614" width="728" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1080,8 +1089,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="tzs-Jd-JNQ"/>
         <segue reference="Isu-Tq-XXl"/>
-        <segue reference="v8W-oC-W9x"/>
+        <segue reference="4ux-IV-P00"/>
+        <segue reference="tzs-Jd-JNQ"/>
     </inferredMetricsTieBreakers>
 </document>

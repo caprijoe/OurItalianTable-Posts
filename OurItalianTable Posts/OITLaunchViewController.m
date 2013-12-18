@@ -56,8 +56,8 @@
     if ([segue.identifier isEqualToString:@"Push Family"]) {
         
         // get rid of left side splitview, segue to photo scroller
-        OITLaunchViewController *topVC = (OITLaunchViewController *)self.splitViewController.viewControllers[0];
-//        [topVC.masterPopoverController dismissPopoverAnimated:YES];
+        OITLaunchViewController *splitMasterVC = (OITLaunchViewController *)self.splitViewController.viewControllers[0];
+        [splitMasterVC.masterPopoverController dismissPopoverAnimated:YES];
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
 
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {

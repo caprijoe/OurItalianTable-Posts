@@ -44,7 +44,7 @@
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 30);
     
     [self addChildViewController:_pageViewController];
-    [self.view addSubview:_pageViewController.view];
+    [self.mainView addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
 
 }
@@ -104,10 +104,13 @@
 }
 
 #pragma mark - Rotation support
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    self.navigationItem.leftBarButtonItem = splitViewBarButtonItem;
-    _splitViewBarButtonItem = splitViewBarButtonItem;
+    NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
+    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
+    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
+    self.toolbar.items = toolbarsItems;
+    _splitViewBarButtonItem = barButtonItem;
 }
 
 @end

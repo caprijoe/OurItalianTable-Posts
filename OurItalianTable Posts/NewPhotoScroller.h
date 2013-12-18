@@ -11,5 +11,7 @@
 #import "SplitViewBarButtonItemPresenter.h"
 
 @interface NewPhotoScroller : OITViewController <UIPageViewControllerDataSource, SplitViewBarButtonItemPresenter>
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end
