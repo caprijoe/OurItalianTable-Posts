@@ -20,6 +20,8 @@
 @property (nonatomic,strong) NSString *cssHTMLHeader;               // CSS Header to be stuck in front of HTML
 @property (nonatomic,strong) NSString *loadedHTML;                  // HTML code that was loaded -- for e-mailing
 @property (nonatomic,strong) NSString *currentActionSheet;          // current sheet to figure clicked button
+@property (nonatomic,strong) UIActionSheet *bookmarksActionSheet;
+@property (nonatomic,strong) UIActionSheet *sharingActionSheet;
 @property (nonatomic,weak)   UIPopoverController *detailPopover;      // the info popover, if on screen
 @property (nonatomic,weak)   UIPopoverController *locationPopover;  // the location popover, if on screen
 
@@ -216,20 +218,21 @@
 
 -(void)presentActionSheetforBookmarkFromBarButton:(UIBarButtonItem *)button {
     
-    // determine if post is currently in favorites
-    NSMutableArray *favorites = [[[SharedUserDefaults sharedSingleton] getObjectWithKey:FAVORITES_KEY] mutableCopy];
-    if (!favorites) favorites = [NSMutableArray array];
-    
-    UIActionSheet *actionSheet;
+    // if bookmark sheet is up, dismiss it
+    if (self.bookmarksActionSheet) {
+        [self.bookmarksActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+        self.bookmarksActionSheet = nil;
+        return;
+    }
     
     if ([self.thisPost.bookmarked boolValue])              // is currently a favorite
-        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE
+        self.bookmarksActionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE
                                                   delegate:self
                                          cancelButtonTitle:CANCEL_BUTTON
                                     destructiveButtonTitle:nil
                                          otherButtonTitles:REMOVE_BUTTON, nil];
     else 
-        actionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE
+        self.bookmarksActionSheet = [[UIActionSheet alloc] initWithTitle:BOOKMARKS_TITLE
                                                   delegate:self
                                          cancelButtonTitle:CANCEL_BUTTON
                                     destructiveButtonTitle:nil
@@ -237,21 +240,37 @@
     
     self.currentActionSheet = BOOKMARKS_TITLE;
     
-    [actionSheet showFromBarButtonItem:button animated:YES]; 
+    [self.bookmarksActionSheet showFromBarButtonItem:button animated:YES];
 }
 
 -(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button {
     
-    UIActionSheet *actionSheet;
+    // if sharing sheet is up, dismiss it
+    if (self.sharingActionSheet) {
+        [self.sharingActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+        self.sharingActionSheet = nil;
+        return;
+    }
     
-    actionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE
+    
+    self.sharingActionSheet = [[UIActionSheet alloc] initWithTitle:SHARE_TITLE
                                               delegate:self
                                      cancelButtonTitle:CANCEL_BUTTON
                                 destructiveButtonTitle:nil
                                      otherButtonTitles: EMAIL_BUTTON, SMS_BUTTON, TWEET_BUTTON, FACEBOOK_BUTTON, nil];
     
     self.currentActionSheet = SHARE_TITLE;
-    [actionSheet showFromBarButtonItem:button animated:YES];
+    [self.sharingActionSheet showFromBarButtonItem:button animated:YES];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    // record sheet being dismissed
+    if (actionSheet == self.sharingActionSheet) {
+        self.sharingActionSheet = nil;
+    } else if (actionSheet == self.bookmarksActionSheet)
+        self.bookmarksActionSheet = nil;
+    
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -389,11 +408,6 @@
 
 }
 
-- (IBAction)fireBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
- 
 #pragma mark - External Delegates
 -(void)didClickTag:(NSString *)tag {
     
