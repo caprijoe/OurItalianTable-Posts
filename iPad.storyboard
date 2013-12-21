@@ -996,7 +996,7 @@
                         <viewControllerLayoutGuide type="bottom" id="pKA-Es-HGo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WjG-Dw-CEp">
-                        <rect key="frame" x="0.0" y="64" width="768" height="3648"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="4160"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mbecci.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oTQ-9c-XWd">
@@ -1014,14 +1014,14 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26k-QG-nj3">
-                                <rect key="frame" x="20" y="128" width="728" height="3402"/>
+                                <rect key="frame" x="20" y="128" width="728" height="3895"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="vVersion (build Build)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="q0m-H6-C0U">
-                                <rect key="frame" x="20" y="3614" width="728" height="14"/>
+                                <rect key="frame" x="20" y="4126" width="728" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
