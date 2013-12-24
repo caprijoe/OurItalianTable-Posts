@@ -15,10 +15,6 @@
     
     [super viewDidLoad];
     
-    CGSize size = CGSizeMake(300,600);
-    //  self.contentSizeForViewInPopover = size;
-    [self setPreferredContentSize:size];
-
     // setup fonts
     [self setupFonts];
     
@@ -34,7 +30,7 @@
     // set date published
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
-    self.datePublished.text = [formatter stringFromDate:self.postDetail.postPubDate];
+    self.datePublished.text = [NSString stringWithFormat:@"Published on\n%@",[formatter stringFromDate:self.postDetail.postPubDate]];
     
     // set post title
     self.postTitle.text = self.postDetail.postName;
@@ -43,6 +39,13 @@
     UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.postDetail.postAuthor ofType:@"jpg"]];
     [self.authorPicture setImage:image];
     self.authorPicture.contentMode = UIViewContentModeScaleAspectFit;
+
+    [self draw2DTagCloud];
+
+}
+
+#pragma mark - Private methods
+-(void)draw2DTagCloud {
     
     // create "2D tag cloud"
     
@@ -57,7 +60,7 @@
     
     __block CGFloat x = 0;
     __block CGFloat y = 0;
-
+    
     [self.postDetail.whichTags enumerateObjectsUsingBlock:^(id tag, BOOL *stop) {
         
         // get the tag text for this button
@@ -85,7 +88,7 @@
             [tagButton addTarget:self action:@selector(takeAction:) forControlEvents:UIControlEventTouchUpInside];
             [self.tagsView addSubview:tagButton];
         }
-    
+        
     }];
 }
 
@@ -94,6 +97,7 @@
     
     self.postTitle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     self.datePublished.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    self.tagsText.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     
 }
 
@@ -101,6 +105,7 @@
     
     // override from abstract class
     [self setupFonts];
+    [self draw2DTagCloud];
     [self.view setNeedsLayout];
     
 }

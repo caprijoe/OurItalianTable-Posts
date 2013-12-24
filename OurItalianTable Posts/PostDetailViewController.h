@@ -13,8 +13,6 @@
 #import "Tag.h"
 #import "AppDelegate.h"
 
-@class PostDetailViewController;
-
 @protocol PostsDetailViewControllerDelegate
 -(void)didClickTag:(NSString *)tag;
 @end
@@ -32,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *datePublished;
 @property (weak, nonatomic) IBOutlet UIView *tagsView;
+@property (weak, nonatomic) IBOutlet UILabel *tagsText;
 
 // Actions
 - (IBAction)doneButton:(id)sender;
