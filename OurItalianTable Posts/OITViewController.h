@@ -10,4 +10,7 @@
 
 @interface OITViewController : UIViewController
 
+// abstract class that must be overwritten
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification;
+
 @end

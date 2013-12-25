@@ -8,10 +8,6 @@
 
 #import "OITViewController.h"
 
-@interface OITViewController ()
-
-@end
-
 @implementation OITViewController
 
 - (void)viewDidLoad
@@ -27,7 +23,6 @@
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
 
     // should be overridden
-    NSAssert(NO,  @"This is an abstract method and must be overridden");
 
 }
 
