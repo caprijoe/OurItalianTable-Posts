@@ -1,6 +1,6 @@
 //
 //  PostDetailViewController.h
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 1/15/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
@@ -11,7 +11,6 @@
 #import "GeneralizedPostsTableViewController.h"
 #import "Post.h"
 #import "Tag.h"
-#import "AppDelegate.h"
 
 @protocol PostsDetailViewControllerDelegate
 -(void)didClickTag:(NSString *)tag;

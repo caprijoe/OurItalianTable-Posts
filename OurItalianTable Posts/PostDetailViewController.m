@@ -1,6 +1,6 @@
 //
 //  PostDetailViewController.m
-//  oitPosts
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 1/15/12.
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
@@ -49,8 +49,11 @@
     
     // create "2D tag cloud"
     
+    // clear out old tags
+    [[self.tagsView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     // set up parameters of cloud
-    UIFont *font = self.datePublished.font;
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     CGFloat maxX = self.tagsView.bounds.size.width;
     CGFloat maxY = self.tagsView.bounds.size.height;
     
@@ -70,6 +73,7 @@
         UIButton *tagButton = [UIButton buttonWithType:UIButtonTypeSystem];
         
         // determine the size of this button and it it will fit on the current line, if not move to next line
+        [[tagButton titleLabel] setFont:font];
         CGFloat nextButtonLength = [thisTag sizeWithFont:font].width + buttonTitlePad;
         if ((nextButtonLength + buttonSpacing) > (maxX - x)) {
             x = 0;
