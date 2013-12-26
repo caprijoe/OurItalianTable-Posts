@@ -334,7 +334,7 @@
                                 <state key="normal" title="About"/>
                                 <connections>
                                     <segue destination="8tZ-y9-3I5" kind="popover" identifier="Push About" popoverAnchorView="Up0-V9-R4i" id="rEB-5c-fUk">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
                             </button>
@@ -983,63 +983,66 @@
                         <viewControllerLayoutGuide type="bottom" id="pKA-Es-HGo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WjG-Dw-CEp">
-                        <rect key="frame" x="0.0" y="64" width="768" height="6144"/>
+                        <rect key="frame" x="0.0" y="64" width="400" height="728"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mbecci.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oTQ-9c-XWd">
-                                <rect key="frame" x="92" y="20" width="100" height="100"/>
+                                <rect key="frame" x="92" y="8" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="bQ0-UV-1r5"/>
+                                    <constraint firstAttribute="height" constant="100" id="0O2-gf-ACd"/>
+                                    <constraint firstAttribute="width" constant="100" id="Doe-1b-tYA"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="jcbecci.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zWA-en-wA2">
-                                <rect key="frame" x="648" y="20" width="100" height="100"/>
+                                <rect key="frame" x="280" y="8" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Gub-oa-tU1"/>
+                                    <constraint firstAttribute="height" constant="100" id="Hzz-dx-uuI"/>
+                                    <constraint firstAttribute="width" constant="100" id="Y29-Wq-5LT"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26k-QG-nj3">
-                                <rect key="frame" x="20" y="128" width="728" height="5808"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26k-QG-nj3">
+                                <rect key="frame" x="20" y="116" width="360" height="561"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="vVersion (build Build)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="q0m-H6-C0U">
-                                <rect key="frame" x="21" y="6109" width="728" height="14"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="vVersion (build Build)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="360" translatesAutoresizingMaskIntoConstraints="NO" id="q0m-H6-C0U">
+                                <rect key="frame" x="20" y="685" width="360" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="dcD-fX-neC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ouritaliantable-original-crop.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Z9r-CQ-oQa">
-                                <rect key="frame" x="20" y="39" width="64" height="62"/>
+                                <rect key="frame" x="20" y="26" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="Idd-ft-LQ3"/>
-                                    <constraint firstAttribute="height" constant="62" id="MYW-Tz-Nad"/>
+                                    <constraint firstAttribute="height" constant="64" id="W5H-Qq-kGD"/>
+                                    <constraint firstAttribute="width" constant="64" id="rjl-OW-DiX"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zWA-en-wA2" firstAttribute="trailing" secondItem="26k-QG-nj3" secondAttribute="trailing" id="8Wv-Eh-BjT"/>
-                            <constraint firstItem="26k-QG-nj3" firstAttribute="top" secondItem="zWA-en-wA2" secondAttribute="bottom" constant="8" symbolic="YES" id="Ce7-ca-hMt"/>
-                            <constraint firstItem="oTQ-9c-XWd" firstAttribute="top" secondItem="WjG-Dw-CEp" secondAttribute="top" constant="20" symbolic="YES" id="E3q-MW-N4M"/>
-                            <constraint firstItem="26k-QG-nj3" firstAttribute="top" secondItem="Z9r-CQ-oQa" secondAttribute="bottom" constant="27" id="Iib-rI-7LZ"/>
-                            <constraint firstItem="q0m-H6-C0U" firstAttribute="top" secondItem="26k-QG-nj3" secondAttribute="bottom" constant="8" symbolic="YES" id="PUO-dx-aqc"/>
-                            <constraint firstItem="oTQ-9c-XWd" firstAttribute="centerY" secondItem="Z9r-CQ-oQa" secondAttribute="centerY" id="Yac-Vo-58O"/>
-                            <constraint firstItem="Z9r-CQ-oQa" firstAttribute="leading" secondItem="WjG-Dw-CEp" secondAttribute="leading" constant="20" symbolic="YES" id="aJ3-fI-4vg"/>
-                            <constraint firstAttribute="bottom" secondItem="q0m-H6-C0U" secondAttribute="bottom" constant="20" symbolic="YES" id="b4x-5J-rsD"/>
-                            <constraint firstItem="Z9r-CQ-oQa" firstAttribute="leading" secondItem="26k-QG-nj3" secondAttribute="leading" id="cK6-Vt-aAn"/>
-                            <constraint firstItem="q0m-H6-C0U" firstAttribute="trailing" secondItem="26k-QG-nj3" secondAttribute="trailing" id="eHd-wY-ep5"/>
-                            <constraint firstAttribute="trailing" secondItem="zWA-en-wA2" secondAttribute="trailing" constant="20" symbolic="YES" id="gzZ-CW-udf"/>
-                            <constraint firstItem="26k-QG-nj3" firstAttribute="top" secondItem="oTQ-9c-XWd" secondAttribute="bottom" constant="8" symbolic="YES" id="nFd-Xx-lpP"/>
-                            <constraint firstItem="q0m-H6-C0U" firstAttribute="leading" secondItem="26k-QG-nj3" secondAttribute="leading" id="nw4-Xl-p6x"/>
-                            <constraint firstItem="zWA-en-wA2" firstAttribute="top" secondItem="oTQ-9c-XWd" secondAttribute="top" id="sGd-J6-RqE"/>
-                            <constraint firstItem="oTQ-9c-XWd" firstAttribute="leading" secondItem="Z9r-CQ-oQa" secondAttribute="trailing" constant="8" symbolic="YES" id="w3p-AU-bPd"/>
+                            <constraint firstItem="oTQ-9c-XWd" firstAttribute="centerY" secondItem="zWA-en-wA2" secondAttribute="centerY" id="2Xg-dk-lq6"/>
+                            <constraint firstItem="26k-QG-nj3" firstAttribute="top" secondItem="oTQ-9c-XWd" secondAttribute="bottom" constant="8" symbolic="YES" id="3vw-pg-VS2"/>
+                            <constraint firstAttribute="trailing" secondItem="26k-QG-nj3" secondAttribute="trailing" constant="20" symbolic="YES" id="6CT-0q-2Zc"/>
+                            <constraint firstItem="pKA-Es-HGo" firstAttribute="top" secondItem="q0m-H6-C0U" secondAttribute="bottom" constant="20" symbolic="YES" id="LhZ-39-F4u"/>
+                            <constraint firstItem="oTQ-9c-XWd" firstAttribute="leading" secondItem="Z9r-CQ-oQa" secondAttribute="trailing" constant="8" symbolic="YES" id="MTC-Zc-xTF"/>
+                            <constraint firstAttribute="trailing" secondItem="q0m-H6-C0U" secondAttribute="trailing" constant="20" symbolic="YES" id="byc-ee-qPc"/>
+                            <constraint firstItem="Z9r-CQ-oQa" firstAttribute="leading" secondItem="WjG-Dw-CEp" secondAttribute="leading" constant="20" symbolic="YES" id="dpN-du-942"/>
+                            <constraint firstItem="oTQ-9c-XWd" firstAttribute="centerY" secondItem="Z9r-CQ-oQa" secondAttribute="centerY" id="eV7-FS-GCA"/>
+                            <constraint firstItem="26k-QG-nj3" firstAttribute="leading" secondItem="WjG-Dw-CEp" secondAttribute="leading" constant="20" symbolic="YES" id="iQg-7z-YqF"/>
+                            <constraint firstItem="q0m-H6-C0U" firstAttribute="leading" secondItem="WjG-Dw-CEp" secondAttribute="leading" constant="20" symbolic="YES" id="j6b-dM-rmX"/>
+                            <constraint firstItem="q0m-H6-C0U" firstAttribute="top" secondItem="26k-QG-nj3" secondAttribute="bottom" constant="8" symbolic="YES" id="ltJ-LA-6Tn"/>
+                            <constraint firstAttribute="trailing" secondItem="zWA-en-wA2" secondAttribute="trailing" constant="20" symbolic="YES" id="yaD-rI-yr9"/>
+                            <constraint firstItem="oTQ-9c-XWd" firstAttribute="top" secondItem="vdx-25-PVx" secondAttribute="bottom" constant="20" symbolic="YES" id="zmz-Gl-lOs"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
