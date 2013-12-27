@@ -28,7 +28,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *doneButton;
 
 // Actions
-- (IBAction)selectCategorySegment:(id)sender;   // wheel for selecting detail TOC item
-- (IBAction)goSearch:(id)sender;                // search button
+- (IBAction)selectCategorySegment:(UISegmentedControl *)sender;     // selected a segment
+- (IBAction)goSearch:(id)sender;                                    // search button
 
 @end

@@ -15,23 +15,40 @@
 @property (nonatomic, strong) NSString *pickedDetail;           // detail picked in second row of wheel based on first column selected
 @property (nonatomic, strong) NSArray *categoryHolder;          // helper to hold first column of dictionary
 @property (nonatomic, strong) NSArray *pickerContentsHolder;    // hold the contents of each of the three potential pickers
+@property (nonatomic) int selectedSegment;
 @end
 
 @implementation TOCViewController
+@synthesize selectedSegment = _selectedSegment;
 
-#pragma mark - View lifecycle support 
+#pragma mark - Setters/getters
+-(int)selectedSegment
+{
+    int i = [[[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_TOC_CATEGORY_KEY] intValue];
+    
+    // the saved segment should be greater than or equal to 0. if so, return it, else return 0
+    if (i >= 0)
+        return i;
+    else
+        return 0;
+}
+
+-(void)setSelectedSegment:(int)selectedSegment
+{
+    // if segment if greater than 0, save it and set ivar
+    if (selectedSegment >= 0) {
+        [[SharedUserDefaults sharedSingleton] setObjectWithKey:LAST_TOC_CATEGORY_KEY withObject:[NSNumber numberWithInt:selectedSegment]];
+        _selectedSegment = selectedSegment;
+    }
+}
+
+#pragma mark - View lifecycle support
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
-    // set background to light gray
-    self.view.backgroundColor = [UIColor lightGrayColor];
-    
     // setup appDelegate for accessing shared properties and methods
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    // configure done button
-    [self.appDelegate configureButton:self.doneButton];
     
     // setup reference arrays
     {
@@ -51,81 +68,32 @@
         // remove segments that came in from storyboard
         [self.categorySegmentedController removeAllSegments];
         
-        // initialize with categories from the pre-loaded dictionary from the appDelegate
-        int i=0;
-        for (NSArray *segment in [[self.appDelegate.categoryDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)]) {
-            [self.categorySegmentedController insertSegmentWithTitle:[self.categoryHolder objectAtIndex:i] atIndex:i animated:YES];
-            i++;
-        }
+        // add the segments
+        [self.categoryHolder enumerateObjectsUsingBlock:^(id segment, NSUInteger i, BOOL *stop) {
+            [self.categorySegmentedController insertSegmentWithTitle:segment atIndex:i animated:YES];
+        }];
     }
-    
-    // configure segmented controller
-    self.categorySegmentedController.selectedSegmentIndex = [self getLastSelectedSegmentedController];
     
     // setup the picker
     [self resetPickerWhenSegmentSelected];
     
 }
 
--(void)viewDidLoad {
-    
-    [super viewDidLoad];
-
-    CGSize size = CGSizeMake(500, 400);
-    self.contentSizeForViewInPopover = size;
-    self.view.backgroundColor = [UIColor grayColor];
-
-}
-
 #pragma mark - Private methods
-
--(void)saveLastSelectedSegmentedController:(int)lastSegment {
-    
-    // save away last segment clicked .. only non-zero #s can be saved in NSUserDefaults so offset by one
-    [[SharedUserDefaults sharedSingleton] setObjectWithKey:LAST_TOC_CATEGORY_KEY withObject:[NSNumber numberWithInt:lastSegment]];
-    
-}
-
--(int)getLastSelectedSegmentedController {
-        
-    return [[[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_TOC_CATEGORY_KEY] intValue];
-            
-}
-
--(void)resetPickerWhenSegmentSelected {
-    
-    // save selected picker category to defaults
-    [self saveLastSelectedSegmentedController:self.categorySegmentedController.selectedSegmentIndex];
+-(void)resetPickerWhenSegmentSelected
+{
+    // configure segmented controller
+    self.categorySegmentedController.selectedSegmentIndex = self.selectedSegment;
     
     // load pickedCategory based on selectedSegmentIndex
-    self.pickedCategory = [self.categoryHolder objectAtIndex:self.categorySegmentedController.selectedSegmentIndex];
+    self.pickedCategory = self.categoryHolder[self.selectedSegment];
     
     // set initial position of picker wheel to row 1 and load into pickedDetail variable
     [self.detailPicker selectRow:0 inComponent:0 animated:NO];
-    self.pickedDetail = self.pickerContentsHolder[self.categorySegmentedController.selectedSegmentIndex][0];
+    self.pickedDetail = self.pickerContentsHolder[self.selectedSegment][0];
     
     // reload picker
     [self.detailPicker reloadAllComponents];
-}
-
-#pragma mark - Rotation Support
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    else  
-        return YES;
-}
-
--(BOOL)shouldAutorotate {
-    return YES;
-}
-
--(NSUInteger)supportedInterfaceOrientations {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return UIInterfaceOrientationMaskPortrait;
-    else
-        return UIInterfaceOrientationMaskAll;
 }
 
 #pragma mark - UIPicker delegate methods
@@ -136,8 +104,8 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 {
-    if (self.categorySegmentedController.selectedSegmentIndex >=0) {
-        return [self.pickerContentsHolder[self.categorySegmentedController.selectedSegmentIndex] count];
+    if (self.selectedSegment >=0) {
+        return [self.pickerContentsHolder[self.selectedSegment] count];
     } else {
         return 0;
     }
@@ -145,20 +113,23 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
 {
-    return self.pickerContentsHolder[self.categorySegmentedController.selectedSegmentIndex][row];
+    return self.pickerContentsHolder[self.selectedSegment][row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    self.pickedDetail = self.pickerContentsHolder[self.categorySegmentedController.selectedSegmentIndex][row];
+    self.pickedDetail = self.pickerContentsHolder[self.selectedSegment][row];
 }
 
 #pragma mark - IBActions
-- (IBAction)selectCategorySegment:(id)sender {
+- (IBAction)selectCategorySegment:(UISegmentedControl *)sender
+{
+    self.selectedSegment = sender.selectedSegmentIndex;
     [self resetPickerWhenSegmentSelected];
 }
 
-- (IBAction)goSearch:(id)sender {
+- (IBAction)goSearch:(id)sender
+{
     [self.delegate didPickUsingCategory:self.pickedCategory detailCategory:self.pickedDetail];
 }
 @end
