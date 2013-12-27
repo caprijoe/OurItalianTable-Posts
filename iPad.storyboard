@@ -188,42 +188,42 @@
         <!--View Controller-->
         <scene sceneID="j7S-GD-Ep3">
             <objects>
-                <viewController id="yVV-GC-Nzx" customClass="TOCViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TOCViewController" id="yVV-GC-Nzx" customClass="TOCViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vjT-dY-T0O"/>
                         <viewControllerLayoutGuide type="bottom" id="6f9-WH-ZOP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="A5n-aS-Pwz">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="335"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0K-nG-qPS">
-                                <rect key="frame" x="20" y="281" width="728" height="37"/>
+                                <rect key="frame" x="20" y="281" width="360" height="37"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="PG8-Qi-1aw"/>
+                                    <constraint firstAttribute="height" constant="37" id="0kH-lv-Tf8"/>
                                 </constraints>
                                 <state key="normal" title="Search"/>
                                 <connections>
-                                    <action selector="goSearch:" destination="yVV-GC-Nzx" eventType="touchUpInside" id="y3F-Ls-1wl"/>
+                                    <action selector="goSearch:" destination="yVV-GC-Nzx" eventType="touchUpInside" id="ZI4-AR-gBO"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nha-DD-1Ch">
-                                <rect key="frame" x="20" y="20" width="728" height="30"/>
+                                <rect key="frame" x="20" y="20" width="360" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="zch-aq-Pag"/>
+                                    <constraint firstAttribute="height" constant="29" id="f7C-ov-mhz"/>
                                 </constraints>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
                                 <connections>
-                                    <action selector="selectCategorySegment:" destination="yVV-GC-Nzx" eventType="valueChanged" id="d9d-rH-H4u"/>
+                                    <action selector="selectCategorySegment:" destination="yVV-GC-Nzx" eventType="valueChanged" id="Azp-9g-JC1"/>
                                 </connections>
                             </segmentedControl>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0K-La-4zf">
-                                <rect key="frame" x="20" y="57" width="728" height="216"/>
+                                <rect key="frame" x="20" y="57" width="360" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="yVV-GC-Nzx" id="OWA-wM-uQx"/>
@@ -233,18 +233,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="nha-DD-1Ch" secondAttribute="trailing" constant="20" symbolic="YES" id="63m-CU-Mo3"/>
-                            <constraint firstItem="s0K-La-4zf" firstAttribute="top" secondItem="nha-DD-1Ch" secondAttribute="bottom" constant="8" symbolic="YES" id="7N0-fC-4JG"/>
-                            <constraint firstItem="T0K-nG-qPS" firstAttribute="trailing" secondItem="s0K-La-4zf" secondAttribute="trailing" id="BGC-IX-RbS"/>
-                            <constraint firstItem="nha-DD-1Ch" firstAttribute="leading" secondItem="A5n-aS-Pwz" secondAttribute="leading" constant="20" symbolic="YES" id="Gwv-M0-Wz9"/>
-                            <constraint firstItem="T0K-nG-qPS" firstAttribute="top" secondItem="s0K-La-4zf" secondAttribute="bottom" constant="8" symbolic="YES" id="MaR-xi-EMe"/>
-                            <constraint firstItem="s0K-La-4zf" firstAttribute="leading" secondItem="T0K-nG-qPS" secondAttribute="leading" id="Nw3-td-U9V"/>
-                            <constraint firstItem="nha-DD-1Ch" firstAttribute="top" secondItem="A5n-aS-Pwz" secondAttribute="top" constant="20" symbolic="YES" id="Per-Tn-1bb"/>
-                            <constraint firstItem="s0K-La-4zf" firstAttribute="leading" secondItem="nha-DD-1Ch" secondAttribute="leading" id="c6g-li-Pa9"/>
-                            <constraint firstItem="nha-DD-1Ch" firstAttribute="trailing" secondItem="s0K-La-4zf" secondAttribute="trailing" id="f7w-g5-Wvl"/>
+                            <constraint firstItem="nha-DD-1Ch" firstAttribute="leading" secondItem="A5n-aS-Pwz" secondAttribute="leading" constant="20" symbolic="YES" id="1qR-jm-KqF"/>
+                            <constraint firstItem="s0K-La-4zf" firstAttribute="top" secondItem="nha-DD-1Ch" secondAttribute="bottom" constant="8" symbolic="YES" id="2uh-9Q-Y8h"/>
+                            <constraint firstItem="s0K-La-4zf" firstAttribute="leading" secondItem="T0K-nG-qPS" secondAttribute="leading" id="4Xb-p0-L7d"/>
+                            <constraint firstItem="s0K-La-4zf" firstAttribute="trailing" secondItem="nha-DD-1Ch" secondAttribute="trailing" id="TJk-Hm-jF0"/>
+                            <constraint firstItem="nha-DD-1Ch" firstAttribute="leading" secondItem="s0K-La-4zf" secondAttribute="leading" id="VI0-60-bNo"/>
+                            <constraint firstItem="nha-DD-1Ch" firstAttribute="top" secondItem="A5n-aS-Pwz" secondAttribute="top" constant="20" symbolic="YES" id="cC1-9D-qq7"/>
+                            <constraint firstAttribute="trailing" secondItem="nha-DD-1Ch" secondAttribute="trailing" constant="20" symbolic="YES" id="eAp-qS-abN"/>
+                            <constraint firstItem="T0K-nG-qPS" firstAttribute="trailing" secondItem="s0K-La-4zf" secondAttribute="trailing" id="h9d-aY-fEh"/>
+                            <constraint firstItem="T0K-nG-qPS" firstAttribute="top" secondItem="s0K-La-4zf" secondAttribute="bottom" constant="8" symbolic="YES" id="l8d-PV-pKC"/>
                         </constraints>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="400" height="400"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <connections>
                         <outlet property="categorySegmentedController" destination="nha-DD-1Ch" id="w5Z-tH-Kzp"/>
@@ -983,7 +982,7 @@
                         <viewControllerLayoutGuide type="bottom" id="pKA-Es-HGo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WjG-Dw-CEp">
-                        <rect key="frame" x="0.0" y="64" width="400" height="728"/>
+                        <rect key="frame" x="0.0" y="64" width="400" height="1176"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="mbecci.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oTQ-9c-XWd">
@@ -1002,15 +1001,15 @@
                                     <constraint firstAttribute="width" constant="100" id="Y29-Wq-5LT"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26k-QG-nj3">
-                                <rect key="frame" x="20" y="116" width="360" height="561"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26k-QG-nj3">
+                                <rect key="frame" x="20" y="116" width="360" height="972"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="vVersion (build Build)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" preferredMaxLayoutWidth="360" translatesAutoresizingMaskIntoConstraints="NO" id="q0m-H6-C0U">
-                                <rect key="frame" x="20" y="685" width="360" height="35"/>
+                                <rect key="frame" x="20" y="1133" width="360" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="dcD-fX-neC"/>
