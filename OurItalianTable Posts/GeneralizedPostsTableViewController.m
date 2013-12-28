@@ -129,9 +129,7 @@
 -(void)resetToAllEntries {
     
     // stop the spinning ball in case it's there
-    if ([self isIOS6OrLater]) {
-        [self.refreshControl endRefreshing];
-    }
+    [self.refreshControl endRefreshing];
     
     // reset context label
     [self updateContext:@"Our Italian Table"];
@@ -171,56 +169,38 @@
     
     Post *thisPost = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = thisPost.postName;
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     if (thisPost.postIcon)
         cell.imageView.image = [UIImage imageWithData:thisPost.postIcon];
     else
         cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];
 }
 
--(void)setupRefreshControl {
-
-    // if running on ios6 and above, include refreshControl as an option
-    if ([self isIOS6OrLater]) {
-        
-        // setup refresh control
-        [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-        [self setupRefreshControlTitle];
-        [self.tableView addSubview:self.refreshControl];
-    }
+-(void)setupRefreshControl
+{
+    // setup refresh control
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    [self setupRefreshControlTitle];
+    [self.tableView addSubview:self.refreshControl];
 }
 
--(void)setupRefreshControlTitle {
+-(void)setupRefreshControlTitle
+{
+    // get NSUserDefaults object with date of last download file (if present)
+    NSString *lastUpdateDateFromDefaults = [[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_UPDATE_TO_CORE_DB];
     
-    if ([self isIOS6OrLater]) {
-        // if running on ios6 and above, include refreshControl as an option
-        
-        // get NSUserDefaults object with date of last download file (if present)
-        NSString *lastUpdateDateFromDefaults = [[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_UPDATE_TO_CORE_DB];
-        
-        // contrusct the string to be displayed
-        NSString *displayString;
-        if (lastUpdateDateFromDefaults)
-            displayString = [NSString stringWithFormat:@"Last update on %@",lastUpdateDateFromDefaults]    ;
-        else
-            displayString = @"Pull down to refresh";
-        
-        //update UIRefreshControl message
-        self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:displayString];
-        
-        // stop twirling ball
-        [self.refreshControl endRefreshing];
-    }
-}
-
--(BOOL)isIOS6OrLater {
-    // Make UIRefreshControl conditional on iOS6 and greater
-    NSString *reqSysVerForRefresh = @"6.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    
-    if ([currSysVer compare:reqSysVerForRefresh options:NSNumericSearch] != NSOrderedAscending)
-        return YES;
+    // contrusct the string to be displayed
+    NSString *displayString;
+    if (lastUpdateDateFromDefaults)
+        displayString = [NSString stringWithFormat:@"Last update on %@",lastUpdateDateFromDefaults]    ;
     else
-        return NO;
+        displayString = @"Pull down to refresh";
+    
+    //update UIRefreshControl message
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:displayString];
+    
+    // stop twirling ball
+    [self.refreshControl endRefreshing];
 }
 
 -(BOOL)reviseFetchRequestUsing:(NSString *)searchString
@@ -485,6 +465,12 @@
     
 }
 
+#pragma mark - Dynamic type support
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification
+{
+    [self.tableView reloadRowsAtIndexPaths:[self.tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 #pragma mark - External delegates
 
 -(void)didMapClick:(MapViewController *)sender
@@ -625,9 +611,7 @@
 #pragma mark - IBActions
 - (IBAction)refreshView:(id)sender
 {
-    
     [self resetToAllEntries];
-    
 }
 
 #pragma mark - Handle seques
