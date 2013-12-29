@@ -10,7 +10,7 @@
 #define POST_ICON_HEIGHT        48
 
 @protocol IconDownloaderDelegate <NSObject>
--(void)didFinishLoadingURL:(NSData *)XMLfile withSuccess:(BOOL)success findingMetadata:(NSString *)date;
+-(void)didFinishLoadingIcon:(NSData *)iconData withSuccess:(BOOL)success withPostID:(NSString *)postID;
 @end
 
 @interface NewIconDownloader : NSObject;

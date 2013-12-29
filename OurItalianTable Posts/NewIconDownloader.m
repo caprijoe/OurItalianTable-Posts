@@ -58,11 +58,12 @@
             int j = i + 1;
             if ([URLArray count]>j) {
                 [self startFileDownloadUsingURLs:self.URLArray atPosition:j];
-            }
+            } else
+                [self.delegate didFinishLoadingIcon:nil withSuccess:NO withPostID:[self.postID stringValue]];
         // if success, call back using delegate
         } else
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate didFinishLoadingURL:[self createAndAdjustImage:data] withSuccess:YES findingMetadata:[self.postID stringValue]];
+                [self.delegate didFinishLoadingIcon:[self createAndAdjustImage:data] withSuccess:YES withPostID:[self.postID stringValue]];
             });
     }];
     [dataTask resume];
@@ -122,8 +123,6 @@
         
         // no extension, just return incoming
         return incomingURL;
-        
     }
 }
-
 @end
