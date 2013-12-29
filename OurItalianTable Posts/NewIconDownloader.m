@@ -46,43 +46,30 @@
 
 -(void)startFileDownloadUsingURLs:(NSArray *)URLArray atPosition:(int)i
 {
+    // set up session
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     
+    // execute data task
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:URLArray[i] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
+        // if error or wrong kind of file type, recurse and move to next URL in array
         if (!data || error || ![EXPECTED_MIME_TYPES containsObject:[response MIMEType]]) {
             int j = i + 1;
             if ([URLArray count]>j) {
                 [self startFileDownloadUsingURLs:self.URLArray atPosition:j];
             }
+        // if success, call back using delegate
         } else
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self exitGetFileWithData:data withSuccess:YES withLastUpdateDate:Nil];
+                [self.delegate didFinishLoadingURL:[self createAndAdjustImage:data] withSuccess:YES findingMetadata:[self.postID stringValue]];
             });
     }];
     [dataTask resume];
 }
 
-#pragma mark - External Delegate
--(void)exitGetFileWithData:(NSData *)iconFile withSuccess:(BOOL)success withLastUpdateDate:(NSString *)date
-{
-    UIImage *newImage;
-    
-    if (iconFile && success)
-    {
-        
-        newImage = [self createAndAdjustImage:iconFile];
-        
-        NSData *iconData;
-            iconData = UIImageJPEGRepresentation(newImage, 1.0);
-                
-        [self.delegate didFinishLoadingURL:iconData withSuccess:YES findingMetadata:[self.postID stringValue]];
-    }
-}
-
 #pragma mark - Private methods
--(UIImage *)createAndAdjustImage:(NSData *)data
+-(NSData *)createAndAdjustImage:(NSData *)data
 {
     UIImage *image = [[UIImage alloc] initWithData:data];
     
@@ -98,7 +85,7 @@
 		UIGraphicsEndImageContext();
     }
     
-    return newImage;
+    return UIImageJPEGRepresentation(newImage, 1.0);
 }
 
 -(NSURL *)modifyURLToThumbnailFile:(NSURL *)incomingURL
