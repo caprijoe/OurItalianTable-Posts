@@ -15,7 +15,7 @@
 #import "PostDetailViewController.h"
 #import "MapViewController.h"
 #import "RemoteFillDatabaseFromXMLParser.h"
-#import "IconDownloader.h"
+#import "NewIconDownloader.h"
 
 @interface GeneralizedPostsTableViewController : OITSplitMasterViewController <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
 

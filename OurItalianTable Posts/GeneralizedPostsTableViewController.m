@@ -145,7 +145,7 @@
     
 }
 
-// load up the table thumbnnail, if not cached, cache it
+#pragma mark - Icon download support
 -(void)populateIconInDBUsing:(NSIndexPath *)indexPath {
     
     Post *postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -153,14 +153,53 @@
     // check if icon is in CoreData DB, if so, just return it by reference
     if (!postRecord.postIcon && postRecord.imageURLString) {
         
-        IconDownloader *downloader = [[IconDownloader alloc] init];
-        downloader.url = [NSURL URLWithString:[postRecord.imageURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        downloader.postID = postRecord.postID;
-        downloader.delegate = self;
+        NewIconDownloader *downloader = [[NewIconDownloader alloc] initWithURL:[NSURL URLWithString:[postRecord.imageURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] withPostID:postRecord.postID withDelegate:self];
         
         if (downloader) {
-            [self.downloadControl setObject:downloader forKey:downloader.postID];
-            [downloader startFileDownload];
+            [self.downloadControl setObject:downloader forKey:postRecord.postID];
+        }
+    }
+}
+-(void)didFinishLoadingIcon:(NSData *)iconData withSuccess:(BOOL)success withPostID:(NSString *)postID
+{
+    if (iconData && success) {
+        
+        // get rid of the icondownloader
+        [self.downloadControl removeObjectForKey:postID];
+        
+        Post *thisPost = nil;
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+        request.predicate = [NSPredicate predicateWithFormat:@"postID = %@", [NSNumber numberWithInt:[postID intValue]]];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"postID" ascending:YES];
+        request.sortDescriptors = @[sortDescriptor];
+        
+        __block NSError *error = nil;
+        __block NSArray *matches;
+        
+        [self.appDelegate.parentMOC performBlockAndWait:^{
+            matches = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
+        }];
+        
+        if (!matches || ([matches count] > 1)) {
+            
+            // handle error - nil matchs or more than 1
+            NSLog(@"error -- more than one match of Post returned from database");
+            
+        } else if ([matches count] == 0) {
+            
+            // no match found, insert
+            NSLog(@"error -- no post entry found");
+            
+        } else {
+            
+            // match found, update
+            thisPost = [matches lastObject];
+            thisPost.postIcon = iconData;
+            
+            // save any loaded changes at this point
+            [thisPost.managedObjectContext save:NULL];    // save any loaded changes at this point
+            
         }
     }
 }
@@ -564,49 +603,6 @@
     [self setupRefreshControlTitle];
 }
 
--(void)didFinishLoadingURL:(NSData *)iconData withSuccess:(BOOL)success findingMetadata:(NSString *)postID
-{
-    if (iconData && success) {
-        
-        // get rid of the icondownloader
-        [self.downloadControl removeObjectForKey:postID];
-        
-        Post *thisPost = nil;
-        
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
-        request.predicate = [NSPredicate predicateWithFormat:@"postID = %@", [NSNumber numberWithInt:[postID intValue]]];
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"postID" ascending:YES];
-        request.sortDescriptors = @[sortDescriptor];
-        
-        __block NSError *error = nil;
-        __block NSArray *matches;
-        
-        [self.appDelegate.parentMOC performBlockAndWait:^{
-            matches = [self.appDelegate.parentMOC executeFetchRequest:request error:&error];
-        }];
-        
-        if (!matches || ([matches count] > 1)) {
-            
-            // handle error - nil matchs or more than 1
-            NSLog(@"error -- more than one match of Post returned from database");
-            
-        } else if ([matches count] == 0) {
-            
-            // no match found, insert
-            NSLog(@"error -- no post entry found");
-            
-        } else {
-            
-            // match found, update
-            thisPost = [matches lastObject];
-            thisPost.postIcon = iconData;
-            
-            // save any loaded changes at this point
-            [thisPost.managedObjectContext save:NULL];    // save any loaded changes at this point
-            
-        }
-    }
-}
 
 #pragma mark - IBActions
 - (IBAction)refreshView:(id)sender
