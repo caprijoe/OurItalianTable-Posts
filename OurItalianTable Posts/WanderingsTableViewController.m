@@ -24,6 +24,9 @@
     [super awakeFromNib];
     
     self.category = @"wanderings";
+    self.sortKey = @"geo";
+    self.sectionKey = @"geo";
+    self.rightSideSegueName = @"Show Region Map";
 }
 
 @end

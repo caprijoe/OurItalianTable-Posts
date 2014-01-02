@@ -18,28 +18,15 @@
 @interface GeneralizedPostsTableViewController ();
 @property (nonatomic, strong) Post *webRecord;
 @property (nonatomic, strong) AppDelegate *appDelegate;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) UIStoryboardSegue *categoryPickerSegue;
 @property (nonatomic, strong) NSMutableArray *geoList;
 @property (nonatomic, strong) NSMutableArray *geoCoordinates;
-@property (nonatomic, strong) NSString *sortKey;
-@property (nonatomic, strong) NSString *sectionKey;
-@property (nonatomic, strong) NSString *rightSideSegueName;
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
 @end
 
 @implementation GeneralizedPostsTableViewController
-
-#pragma mark - Setters/Getters
-
--(UIRefreshControl *)refreshControl {
-    
-    if (!_refreshControl)
-        _refreshControl = [[UIRefreshControl alloc] init];
-    return _refreshControl;
-}
 
 #pragma mark - View lifecycle
 
@@ -55,22 +42,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    // setup fetchcontroller one-time variable inputs
-    if (self.favs || [self.category isEqualToString:FOOD_CATEGORY] || [self.category isEqualToString:WINE_CATEGORY]) {
-        
-        // sort FOOD, WINE and Bookmarked tables by reverse pubdate and don't use sections
-        self.sortKey = @"postPubDate";
-        self.sectionKey = nil;
-        self.rightSideSegueName = @"Reset Splash View";
-        
-    } else if ([self.category isEqualToString:WANDERING_CATEGORY]) {
-        
-        // if TRAVEL is selected, sort by the geo name
-        self.sortKey = @"geo";
-        self.sectionKey = @"geo";
-        self.rightSideSegueName = @"Show Region Map";
-    }
-    
     // init download control dict
     self.downloadControl = [[NSMutableDictionary alloc] init];
     
@@ -85,6 +56,9 @@
         NSLog(@"MOC NOT available, setting up Notification");
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedDBOpenedNotification:) name:COREDB_OPENED_NOTIFICATION object:nil];
     }
+   
+    // setup the custom row height
+    self.tableView.rowHeight = CUSTOM_ROW_HIEGHT;
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -121,7 +95,7 @@
 -(void)resetRightSide {
     
     // if on an ipad, reset right side too
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if (self.splitViewController)
         [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
     
 }
@@ -135,7 +109,10 @@
     [self updateContext:@"Our Italian Table"];
     
     // reset fetch controller
-    [self setupFetchedResultsControllerwithSortKey:self.sortKey withSectionKey:self.sectionKey];
+    NSPredicate *predicate = self.favs ? [NSPredicate predicateWithFormat:@"bookmarked == %@", @YES] : [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
+    [self setupFetchedResultsControllerwithSortKey:self.sortKey
+                                    withSectionKey:self.sectionKey
+                                     withPredicate:predicate];
     
     // if on an ipad, reset right side too
     [self resetRightSide];
@@ -215,6 +192,15 @@
         cell.imageView.image = [UIImage imageNamed:@"Placeholder.png"];
 }
 
+#pragma mark - UIRefresh control methods
+
+-(UIRefreshControl *)refreshControl {
+    
+    if (!_refreshControl)
+        _refreshControl = [[UIRefreshControl alloc] init];
+    return _refreshControl;
+}
+
 -(void)setupRefreshControl
 {
     // setup refresh control
@@ -242,21 +228,7 @@
     [self.refreshControl endRefreshing];
 }
 
--(BOOL)reviseFetchRequestUsing:(NSString *)searchString
-{
-    
-    if (self.favs) {
-        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"((bookmarked == YES) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))", searchString, searchString, searchString];
-    } else {
-        self.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"((ANY whichCategories.categoryString =[cd] %@) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@)))", self.category, searchString, searchString, searchString];
-    }
-    
-    [[self fetchedResultsController] performFetch:NULL];
-    [self.tableView reloadData];
-    
-    return YES;
-}
-
+#pragma mark - Deferred image loading (UIScrollViewDelegate)
 // this method is used in case the user scrolled into a set of cells that don't have their app icons yet
 - (void)loadImagesForOnscreenRows
 {
@@ -278,22 +250,11 @@
     
 }
 
-#pragma mark - Rotation support
-
-- (WebViewController *)splitWebViewController
-{
-    id hvc = [self.splitViewController.viewControllers lastObject];
-    if (![hvc isKindOfClass:[WebViewController class]]) {
-        hvc = nil;
-    }
-    return hvc;
-}
-
 #pragma mark - Core data helper
-
 -(void)setupFetchedResultsControllerwithSortKey:(NSString *)sortKey
-                                 withSectionKey:(NSString *)sectionKey {
-    
+                                 withSectionKey:(NSString *)sectionKey
+                                  withPredicate:(NSPredicate *)predicate
+{
     // set up initial fetch request
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
     
@@ -305,7 +266,7 @@
     
     
     // if we're looking at bookmarks, setup the predicate
-    request.predicate = self.favs ? [NSPredicate predicateWithFormat:@"bookmarked == %@", @YES] : [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", self.category];
+    request.predicate = predicate;
     
     // setup controller
     __block NSError *error = nil;
@@ -323,91 +284,10 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - NSFetchedResultsControllerDelegate method(s)
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    [self.tableView beginUpdates];
-}
-
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-            
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];;            
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray
-                                               arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:[NSArray
-                                               arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            
-            if ([self.rightSideSegueName isEqualToString: @"Show Region Map"] && (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad))
-                [self performSegueWithIdentifier:@"Show Region Map" sender:self];
-
-            
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    
-    
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    [self.tableView endUpdates];
-}
-
-
-#pragma mark - Table view data source
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    tableView.rowHeight = CUSTOM_ROW_HIEGHT;
-        
-    return [[self.fetchedResultsController sections][section] numberOfObjects];
-    
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return [[self.fetchedResultsController sections] count];
-    
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
-    id <NSFetchedResultsSectionInfo>sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo name];
-    
-}
+#pragma mark - UITableViewDataSource protocol method
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        
     static NSString *CellIdentifier = @"Post Description";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -426,11 +306,10 @@
         [self populateIconInDBUsing:indexPath];
         
     }
-    
     return cell;
 }
 
-#pragma mark - Table view delegate
+#pragma mark - UITableViewDelegate protocol method
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -444,28 +323,6 @@
         OITTabBarController *topVC = (OITTabBarController *)self.tabBarController;
         [topVC.masterPopoverController dismissPopoverAnimated:YES];
     }
-}
-
-#pragma mark - Deferred image loading (UIScrollViewDelegate)
-
-// Load images for all onscreen rows when scrolling is finished
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    if (!decelerate)
-	{
-        [self loadImagesForOnscreenRows];
-    }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [self loadImagesForOnscreenRows];
-}
-
--(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-        
-    [self loadImagesForOnscreenRows];
-    
 }
 
 #pragma mark - UISearchBarDelegate
@@ -497,11 +354,18 @@
     [self updateContext:searchBar.text];
     
     // refetch based on search string
-    [self reviseFetchRequestUsing:searchBar.text];
+    NSPredicate *predicate;
+    if (self.favs)
+        predicate = [NSPredicate predicateWithFormat:@"((bookmarked == YES) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@))", searchBar.text, searchBar.text, searchBar.text];
+    else
+        predicate = [NSPredicate predicateWithFormat:@"((ANY whichCategories.categoryString =[cd] %@) AND ((postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@)))", self.category, searchBar.text, searchBar.text, searchBar.text];
+    
+    [self setupFetchedResultsControllerwithSortKey:self.sortKey
+                                    withSectionKey:self.sectionKey
+                                     withPredicate:predicate];
     
     // clear out search bar
     searchBar.text = nil;
-    
 }
 
 #pragma mark - Dynamic type support

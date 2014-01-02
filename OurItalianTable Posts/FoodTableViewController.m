@@ -13,20 +13,23 @@
 @end
 
 @implementation FoodTableViewController
-@synthesize category = _category;
+// @synthesize category = _category;
 
 #pragma mark - Setters/Getters
--(void)setCategory:(NSString *)category
+/* -(void)setCategory:(NSString *)category
 {
     if (_category != category)
         _category = category;
-}
+} */
 
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     
     self.category = @"food";
+    self.sortKey = @"postPubDate";
+    self.sectionKey = nil;
+    self.rightSideSegueName = @"Reset Splash View";
 }
 
 @end

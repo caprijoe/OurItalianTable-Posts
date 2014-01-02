@@ -27,6 +27,9 @@
     [super awakeFromNib];
     
     self.category = @"wine";
+    self.sortKey = @"postPubDate";
+    self.sectionKey = nil;
+    self.rightSideSegueName = @"Reset Splash View";
 }
 
 @end

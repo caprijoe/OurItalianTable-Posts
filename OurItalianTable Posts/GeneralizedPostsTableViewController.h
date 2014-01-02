@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "OITSplitMasterViewController.h"
+#import "OITCoreDataTableViewController.h"
 #import "WebViewController.h"
 #import "TOCViewController.h"
 #import "PostDetailViewController.h"
@@ -17,10 +17,13 @@
 #import "RemoteFillDatabaseFromXMLParser.h"
 #import "NewIconDownloader.h"
 
-@interface GeneralizedPostsTableViewController : OITSplitMasterViewController <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, UIScrollViewDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
+@interface GeneralizedPostsTableViewController : OITCoreDataTableViewController <UISearchBarDelegate, WebViewControllerDelegate, TOCViewController, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
 
 // public properties
 @property (nonatomic, strong) NSString *category;                   // food || wine || wanderings, favs == NO
+@property (nonatomic, strong) NSString *sortKey;
+@property (nonatomic, strong) NSString *sectionKey;
+@property (nonatomic, strong) NSString *rightSideSegueName;
 @property (nonatomic) BOOL favs;                                    // YES == bookmarks
 
 // outlets
