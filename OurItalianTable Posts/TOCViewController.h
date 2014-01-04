@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 
 // Protocol for call back when search button is clicked; a) close popover/modal and b) return selected categories
-@protocol  TOCViewController
+@protocol  TOCViewControllerDelegate
 
 -(void)didPickUsingCategory:(NSString *)category
              detailCategory:(NSString *)detailCategory;
@@ -20,7 +20,7 @@
 @interface TOCViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>;
 
 // delegate for callback from popover/modal, invoked when search button clicked
-@property (nonatomic, strong) id<TOCViewController> delegate;
+@property (nonatomic, strong) id<TOCViewControllerDelegate> delegate;
 
 // Outlets
 @property (nonatomic, weak) IBOutlet UISegmentedControl *categorySegmentedController;
