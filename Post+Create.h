@@ -14,4 +14,8 @@
 + (Post *)createPostwithPostRecord:(PostRecord *)postRecord
             inManagedObjectContext:(NSManagedObjectContext *)context;
 
++(void)updatePostwithPostID:(NSString *)postID
+               withIconData:(NSData *)iconData
+     inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end

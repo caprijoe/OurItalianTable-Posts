@@ -56,9 +56,42 @@
             
         }
     }
-    
     return thisPost;
 };
+
++(void)updatePostwithPostID:(NSString *)postID
+                      withIconData:(NSData *)iconData
+            inManagedObjectContext:(NSManagedObjectContext *)context {
+    
+    Post *thisPost = nil;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+    request.predicate = [NSPredicate predicateWithFormat:@"postID = %@", postID];
+    request.sortDescriptors = nil;
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (!matches || ([matches count] > 1)) {
+        
+        // handle error - nil matchs or more than 1
+        NSLog(@"error -- more than one match of Post returned from database");
+        
+    } else if ([matches count] == 0) {
+        
+        // no match found, updating icon but no row found
+        NSLog(@"error -- no post entry found");
+        
+    } else {
+        
+        // match found, update
+        thisPost = [matches lastObject];
+        thisPost.postIcon = iconData;
+        
+        // save any loaded changes at this point
+        [thisPost.managedObjectContext save:NULL];    // save any loaded changes at this point
+    }
+}
 
 +(NSNumber *)determineIfInitialLoad:(NSManagedObjectContext *)context {
     
