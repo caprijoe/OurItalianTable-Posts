@@ -45,7 +45,7 @@
 
 // reset right side splash screen when left side appears or disappears
 -(void)resetDetailPanel {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if (self.splitViewController)
         [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
 }
 
