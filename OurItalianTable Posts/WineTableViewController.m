@@ -8,28 +8,17 @@
 
 #import "WineTableViewController.h"
 
-@interface WineTableViewController ()
-
-@end
-
 @implementation WineTableViewController
-@synthesize category = _category;
-
-#pragma mark - Setters/Getters
--(void)setCategory:(NSString *)category
-{
-    if (_category != category)
-        _category = category;
-}
 
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     
-    self.category = @"wine";
-    self.sortKey = @"postPubDate";
+    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     self.sectionKey = nil;
     self.rightSideSegueName = @"Reset Splash View";
+    self.majorPredicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"wine"];
+
 }
 
 @end

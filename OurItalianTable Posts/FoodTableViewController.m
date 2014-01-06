@@ -8,28 +8,16 @@
 
 #import "FoodTableViewController.h"
 
-@interface FoodTableViewController ()
-
-@end
-
 @implementation FoodTableViewController
-// @synthesize category = _category;
-
-#pragma mark - Setters/Getters
-/* -(void)setCategory:(NSString *)category
-{
-    if (_category != category)
-        _category = category;
-} */
 
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     
-    self.category = @"food";
-    self.sortKey = @"postPubDate";
+    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     self.sectionKey = nil;
     self.rightSideSegueName = @"Reset Splash View";
+    self.majorPredicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"food"];
 }
 
 @end

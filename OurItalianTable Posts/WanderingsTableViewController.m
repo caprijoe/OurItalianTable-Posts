@@ -10,23 +10,16 @@
 
 @implementation WanderingsTableViewController
 
-@synthesize category = _category;
-
-#pragma mark - Setters/Getters
--(void)setCategory:(NSString *)category
-{
-    if (_category != category)
-        _category = category;
-}
-
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     
-    self.category = @"wanderings";
-    self.sortKey = @"geo";
+    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"geo" ascending:YES],
+                             [NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     self.sectionKey = @"geo";
     self.rightSideSegueName = @"Show Region Map";
+    self.majorPredicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"wanderings"];
+
 }
 
 @end

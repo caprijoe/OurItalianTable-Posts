@@ -8,31 +8,16 @@
 
 #import "BookmarksTableViewController.h"
 
-@interface BookmarksTableViewController ()
-
-@end
-
 @implementation BookmarksTableViewController
-@synthesize category = _category;
-@synthesize favs = _favs;
-
-#pragma mark - Setters/Getters
--(void)setFavs:(BOOL)fav
-{
-    _favs = fav;
-}
-
--(void)setCategory:(NSString *)category
-{
-    if (_category != category)
-        _category = category;
-}
 
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     
-    self.favs = YES;
+    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
+    self.sectionKey = nil;
+    self.rightSideSegueName = @"Reset Splash View";
+    self.majorPredicate = [NSPredicate predicateWithFormat:@"bookmarked == %@", @YES];
 }
 
 @end
