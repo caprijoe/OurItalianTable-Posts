@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SplitViewBarButtonItemPresenter.h"
+#import "OITSplitDetailViewController.h"
 #import "OITTabBarController.h"
 
-@interface SplashScreenController : UIViewController <SplitViewBarButtonItemPresenter>
+@interface SplashScreenController : OITSplitDetailViewController
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-
 @end

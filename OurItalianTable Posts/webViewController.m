@@ -24,21 +24,9 @@
 @property (nonatomic,strong) UIActionSheet *sharingActionSheet;
 @property (nonatomic,weak)   UIPopoverController *detailPopover;      // the info popover, if on screen
 @property (nonatomic,weak)   UIPopoverController *locationPopover;  // the location popover, if on screen
-
 @end
 
 @implementation WebViewController
-@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
-
-#pragma mark - Setters
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    NSMutableArray *toolbarsItems = [self.topToolbar.items mutableCopy];
-    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
-    self.topToolbar.items = toolbarsItems;
-    _splitViewBarButtonItem = barButtonItem;
-}
 
 -(void)setThisPost:(Post *)thisPost
 {
@@ -58,15 +46,12 @@
 {
     [super viewDidLoad];
     
-    // set the split view bar button item
-    [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
-    
     // if no coordinates in post, delete compass icon (last object)
     if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0)
     {
-        NSMutableArray *toolbar = [self.topToolbar.items mutableCopy];
+        NSMutableArray *toolbar = [self.toolbar.items mutableCopy];
         [toolbar removeLastObject];
-        self.topToolbar.items = [toolbar copy];
+        self.toolbar.items = [toolbar copy];
     }
     
     // fix CRLFs & WP caption blocks so they show on in webview
@@ -83,14 +68,13 @@
     self.loadedHTML = finalHTMLstring;                                  
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
     
     // get rid of any left over popovers
     [self.detailPopover dismissPopoverAnimated:YES];
     [self.locationPopover dismissPopoverAnimated:YES];
-    
 }
 
 #pragma mark - Segue support

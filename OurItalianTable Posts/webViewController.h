@@ -11,18 +11,18 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
-#import "SplitViewBarButtonItemPresenter.h"
+#import "OITSplitDetailViewController.h"
 #import "Post.h"
 
 @protocol WebViewControllerDelegate
 -(void)didClickTag:(NSString *)tag;
 @end
 
-@interface WebViewController : UIViewController <SplitViewBarButtonItemPresenter>
+@interface WebViewController : OITSplitDetailViewController
 
 // outlets
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
-@property (nonatomic, weak) IBOutlet UIToolbar *topToolbar;
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 
 // public properties
 @property (nonatomic, strong) Post *thisPost;                                   // post to be displayed
