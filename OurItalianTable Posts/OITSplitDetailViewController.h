@@ -10,5 +10,5 @@
 #import "SplitViewBarButtonItemPresenter.h"
 
 @interface OITSplitDetailViewController : OITViewController <SplitViewBarButtonItemPresenter>
-
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @end

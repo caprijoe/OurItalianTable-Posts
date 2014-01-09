@@ -15,12 +15,22 @@
 @implementation OITSplitDetailViewController
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
+
+}
+
 #pragma mark - Rotation support
 
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    self.navigationItem.leftBarButtonItem = splitViewBarButtonItem;
-    _splitViewBarButtonItem = splitViewBarButtonItem;
+    NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
+    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
+    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
+    self.toolbar.items = toolbarsItems;
+    _splitViewBarButtonItem = barButtonItem;
 }
 
 @end
