@@ -26,7 +26,6 @@
 // public properties
 @property (nonatomic, strong) NSArray *sortDescriptors;             // Array of NSSortDescriptors for how UITableView will display "Post" entities list
 @property (nonatomic, strong) NSString *sectionKey;                 // if not nil, key for how UITableView will breakup sections
-@property (nonatomic, strong) NSString *rightSideSegueName;         // seque ID for right side when a reset happens
 @property (nonatomic, strong) NSPredicate *majorPredicate;          // predicate for "Post" entity to select items for this tab of a UITabViewController
 
 // outlets

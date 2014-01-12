@@ -7,6 +7,7 @@
 //
 
 #import "BookmarksTableViewController.h"
+#import "SplashScreenController.h"
 
 @implementation BookmarksTableViewController
 
@@ -16,8 +17,15 @@
     
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     self.sectionKey = nil;
-    self.rightSideSegueName = @"Reset Splash View";
     self.majorPredicate = [NSPredicate predicateWithFormat:@"bookmarked == %@", @YES];
+}
+
+-(void)resetDetailView {
+    
+    // right side is not the specificed controller, segue too it
+    id detail = [self.splitViewController.viewControllers lastObject];
+    if (![detail isKindOfClass:[SplashScreenController class]])
+        [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
 }
 
 @end

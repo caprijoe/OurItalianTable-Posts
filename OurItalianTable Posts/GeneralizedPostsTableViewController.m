@@ -61,9 +61,8 @@
 
 -(void)resetDetailView {
     
-    // if on an ipad, reset right side too
-    if (self.splitViewController)
-        [self performSegueWithIdentifier:self.rightSideSegueName sender:self];
+    // must be overridden
+    NSAssert(FALSE, @"resetDetailView must be overridden");
 }
 
 -(void)resetToAllEntries {
