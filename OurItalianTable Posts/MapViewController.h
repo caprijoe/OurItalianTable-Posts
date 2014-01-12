@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-#import "SplitViewBarButtonItemPresenter.h"
+#import "OITSplitDetailViewController.h"
+#import "AppDelegate.h"
+#import "Post+Query.h"
+#import "RegionAnnotation.h"
+#import "WebViewController.h"
+#import "RegionAnnotationView.h"
 
 @class MapViewController;
 
@@ -19,7 +24,7 @@
      sectionNumber:(NSInteger)section;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,SplitViewBarButtonItemPresenter>
+@interface MapViewController : OITSplitDetailViewController <MKMapViewDelegate>
 
 // outlets
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
