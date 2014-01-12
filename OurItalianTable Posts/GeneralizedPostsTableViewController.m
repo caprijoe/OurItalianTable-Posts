@@ -50,6 +50,13 @@
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+    [self resetDetailView];
+    
+}
 #pragma mark - Control presentation / reset to original state
 
 -(void)resetDetailView {
@@ -231,7 +238,6 @@
                 
         self.fetchedResultsController.delegate = self;
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.appDelegate.parentMOC sectionNameKeyPath:self.sectionKey cacheName:nil];
-        
     }];
 }
 
