@@ -1,6 +1,6 @@
 //
 //  Post+Create.m
-//  oitPosts V2
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 11/17/12.
 //  Copyright (c) 2012 Joseph Becci. All rights reserved.
@@ -13,23 +13,18 @@
 @implementation Post (Create)
 
 + (Post *)createPostwithPostRecord:(PostRecord *)postRecord
-            inManagedObjectContext:(NSManagedObjectContext *)context {
-    
+            inManagedObjectContext:(NSManagedObjectContext *)context
+{
     static NSNumber *initialLoad;
     
-    if (!initialLoad) {
-        
+    if (!initialLoad)
         initialLoad = [self determineIfInitialLoad:context];
-        
-    }
     
     Post *thisPost = nil;
     
-    if ([initialLoad isEqualToNumber:@YES]) {
-        
+    if ([initialLoad isEqualToNumber:@YES])
         thisPost = [self createNewPostWithRecord:postRecord inManagedObjectContext:context];
-        
-    } else {
+    else {
         
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
         request.predicate = [NSPredicate predicateWithFormat:@"postID = %@", postRecord.postID];
@@ -57,12 +52,12 @@
         }
     }
     return thisPost;
-};
+}
 
 +(void)updatePostwithPostID:(NSString *)postID
                       withIconData:(NSData *)iconData
-            inManagedObjectContext:(NSManagedObjectContext *)context {
-    
+            inManagedObjectContext:(NSManagedObjectContext *)context
+{
     Post *thisPost = nil;
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
@@ -93,8 +88,8 @@
     }
 }
 
-+(NSNumber *)determineIfInitialLoad:(NSManagedObjectContext *)context {
-    
++(NSNumber *)determineIfInitialLoad:(NSManagedObjectContext *)context
+{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
     request.predicate = nil;
     request.sortDescriptors = nil;

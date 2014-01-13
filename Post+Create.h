@@ -1,6 +1,6 @@
 //
 //  Post+Create.h
-//  oitPosts V2
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 11/17/12.
 //  Copyright (c) 2012 Joseph Becci. All rights reserved.
