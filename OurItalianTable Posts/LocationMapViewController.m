@@ -42,6 +42,7 @@
     // finally goto location
 //    [self gotoLocation];
     
+    // if we have the coordinate pair, add the annotation
     if ((self.locationRecord.latitude != 0) && (self.locationRecord.longitude != 0)) {
         MapAnnotation *mapObject = [[MapAnnotation alloc] init];
         mapObject.entry = self.locationRecord;
@@ -53,6 +54,7 @@
 #pragma mark - MKMapViewDelegate support
 -(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
 {
+    // select the annotation so it pops up once the map is rendered
     [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
 }
 
