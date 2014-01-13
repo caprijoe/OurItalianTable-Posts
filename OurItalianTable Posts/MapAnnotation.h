@@ -12,6 +12,7 @@
 
 @interface MapAnnotation : NSObject <MKAnnotation>
 
+// public property
 @property (nonatomic,strong) Post *entry;
 
 @end
