@@ -1,6 +1,6 @@
 //
 //  SharedLocationManager.m
-//  TomatoRadar
+//  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 7/1/13.
 //  Copyright (c) 2013 Joseph Becci. All rights reserved.
@@ -14,49 +14,44 @@
 
 @implementation SharedUserDefaults
 
-- (id)init {
+- (id)init
+{
     self = [super init];
     
-    if(self) {
+    if (self) {
         self.defaults = [NSUserDefaults standardUserDefaults];
         
         // set up defaults
         
         // Last Table of Contents selected defaults to the first one
-        NSDictionary *appDefaults = @{LAST_TOC_CATEGORY_KEY: @0
-//                                      ,UPDATE_OVER_CELLULAR: @YES
-                                      };
+        NSDictionary *appDefaults = @{LAST_TOC_CATEGORY_KEY: @0};
         
         // set defaults
         [self.defaults registerDefaults:appDefaults];
     }
-    
     return self;
 }
 
-+ (SharedUserDefaults*)sharedSingleton {
++ (SharedUserDefaults*)sharedSingleton
+{
     static SharedUserDefaults* sharedSingleton;
     if(!sharedSingleton) {
         @synchronized(sharedSingleton) {
             sharedSingleton = [SharedUserDefaults new];
         }
     }
-    
     return sharedSingleton;
 }
 
--(void)setObjectWithKey:(NSString *)key withObject:(id)obj {
-
+-(void)setObjectWithKey:(NSString *)key withObject:(id)obj
+{
     [self.defaults setObject:obj forKey:key];
     [self.defaults synchronize];
-
 }
 
--(id)getObjectWithKey:(NSString *)key {
-    
+-(id)getObjectWithKey:(NSString *)key
+{
     return [self.defaults objectForKey:key];
-    
 }
-
 
 @end
