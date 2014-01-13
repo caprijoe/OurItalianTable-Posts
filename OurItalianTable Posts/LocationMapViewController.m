@@ -15,6 +15,7 @@
 
 #pragma mark Private methods
 
+// not used, save this in case
 - (void)gotoLocation
 {
     // center map on coordinates of post
@@ -30,46 +31,28 @@
 
 #pragma mark - View Lifecycle Methods
 
-- (void)viewWillAppear:(BOOL)animated {
-    
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:YES];
-    
-    // make sure bottom toolbar in nav controller is hidden
-    [self.navigationController setToolbarHidden:YES];
-    
-    // configure done button
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate configureButton:self.doneButton];
-    
-    // set map type to regular map
-    self.mapView.mapType = MKMapTypeHybrid;
+        
+    // setup the map type and set the UIMapView delegate
+    self.mapView.mapType = MKMapTypeStandard;
+    self.mapView.delegate = self;
     
     // finally goto location
-    [self gotoLocation];    
-    
+//    [self gotoLocation];
     
     if ((self.locationRecord.latitude != 0) && (self.locationRecord.longitude != 0)) {
         MapAnnotation *mapObject = [[MapAnnotation alloc] init];
         mapObject.entry = self.locationRecord;
         [self.mapView addAnnotation:mapObject];
+        [self.mapView showAnnotations:self.mapView.annotations animated:YES];
     }
 }
 
-#pragma mark - Rotation support
--(BOOL)shouldAutorotate {
-    return YES;
-}
-
--(NSUInteger)supportedInterfaceOrientations {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        return UIInterfaceOrientationMaskPortrait;
-    else
-        return UIInterfaceOrientationMaskAll;
-}
-
 #pragma mark - MKMapViewDelegate support
-
--(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+-(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
+{
     [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
 }
 
@@ -82,7 +65,7 @@
             MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
             
             customPinView.pinColor = MKPinAnnotationColorPurple;
-            customPinView.animatesDrop = NO;
+            customPinView.animatesDrop = YES;
             customPinView.canShowCallout = YES;
             
             customPinView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ANNOTATION_ICON_HEIGHT, ANNOTATION_ICON_HEIGHT)];
@@ -97,12 +80,10 @@
     return nil;
 }
 
-#pragma mark - Actions/Outlets
-- (IBAction)doneButton:(id)sender {
+#pragma mark - IBActions
+- (IBAction)doneButton:(id)sender
+{
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-- (void)viewDidUnload {
-    [self setDoneButton:nil];
-    [super viewDidUnload];
-}
+
 @end

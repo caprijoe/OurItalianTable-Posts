@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "AppDelegate.h"
-#import "Post.h"
 #import "MapAnnotation.h"
 
 @interface LocationMapViewController : UIViewController <MKMapViewDelegate>
@@ -18,8 +16,8 @@
 @property (nonatomic,strong) Post *locationRecord;
 
 // outlets
-@property (nonatomic,weak) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (nonatomic, weak) IBOutlet MKMapView *mapView;
+@property (nonatomic, weak) IBOutlet UIButton *doneButton;
 
 // actions
 - (IBAction)doneButton:(id)sender;
