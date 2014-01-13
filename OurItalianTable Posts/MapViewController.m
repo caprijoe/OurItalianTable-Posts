@@ -21,7 +21,7 @@
 {
     [super viewWillAppear:animated];
     
-    // setup the mapp type and set the UIMapView delegate
+    // setup the map type and set the UIMapView delegate
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.delegate = self;
 }
