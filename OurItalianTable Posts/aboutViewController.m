@@ -8,7 +8,7 @@
 
 #import "aboutViewController.h"
 
-@implementation aboutViewController
+@implementation AboutViewController
 
 #pragma mark Private methods
 
@@ -21,6 +21,16 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
+    // load logo
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [logoImageView setImage:[UIImage imageNamed:@"ouritaliantable-original-transparent.gif"]];
+    [logoImageView setContentMode:UIViewContentModeScaleAspectFit];
+    
+    // add to UITextView and add exclusion path
+    UIBezierPath *logoPath = [UIBezierPath bezierPathWithRect:logoImageView.frame];
+    [self.txtDisplay addSubview:logoImageView];
+    self.txtDisplay.textContainer.exclusionPaths = @[logoPath];
+                                  
     // load text file from bundle
     NSString *filepath = [[NSBundle mainBundle] pathForResource:@"bios" ofType:@"txt"];
     NSString *txtContents = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
