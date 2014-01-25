@@ -24,22 +24,19 @@
     // setup the image and label on this page controller
     self.backgroundImageView.image = [UIImage imageNamed:self.imageFilename];
     self.titleLabel.text = [self.imageFilename stringByDeletingPathExtension];
-
 }
 
 #pragma mark - Dynamic type support
--(void)setupFonts {
-    
+-(void)setupFonts
+{
     self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
-    
 }
 
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification
+{
     // override from abstract class
     [self setupFonts];
     [self.view setNeedsLayout];
-    
 }
 
 @end
