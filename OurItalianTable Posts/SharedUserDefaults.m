@@ -34,12 +34,12 @@
 
 + (SharedUserDefaults*)sharedSingleton
 {
-    static SharedUserDefaults* sharedSingleton;
-    if(!sharedSingleton) {
-        @synchronized(sharedSingleton) {
-            sharedSingleton = [SharedUserDefaults new];
-        }
-    }
+    static SharedUserDefaults* sharedSingleton = nil;
+    
+    static dispatch_once_t oneTime;
+    dispatch_once(&oneTime, ^{
+            sharedSingleton = [[self alloc] init];
+    });
     return sharedSingleton;
 }
 
