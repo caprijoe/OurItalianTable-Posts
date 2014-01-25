@@ -15,7 +15,7 @@
 #import "PostDetailViewController.h"
 #import "MapViewController.h"
 #import "RemoteFillDatabaseFromXMLParser.h"
-#import "NewIconDownloader.h"
+#import "IconDownloader.h"
 #import "SharedUserDefaults.h"
 #import "AppDelegate.h"
 #import "OITTabBarController.h"

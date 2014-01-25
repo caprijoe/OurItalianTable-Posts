@@ -122,7 +122,7 @@
     if (!postRecord.postIcon && postRecord.imageURLString) {
         
         // create a downloader
-        NewIconDownloader *downloader = [[NewIconDownloader alloc] initWithURL:[NSURL URLWithString:[postRecord.imageURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] withPostID:postRecord.postID withDelegate:self];
+        IconDownloader *downloader = [[IconDownloader alloc] initWithURL:[NSURL URLWithString:[postRecord.imageURLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] withPostID:postRecord.postID withDelegate:self];
         
         // save it away so we can get rid of it later
         if (downloader) {

@@ -5,20 +5,17 @@
 //  Created by Joseph Becci on 2/17/13.
 //  Copyright (c) 2013 Our Italian Table. All rights reserved.
 //
-#import "AtomicGetFileFromRemoteURL.h"
+#import <UIKit/UIKit.h>
 
 #define POST_ICON_HEIGHT        48
 
-@protocol IconDownloaderDelegate <AtomicGetFileFromRemoteURLDelegate>
-
+@protocol IconDownloaderDelegate <NSObject>
+-(void)didFinishLoadingIcon:(NSData *)iconData withSuccess:(BOOL)success withPostID:(NSString *)postID;
 @end
 
-@interface IconDownloader : AtomicGetFileFromRemoteURL;
+@interface IconDownloader : NSObject;
 
-@property (nonatomic, strong) NSNumber *postID;
-@property (nonatomic, strong) NSURL *url;
-
--(id)init;
--(void)startFileDownload;
+// public methods
+-(id)initWithURL:(NSURL *)url withPostID:(NSNumber *)postID withDelegate:(id<IconDownloaderDelegate>)delegate;
 
 @end

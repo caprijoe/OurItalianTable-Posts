@@ -7,98 +7,70 @@
 //
 
 #define IMAGE_THUMBNAIL_SIZE @"-150x150"
+#define EXPECTED_MIME_TYPES @[@"image/jpeg", @"image/png", @"image/gif"]
 
-#import "IconDownloader.h" 
-
+#import "IconDownloader.h"
 
 @interface IconDownloader()
+@property (nonatomic, strong) NSNumber *postID;
 @property (nonatomic, strong) NSURL *originalURL;
-@property (nonatomic) int numberOfAttempts;
+@property (nonatomic, strong) id<IconDownloaderDelegate> delegate;
+@property (nonatomic, strong) NSArray *URLArray;
 @end
 
 @implementation IconDownloader
-@synthesize url = _url;
 
 #pragma mark - Init method
 
--(id)init
+-(id)initWithURL:(NSURL *)url withPostID:(NSNumber *)postID withDelegate:(id<IconDownloaderDelegate>)delegate
 {
-    self= [super init];
+    self = [super init];
     if (self) {
-        self.expectedMIMETypes = @[@"image/jpeg", @"image/png", @"image/gif"];
-        self.numberOfAttempts = 0;
+        self.originalURL = url;
+        self.delegate = delegate;
+        self.postID = postID;
+        
+        [self startFileDownloadUsingURLs:self.URLArray atPosition:0];
     }
-    
     return self;
 }
 
 #pragma mark - Setters
-
--(void)setUrl:(NSURL *)url
+-(void)setOriginalURL:(NSURL *)originalURL
 {
-    // first time thru (url == nil), save URL and add URL with default thumbnail size
-    // after just set URL to incoming parm
+    // create an array of URLs to try
+    if (originalURL) {
+        self.URLArray = @[[self modifyURLToThumbnailFile:originalURL], originalURL];
+    }
+}
+
+-(void)startFileDownloadUsingURLs:(NSArray *)URLArray atPosition:(int)i
+{
+    // set up session
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     
-    if (url) {
+    // execute data task
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:URLArray[i] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        if (!_url) {
-            
-            // edit image URL to get path thumbnail instead, if available
-            // -- delete and existing dimension
-            // -- -150x150 to the primary URL
-            
-            self.originalURL = url;
-            _url = [self modifyURLToThumbnailFile:self.originalURL];
+        // if error or wrong kind of file type, recurse and move to next URL in array
+        if (!data || error || ![EXPECTED_MIME_TYPES containsObject:[response MIMEType]]) {
+            int j = i + 1;
+            if ([URLArray count]>j) {
+                [self startFileDownloadUsingURLs:self.URLArray atPosition:j];
+            } else
+                [self.delegate didFinishLoadingIcon:nil withSuccess:NO withPostID:[self.postID stringValue]];
+        // if success, call back using delegate
         } else
-            _url = url;
-    }
-}
-
--(void)startFileDownload
-{
-    
-    // increment tries
-    self.numberOfAttempts++;
-    
-    // try first with altereded ULR string to get thumbnail
-    [super startFileDownload];
-}
-
-#pragma mark - External Delegate
-
--(void)exitGetFileWithData:(NSData *)iconFile withSuccess:(BOOL)success withLastUpdateDate:(NSString *)date
-{
-    [super prepareToExit];
-    
-    UIImage *newImage;
-    
-    if (iconFile && success)
-    {
-        
-        newImage = [self createAndAdjustImage:iconFile];
-        
-        NSData *iconData;
-            iconData = UIImageJPEGRepresentation(newImage, 1.0);
-                
-        [self.delegate didFinishLoadingURL:iconData withSuccess:YES findingMetadata:[self.postID stringValue]];
-        
-    } else if (self.numberOfAttempts == 1) {
-                
-        // could not get thumbnail file, now try with original URL
-        self.url = self.originalURL;
-        
-        [self startFileDownload];
-                
-    } else if (self.numberOfAttempts == 2) {
-                
-        // failed on second attempt with original URL, fail out        
-        [self.delegate didFinishLoadingURL:nil withSuccess:NO findingMetadata:nil];
-        
-    }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didFinishLoadingIcon:[self createAndAdjustImage:data] withSuccess:YES withPostID:[self.postID stringValue]];
+            });
+    }];
+    [dataTask resume];
 }
 
 #pragma mark - Private methods
--(UIImage *)createAndAdjustImage:(NSData *)data
+-(NSData *)createAndAdjustImage:(NSData *)data
 {
     UIImage *image = [[UIImage alloc] initWithData:data];
     
@@ -114,12 +86,11 @@
 		UIGraphicsEndImageContext();
     }
     
-    return newImage;
+    return UIImageJPEGRepresentation(newImage, 1.0);
 }
 
 -(NSURL *)modifyURLToThumbnailFile:(NSURL *)incomingURL
 {
-    
     // edit image URL to get path thumbnail instead, if available
     // -- delete any existing dimension
     // -- -150x150 to the primary URL
@@ -152,8 +123,6 @@
         
         // no extension, just return incoming
         return incomingURL;
-        
     }
 }
-
 @end
