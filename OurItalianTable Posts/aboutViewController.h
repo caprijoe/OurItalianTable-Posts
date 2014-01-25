@@ -1,5 +1,5 @@
 //
-//  aboutViewController.h
+//  AboutViewController.h
 //  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 5/5/12.
@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "OITViewController.h"
 
-@interface aboutViewController : OITViewController
+@interface AboutViewController : OITViewController
 
 // outlets
 @property (nonatomic, weak) IBOutlet UITextView *txtDisplay;                // box for displaying about text

@@ -14,7 +14,7 @@
 
 - (NSString*) getAppVersion {
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    return [NSString stringWithFormat:@"© Our Italian Table, 2012 (v%@)", version];
+    return [NSString stringWithFormat:@"© Our Italian Table, 2014 (v%@)", version];
 }
 
 #pragma mark - View lifecycle support
