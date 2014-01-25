@@ -36,11 +36,8 @@
     [super viewWillAppear:YES];
         
     // setup the map type and set the UIMapView delegate
-    self.mapView.mapType = MKMapTypeStandard;
+    self.mapView.mapType = MKMapTypeHybrid;
     self.mapView.delegate = self;
-    
-    // finally goto location
-//    [self gotoLocation];
     
     // if we have the coordinate pair, add the annotation
     if ((self.locationRecord.latitude != 0) && (self.locationRecord.longitude != 0)) {
