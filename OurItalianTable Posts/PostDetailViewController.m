@@ -74,7 +74,7 @@
         
         // determine the size of this button and it it will fit on the current line, if not move to next line
         [[tagButton titleLabel] setFont:font];
-        CGFloat nextButtonLength = [thisTag sizeWithFont:font].width + buttonTitlePad;
+        CGFloat nextButtonLength = [thisTag sizeWithAttributes:@{NSFontAttributeName:font}].width + buttonTitlePad;
         if ((nextButtonLength + buttonSpacing) > (maxX - x)) {
             x = 0;
             y = y + buttonHeight + buttonSpacing;
