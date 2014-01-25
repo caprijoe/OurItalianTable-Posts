@@ -30,9 +30,7 @@
     if (newfrc != oldfrc) {
         _fetchedResultsController = newfrc;
         newfrc.delegate = self;
-        if ((!self.title || [self.title isEqualToString:oldfrc.fetchRequest.entity.name]) && (!self.navigationController || !self.navigationItem.title)) {
-            self.title = newfrc.fetchRequest.entity.name;
-        }
+        
         if (newfrc) {
             [self performFetch];
         } else {
