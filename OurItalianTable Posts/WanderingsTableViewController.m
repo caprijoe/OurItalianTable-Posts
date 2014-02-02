@@ -19,14 +19,13 @@
                              [NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     self.sectionKey = @"geo";
     self.majorPredicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"wanderings"];
-
 }
 
--(void)resetDetailView {
-    
-    // right side is not the specificed controller, segue too it
+-(void)resetDetailView
+{
+    // if in a splitview and right side is not the specificed controller, segue too it
     id detail = [self.splitViewController.viewControllers lastObject];
-    if (![detail isKindOfClass:[MapViewController class]])
+    if (self.splitViewController && ![detail isKindOfClass:[MapViewController class]])
         [self performSegueWithIdentifier:@"Show Region Map" sender:self];
 }
 
