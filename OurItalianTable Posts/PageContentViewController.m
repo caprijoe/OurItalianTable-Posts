@@ -22,8 +22,8 @@
     [self setupFonts];
     
     // setup the image and label on this page controller
-    self.backgroundImageView.image = [UIImage imageNamed:self.imageFilename];
     self.titleLabel.text = [self.imageFilename stringByDeletingPathExtension];
+    self.backgroundImageView.image = [UIImage imageNamed:self.imageFilename];
 }
 
 #pragma mark - Dynamic type support
