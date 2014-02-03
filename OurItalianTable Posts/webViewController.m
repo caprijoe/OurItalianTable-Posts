@@ -122,7 +122,6 @@
 -(NSString *)modifyCaptionBlock:(NSString *)originalCaptionBlock {
     
     NSString *alignmentAttributeText;                                                   // location for storing "align=" value
-    NSString *widthAttributeText;                                                       // location for storing "width=" value
     NSString *captionAttributeText;                                                     // location for storing "caption=" value
     NSString *captionText;                                                              // location for storing -></a>text[/caption]
     NSString *imageTag;                                                                 // location for storing "<img ... />" tag
@@ -131,12 +130,10 @@
     imageTag = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"<img[^>]*>"];
     imageWidthOnTag = [self grabTextFrom:imageTag viaRegularExpression:@"(?<= width=\").*?(?=\")"];
     alignmentAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= align=\").*?(?=\")"];
-    // following not used, width on IMG tag used instead in case image has been resized
-    widthAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= width=\").*?(?=\")"];
     captionAttributeText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<= caption=\").*?(?=\")"];
     captionText = [self grabTextFrom:originalCaptionBlock viaRegularExpression:@"(?<=/>).*?(?=\\[/caption)"];
     
-    return [[NSString alloc] initWithFormat:@"<div class=\"%@ captionfont\" style=\"width:%@ px;text-align:center;\">%@%@</div>", alignmentAttributeText, imageWidthOnTag, imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];
+    return [[NSString alloc] initWithFormat:@"<div class=\"%@ captionfont\" style=\"width:%@ px;text-align:center;\">%@<br>%@</div>", alignmentAttributeText, imageWidthOnTag, imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];    
 }
 
 -(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
@@ -190,9 +187,9 @@
 
 #pragma mark - Action sheets
 
-#define BOOKMARKS_TITLE @"Bookmarks"
-#define ADD_BUTTON      @"Add Bookmark"
-#define REMOVE_BUTTON   @"Remove Bookmark"
+#define BOOKMARKS_TITLE @"Favorites"
+#define ADD_BUTTON      @"Add Favorite"
+#define REMOVE_BUTTON   @"Remove Favorite"
 #define SHARE_TITLE     @"Share"
 #define EMAIL_BUTTON    @"Email"
 #define TWEET_BUTTON    @"Tweet"
@@ -392,10 +389,14 @@
 
 }
 
-#pragma mark - External Delegates
--(void)didClickTag:(NSString *)tag {
-    
-    [self.delegate didClickTag:tag];
+- (IBAction)fireBackButton:(UIBarButtonItem *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - External Delegates
+-(void)didClickTag:(NSString *)tag
+{
+    [self.delegate didClickTag:tag];
+}
 @end
