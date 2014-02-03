@@ -24,13 +24,10 @@
     
     [super viewDidAppear:animated];
     
-    // set background color
-    self.view.backgroundColor = [UIColor lightGrayColor];
-    
     // set date published
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
-    self.datePublished.text = [NSString stringWithFormat:@"Published on\n%@",[formatter stringFromDate:self.postDetail.postPubDate]];
+    self.datePublished.text = [formatter stringFromDate:self.postDetail.postPubDate];
     
     // set post title
     self.postTitle.text = self.postDetail.postName;
@@ -45,8 +42,8 @@
 }
 
 #pragma mark - Private methods
--(void)draw2DTagCloud {
-    
+-(void)draw2DTagCloud
+{
     // create "2D tag cloud"
     
     // clear out old tags
@@ -92,7 +89,6 @@
             [tagButton addTarget:self action:@selector(takeAction:) forControlEvents:UIControlEventTouchUpInside];
             [self.tagsView addSubview:tagButton];
         }
-        
     }];
 }
 
@@ -115,15 +111,18 @@
 }
 
 #pragma mark - Selector for custom button
--(void)takeAction:(UIButton *)button {
+-(void)takeAction:(UIButton *)button
+{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     // call back with button pressed
     [self.delegate didClickTag:button.titleLabel.text];
-     
 }
 
 #pragma mark - Actions
-- (IBAction)doneButton:(id)sender {
+- (IBAction)doneButton:(id)sender
+{
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 @end
