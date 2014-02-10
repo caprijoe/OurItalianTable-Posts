@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *authorPicture;
 @property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *datePublished;
-@property (weak, nonatomic) IBOutlet UIView *tagsView;
+@property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
 @property (weak, nonatomic) IBOutlet UILabel *tagsText;
 
 // Actions
