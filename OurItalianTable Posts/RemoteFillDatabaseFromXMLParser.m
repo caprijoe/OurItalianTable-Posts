@@ -29,22 +29,25 @@
     withDelegate:(id<RemoteFillDatabaseFromXMLParserDelegate>)delegate
      giveUpAfter:(NSTimeInterval)seconds {
     
-    // store ivars needed at init
-    self.parentMOC = parentMOC;
-    self.delegate = delegate;
-    self.seconds = seconds;
-    
-    // get NSUserDefaults object with date of last download file (if present)
-    self.lastUpdateDateFromDefaults = [[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_UPDATE_TO_CORE_DB];
-    
-    // kick off file get
-    self.fileGetter = [[XMLFileGetter alloc] init];
-    self.fileGetter.url = url;
-    self.fileGetter.lastUpdateToDBDate = self.lastUpdateDateFromDefaults;
-    self.fileGetter.delegate = self;
-    self.fileGetter.seconds = seconds;
-    
-    [self.fileGetter startFileDownload];
+    self = [super init];
+    if (self) {
+        // store ivars needed at init
+        self.parentMOC = parentMOC;
+        self.delegate = delegate;
+        self.seconds = seconds;
+        
+        // get NSUserDefaults object with date of last download file (if present)
+        self.lastUpdateDateFromDefaults = [[SharedUserDefaults sharedSingleton] getObjectWithKey:LAST_UPDATE_TO_CORE_DB];
+        
+        // kick off file get
+        self.fileGetter = [[XMLFileGetter alloc] init];
+        self.fileGetter.url = url;
+        self.fileGetter.lastUpdateToDBDate = self.lastUpdateDateFromDefaults;
+        self.fileGetter.delegate = self;
+        self.fileGetter.seconds = seconds;
+        
+        [self.fileGetter startFileDownload];
+    }
     
     return self;
 }
