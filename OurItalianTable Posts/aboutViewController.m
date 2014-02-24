@@ -18,8 +18,12 @@
 }
 
 #pragma mark - View lifecycle support
--(void)viewDidLoad {
+-(void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    // set window title
+    self.title = @"About";
     
     // load logo
     UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
@@ -44,25 +48,17 @@
 }
 
 #pragma mark - Dynamic type support
--(void)setupFonts {
-    
+-(void)setupFonts
+{
     self.txtDisplay.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     self.versionBuildDisplay.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    
 }
 
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification
+{
     // override from abstract class
     [self setupFonts];
     [self.view setNeedsLayout];
-    
-}
-
-
-#pragma mark - IBActions
-- (IBAction)fireBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
