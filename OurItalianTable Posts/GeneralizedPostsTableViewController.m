@@ -37,9 +37,6 @@
     // init download control dict
     self.downloadControl = [[NSMutableDictionary alloc] init];
     
-    // setup the refresh control but only the first time
-    [self setupRefreshControl];
-    
     // load up table if MOC available, otherwise setup notification
     if (self.appDelegate.parentMOC) {
         NSLog(@"MOC available, using");
@@ -54,8 +51,10 @@
 {
     [super viewDidAppear:YES];
     
-    [self resetDetailView];
+    // setup the refresh control but only the first time
+    [self setupRefreshControl];
     
+    [self resetDetailView];
 }
 #pragma mark - Control presentation / reset to original state
 
@@ -90,9 +89,8 @@
 }
 
 #pragma mark - Update UITableView when UIRefreshControl pull down
-
--(void)refreshTable {
-    
+-(void)refreshTable
+{
     // set up URL to remote file
     NSURL *remoteURL = [NSURL URLWithString:WORDPRESS_REMOTE_URL];
     
@@ -166,7 +164,15 @@
     if (!_refreshControl) {
         _refreshControl = [[UIRefreshControl alloc] init];
         [_refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-        [self.tableView addSubview:_refreshControl];
+        
+        // temporarily disabled, this UIRefreshControl should not be done in a UITableView
+//        UITableViewController *tableViewController = [[UITableViewController alloc] init];
+//        tableViewController.tableView = self.tableView;
+        
+//        tableViewController.refreshControl = _refreshControl;
+        
+        // temporarily disabled, this UIRefreshControl should not be done in a UITableView
+        //        [self.tableView addSubview:_refreshControl];
     }
     return _refreshControl;
 }
@@ -386,7 +392,7 @@
 
 -(void)didPickUsingCategory:(NSString *)category detailCategory:(NSString *)detailCategory
 {
-    if (self.storyboard)
+    if (self.splitViewController)
         [[(UIStoryboardPopoverSegue*)self.categoryPickerSegue popoverController] dismissPopoverAnimated:YES];
     else
         [self.categoryPickerSegue.destinationViewController dismissModalViewControllerAnimated:YES];
