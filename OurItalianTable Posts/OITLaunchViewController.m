@@ -17,16 +17,7 @@
     
     // configure title, logo, etc in this view
     [self configureView];
-
 }
-
--(void)viewDidAppear:(BOOL)animated {
-    
-    [super viewDidAppear:animated];
-
-    // put the splash screen up in the detail VC
-    [self resetDetailPanel];
-} 
 
 #pragma mark - Private methods
 
