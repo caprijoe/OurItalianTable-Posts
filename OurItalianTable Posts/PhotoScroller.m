@@ -14,7 +14,6 @@
 @end
 
 @implementation PhotoScroller
-@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
@@ -90,7 +89,7 @@
     return [self viewControllerAtIndex:index];
 }
 
-#pragma mark - Rotation support
+/* #pragma mark - Rotation support
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
@@ -98,6 +97,6 @@
     if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
     self.toolbar.items = toolbarsItems;
     _splitViewBarButtonItem = barButtonItem;
-}
+} */
 
 @end

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OITSplitDetailViewController.h"
 #import "PageContentViewController.h"
 #import "SplitViewBarButtonItemPresenter.h"
 
-@interface PhotoScroller : OITViewController <UIPageViewControllerDataSource, SplitViewBarButtonItemPresenter>
+@interface PhotoScroller : OITSplitDetailViewController <UIPageViewControllerDataSource, SplitViewBarButtonItemPresenter>
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
