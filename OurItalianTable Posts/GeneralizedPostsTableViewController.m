@@ -53,9 +53,8 @@
     
     // setup the refresh control but only the first time
     [self setupRefreshControl];
-    
-    [self resetDetailView];
 }
+
 #pragma mark - Control presentation / reset to original state
 
 -(void)resetDetailView {
