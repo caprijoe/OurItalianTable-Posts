@@ -40,7 +40,7 @@
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    
+    [_pageViewController.view setFrame:self.mainView.bounds];
     [self addChildViewController:_pageViewController];
     [self.mainView addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
