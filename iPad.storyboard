@@ -950,7 +950,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tags (Click a tag button to find similar recipes)" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bm5-Qo-VI8">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tags (Click a tag button to find similar recipes)" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Bm5-Qo-VI8">
                                         <rect key="frame" x="20" y="158" width="360" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <constraints>
@@ -968,7 +968,7 @@
                                             <constraint firstAttribute="width" constant="100" id="VYo-Rc-cVE"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="20" preferredMaxLayoutWidth="360" translatesAutoresizingMaskIntoConstraints="NO" id="AMi-MQ-UD1">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" minimumScaleFactor="1" preferredMaxLayoutWidth="360" translatesAutoresizingMaskIntoConstraints="NO" id="AMi-MQ-UD1">
                                         <rect key="frame" x="20" y="20" width="360" height="22"/>
                                         <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
                                         <constraints>
@@ -1045,8 +1045,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="h0k-cW-cfv"/>
         <segue reference="Isu-Tq-XXl"/>
         <segue reference="Irs-f4-ma9"/>
+        <segue reference="v8W-oC-W9x"/>
     </inferredMetricsTieBreakers>
 </document>
