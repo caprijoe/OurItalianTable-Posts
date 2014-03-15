@@ -18,6 +18,7 @@
     
     // set delegate for rotation support
     self.splitViewController.delegate = self;
+    self.delegate = self;
 }
 
 -(void)didReceiveMemoryWarning {
@@ -68,6 +69,40 @@
     NSLog(@"willShow, dvt = %@",[self splitViewBarButtonItemPresenter]);
     self.masterPopoverController = nil;
     [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
+}
+
+-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    NSLog(@"did select = %@",viewController);
+    [self resetDetailPanel];
+}
+
+// reset right side splash screen when left side appears or disappears
+-(void)resetDetailPanel {
+    if (self.splitViewController)
+        [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
+}
+
+// handle button dance
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
+    }
+}
+
+-(id)splitViewDetailWithBarButtonItem
+{
+    id detail = [self.splitViewController.viewControllers lastObject];
+    if (![detail respondsToSelector:@selector(setSplitViewBarButtonItem:)] || ![detail respondsToSelector:@selector(splitViewBarButtonItem)]) detail = nil;
+    return detail;
+}
+
+-(void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
+{
+    UIBarButtonItem *splitViewBarButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem ];
+    [[self splitViewDetailWithBarButtonItem] setSplitViewBarButtonItem:nil];
+    if (splitViewBarButtonItem) [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
 }
 
 @end
