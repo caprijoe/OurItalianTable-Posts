@@ -20,12 +20,4 @@
     self.majorPredicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"food"];
 }
 
--(void)resetDetailView
-{
-    // if in a splitview and right side is not the specificed controller, segue too it
-    id detail = [self.splitViewController.viewControllers lastObject];
-    if (self.splitViewController && ![detail isKindOfClass:[SplashScreenController class]])
-        [self performSegueWithIdentifier:@"Reset Splash View" sender:self];
-}
-
 @end
