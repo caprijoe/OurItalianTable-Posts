@@ -53,14 +53,16 @@
     
     // setup the refresh control but only the first time
     [self setupRefreshControl];
+    
+    [self resetDetailView];
 }
 
 #pragma mark - Control presentation / reset to original state
 
 -(void)resetDetailView {
     
-    // must be overridden
-    NSAssert(FALSE, @"resetDetailView must be overridden");
+    // override as needed
+    
 }
 
 -(void)resetToAllEntries {
@@ -279,6 +281,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     self.postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // bring up web view on right with post detail
