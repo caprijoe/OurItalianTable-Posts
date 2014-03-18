@@ -9,24 +9,11 @@
 /* Begin PBXBuildFile section */
 		6905154E18606FEA009F3BC4 /* OITSplitMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */; };
 		690EA7EB17B9C7770003B09E /* OHAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690EA7EA17B9C7770003B09E /* OHAlertView.m */; };
-		6912BB6915CDDAA10014BB6F /* 71-compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6715CDDAA10014BB6F /* 71-compass.png */; };
-		6912BB6A15CDDAA10014BB6F /* 71-compass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */; };
-		6912BB6D15CF2F2A0014BB6F /* oitIcon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6C15CF2F2A0014BB6F /* oitIcon-57x57.png */; };
-		6912BB6F15CF2F520014BB6F /* oitIcon-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB6E15CF2F520014BB6F /* oitIcon-114x114.png */; };
-		6912BB7315CF2F7E0014BB6F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7215CF2F7E0014BB6F /* Default@2x.png */; };
-		6912BB7515CF2F900014BB6F /* oitIcon-72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7415CF2F900014BB6F /* oitIcon-72x72.png */; };
-		6912BB7715CF2F990014BB6F /* oitIcon-144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7615CF2F990014BB6F /* oitIcon-144x144.png */; };
-		6912BB7A15CF303C0014BB6F /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7915CF303C0014BB6F /* Default-Portrait@2x~ipad.png */; };
-		6912BB7C15CF30550014BB6F /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7B15CF30550014BB6F /* Default-Landscape@2x~ipad.png */; };
-		6912BB8015CF34660014BB6F /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7F15CF34660014BB6F /* Default-Portrait~ipad.png */; };
-		6912BB8315CF34C90014BB6F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */; };
-		6912BB8415CF35010014BB6F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6912BB7015CF2F6D0014BB6F /* Default.png */; };
-		691477DC164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */; };
 		691E62A71692D23300467600 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691E62A61692D23300467600 /* SystemConfiguration.framework */; };
 		691E62AA1693869C00467600 /* AtomicGetFileFromRemoteURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E62A91693869C00467600 /* AtomicGetFileFromRemoteURL.m */; };
 		691E62AD1693B0B300467600 /* XMLFileGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E62AC1693B0B300467600 /* XMLFileGetter.m */; };
-		6927DAEB16D1F47E0092365E /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6927DAEA16D1F47E0092365E /* IconDownloader.m */; };
 		692EE52416C5D817007F49B2 /* FoodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692EE52316C5D817007F49B2 /* FoodTableViewController.m */; };
+		6930A142186F6BC3001F8EF6 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6930A141186F6BC3001F8EF6 /* IconDownloader.m */; };
 		693731C5165DFC87005AE8F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492315605A8C009976B8 /* CoreLocation.framework */; };
 		695BB7101791401100BFD1D5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 695BB70F1791401100BFD1D5 /* Settings.bundle */; };
 		695BB713179145A200BFD1D5 /* SharedUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 695BB712179145A200BFD1D5 /* SharedUserDefaults.m */; };
@@ -38,16 +25,8 @@
 		6962484A16F2FCF900909B9B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 6962484316F2FCF900909B9B /* mztools.c */; };
 		6962484B16F2FCF900909B9B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 6962484516F2FCF900909B9B /* unzip.c */; };
 		6962484C16F2FCF900909B9B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 6962484716F2FCF900909B9B /* zip.c */; };
-		6964B65D184C5A5F00207020 /* NewPhotoScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6964B65C184C5A5F00207020 /* NewPhotoScroller.m */; };
+		6964B65D184C5A5F00207020 /* PhotoScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 6964B65C184C5A5F00207020 /* PhotoScroller.m */; };
 		6964B660184C5D6800207020 /* PageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6964B65F184C5D6800207020 /* PageContentViewController.m */; };
-		696831E6164DD2DF001215EC /* 100px-Capri-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */; };
-		696831E7164DD2DF001215EC /* Pantelleria-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */; };
-		696831EA164DD3B7001215EC /* Regione_Puglia-Stemma.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */; };
-		696831EC164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831EB164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png */; };
-		696831EF164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831ED164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png */; };
-		696831F0164E0395001215EC /* Lazio_Coat_of_Arms.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831EE164E0395001215EC /* Lazio_Coat_of_Arms.svg.png */; };
-		696831F5164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831F2164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png */; };
-		696831F6164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 696831F3164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png */; };
 		697111ED166DD7FB006D93DB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697111EC166DD7FB006D93DB /* CoreData.framework */; };
 		697111F0166DD927006D93DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111EF166DD927006D93DB /* AppDelegate.m */; };
 		697111FD166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111F4166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m */; };
@@ -55,26 +34,12 @@
 		69711200166DE13B006D93DB /* PostRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111FB166DE13B006D93DB /* PostRecord.m */; };
 		69711205166EE785006D93DB /* Post+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 697111E6166DD7C1006D93DB /* Post+Create.m */; };
 		697559E5168E6C850076DFED /* GeneralizedPostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697559E4168E6C850076DFED /* GeneralizedPostsTableViewController.m */; };
-		6982326716991906003D43AB /* 48-fork-and-knife.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982326516991906003D43AB /* 48-fork-and-knife.png */; };
-		6982326816991906003D43AB /* 48-fork-and-knife@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982326616991906003D43AB /* 48-fork-and-knife@2x.png */; };
-		6982326B16991CE2003D43AB /* 273-grapes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982326916991CE2003D43AB /* 273-grapes.png */; };
-		6982326C16991CE2003D43AB /* 273-grapes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982326A16991CE2003D43AB /* 273-grapes@2x.png */; };
-		6982326F16991DC2003D43AB /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982326D16991DC2003D43AB /* 103-map.png */; };
-		6982327016991DC2003D43AB /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982326E16991DC2003D43AB /* 103-map@2x.png */; };
 		6982328016993EA7003D43AB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6982327F16993EA7003D43AB /* QuartzCore.framework */; };
-		6982328316995469003D43AB /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982328116995469003D43AB /* 112-group.png */; };
-		6982328416995469003D43AB /* 112-group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982328216995469003D43AB /* 112-group@2x.png */; };
 		6982328C169963CB003D43AB /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6982328B169963CB003D43AB /* iPhone.storyboard */; };
-		6982328F169A4419003D43AB /* 58-bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982328D169A4418003D43AB /* 58-bookmark.png */; };
-		69823290169A4419003D43AB /* 58-bookmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6982328E169A4418003D43AB /* 58-bookmark@2x.png */; };
-		69823293169A45C8003D43AB /* 53-house.png in Resources */ = {isa = PBXBuildFile; fileRef = 69823291169A45C7003D43AB /* 53-house.png */; };
-		69823294169A45C8003D43AB /* 53-house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69823292169A45C8003D43AB /* 53-house@2x.png */; };
-		69892A751755CD8300AD7957 /* 200px-Emilia-Romagna-Bandiera.png in Resources */ = {isa = PBXBuildFile; fileRef = 69892A741755CD8300AD7957 /* 200px-Emilia-Romagna-Bandiera.png */; };
-		6989AC421647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */; };
+		6984EE5D186FD6E80059A3CF /* OITCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6984EE5C186FD6E80059A3CF /* OITCoreDataTableViewController.m */; };
 		698D8FF117DD3AFE00C53459 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6962484D16F2FD7D00909B9B /* libz.dylib */; };
 		699558DF15706A0800B25C6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558DE15706A0800B25C6D /* AboutViewController.m */; };
 		699558E215706BE300B25C6D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558E115706BE300B25C6D /* WebViewController.m */; };
-		699BD5AF164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */; };
 		69AD488F156054C9009976B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD488E156054C9009976B8 /* UIKit.framework */; };
 		69AD4891156054C9009976B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD4890156054C9009976B8 /* Foundation.framework */; };
 		69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69AD4897156054C9009976B8 /* InfoPlist.strings */; };
@@ -87,15 +52,10 @@
 		69AD48E2156056FC009976B8 /* NextImage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48DD156056FC009976B8 /* NextImage.plist */; };
 		69AD48E3156056FC009976B8 /* CategoryDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48DE156056FC009976B8 /* CategoryDictionary.plist */; };
 		69AD48E4156056FC009976B8 /* bios.txt in Resources */ = {isa = PBXBuildFile; fileRef = 69AD48DF156056FC009976B8 /* bios.txt */; };
-		69AD491815605805009976B8 /* information-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD490D15605805009976B8 /* information-icon.png */; };
 		69AD491915605805009976B8 /* mbecci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD490E15605805009976B8 /* mbecci.jpg */; };
 		69AD491A15605805009976B8 /* jcbecci.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD490F15605805009976B8 /* jcbecci.jpg */; };
 		69AD491B15605805009976B8 /* italy-map-icon20.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491015605805009976B8 /* italy-map-icon20.gif */; };
-		69AD491C15605805009976B8 /* OITLaunchButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491115605805009976B8 /* OITLaunchButtonBackground.png */; };
-		69AD491D15605805009976B8 /* Lemons.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491215605805009976B8 /* Lemons.png */; };
 		69AD491E15605805009976B8 /* ouritaliantable-original-crop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */; };
-		69AD491F15605805009976B8 /* oitIconiPad-72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491415605805009976B8 /* oitIconiPad-72x72.png */; };
-		69AD492215605805009976B8 /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 69AD491715605805009976B8 /* Placeholder.png */; };
 		69AD492615605A96009976B8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492515605A96009976B8 /* MapKit.framework */; };
 		69AD49421560877F009976B8 /* The whole Drago family.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49301560877B009976B8 /* The whole Drago family.jpg */; };
 		69AD49431560877F009976B8 /* Popop and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49311560877B009976B8 /* Popop and Joey.jpg */; };
@@ -116,10 +76,10 @@
 		69AD495C15622719009976B8 /* Dad and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD495B15622718009976B8 /* Dad and Joey.jpg */; };
 		69AD495D1569CC76009976B8 /* The Drago Grandparents.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49381560877D009976B8 /* The Drago Grandparents.jpg */; };
 		69B5AA6316A7D81B005B7F9C /* ouritaliantable-original-transparent.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */; };
-		69C259B91627938600E0BC40 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69C259B81627938600E0BC40 /* Default-568h@2x.png */; };
 		69C9510A1628DB00001147D6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C951091628DB00001147D6 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		69C9510D1628DB0D001147D6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C9510C1628DB0D001147D6 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		69CA4C5C16FE623900F9AD0F /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CA4C5B16FE623900F9AD0F /* BookmarksTableViewController.m */; };
+		69CBAAB1187D3CDB009223FE /* Post+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBAAB0187D3CDB009223FE /* Post+Query.m */; };
 		69CBD0E6167D40E500A313FB /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C0156056A9009976B8 /* MapViewController.m */; };
 		69CC84D51859397700B1F053 /* OITSplitDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */; };
 		69D00B4B15BCEDDA007050E3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D00B4A15BCEDDA007050E3 /* MessageUI.framework */; };
@@ -131,14 +91,12 @@
 		69D33DB816BE4D5900B5AC00 /* OITTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */; };
 		69D71FC0184BD8AA00FD7E86 /* OITViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D71FBF184BD8AA00FD7E86 /* OITViewController.m */; };
 		69DAE4E715CDB75E002CA239 /* Dragos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E615CDB75E002CA239 /* Dragos.jpg */; };
-		69DAE4EB15CDD146002CA239 /* 42-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4E915CDD146002CA239 /* 42-info.png */; };
-		69DAE4EC15CDD146002CA239 /* 42-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69DAE4EA15CDD146002CA239 /* 42-info@2x.png */; };
 		69DF6B2B1759AF5500EA1289 /* OITPosts.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 69DF6B2A1759AF5500EA1289 /* OITPosts.xcdatamodel */; };
 		69DF6B2E1759BC3C00EA1289 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DF6B2D1759BC3C00EA1289 /* Post.m */; };
 		69DF6B311759BC3C00EA1289 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DF6B301759BC3C00EA1289 /* Tag.m */; };
 		69DF6B341759BC3C00EA1289 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DF6B331759BC3C00EA1289 /* Category.m */; };
 		69DFEA2615C5EF8900CDABA1 /* RegionAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */; };
-		69E2541A16658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E2541916658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png */; };
+		69F39548186D567E00A60B43 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69F39547186D567E00A60B43 /* Media.xcassets */; };
 		69F7856016C73A0D0060AAE9 /* WineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F7855F16C73A0D0060AAE9 /* WineTableViewController.m */; };
 		69F7856516C74AAC0060AAE9 /* WanderingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F7856416C74AAC0060AAE9 /* WanderingsTableViewController.m */; };
 		69FBB5351711279F002F6E4D /* Tag+CreateMany.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FBB5341711279E002F6E4D /* Tag+CreateMany.m */; };
@@ -150,28 +108,15 @@
 		6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITSplitMasterViewController.m; sourceTree = "<group>"; };
 		690EA7E917B9C7760003B09E /* OHAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHAlertView.h; sourceTree = "<group>"; };
 		690EA7EA17B9C7770003B09E /* OHAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHAlertView.m; sourceTree = "<group>"; };
-		6912BB6715CDDAA10014BB6F /* 71-compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass.png"; sourceTree = "<group>"; };
-		6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "71-compass@2x.png"; sourceTree = "<group>"; };
-		6912BB6C15CF2F2A0014BB6F /* oitIcon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oitIcon-57x57.png"; sourceTree = "<group>"; };
-		6912BB6E15CF2F520014BB6F /* oitIcon-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oitIcon-114x114.png"; sourceTree = "<group>"; };
-		6912BB7015CF2F6D0014BB6F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		6912BB7215CF2F7E0014BB6F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		6912BB7415CF2F900014BB6F /* oitIcon-72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oitIcon-72x72.png"; sourceTree = "<group>"; };
-		6912BB7615CF2F990014BB6F /* oitIcon-144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oitIcon-144x144.png"; sourceTree = "<group>"; };
-		6912BB7915CF303C0014BB6F /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
-		6912BB7B15CF30550014BB6F /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
-		6912BB7F15CF34660014BB6F /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Coat_of_arms_of_Sicily.svg.png; sourceTree = "<group>"; };
 		691E62A61692D23300467600 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		691E62A81693869C00467600 /* AtomicGetFileFromRemoteURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicGetFileFromRemoteURL.h; sourceTree = "<group>"; };
 		691E62A91693869C00467600 /* AtomicGetFileFromRemoteURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicGetFileFromRemoteURL.m; sourceTree = "<group>"; };
 		691E62AB1693B0B300467600 /* XMLFileGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLFileGetter.h; sourceTree = "<group>"; };
 		691E62AC1693B0B300467600 /* XMLFileGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLFileGetter.m; sourceTree = "<group>"; };
-		6927DAE916D1F47E0092365E /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
-		6927DAEA16D1F47E0092365E /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 		692EE52216C5D817007F49B2 /* FoodTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodTableViewController.h; sourceTree = "<group>"; };
 		692EE52316C5D817007F49B2 /* FoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTableViewController.m; sourceTree = "<group>"; };
+		6930A141186F6BC3001F8EF6 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
+		6930A143186F6BD8001F8EF6 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
 		693731C2165DFC71005AE8F1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		695BB70F1791401100BFD1D5 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		695BB711179145A200BFD1D5 /* SharedUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedUserDefaults.h; sourceTree = "<group>"; };
@@ -192,18 +137,10 @@
 		6962484716F2FCF900909B9B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
 		6962484816F2FCF900909B9B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		6962484D16F2FD7D00909B9B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6964B65B184C5A5F00207020 /* NewPhotoScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPhotoScroller.h; sourceTree = "<group>"; };
-		6964B65C184C5A5F00207020 /* NewPhotoScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPhotoScroller.m; sourceTree = "<group>"; };
+		6964B65B184C5A5F00207020 /* PhotoScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoScroller.h; sourceTree = "<group>"; };
+		6964B65C184C5A5F00207020 /* PhotoScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoScroller.m; sourceTree = "<group>"; };
 		6964B65E184C5D6800207020 /* PageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContentViewController.h; sourceTree = "<group>"; };
 		6964B65F184C5D6800207020 /* PageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContentViewController.m; sourceTree = "<group>"; };
-		696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "100px-Capri-Stemma.png"; sourceTree = "<group>"; };
-		696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pantelleria-Stemma.png"; sourceTree = "<group>"; };
-		696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Regione_Puglia-Stemma.png"; sourceTree = "<group>"; };
-		696831EB164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "530px-Sardegna-Stemma.svg.png"; sourceTree = "<group>"; };
-		696831ED164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "250px-Coat_of_arms_of_Liguria.svg.png"; sourceTree = "<group>"; };
-		696831EE164E0395001215EC /* Lazio_Coat_of_Arms.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lazio_Coat_of_Arms.svg.png; sourceTree = "<group>"; };
-		696831F2164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "50px-Valle_d'Aosta-Stemma.svg.png"; sourceTree = "<group>"; };
-		696831F3164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "60px-Regione-Piemonte-Stemma.svg.png"; sourceTree = "<group>"; };
 		697111E5166DD7C1006D93DB /* Post+Create.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Post+Create.h"; sourceTree = "<group>"; };
 		697111E6166DD7C1006D93DB /* Post+Create.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Post+Create.m"; sourceTree = "<group>"; };
 		697111EC166DD7FB006D93DB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -218,28 +155,15 @@
 		697111FB166DE13B006D93DB /* PostRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostRecord.m; sourceTree = "<group>"; };
 		697559E3168E6C850076DFED /* GeneralizedPostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralizedPostsTableViewController.h; sourceTree = "<group>"; };
 		697559E4168E6C850076DFED /* GeneralizedPostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralizedPostsTableViewController.m; sourceTree = "<group>"; };
-		6982326516991906003D43AB /* 48-fork-and-knife.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "48-fork-and-knife.png"; sourceTree = "<group>"; };
-		6982326616991906003D43AB /* 48-fork-and-knife@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "48-fork-and-knife@2x.png"; sourceTree = "<group>"; };
-		6982326916991CE2003D43AB /* 273-grapes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "273-grapes.png"; sourceTree = "<group>"; };
-		6982326A16991CE2003D43AB /* 273-grapes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "273-grapes@2x.png"; sourceTree = "<group>"; };
-		6982326D16991DC2003D43AB /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
-		6982326E16991DC2003D43AB /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map@2x.png"; sourceTree = "<group>"; };
 		6982327116992D30003D43AB /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		6982327F16993EA7003D43AB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		6982328116995469003D43AB /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
-		6982328216995469003D43AB /* 112-group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group@2x.png"; sourceTree = "<group>"; };
 		6982328B169963CB003D43AB /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = SOURCE_ROOT; };
-		6982328D169A4418003D43AB /* 58-bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "58-bookmark.png"; sourceTree = "<group>"; };
-		6982328E169A4418003D43AB /* 58-bookmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "58-bookmark@2x.png"; sourceTree = "<group>"; };
-		69823291169A45C7003D43AB /* 53-house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house.png"; sourceTree = "<group>"; };
-		69823292169A45C8003D43AB /* 53-house@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "53-house@2x.png"; sourceTree = "<group>"; };
-		69892A741755CD8300AD7957 /* 200px-Emilia-Romagna-Bandiera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Emilia-Romagna-Bandiera.png"; sourceTree = "<group>"; };
-		6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Coat_of_arms_of_Tuscany.svg.png"; sourceTree = "<group>"; };
+		6984EE5B186FD6E80059A3CF /* OITCoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITCoreDataTableViewController.h; sourceTree = "<group>"; };
+		6984EE5C186FD6E80059A3CF /* OITCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITCoreDataTableViewController.m; sourceTree = "<group>"; };
 		699558DD15706A0800B25C6D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		699558DE15706A0800B25C6D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		699558E015706BE300B25C6D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		699558E115706BE300B25C6D /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Friuli-Venezia_Giulia-Flag.png"; sourceTree = "<group>"; };
 		69AD488A156054C9009976B8 /* OurItalianTable Posts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OurItalianTable Posts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69AD488E156054C9009976B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69AD4890156054C9009976B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -264,15 +188,10 @@
 		69AD48DD156056FC009976B8 /* NextImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NextImage.plist; path = ../NextImage.plist; sourceTree = "<group>"; };
 		69AD48DE156056FC009976B8 /* CategoryDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CategoryDictionary.plist; path = ../CategoryDictionary.plist; sourceTree = "<group>"; };
 		69AD48DF156056FC009976B8 /* bios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bios.txt; path = ../bios.txt; sourceTree = "<group>"; };
-		69AD490D15605805009976B8 /* information-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "information-icon.png"; sourceTree = "<group>"; };
 		69AD490E15605805009976B8 /* mbecci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mbecci.jpg; sourceTree = "<group>"; };
 		69AD490F15605805009976B8 /* jcbecci.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jcbecci.jpg; sourceTree = "<group>"; };
 		69AD491015605805009976B8 /* italy-map-icon20.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "italy-map-icon20.gif"; sourceTree = "<group>"; };
-		69AD491115605805009976B8 /* OITLaunchButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OITLaunchButtonBackground.png; path = "OurItalianTable Posts/OITLaunchButtonBackground.png"; sourceTree = "<group>"; };
-		69AD491215605805009976B8 /* Lemons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lemons.png; sourceTree = "<group>"; };
 		69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ouritaliantable-original-crop.jpg"; path = "OurItalianTable Posts/ouritaliantable-original-crop.jpg"; sourceTree = "<group>"; };
-		69AD491415605805009976B8 /* oitIconiPad-72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oitIconiPad-72x72.png"; sourceTree = "<group>"; };
-		69AD491715605805009976B8 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
 		69AD492315605A8C009976B8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		69AD492515605A96009976B8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		69AD49301560877B009976B8 /* The whole Drago family.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "The whole Drago family.jpg"; path = "OurItalianTable Posts/The whole Drago family.jpg"; sourceTree = "<group>"; };
@@ -294,11 +213,12 @@
 		69AD49411560877F009976B8 /* Aunt Mary.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aunt Mary.JPG"; sourceTree = "<group>"; };
 		69AD495B15622718009976B8 /* Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dad and Joey.jpg"; sourceTree = "<group>"; };
 		69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ouritaliantable-original-transparent.gif"; sourceTree = "<group>"; };
-		69C259B81627938600E0BC40 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		69C951091628DB00001147D6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		69C9510C1628DB0D001147D6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		69CA4C5A16FE621B00F9AD0F /* BookmarksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksTableViewController.h; sourceTree = "<group>"; };
 		69CA4C5B16FE623900F9AD0F /* BookmarksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksTableViewController.m; sourceTree = "<group>"; };
+		69CBAAAF187D3CDB009223FE /* Post+Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Post+Query.h"; sourceTree = "<group>"; };
+		69CBAAB0187D3CDB009223FE /* Post+Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Post+Query.m"; sourceTree = "<group>"; };
 		69CC84D31859397700B1F053 /* OITSplitDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITSplitDetailViewController.h; sourceTree = "<group>"; };
 		69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITSplitDetailViewController.m; sourceTree = "<group>"; };
 		69D00B4A15BCEDDA007050E3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -313,8 +233,6 @@
 		69D71FBE184BD8AA00FD7E86 /* OITViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITViewController.h; sourceTree = "<group>"; };
 		69D71FBF184BD8AA00FD7E86 /* OITViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITViewController.m; sourceTree = "<group>"; };
 		69DAE4E615CDB75E002CA239 /* Dragos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dragos.jpg; sourceTree = "<group>"; };
-		69DAE4E915CDD146002CA239 /* 42-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info.png"; sourceTree = "<group>"; };
-		69DAE4EA15CDD146002CA239 /* 42-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "42-info@2x.png"; sourceTree = "<group>"; };
 		69DF6B2A1759AF5500EA1289 /* OITPosts.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; name = OITPosts.xcdatamodel; path = OITPosts.xcdatamodeld/OITPosts.xcdatamodel; sourceTree = "<group>"; };
 		69DF6B2C1759BC3C00EA1289 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		69DF6B2D1759BC3C00EA1289 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
@@ -324,7 +242,7 @@
 		69DF6B331759BC3C00EA1289 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotation.h; sourceTree = "<group>"; };
 		69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotation.m; sourceTree = "<group>"; };
-		69E2541916658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "200px-Coat_of_arms_of_Calabria.svg.png"; sourceTree = "<group>"; };
+		69F39547186D567E00A60B43 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		69F7855F16C73A0D0060AAE9 /* WineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTableViewController.m; sourceTree = "<group>"; };
 		69F7856216C73A1F0060AAE9 /* WIneTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WIneTableViewController.h; sourceTree = "<group>"; };
 		69F7856316C74A960060AAE9 /* WanderingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WanderingsTableViewController.h; sourceTree = "<group>"; };
@@ -364,31 +282,12 @@
 			children = (
 				699558DD15706A0800B25C6D /* AboutViewController.h */,
 				699558DE15706A0800B25C6D /* AboutViewController.m */,
-				6964B65B184C5A5F00207020 /* NewPhotoScroller.h */,
-				6964B65C184C5A5F00207020 /* NewPhotoScroller.m */,
+				6964B65B184C5A5F00207020 /* PhotoScroller.h */,
+				6964B65C184C5A5F00207020 /* PhotoScroller.m */,
 				6964B65E184C5D6800207020 /* PageContentViewController.h */,
 				6964B65F184C5D6800207020 /* PageContentViewController.m */,
 			);
 			name = "Home Tab Info Controllers";
-			sourceTree = "<group>";
-		};
-		6912BB8515CF351F0014BB6F /* Launch/Icon Images */ = {
-			isa = PBXGroup;
-			children = (
-				6912BB8215CF34C90014BB6F /* Default-Landscape~ipad.png */,
-				6912BB7F15CF34660014BB6F /* Default-Portrait~ipad.png */,
-				6912BB7B15CF30550014BB6F /* Default-Landscape@2x~ipad.png */,
-				6912BB7915CF303C0014BB6F /* Default-Portrait@2x~ipad.png */,
-				69C259B81627938600E0BC40 /* Default-568h@2x.png */,
-				6912BB7615CF2F990014BB6F /* oitIcon-144x144.png */,
-				6912BB7415CF2F900014BB6F /* oitIcon-72x72.png */,
-				6912BB7215CF2F7E0014BB6F /* Default@2x.png */,
-				6912BB7015CF2F6D0014BB6F /* Default.png */,
-				6912BB6E15CF2F520014BB6F /* oitIcon-114x114.png */,
-				69AD491415605805009976B8 /* oitIconiPad-72x72.png */,
-				6912BB6C15CF2F2A0014BB6F /* oitIcon-57x57.png */,
-			);
-			name = "Launch/Icon Images";
 			sourceTree = "<group>";
 		};
 		692C1F681734B142005F0804 /* Table View Controllers */ = {
@@ -396,8 +295,8 @@
 			children = (
 				697559E3168E6C850076DFED /* GeneralizedPostsTableViewController.h */,
 				697559E4168E6C850076DFED /* GeneralizedPostsTableViewController.m */,
-				6927DAE916D1F47E0092365E /* IconDownloader.h */,
-				6927DAEA16D1F47E0092365E /* IconDownloader.m */,
+				6930A143186F6BD8001F8EF6 /* IconDownloader.h */,
+				6930A141186F6BC3001F8EF6 /* IconDownloader.m */,
 				692EE52216C5D817007F49B2 /* FoodTableViewController.h */,
 				692EE52316C5D817007F49B2 /* FoodTableViewController.m */,
 				69F7856216C73A1F0060AAE9 /* WIneTableViewController.h */,
@@ -408,6 +307,19 @@
 				69CA4C5B16FE623900F9AD0F /* BookmarksTableViewController.m */,
 			);
 			name = "Table View Controllers";
+			sourceTree = "<group>";
+		};
+		693ED72818822BE100CD1528 /* Wanderings View Map */ = {
+			isa = PBXGroup;
+			children = (
+				69AD48BF156056A9009976B8 /* MapViewController.h */,
+				69AD48C0156056A9009976B8 /* MapViewController.m */,
+				695BE03116462EB00009EBFE /* RegionAnnotationView.h */,
+				695BE03216462EB00009EBFE /* RegionAnnotationView.m */,
+				69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */,
+				69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */,
+			);
+			name = "Wanderings View Map";
 			sourceTree = "<group>";
 		};
 		6962483F16F2FCF900909B9B /* minizip */ = {
@@ -439,6 +351,8 @@
 				69DF6B2D1759BC3C00EA1289 /* Post.m */,
 				697111E5166DD7C1006D93DB /* Post+Create.h */,
 				697111E6166DD7C1006D93DB /* Post+Create.m */,
+				69CBAAAF187D3CDB009223FE /* Post+Query.h */,
+				69CBAAB0187D3CDB009223FE /* Post+Query.m */,
 				69FBB5331711279E002F6E4D /* Tag+CreateMany.h */,
 				69FBB5341711279E002F6E4D /* Tag+CreateMany.m */,
 				69FBB53617121DA9002F6E4D /* Category+CreateMany.h */,
@@ -462,41 +376,18 @@
 				697111F9166DE13B006D93DB /* WordPressXMLTags.h */,
 				697111FA166DE13B006D93DB /* PostRecord.h */,
 				697111FB166DE13B006D93DB /* PostRecord.m */,
-				695BB71417936B9500BFD1D5 /* Reachability.h */,
-				695BB71517936B9500BFD1D5 /* Reachability.m */,
 			);
 			name = CoreDataInitialization;
-			sourceTree = "<group>";
-		};
-		6989AC3F1647A62000B8D914 /* Flags */ = {
-			isa = PBXGroup;
-			children = (
-				69892A741755CD8300AD7957 /* 200px-Emilia-Romagna-Bandiera.png */,
-				6989AC411647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png */,
-				691477DB164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png */,
-				696831E4164DD2DF001215EC /* 100px-Capri-Stemma.png */,
-				696831E5164DD2DF001215EC /* Pantelleria-Stemma.png */,
-				696831E9164DD3B7001215EC /* Regione_Puglia-Stemma.png */,
-				696831EB164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png */,
-				696831ED164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png */,
-				696831EE164E0395001215EC /* Lazio_Coat_of_Arms.svg.png */,
-				696831F2164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png */,
-				696831F3164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png */,
-				699BD5AE164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png */,
-				69E2541916658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png */,
-			);
-			name = Flags;
 			sourceTree = "<group>";
 		};
 		69AD487F156054C9009976B8 = {
 			isa = PBXGroup;
 			children = (
+				69F39547186D567E00A60B43 /* Media.xcassets */,
 				69AD4894156054C9009976B8 /* OurItalianTable Posts */,
 				69AD4895156054C9009976B8 /* Supporting Files */,
-				6989AC3F1647A62000B8D914 /* Flags */,
 				69AD48E6156057B5009976B8 /* Images */,
 				6962483F16F2FCF900909B9B /* minizip */,
-				6912BB8515CF351F0014BB6F /* Launch/Icon Images */,
 				69AD488D156054C9009976B8 /* Frameworks */,
 				69AD488B156054C9009976B8 /* Products */,
 			);
@@ -541,11 +432,13 @@
 				6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */,
 				69CC84D31859397700B1F053 /* OITSplitDetailViewController.h */,
 				69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */,
+				6984EE5B186FD6E80059A3CF /* OITCoreDataTableViewController.h */,
+				6984EE5C186FD6E80059A3CF /* OITCoreDataTableViewController.m */,
+				69D33DB616BE4D5900B5AC00 /* OITTabBarController.h */,
+				69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */,
 				697111EE166DD927006D93DB /* AppDelegate.h */,
 				697111EF166DD927006D93DB /* AppDelegate.m */,
 				69711201166DE148006D93DB /* CoreDataInitialization */,
-				69D33DB616BE4D5900B5AC00 /* OITTabBarController.h */,
-				69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */,
 				69AD48AD156056A9009976B8 /* OITLaunchViewController.h */,
 				69AD48AE156056A9009976B8 /* OITLaunchViewController.m */,
 				69AD48C3156056A9009976B8 /* SplashScreenController.h */,
@@ -553,28 +446,18 @@
 				69AD48C5156056A9009976B8 /* SplitViewBarButtonItemPresenter.h */,
 				690E702A18550F3E002D6633 /* Home Tab Info Controllers */,
 				692C1F681734B142005F0804 /* Table View Controllers */,
-				69AD48C1156056A9009976B8 /* MapAnnotation.h */,
-				69AD48C2156056A9009976B8 /* MapAnnotation.m */,
 				69AD48BB156056A9009976B8 /* TOCViewController.h */,
 				69AD48BC156056A9009976B8 /* TOCViewController.m */,
-				69AD48BF156056A9009976B8 /* MapViewController.h */,
-				69AD48C0156056A9009976B8 /* MapViewController.m */,
-				695BE03116462EB00009EBFE /* RegionAnnotationView.h */,
-				695BE03216462EB00009EBFE /* RegionAnnotationView.m */,
-				69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */,
-				69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */,
-				699558E015706BE300B25C6D /* WebViewController.h */,
-				699558E115706BE300B25C6D /* WebViewController.m */,
-				69D00B4E15BCF1CF007050E3 /* LocationMapViewController.h */,
-				69D00B4F15BCF1CF007050E3 /* LocationMapViewController.m */,
-				69AD48C8156056A9009976B8 /* PostDetailViewController.h */,
-				69AD48C9156056A9009976B8 /* PostDetailViewController.m */,
+				693ED72818822BE100CD1528 /* Wanderings View Map */,
+				69CBAAB2187D42AF009223FE /* WebView Controllers */,
 				6962483C16F2FCEE00909B9B /* SSZipArchive.h */,
 				6962483D16F2FCEE00909B9B /* SSZipArchive.m */,
 				695BB711179145A200BFD1D5 /* SharedUserDefaults.h */,
 				695BB712179145A200BFD1D5 /* SharedUserDefaults.m */,
 				690EA7E917B9C7760003B09E /* OHAlertView.h */,
 				690EA7EA17B9C7770003B09E /* OHAlertView.m */,
+				695BB71417936B9500BFD1D5 /* Reachability.h */,
+				695BB71517936B9500BFD1D5 /* Reachability.m */,
 				697111EB166DD7D8006D93DB /* CoreData */,
 			);
 			path = "OurItalianTable Posts";
@@ -602,22 +485,6 @@
 		69AD48E6156057B5009976B8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				6982326516991906003D43AB /* 48-fork-and-knife.png */,
-				6982326616991906003D43AB /* 48-fork-and-knife@2x.png */,
-				6982326916991CE2003D43AB /* 273-grapes.png */,
-				6982326A16991CE2003D43AB /* 273-grapes@2x.png */,
-				6982326D16991DC2003D43AB /* 103-map.png */,
-				6982326E16991DC2003D43AB /* 103-map@2x.png */,
-				6982328116995469003D43AB /* 112-group.png */,
-				6982328216995469003D43AB /* 112-group@2x.png */,
-				6982328D169A4418003D43AB /* 58-bookmark.png */,
-				6982328E169A4418003D43AB /* 58-bookmark@2x.png */,
-				69DAE4E915CDD146002CA239 /* 42-info.png */,
-				69DAE4EA15CDD146002CA239 /* 42-info@2x.png */,
-				6912BB6715CDDAA10014BB6F /* 71-compass.png */,
-				6912BB6815CDDAA10014BB6F /* 71-compass@2x.png */,
-				69823291169A45C7003D43AB /* 53-house.png */,
-				69823292169A45C8003D43AB /* 53-house@2x.png */,
 				69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */,
 				69AD493F1560877F009976B8 /* After the wedding.JPG */,
 				69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */,
@@ -627,10 +494,8 @@
 				69AD495B15622718009976B8 /* Dad and Joey.jpg */,
 				69DAE4E615CDB75E002CA239 /* Dragos.jpg */,
 				69AD49361560877D009976B8 /* In the snow.jpg */,
-				69AD490D15605805009976B8 /* information-icon.png */,
 				69AD491015605805009976B8 /* italy-map-icon20.gif */,
 				69AD490F15605805009976B8 /* jcbecci.jpg */,
-				69AD491215605805009976B8 /* Lemons.png */,
 				69AD493D1560877E009976B8 /* Lenny and Annie.jpg */,
 				69AD49351560877C009976B8 /* Little Joey and Michele.jpg */,
 				69D00B5115BCF1ED007050E3 /* markdenton.jpg */,
@@ -639,9 +504,7 @@
 				69AD49341560877C009976B8 /* Mom's wedding dress.jpg */,
 				69AD493E1560877F009976B8 /* Mom, Dad and Annie with the cake.JPG */,
 				69AD49321560877B009976B8 /* Momom and Popop with Joey.jpg */,
-				69AD491115605805009976B8 /* OITLaunchButtonBackground.png */,
 				69AD491315605805009976B8 /* ouritaliantable-original-crop.jpg */,
-				69AD491715605805009976B8 /* Placeholder.png */,
 				69AD49311560877B009976B8 /* Popop and Joey.jpg */,
 				69AD493A1560877E009976B8 /* Popop, Dad and Joey.jpg */,
 				69AD49381560877D009976B8 /* The Drago Grandparents.jpg */,
@@ -649,6 +512,21 @@
 				69AD49391560877D009976B8 /* Young mom.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		69CBAAB2187D42AF009223FE /* WebView Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				699558E015706BE300B25C6D /* WebViewController.h */,
+				699558E115706BE300B25C6D /* WebViewController.m */,
+				69D00B4E15BCF1CF007050E3 /* LocationMapViewController.h */,
+				69D00B4F15BCF1CF007050E3 /* LocationMapViewController.m */,
+				69AD48C1156056A9009976B8 /* MapAnnotation.h */,
+				69AD48C2156056A9009976B8 /* MapAnnotation.m */,
+				69AD48C8156056A9009976B8 /* PostDetailViewController.h */,
+				69AD48C9156056A9009976B8 /* PostDetailViewController.m */,
+			);
+			name = "WebView Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -714,15 +592,10 @@
 				69AD48E2156056FC009976B8 /* NextImage.plist in Resources */,
 				69AD48E3156056FC009976B8 /* CategoryDictionary.plist in Resources */,
 				69AD48E4156056FC009976B8 /* bios.txt in Resources */,
-				69AD491815605805009976B8 /* information-icon.png in Resources */,
 				69AD491915605805009976B8 /* mbecci.jpg in Resources */,
 				69AD491A15605805009976B8 /* jcbecci.jpg in Resources */,
 				69AD491B15605805009976B8 /* italy-map-icon20.gif in Resources */,
-				69AD491C15605805009976B8 /* OITLaunchButtonBackground.png in Resources */,
-				69AD491D15605805009976B8 /* Lemons.png in Resources */,
 				69AD491E15605805009976B8 /* ouritaliantable-original-crop.jpg in Resources */,
-				69AD491F15605805009976B8 /* oitIconiPad-72x72.png in Resources */,
-				69AD492215605805009976B8 /* Placeholder.png in Resources */,
 				69AD49421560877F009976B8 /* The whole Drago family.jpg in Resources */,
 				69AD49431560877F009976B8 /* Popop and Joey.jpg in Resources */,
 				69AD49441560877F009976B8 /* Momom and Popop with Joey.jpg in Resources */,
@@ -737,55 +610,16 @@
 				69AD494F1560877F009976B8 /* Lenny and Annie.jpg in Resources */,
 				69AD49501560877F009976B8 /* Mom, Dad and Annie with the cake.JPG in Resources */,
 				69AD49511560877F009976B8 /* After the wedding.JPG in Resources */,
+				69F39548186D567E00A60B43 /* Media.xcassets in Resources */,
 				69AD49521560877F009976B8 /* Aunt Mary, Joey and Michele.JPG in Resources */,
 				69AD49531560877F009976B8 /* Aunt Mary.JPG in Resources */,
 				69AD495C15622719009976B8 /* Dad and Joey.jpg in Resources */,
 				69D00B5215BCF1ED007050E3 /* markdenton.jpg in Resources */,
 				69DAE4E715CDB75E002CA239 /* Dragos.jpg in Resources */,
-				69DAE4EB15CDD146002CA239 /* 42-info.png in Resources */,
-				69DAE4EC15CDD146002CA239 /* 42-info@2x.png in Resources */,
-				6912BB6915CDDAA10014BB6F /* 71-compass.png in Resources */,
-				6912BB6A15CDDAA10014BB6F /* 71-compass@2x.png in Resources */,
-				6912BB6D15CF2F2A0014BB6F /* oitIcon-57x57.png in Resources */,
-				6912BB6F15CF2F520014BB6F /* oitIcon-114x114.png in Resources */,
-				6912BB7315CF2F7E0014BB6F /* Default@2x.png in Resources */,
-				6912BB7515CF2F900014BB6F /* oitIcon-72x72.png in Resources */,
-				6912BB7715CF2F990014BB6F /* oitIcon-144x144.png in Resources */,
-				6912BB7A15CF303C0014BB6F /* Default-Portrait@2x~ipad.png in Resources */,
-				6912BB7C15CF30550014BB6F /* Default-Landscape@2x~ipad.png in Resources */,
-				6912BB8015CF34660014BB6F /* Default-Portrait~ipad.png in Resources */,
-				6912BB8315CF34C90014BB6F /* Default-Landscape~ipad.png in Resources */,
-				6912BB8415CF35010014BB6F /* Default.png in Resources */,
-				69C259B91627938600E0BC40 /* Default-568h@2x.png in Resources */,
-				6989AC421647A63600B8D914 /* 200px-Coat_of_arms_of_Tuscany.svg.png in Resources */,
-				691477DC164CED720053A6AF /* Coat_of_arms_of_Sicily.svg.png in Resources */,
-				696831E6164DD2DF001215EC /* 100px-Capri-Stemma.png in Resources */,
-				696831E7164DD2DF001215EC /* Pantelleria-Stemma.png in Resources */,
-				696831EA164DD3B7001215EC /* Regione_Puglia-Stemma.png in Resources */,
-				696831EC164DD3C0001215EC /* 530px-Sardegna-Stemma.svg.png in Resources */,
-				696831EF164E0395001215EC /* 250px-Coat_of_arms_of_Liguria.svg.png in Resources */,
-				696831F0164E0395001215EC /* Lazio_Coat_of_Arms.svg.png in Resources */,
-				696831F5164E04D7001215EC /* 50px-Valle_d'Aosta-Stemma.svg.png in Resources */,
-				696831F6164E04D7001215EC /* 60px-Regione-Piemonte-Stemma.svg.png in Resources */,
-				699BD5AF164EBB3400750326 /* Friuli-Venezia_Giulia-Flag.png in Resources */,
-				69E2541A16658A2100FB21E5 /* 200px-Coat_of_arms_of_Calabria.svg.png in Resources */,
 				69D1D96A168EA99800540CD9 /* HTMLStyles.html in Resources */,
-				6982326716991906003D43AB /* 48-fork-and-knife.png in Resources */,
-				6982326816991906003D43AB /* 48-fork-and-knife@2x.png in Resources */,
-				6982326B16991CE2003D43AB /* 273-grapes.png in Resources */,
-				6982326C16991CE2003D43AB /* 273-grapes@2x.png in Resources */,
-				6982326F16991DC2003D43AB /* 103-map.png in Resources */,
-				6982327016991DC2003D43AB /* 103-map@2x.png in Resources */,
-				6982328316995469003D43AB /* 112-group.png in Resources */,
-				6982328416995469003D43AB /* 112-group@2x.png in Resources */,
 				6982328C169963CB003D43AB /* iPhone.storyboard in Resources */,
-				6982328F169A4419003D43AB /* 58-bookmark.png in Resources */,
-				69823290169A4419003D43AB /* 58-bookmark@2x.png in Resources */,
-				69823293169A45C8003D43AB /* 53-house.png in Resources */,
-				69823294169A45C8003D43AB /* 53-house@2x.png in Resources */,
 				69B5AA6316A7D81B005B7F9C /* ouritaliantable-original-transparent.gif in Resources */,
 				69D33DB516BA4A7F00B5AC00 /* iPad.storyboard in Resources */,
-				69892A751755CD8300AD7957 /* 200px-Emilia-Romagna-Bandiera.png in Resources */,
 				695BB7101791401100BFD1D5 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -815,6 +649,7 @@
 			files = (
 				695BB71717936C5000BFD1D5 /* Reachability.m in Sources */,
 				6905154E18606FEA009F3BC4 /* OITSplitMasterViewController.m in Sources */,
+				6984EE5D186FD6E80059A3CF /* OITCoreDataTableViewController.m in Sources */,
 				69CBD0E6167D40E500A313FB /* MapViewController.m in Sources */,
 				69711205166EE785006D93DB /* Post+Create.m in Sources */,
 				69CC84D51859397700B1F053 /* OITSplitDetailViewController.m in Sources */,
@@ -823,6 +658,7 @@
 				69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */,
 				69AD48D3156056A9009976B8 /* TOCViewController.m in Sources */,
 				69AD48D6156056A9009976B8 /* MapAnnotation.m in Sources */,
+				6930A142186F6BC3001F8EF6 /* IconDownloader.m in Sources */,
 				69AD48D7156056A9009976B8 /* SplashScreenController.m in Sources */,
 				69AD48D9156056A9009976B8 /* PostDetailViewController.m in Sources */,
 				699558DF15706A0800B25C6D /* AboutViewController.m in Sources */,
@@ -831,6 +667,7 @@
 				69DFEA2615C5EF8900CDABA1 /* RegionAnnotation.m in Sources */,
 				697111F0166DD927006D93DB /* AppDelegate.m in Sources */,
 				697111FD166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m in Sources */,
+				69CBAAB1187D3CDB009223FE /* Post+Query.m in Sources */,
 				697111FF166DE13B006D93DB /* ParseWordPressXML.m in Sources */,
 				69711200166DE13B006D93DB /* PostRecord.m in Sources */,
 				697559E5168E6C850076DFED /* GeneralizedPostsTableViewController.m in Sources */,
@@ -841,7 +678,6 @@
 				69F7856016C73A0D0060AAE9 /* WineTableViewController.m in Sources */,
 				6964B660184C5D6800207020 /* PageContentViewController.m in Sources */,
 				69F7856516C74AAC0060AAE9 /* WanderingsTableViewController.m in Sources */,
-				6927DAEB16D1F47E0092365E /* IconDownloader.m in Sources */,
 				6962483E16F2FCEF00909B9B /* SSZipArchive.m in Sources */,
 				6962484916F2FCF900909B9B /* ioapi.c in Sources */,
 				6962484A16F2FCF900909B9B /* mztools.c in Sources */,
@@ -850,7 +686,7 @@
 				69CA4C5C16FE623900F9AD0F /* BookmarksTableViewController.m in Sources */,
 				69D71FC0184BD8AA00FD7E86 /* OITViewController.m in Sources */,
 				69FBB5351711279F002F6E4D /* Tag+CreateMany.m in Sources */,
-				6964B65D184C5A5F00207020 /* NewPhotoScroller.m in Sources */,
+				6964B65D184C5A5F00207020 /* PhotoScroller.m in Sources */,
 				69FBB53817121DA9002F6E4D /* Category+CreateMany.m in Sources */,
 				69DF6B2B1759AF5500EA1289 /* OITPosts.xcdatamodel in Sources */,
 				69DF6B2E1759BC3C00EA1289 /* Post.m in Sources */,
@@ -904,7 +740,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PROVISIONING_PROFILE = "AB389B72-78B9-4D4B-AF79-10E332948BF8";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB389B72-78B9-4D4B-AF79-10E332948BF8";
 				SDKROOT = iphoneos;
@@ -915,15 +751,17 @@
 		6925878C170E764700E8E01B /* Ad-Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurItalianTable Posts/OurItalianTable Posts-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
 				INFOPLIST_FILE = "OurItalianTable Posts/OurItalianTable Posts-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A0D602E1-FF81-47E5-A6EA-E0AE9C00F075";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A0D602E1-FF81-47E5-A6EA-E0AE9C00F075";
 				WRAPPER_EXTENSION = app;
 			};
@@ -958,10 +796,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "B05E4BC5-BFC7-4BC4-9497-B3FE899D5A49";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B05E4BC5-BFC7-4BC4-9497-B3FE899D5A49";
+				PROVISIONING_PROFILE = "94964D12-DAED-41A5-917E-B9834898AA8A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "94964D12-DAED-41A5-917E-B9834898AA8A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -978,8 +816,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci (2TU4F86D2T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci (2TU4F86D2T)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -989,10 +827,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "8C466461-CE9F-452A-944D-C313810730C8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C466461-CE9F-452A-944D-C313810730C8";
+				PROVISIONING_PROFILE = "2F091707-0EAA-4270-AE92-7E49D0593777";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F091707-0EAA-4270-AE92-7E49D0593777";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1002,8 +840,10 @@
 		69AD48A3156054C9009976B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurItalianTable Posts/OurItalianTable Posts-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1012,10 +852,9 @@
 				);
 				HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
 				INFOPLIST_FILE = "OurItalianTable Posts/OurItalianTable Posts-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB5628CC-9FD9-4693-95B0-DCA91358E01D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB5628CC-9FD9-4693-95B0-DCA91358E01D";
+				PROVISIONING_PROFILE = "94964D12-DAED-41A5-917E-B9834898AA8A";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1023,16 +862,18 @@
 		69AD48A4156054C9009976B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci (2TU4F86D2T)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OurItalianTable Posts/OurItalianTable Posts-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"${SDK_DIR}\"/usr/include/libxml2";
 				INFOPLIST_FILE = "OurItalianTable Posts/OurItalianTable Posts-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8C466461-CE9F-452A-944D-C313810730C8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C466461-CE9F-452A-944D-C313810730C8";
+				PROVISIONING_PROFILE = "2F091707-0EAA-4270-AE92-7E49D0593777";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2F091707-0EAA-4270-AE92-7E49D0593777";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
