@@ -9,26 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-// Protocol for call back when search button is clicked; a) close popover/modal and b) return selected categories
-@protocol  TOCViewControllerDelegate
-
--(void)didPickUsingCategory:(NSString *)category
-             detailCategory:(NSString *)detailCategory;
-
-@end
-
 @interface TOCViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>;
 
-// delegate for callback from popover/modal, invoked when search button clicked
-@property (nonatomic, strong) id<TOCViewControllerDelegate> delegate;
+// public properties
+@property (nonatomic, strong) NSString *pickedGeo;                  // category selected in first row of wheel
+@property (nonatomic, strong) NSString *pickedFoodType;             // detail picked in second row of wheel based on first column selected
+@property (nonatomic, strong) NSString *pickedPostType;             // picked type of post
 
 // Outlets
-@property (nonatomic, weak) IBOutlet UISegmentedControl *categorySegmentedController;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegmentedController;
 @property (nonatomic, weak) IBOutlet UIPickerView *detailPicker;
-@property (nonatomic, weak) IBOutlet UIButton *doneButton;
 
 // Actions
-- (IBAction)selectCategorySegment:(UISegmentedControl *)sender;     // selected a segment
-- (IBAction)goSearch:(id)sender;                                    // search button
+- (IBAction)goCancel:(id)sender;                                    // cancel button
+- (IBAction)selectedTypeSegment:(UISegmentedControl *)sender;
 
 @end
