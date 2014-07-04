@@ -21,7 +21,7 @@
 #import "OITTabBarController.h"
 #import "Post+Create.h"
 
-@interface GeneralizedPostsTableViewController : OITCoreDataTableViewController <UISearchBarDelegate, WebViewControllerDelegate, TOCViewControllerDelegate, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
+@interface GeneralizedPostsTableViewController : OITCoreDataTableViewController <UISearchBarDelegate, WebViewControllerDelegate, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
 
 // public properties
 @property (nonatomic, strong) NSArray *sortDescriptors;             // Array of NSSortDescriptors for how UITableView will display "Post" entities list
@@ -32,5 +32,9 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *contextLabel;
+
+// public methods
+-(id)splitViewDetailWithBarButtonItem;
+-(void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController;
 
 @end

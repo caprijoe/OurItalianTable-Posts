@@ -13,7 +13,6 @@
 @interface GeneralizedPostsTableViewController ();
 @property (nonatomic, strong) Post *postRecord;
 @property (nonatomic, strong) AppDelegate *appDelegate;
-@property (nonatomic, strong) UIStoryboardSegue *categoryPickerSegue;
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
@@ -45,6 +44,20 @@
         NSLog(@"MOC NOT available, setting up Notification");
         [self setupDBOpenedNotification];
     }
+    
+    // support for change of perferred text font and size
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+
+    // set the title
+    [self updateContext:@"Our Italian Table"];
+    
+    // set the index button
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Index" style:UIBarButtonItemStylePlain target:self action:@selector(showTOC:)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
+    // set the refresh buttom
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshView:)];
+    self.navigationItem.leftBarButtonItem = leftButton;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -86,7 +99,7 @@
 // update context at bottom of tableviewcontroller
 -(void)updateContext:(NSString *)detail
 {
-    self.contextLabel.text = detail;
+    self.navigationItem.title = detail;
 }
 
 #pragma mark - Update UITableView when UIRefreshControl pull down
@@ -160,7 +173,7 @@
 
 #pragma mark - UIRefresh control methods
 
--(UIRefreshControl *)refreshControl
+/* -(UIRefreshControl *)refreshControl
 {
     if (!_refreshControl) {
         _refreshControl = [[UIRefreshControl alloc] init];
@@ -176,7 +189,7 @@
         //        [self.tableView addSubview:_refreshControl];
     }
     return _refreshControl;
-}
+} */
 
 -(void)setupRefreshControl
 {
@@ -391,24 +404,39 @@
     }
 }
 
-#pragma mark - TOCViewControllerDelegate method call back
+#pragma mark - TOCViewController unwind
 
--(void)didPickUsingCategory:(NSString *)category detailCategory:(NSString *)detailCategory
-{
-    if (self.splitViewController)
-        [[(UIStoryboardPopoverSegue*)self.categoryPickerSegue popoverController] dismissPopoverAnimated:YES];
-    else
-        [self.categoryPickerSegue.destinationViewController dismissModalViewControllerAnimated:YES];
+-(IBAction)unwindFromTOC:(UIStoryboardSegue *)segue {
     
-    // setup predicate
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString contains[cd] %@)",[self.appDelegate fixCategory: detailCategory]];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[self.majorPredicate, searchPredicate]];
+    TOCViewController *TOCvc = [segue sourceViewController];
     
-    // setup new controller, fetch and reload data
-    [self setupFetchedResultsControllerWithPredicate:predicate];
+    NSMutableArray *predicateArray = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    if (TOCvc.pickedPostType) {
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", TOCvc.pickedPostType]];
+    }
+    
+    if (TOCvc.pickedGeo) {
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString contains[cd] %@)",[self.appDelegate fixCategory: TOCvc.pickedGeo]]];        
+    }
+    
+    if (TOCvc.pickedFoodType) {
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString contains[cd] %@)",[self.appDelegate fixCategory: TOCvc.pickedFoodType]]];
+    }
 
-    // update context at bottom of view
-    [self updateContext:detailCategory];
+    if ([predicateArray count]) {
+        
+        // setup new controller, fetch and reload data
+        [self setupFetchedResultsControllerWithPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicateArray]];
+        
+        // update context at top of view
+        if (TOCvc.pickedPostType)
+            [self updateContext:[TOCvc.pickedPostType capitalizedString]];
+        else if (TOCvc.pickedGeo)
+            [self updateContext:[TOCvc.pickedGeo capitalizedString]];
+        else if (TOCvc.pickedFoodType)
+            [self updateContext:[TOCvc.pickedFoodType capitalizedString]];
+    }
 }
 
 #pragma mark - IBActions
@@ -418,7 +446,11 @@
     [self resetToAllEntries];
 }
 
-#pragma mark - Handle seques
+-(IBAction)showTOC:(id)sender {
+    [self performSegueWithIdentifier:@"Show TOC Picker" sender:self];
+}
+
+#pragma mark - Segue support
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -427,14 +459,27 @@
         [segue.destinationViewController setDelegate:self];
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
-        [segue.destinationViewController setDelegate:self];
-        self.categoryPickerSegue = segue;
+        //
     } else if ([segue.identifier isEqualToString:@"Reset Splash View"]) {
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     } else if ([segue.identifier isEqualToString:@"Show Region Map"]) {
         [segue.destinationViewController setDelegate:self];
         [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     }
+}
+
+-(id)splitViewDetailWithBarButtonItem
+{
+    id detail = [self.splitViewController.viewControllers lastObject];
+    if (![detail respondsToSelector:@selector(setSplitViewBarButtonItem:)] || ![detail respondsToSelector:@selector(splitViewBarButtonItem)]) detail = nil;
+    return detail;
+}
+
+-(void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController
+{
+    UIBarButtonItem *splitViewBarButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem ];
+    [[self splitViewDetailWithBarButtonItem] setSplitViewBarButtonItem:nil];
+    if (splitViewBarButtonItem) [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
 }
 
 @end
