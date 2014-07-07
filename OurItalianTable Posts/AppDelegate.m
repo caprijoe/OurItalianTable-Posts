@@ -136,6 +136,9 @@
 
 -(void)setupReferenceProperties {
     
+    // set up types of posts
+    self.typeArray = @[@"food", @"wine", @"wanderings"];
+    
     // load filepath to bundle CategoryDictionary plist
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CategoryDictionary" ofType:@"plist"];
     
@@ -145,18 +148,10 @@
     // load category dictionary for use by other methods
     self.categoryDictionary = [[NSDictionary alloc] initWithContentsOfFile:filePath];
 
-    // grab keys for "regions" and "islands" and add to candidateGeos dictionary
-    NSMutableDictionary *mutableCandidateGeos = [NSMutableDictionary dictionary];
-    [mutableCandidateGeos addEntriesFromDictionary:self.categoryDictionary[@"Regions"]];
-    [mutableCandidateGeos addEntriesFromDictionary:self.categoryDictionary[@"Islands"]];
-    
-    // set up the dictionary for public use
-    self.candidateGeos = [mutableCandidateGeos copy];
-    
     // set up a reference array for the slugs and cross walk back to original key
-    NSMutableDictionary *muteableCandidateGeoSlugs = [[NSMutableDictionary alloc] initWithCapacity:[[self.candidateGeos allKeys] count]];
+    NSMutableDictionary *muteableCandidateGeoSlugs = [[NSMutableDictionary alloc] initWithCapacity:[[self.categoryDictionary[@"regions"] allKeys] count]];
     
-    for (NSString *key in [mutableCandidateGeos allKeys]) {
+    for (NSString *key in [self.categoryDictionary[@"regions"] allKeys]) {
         muteableCandidateGeoSlugs[[self fixCategory:key]] = key;
     }
     

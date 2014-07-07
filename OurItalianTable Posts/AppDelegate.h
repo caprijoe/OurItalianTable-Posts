@@ -25,7 +25,7 @@
 
 // reference properties
 @property (nonatomic, strong) NSDictionary *categoryDictionary;
-@property (nonatomic, strong) NSDictionary *candidateGeos;
+@property (nonatomic, strong) NSArray *typeArray;
 @property (nonatomic, strong) NSDictionary *candidateGeoSlugs;
 
 //public shared methods
