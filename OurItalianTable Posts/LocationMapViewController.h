@@ -17,9 +17,5 @@
 
 // outlets
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
-@property (nonatomic, weak) IBOutlet UIButton *doneButton;
-
-// actions
-- (IBAction)doneButton:(id)sender;
 
 @end

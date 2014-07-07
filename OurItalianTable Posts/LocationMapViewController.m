@@ -9,25 +9,7 @@
 
 #import "LocationMapViewController.h"
 
-#define ANNOTATION_ICON_HEIGHT 30
-
 @implementation LocationMapViewController
-
-#pragma mark Private methods
-
-// not used, save this in case
-- (void)gotoLocation
-{
-    // center map on coordinates of post
-    MKCoordinateRegion newRegion;
-    newRegion.center.latitude = [self.locationRecord.latitude floatValue];
-    newRegion.center.longitude = [self.locationRecord.longitude floatValue];
-
-    newRegion.span.latitudeDelta = 9;
-    newRegion.span.longitudeDelta = 4;
-    
-    [self.mapView setRegion:newRegion animated:YES];
-}
 
 #pragma mark - View Lifecycle Methods
 
@@ -46,6 +28,9 @@
         [self.mapView addAnnotation:mapObject];
         [self.mapView showAnnotations:self.mapView.annotations animated:YES];
     }
+    
+    // set title
+    self.navigationItem.title = self.locationRecord.postName;
 }
 
 #pragma mark - MKMapViewDelegate support
@@ -59,30 +44,30 @@
 {
     if([annotation isKindOfClass:[MapAnnotation class]])
     {
-        MKAnnotationView *pinView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MapVC"];
+        static NSString *pinIdentifier = @"pinIdentifier";
+        
+        MKPinAnnotationView * pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
+        
         if (!pinView) {
-            MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
             
-            customPinView.pinColor = MKPinAnnotationColorPurple;
-            customPinView.animatesDrop = YES;
-            customPinView.canShowCallout = YES;
+            pinView.pinColor = MKPinAnnotationColorPurple;
+            pinView.animatesDrop = YES;
+            pinView.canShowCallout = YES;
             
-            customPinView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ANNOTATION_ICON_HEIGHT, ANNOTATION_ICON_HEIGHT)];
-            [(UIImageView *)customPinView.leftCalloutAccessoryView setImage:[UIImage imageWithData:self.locationRecord.postIcon]];
-            
-            return customPinView;
-        } else {
-            pinView.annotation = annotation;
         }
+        pinView.annotation = annotation;
+        
+        // setup and load leftaccessory to hold flag/coat of arms
+        CGRect targetRect = CGRectMake(0,0,31,31);                                      // unavoidable magic numbers
+        UIImageView *iconImageView = [[UIImageView alloc]initWithFrame:targetRect];
+        iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+        iconImageView.image = [UIImage imageWithData:self.locationRecord.postIcon];
+        pinView.leftCalloutAccessoryView = iconImageView;
+        
         return pinView;
     }
     return nil;
-}
-
-#pragma mark - IBActions
-- (IBAction)doneButton:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
