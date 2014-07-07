@@ -8,37 +8,48 @@
 
 #import "MapViewController.h"
 
-#define ANNOTATION_ICON_HEIGHT 30
-
 @interface MapViewController ();
+@property (nonatomic, strong) NSString *selectedRegion;
 @end
 
 @implementation MapViewController
 
 #pragma mark - View lifecycle
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidLoad
 {
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
     
     // setup the map type and set the UIMapView delegate
-    self.mapView.mapType = MKMapTypeStandard;
+    self.mapView.mapType = MKMapTypeHybrid;
     self.mapView.delegate = self;
+    
+    // reset context label
+    self.navigationItem.title = @"Our Italian Table";
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self addAnnotations];
+    [super viewDidAppear:animated];
+    
+    // add pins but only once- must be done in viewDidAppear because geometry not set in viewdidload
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        [self addAnnotations];
+    });
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    [self addAnnotations];
+    // re-layout pins on rotation event
+    [self.mapView showAnnotations:self.mapView.annotations animated:YES];
 }
 
 #pragma mark - Private methods
--(void)addAnnotations {
-    
+
+-(void)addAnnotations
+{
     // setup the appdelegate to access the MOC
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -51,7 +62,8 @@
     [geoObjects enumerateObjectsUsingBlock:^(id region, NSUInteger idx, BOOL *stop) {
         
         // if there is annotation information, load into annotation object list
-        NSArray *geoInfo = appDelegate.candidateGeos[region[@"geo"]];
+        NSArray *geoInfo = appDelegate.categoryDictionary[@"regions"][region[@"geo"]];
+
         
         if ([geoInfo count] > 2)
         {
@@ -63,39 +75,66 @@
             annotationObject.flagURL = [geoInfo objectAtIndex:2];
             annotationObject.correspondingSection = idx;
             [self.mapView addAnnotation:annotationObject];
-
         }
-        
-        // show the annotations all at once and all visible
-        [self.mapView showAnnotations:self.mapView.annotations animated:YES];
     }];
+    
+    // show the annotations all at once and all visible
+    [self.mapView showAnnotations:self.mapView.annotations animated:YES];
 }
 
 #pragma mark MKMapViewDelegate
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
-{    
-    static NSString *AnnotationViewID = @"annotationViewID";
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(RegionAnnotation *)annotation
+{
+    static NSString *pinIdentifier = @"pinIdentifier";
     
-    RegionAnnotationView *annotationView = (RegionAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    MKPinAnnotationView * pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
     
-    if (annotationView == nil)
-        annotationView = [[RegionAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    // if no pins available, make one
+    if (!pinView) {
+        
+        // setup basic pin
+        pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
+        pinView.pinColor = MKPinAnnotationColorGreen;
+        pinView.animatesDrop = YES;
+        pinView.canShowCallout = YES;
+        
+        // setup and load rightaccessory to hold detail disclosure button
+        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        pinView.rightCalloutAccessoryView = rightButton;
+    }
     
-    annotationView.annotation = annotation;
+    // load annotation into pin
+    pinView.annotation = annotation;
+
+    // setup and load leftaccessory to hold flag/coat of arms
+    CGRect targetRect = CGRectMake(0,0,31,31);                                      // unavoidable magic numbers
+    UIImageView *flagImageView = [[UIImageView alloc]initWithFrame:targetRect];
+    flagImageView.contentMode = UIViewContentModeScaleAspectFit;
+    flagImageView.image = [UIImage imageNamed:annotation.flagURL];
+    pinView.leftCalloutAccessoryView = flagImageView;
     
-    return annotationView;
+    return pinView;
 }
 
-
-#pragma mark MapViewControllerDelegate method callback
- -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    // get the annotation clicked
-    RegionAnnotation *thisAnnotation = [view annotation];
+    // grab the selected annotation and the associated region
+    RegionAnnotation *annotation = view.annotation;
+    self.selectedRegion = annotation.regionName;
     
-    // perform the call back to the post view controller
-    [self.delegate didMapClick:self sectionNumber:thisAnnotation.correspondingSection];
-} 
+    // seque to posts VC
+    [self performSegueWithIdentifier:@"Show Region Posts" sender:self];
+}
+
+#pragma mark - Segue support
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Show Region Posts"]) {
+        [segue.destinationViewController setSelectedRegion:self.selectedRegion];
+//        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
+    }
+}
 
 @end

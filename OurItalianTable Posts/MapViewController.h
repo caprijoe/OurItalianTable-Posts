@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "GeneralizedPostsTableViewController.h"
 #import "OITSplitDetailViewController.h"
 #import "AppDelegate.h"
 #import "Post+Query.h"
