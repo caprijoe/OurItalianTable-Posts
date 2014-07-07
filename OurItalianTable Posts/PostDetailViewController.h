@@ -12,26 +12,16 @@
 #import "Post.h"
 #import "Tag.h"
 
-@protocol PostsDetailViewControllerDelegate
--(void)didClickTag:(NSString *)tag;
-@end
-
 @interface PostDetailViewController : OITViewController
 
-// delegate to pass along call back from detail controller
-@property (nonatomic, weak) id <PostsDetailViewControllerDelegate> delegate;
-
 // public properties
-@property (nonatomic,strong) Post *postDetail; // post for which detail will be displayed
+@property (nonatomic, strong) Post *postDetail;         // post for which detail will be displayed
+@property (nonatomic, strong) NSString *clickedTag;     // selected tag
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *authorPicture;
-@property (weak, nonatomic) IBOutlet UILabel *postTitle;
 @property (weak, nonatomic) IBOutlet UILabel *datePublished;
 @property (weak, nonatomic) IBOutlet UIScrollView *tagsScrollView;
 @property (weak, nonatomic) IBOutlet UILabel *tagsText;
-
-// Actions
-- (IBAction)doneButton:(id)sender;
 
 @end

@@ -16,7 +16,7 @@
 #define DOUBLE_QUOTE_CHAR   @"\""
 #define IMAGE_SCALE         .95
 
-@interface WebViewController() <PostsDetailViewControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>;
+@interface WebViewController() <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate>;
 @property (nonatomic,strong) NSString *cssHTMLHeader;               // CSS Header to be stuck in front of HTML
 @property (nonatomic,strong) NSString *loadedHTML;                  // HTML code that was loaded -- for e-mailing
 @property (nonatomic,strong) NSString *currentActionSheet;          // current sheet to figure clicked button
@@ -46,13 +46,17 @@
 {
     [super viewDidLoad];
     
+    // configure buttons
+    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"42-info"] style:UIBarButtonItemStylePlain target:self action:@selector(showDetail:)];
+    UIBarButtonItem *forwardButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(sharePost:)];
+    UIBarButtonItem *bookmarksButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(addToFavorites:)];
+    UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"71-compass"] style:UIBarButtonItemStylePlain target:self action:@selector(showLocationMap)];
+    
     // if no coordinates in post, delete compass icon (last object)
     if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0)
-    {
-        NSMutableArray *toolbar = [self.toolbar.items mutableCopy];
-        [toolbar removeLastObject];
-        self.toolbar.items = [toolbar copy];
-    }
+        self.navigationItem.rightBarButtonItems = @[infoButton, forwardButton, bookmarksButton ];
+    else
+        self.navigationItem.rightBarButtonItems = @[infoButton, forwardButton, mapButton, bookmarksButton  ];
     
     // fix CRLFs & WP caption blocks so they show on in webview
     NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.thisPost.postHTML]];
@@ -75,38 +79,6 @@
     // get rid of any left over popovers
     [self.detailPopover dismissPopoverAnimated:YES];
     [self.locationPopover dismissPopoverAnimated:YES];
-}
-
-#pragma mark - Segue support
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"Push Post Detail"]) {
-        [segue.destinationViewController setPostDetail:self.thisPost];
-        [segue.destinationViewController setDelegate:self];
-        
-        // if we're segueing to a popover, save it in self and in the destination controller
-        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
-            self.detailPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-        }
-    } else if ([segue.identifier isEqualToString:@"Push Location Map"]) {
-        [segue.destinationViewController setLocationRecord:self.thisPost];
-        
-        // if we're segueing to a popover, save it in self and in the destination controller
-        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
-            self.locationPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
-        }
-    }
-}
-
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    
-    if ([identifier isEqualToString:@"Push Post Detail"]) {
-        return self.detailPopover ? NO: YES;
-    } else if ([identifier isEqualToString:@"Push Location Map"]) {
-        return self.locationPopover ? NO : YES;
-    } else {
-        return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
-    }
 }
 
 #pragma mark - Private methods for editing HTML
@@ -378,15 +350,55 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+#pragma mark - Location map support
+
+-(void)showLocationMap
+{
+    [self performSegueWithIdentifier:@"Push Location Map" sender:self];
+}
+
+#pragma mark - Segue support
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Push Post Detail"]) {
+        [segue.destinationViewController setPostDetail:self.thisPost];
+        
+        // if we're segueing to a popover, save it in self and in the destination controller
+        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
+            self.detailPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        }
+    } else if ([segue.identifier isEqualToString:@"Push Location Map"]) {
+        [segue.destinationViewController setLocationRecord:self.thisPost];
+        
+        // if we're segueing to a popover, save it in self and in the destination controller
+        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
+            self.locationPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        }
+    }
+}
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+    if ([identifier isEqualToString:@"Push Post Detail"]) {
+        return self.detailPopover ? NO: YES;
+    } else if ([identifier isEqualToString:@"Push Location Map"]) {
+        return self.locationPopover ? NO : YES;
+    } else {
+        return [super shouldPerformSegueWithIdentifier:identifier sender:sender];
+    }
+}
+
 #pragma mark - IBActions
 - (IBAction)addToFavorites:(UIBarButtonItem *)sender {
-    
     [self presentActionSheetforBookmarkFromBarButton:sender];
 }
 
 - (IBAction)sharePost:(UIBarButtonItem *)sender {
     [self presentActionSheetforSharingFromBarButton:sender];
+}
 
+-(IBAction)showDetail:(id)sender {
+    [self performSegueWithIdentifier:@"Push Post Detail" sender:self];
 }
 
 - (IBAction)fireBackButton:(UIBarButtonItem *)sender

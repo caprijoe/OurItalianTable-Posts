@@ -29,7 +29,7 @@
     self.datePublished.text = [NSString stringWithFormat:@"Published on\n\n%@",[formatter stringFromDate:self.postDetail.postPubDate]];
     
     // set post title
-    self.postTitle.text = self.postDetail.postName;
+    self.navigationItem.title = self.postDetail.postName;
     
     // set author picture
     UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.postDetail.postAuthor ofType:@"jpg"]];
@@ -111,7 +111,6 @@
 #pragma mark - Dynamic type support
 -(void)setupFonts
 {
-    self.postTitle.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     self.datePublished.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     self.tagsText.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 }
@@ -128,16 +127,12 @@
 #pragma mark - Selector for custom button
 -(void)takeAction:(UIButton *)button
 {
+        
+    // set the text in the public property
+    self.clickedTag = button.titleLabel.text;
     
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    // call back with button pressed
-    [self.delegate didClickTag:button.titleLabel.text];
+    // perform unwind segue
+    [self performSegueWithIdentifier:@"unwindFromPostDetail" sender:self];
 }
 
-#pragma mark - Actions
-- (IBAction)doneButton:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
 @end

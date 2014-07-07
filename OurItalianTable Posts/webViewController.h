@@ -22,7 +22,6 @@
 
 // outlets
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
-@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
 
 // public properties
 @property (nonatomic, strong) Post *thisPost;                                   // post to be displayed
