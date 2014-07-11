@@ -12,7 +12,6 @@
 		691E62A71692D23300467600 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 691E62A61692D23300467600 /* SystemConfiguration.framework */; };
 		691E62AA1693869C00467600 /* AtomicGetFileFromRemoteURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E62A91693869C00467600 /* AtomicGetFileFromRemoteURL.m */; };
 		691E62AD1693B0B300467600 /* XMLFileGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 691E62AC1693B0B300467600 /* XMLFileGetter.m */; };
-		692EE52416C5D817007F49B2 /* FoodTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692EE52316C5D817007F49B2 /* FoodTableViewController.m */; };
 		6930A142186F6BC3001F8EF6 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6930A141186F6BC3001F8EF6 /* IconDownloader.m */; };
 		693731C5165DFC87005AE8F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD492315605A8C009976B8 /* CoreLocation.framework */; };
 		695BB7101791401100BFD1D5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 695BB70F1791401100BFD1D5 /* Settings.bundle */; };
@@ -40,6 +39,7 @@
 		698D8FF117DD3AFE00C53459 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6962484D16F2FD7D00909B9B /* libz.dylib */; };
 		699558DF15706A0800B25C6D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558DE15706A0800B25C6D /* AboutViewController.m */; };
 		699558E215706BE300B25C6D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699558E115706BE300B25C6D /* WebViewController.m */; };
+		699A36B4196621A70052AF3D /* OLDCategoryDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 699A36B3196621A70052AF3D /* OLDCategoryDictionary.plist */; };
 		69AD488F156054C9009976B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD488E156054C9009976B8 /* UIKit.framework */; };
 		69AD4891156054C9009976B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD4890156054C9009976B8 /* Foundation.framework */; };
 		69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69AD4897156054C9009976B8 /* InfoPlist.strings */; };
@@ -97,10 +97,11 @@
 		69DF6B341759BC3C00EA1289 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DF6B331759BC3C00EA1289 /* Category.m */; };
 		69DFEA2615C5EF8900CDABA1 /* RegionAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */; };
 		69F39548186D567E00A60B43 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69F39547186D567E00A60B43 /* Media.xcassets */; };
-		69F7856016C73A0D0060AAE9 /* WineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F7855F16C73A0D0060AAE9 /* WineTableViewController.m */; };
-		69F7856516C74AAC0060AAE9 /* WanderingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F7856416C74AAC0060AAE9 /* WanderingsTableViewController.m */; };
+		69F7856016C73A0D0060AAE9 /* MapTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F7855F16C73A0D0060AAE9 /* MapTableViewController.m */; };
 		69FBB5351711279F002F6E4D /* Tag+CreateMany.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FBB5341711279E002F6E4D /* Tag+CreateMany.m */; };
 		69FBB53817121DA9002F6E4D /* Category+CreateMany.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FBB53717121DA9002F6E4D /* Category+CreateMany.m */; };
+		69FDC457195F90920082CE4B /* OLD iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69FDC456195F90920082CE4B /* OLD iPhone.storyboard */; };
+		69FDC459196274F80082CE4B /* PostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FDC458196274F80082CE4B /* PostsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,8 +114,6 @@
 		691E62A91693869C00467600 /* AtomicGetFileFromRemoteURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicGetFileFromRemoteURL.m; sourceTree = "<group>"; };
 		691E62AB1693B0B300467600 /* XMLFileGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLFileGetter.h; sourceTree = "<group>"; };
 		691E62AC1693B0B300467600 /* XMLFileGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLFileGetter.m; sourceTree = "<group>"; };
-		692EE52216C5D817007F49B2 /* FoodTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodTableViewController.h; sourceTree = "<group>"; };
-		692EE52316C5D817007F49B2 /* FoodTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodTableViewController.m; sourceTree = "<group>"; };
 		6930A141186F6BC3001F8EF6 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 		6930A143186F6BD8001F8EF6 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
 		693731C2165DFC71005AE8F1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -164,6 +163,7 @@
 		699558DE15706A0800B25C6D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		699558E015706BE300B25C6D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		699558E115706BE300B25C6D /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		699A36B3196621A70052AF3D /* OLDCategoryDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OLDCategoryDictionary.plist; sourceTree = SOURCE_ROOT; };
 		69AD488A156054C9009976B8 /* OurItalianTable Posts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OurItalianTable Posts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69AD488E156054C9009976B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		69AD4890156054C9009976B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -243,14 +243,15 @@
 		69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionAnnotation.h; sourceTree = "<group>"; };
 		69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionAnnotation.m; sourceTree = "<group>"; };
 		69F39547186D567E00A60B43 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		69F7855F16C73A0D0060AAE9 /* WineTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineTableViewController.m; sourceTree = "<group>"; };
-		69F7856216C73A1F0060AAE9 /* WIneTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WIneTableViewController.h; sourceTree = "<group>"; };
-		69F7856316C74A960060AAE9 /* WanderingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WanderingsTableViewController.h; sourceTree = "<group>"; };
-		69F7856416C74AAC0060AAE9 /* WanderingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WanderingsTableViewController.m; sourceTree = "<group>"; };
+		69F7855F16C73A0D0060AAE9 /* MapTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTableViewController.m; sourceTree = "<group>"; };
+		69F7856216C73A1F0060AAE9 /* MapTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTableViewController.h; sourceTree = "<group>"; };
 		69FBB5331711279E002F6E4D /* Tag+CreateMany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tag+CreateMany.h"; sourceTree = "<group>"; };
 		69FBB5341711279E002F6E4D /* Tag+CreateMany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+CreateMany.m"; sourceTree = "<group>"; };
 		69FBB53617121DA9002F6E4D /* Category+CreateMany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Category+CreateMany.h"; sourceTree = "<group>"; };
 		69FBB53717121DA9002F6E4D /* Category+CreateMany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CreateMany.m"; sourceTree = "<group>"; };
+		69FDC456195F90920082CE4B /* OLD iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "OLD iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
+		69FDC458196274F80082CE4B /* PostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewController.m; sourceTree = "<group>"; };
+		69FDC45A196275070082CE4B /* PostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,16 +294,16 @@
 		692C1F681734B142005F0804 /* Table View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6984EE5B186FD6E80059A3CF /* OITCoreDataTableViewController.h */,
+				6984EE5C186FD6E80059A3CF /* OITCoreDataTableViewController.m */,
 				697559E3168E6C850076DFED /* GeneralizedPostsTableViewController.h */,
 				697559E4168E6C850076DFED /* GeneralizedPostsTableViewController.m */,
 				6930A143186F6BD8001F8EF6 /* IconDownloader.h */,
 				6930A141186F6BC3001F8EF6 /* IconDownloader.m */,
-				692EE52216C5D817007F49B2 /* FoodTableViewController.h */,
-				692EE52316C5D817007F49B2 /* FoodTableViewController.m */,
-				69F7856216C73A1F0060AAE9 /* WIneTableViewController.h */,
-				69F7855F16C73A0D0060AAE9 /* WineTableViewController.m */,
-				69F7856316C74A960060AAE9 /* WanderingsTableViewController.h */,
-				69F7856416C74AAC0060AAE9 /* WanderingsTableViewController.m */,
+				69FDC45A196275070082CE4B /* PostsTableViewController.h */,
+				69FDC458196274F80082CE4B /* PostsTableViewController.m */,
+				69F7856216C73A1F0060AAE9 /* MapTableViewController.h */,
+				69F7855F16C73A0D0060AAE9 /* MapTableViewController.m */,
 				69CA4C5A16FE621B00F9AD0F /* BookmarksTableViewController.h */,
 				69CA4C5B16FE623900F9AD0F /* BookmarksTableViewController.m */,
 			);
@@ -432,8 +433,6 @@
 				6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */,
 				69CC84D31859397700B1F053 /* OITSplitDetailViewController.h */,
 				69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */,
-				6984EE5B186FD6E80059A3CF /* OITCoreDataTableViewController.h */,
-				6984EE5C186FD6E80059A3CF /* OITCoreDataTableViewController.m */,
 				69D33DB616BE4D5900B5AC00 /* OITTabBarController.h */,
 				69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */,
 				697111EE166DD927006D93DB /* AppDelegate.h */,
@@ -468,6 +467,7 @@
 			children = (
 				695BB70F1791401100BFD1D5 /* Settings.bundle */,
 				6982328B169963CB003D43AB /* iPhone.storyboard */,
+				69FDC456195F90920082CE4B /* OLD iPhone.storyboard */,
 				69D33DB416BA4A7F00B5AC00 /* iPad.storyboard */,
 				69D1D969168EA99800540CD9 /* HTMLStyles.html */,
 				69AD4896156054C9009976B8 /* OurItalianTable Posts-Info.plist */,
@@ -476,6 +476,7 @@
 				69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */,
 				69AD48DD156056FC009976B8 /* NextImage.plist */,
 				69AD48DE156056FC009976B8 /* CategoryDictionary.plist */,
+				699A36B3196621A70052AF3D /* OLDCategoryDictionary.plist */,
 				69AD48DF156056FC009976B8 /* bios.txt */,
 			);
 			name = "Supporting Files";
@@ -589,6 +590,7 @@
 			files = (
 				69AD495D1569CC76009976B8 /* The Drago Grandparents.jpg in Resources */,
 				69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */,
+				69FDC457195F90920082CE4B /* OLD iPhone.storyboard in Resources */,
 				69AD48E2156056FC009976B8 /* NextImage.plist in Resources */,
 				69AD48E3156056FC009976B8 /* CategoryDictionary.plist in Resources */,
 				69AD48E4156056FC009976B8 /* bios.txt in Resources */,
@@ -606,6 +608,7 @@
 				69AD49491560877F009976B8 /* Baby Joe and Michele.jpg in Resources */,
 				69AD494B1560877F009976B8 /* Young mom.jpg in Resources */,
 				69AD494C1560877F009976B8 /* Popop, Dad and Joey.jpg in Resources */,
+				699A36B4196621A70052AF3D /* OLDCategoryDictionary.plist in Resources */,
 				69AD494E1560877F009976B8 /* Baby Joey.jpg in Resources */,
 				69AD494F1560877F009976B8 /* Lenny and Annie.jpg in Resources */,
 				69AD49501560877F009976B8 /* Mom, Dad and Annie with the cake.JPG in Resources */,
@@ -668,16 +671,15 @@
 				697111F0166DD927006D93DB /* AppDelegate.m in Sources */,
 				697111FD166DE13B006D93DB /* RemoteFillDatabaseFromXMLParser.m in Sources */,
 				69CBAAB1187D3CDB009223FE /* Post+Query.m in Sources */,
+				69FDC459196274F80082CE4B /* PostsTableViewController.m in Sources */,
 				697111FF166DE13B006D93DB /* ParseWordPressXML.m in Sources */,
 				69711200166DE13B006D93DB /* PostRecord.m in Sources */,
 				697559E5168E6C850076DFED /* GeneralizedPostsTableViewController.m in Sources */,
 				691E62AA1693869C00467600 /* AtomicGetFileFromRemoteURL.m in Sources */,
 				691E62AD1693B0B300467600 /* XMLFileGetter.m in Sources */,
 				69D33DB816BE4D5900B5AC00 /* OITTabBarController.m in Sources */,
-				692EE52416C5D817007F49B2 /* FoodTableViewController.m in Sources */,
-				69F7856016C73A0D0060AAE9 /* WineTableViewController.m in Sources */,
+				69F7856016C73A0D0060AAE9 /* MapTableViewController.m in Sources */,
 				6964B660184C5D6800207020 /* PageContentViewController.m in Sources */,
-				69F7856516C74AAC0060AAE9 /* WanderingsTableViewController.m in Sources */,
 				6962483E16F2FCEF00909B9B /* SSZipArchive.m in Sources */,
 				6962484916F2FCF900909B9B /* ioapi.c in Sources */,
 				6962484A16F2FCF900909B9B /* mztools.c in Sources */,
