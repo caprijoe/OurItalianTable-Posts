@@ -21,12 +21,14 @@
 #import "OITTabBarController.h"
 #import "Post+Create.h"
 
-@interface GeneralizedPostsTableViewController : OITCoreDataTableViewController <UISearchBarDelegate, WebViewControllerDelegate, NSFetchedResultsControllerDelegate, MapViewControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
+@interface GeneralizedPostsTableViewController : OITCoreDataTableViewController <UISearchBarDelegate, WebViewControllerDelegate, NSFetchedResultsControllerDelegate, UIActionSheetDelegate, RemoteFillDatabaseFromXMLParserDelegate, IconDownloaderDelegate>
 
 // public properties
 @property (nonatomic, strong) NSArray *sortDescriptors;             // Array of NSSortDescriptors for how UITableView will display "Post" entities list
 @property (nonatomic, strong) NSString *sectionKey;                 // if not nil, key for how UITableView will breakup sections
 @property (nonatomic, strong) NSPredicate *majorPredicate;          // predicate for "Post" entity to select items for this tab of a UITabViewController
+@property (nonatomic, strong) NSString *selectedRegion;             // region to show for this Table VC
+@property (nonatomic, strong) NSString *defaultContextTitle;        // when no better choice, display this title on nav VC
 
 // outlets
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;

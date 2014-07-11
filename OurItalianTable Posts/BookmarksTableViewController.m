@@ -11,13 +11,17 @@
 
 @implementation BookmarksTableViewController
 
--(void)awakeFromNib
+-(void)viewDidLoad
 {
-    [super awakeFromNib];
-    
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     self.sectionKey = nil;
     self.majorPredicate = [NSPredicate predicateWithFormat:@"bookmarked == %@", @YES];
+    self.defaultContextTitle = @"Bookmarks";
+    
+    // set no buttons
+    
+    // now call super, out of normal order
+    [super viewDidLoad];
 }
 
 -(void)resetDetailView

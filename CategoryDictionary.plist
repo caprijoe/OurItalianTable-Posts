@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Recipes</key>
+	<key>food</key>
 	<dict>
+		<key></key>
+		<string></string>
 		<key>Antipasti</key>
 		<array/>
 		<key>Beverages</key>
@@ -21,8 +23,10 @@
 		<key>Vegetables, Side Dishes</key>
 		<array/>
 	</dict>
-	<key>Regions</key>
+	<key>regions</key>
 	<dict>
+		<key></key>
+		<string></string>
 		<key>Abbruzzo</key>
 		<array>
 			<real>42.35</real>
@@ -43,6 +47,12 @@
 		<array>
 			<real>40.833333</real>
 			<real>14.25</real>
+		</array>
+		<key>Capri</key>
+		<array>
+			<real>40.55</real>
+			<real>14.233333</real>
+			<string>100px-Capri-Stemma.png</string>
 		</array>
 		<key>Emilia-Romagna</key>
 		<array>
@@ -82,6 +92,12 @@
 		<array>
 			<real>41.566667</real>
 			<real>14.666667</real>
+		</array>
+		<key>Pantelleria</key>
+		<array>
+			<real>36.833333</real>
+			<real>11.95</real>
+			<string>Pantelleria-Stemma.png</string>
 		</array>
 		<key>Piedmont</key>
 		<array>
@@ -133,33 +149,6 @@
 		<array>
 			<real>45.4375</real>
 			<real>12.335833</real>
-		</array>
-	</dict>
-	<key>Islands</key>
-	<dict>
-		<key>Capri</key>
-		<array>
-			<real>40.55</real>
-			<real>14.233333</real>
-			<string>100px-Capri-Stemma.png</string>
-		</array>
-		<key>Pantelleria</key>
-		<array>
-			<real>36.833333</real>
-			<real>11.95</real>
-			<string>Pantelleria-Stemma.png</string>
-		</array>
-		<key>Sardinia</key>
-		<array>
-			<real>40</real>
-			<real>9</real>
-			<string>530px-Sardegna-Stemma.svg.png</string>
-		</array>
-		<key>Sicily</key>
-		<array>
-			<real>37.5</real>
-			<integer>14</integer>
-			<string>Coat_of_arms_of_Sicily.svg.png</string>
 		</array>
 	</dict>
 </dict>

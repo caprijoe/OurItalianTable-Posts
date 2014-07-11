@@ -11,13 +11,30 @@
 
 @implementation PostsTableViewController
 
--(void)awakeFromNib
+-(void)viewDidLoad
 {
-    [super awakeFromNib];
-    
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
     self.sectionKey = nil;
     self.majorPredicate = nil;
+    self.defaultContextTitle = @"Our Italian Table";
+    
+    // set nav VC buttons
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    
+    // set the index button
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Index" style:UIBarButtonItemStylePlain target:self action:@selector(showTOC:)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
+    // set the refresh buttom
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshView:)];
+    self.navigationItem.leftBarButtonItem = leftButton;
+
+#pragma clang diagnostic pop
+    
+    // now call super, out of normal order
+    [super viewDidLoad];
 }
 
 @end

@@ -20,11 +20,11 @@
 #import <CoreData/CoreData.h>
 #import "OITSplitMasterViewController.h"
 
-@interface OITCoreDataTableViewController : OITSplitMasterViewController <NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate, UIScrollViewDelegate>
+@interface OITCoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate, UIScrollViewDelegate>
 
 // The controller (this class fetches nothing if this is not set).
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+// @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 // Causes the fetchedResultsController to refetch the data.
 // You almost certainly never need to call this.

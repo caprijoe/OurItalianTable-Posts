@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Xxx-oO-I4m">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Xxx-oO-I4m">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -439,7 +439,7 @@
             </objects>
             <point key="canvasLocation" x="3292" y="-2176"/>
         </scene>
-        <!--Food Table View Controller - Food-->
+        <!--Food Table View Controller - Articles-->
         <scene sceneID="gVe-WU-Atk">
             <objects>
                 <viewController id="5jD-Rt-mYd" customClass="FoodTableViewController" sceneMemberID="viewController">
@@ -528,7 +528,7 @@
                             <constraint firstItem="aV5-Ga-drJ" firstAttribute="leading" secondItem="66Y-wT-ueW" secondAttribute="leading" id="z1u-CF-c7m"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Food" image="48-fork-and-knife.png" id="9qL-15-1g2"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Articles" image="48-fork-and-knife.png" id="9qL-15-1g2"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="contextLabel" destination="4DI-TX-JgW" id="lPo-QA-p5R"/>
@@ -542,10 +542,10 @@
             </objects>
             <point key="canvasLocation" x="3401" y="-1351"/>
         </scene>
-        <!--Wine Table View Controller - WIne-->
+        <!--Map Table View Controller - Map-->
         <scene sceneID="bUu-To-hTT">
             <objects>
-                <viewController id="dX8-kw-mlt" customClass="WineTableViewController" sceneMemberID="viewController">
+                <viewController id="dX8-kw-mlt" customClass="MapTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fLx-MS-tfi"/>
                         <viewControllerLayoutGuide type="bottom" id="Vgz-rn-Vk4"/>
@@ -631,7 +631,7 @@
                             <constraint firstItem="zT3-d0-KYd" firstAttribute="trailing" secondItem="5hD-Om-8aw" secondAttribute="trailing" id="w0t-4J-Qle"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="WIne" image="273-grapes.png" id="pzU-Uf-Uao"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Map" image="273-grapes.png" id="pzU-Uf-Uao"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="contextLabel" destination="RGz-Kr-T9u" id="nAi-ZG-gNu"/>
@@ -645,7 +645,7 @@
             </objects>
             <point key="canvasLocation" x="4036" y="-1351"/>
         </scene>
-        <!--Wanderings Table View Controller - Wanderings-->
+        <!--Wanderings Table View Controller - Favorites-->
         <scene sceneID="emO-jF-XEE">
             <objects>
                 <viewController id="uf2-hB-Kmc" customClass="WanderingsTableViewController" sceneMemberID="viewController">
@@ -716,7 +716,7 @@
                             <constraint firstItem="vzh-kk-YUU" firstAttribute="trailing" secondItem="Uj8-yv-m7O" secondAttribute="trailing" id="oiT-Tf-vbq"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="Wanderings" image="103-map.png" id="7hX-2h-G5W"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Favorites" image="103-map.png" id="7hX-2h-G5W"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="contextLabel" destination="yVF-3m-95J" id="gdN-0n-Gkz"/>
@@ -731,7 +731,7 @@
             </objects>
             <point key="canvasLocation" x="4623" y="-1351"/>
         </scene>
-        <!--Bookmarks Table View Controller - Favorites-->
+        <!--Bookmarks Table View Controller - Family-->
         <scene sceneID="siv-dM-jTg">
             <objects>
                 <viewController id="2iC-86-OLL" customClass="BookmarksTableViewController" sceneMemberID="viewController">
@@ -814,7 +814,7 @@
                             <constraint firstItem="CJd-f0-VAt" firstAttribute="leading" secondItem="94H-jh-uZA" secondAttribute="leading" id="v8i-q1-gxj"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="Favorites" image="58-bookmark.png" id="rNQ-1m-UyC"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Family" image="58-bookmark.png" id="rNQ-1m-UyC"/>
                     <navigationItem key="navigationItem" id="hZM-c2-5iV"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
@@ -1045,8 +1045,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Isu-Tq-XXl"/>
-        <segue reference="Irs-f4-ma9"/>
-        <segue reference="v8W-oC-W9x"/>
+        <segue reference="gsz-kC-6Xt"/>
+        <segue reference="1Kf-wz-Ep8"/>
+        <segue reference="tzs-Jd-JNQ"/>
     </inferredMetricsTieBreakers>
 </document>

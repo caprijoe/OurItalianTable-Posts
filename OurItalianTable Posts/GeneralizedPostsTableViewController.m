@@ -16,9 +16,23 @@
 @property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
+@property (nonatomic, strong) NSString *contextTitle;
 @end
 
 @implementation GeneralizedPostsTableViewController
+
+#pragma mark - Setters/Getters
+-(void)setContextTitle:(NSString *)contextTitle
+{
+    if (contextTitle)
+        _contextTitle = contextTitle;
+    else if (self.selectedRegion)
+        _contextTitle = self.selectedRegion;
+    else
+        _contextTitle = self.defaultContextTitle;
+    
+    self.navigationItem.title = [_contextTitle capitalizedString];
+}
 
 #pragma mark - View lifecycle
 
@@ -36,6 +50,14 @@
     // init download control dict
     self.downloadControl = [[NSMutableDictionary alloc] init];
     
+    // support for change of perferred text font and size
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+
+    // if a region has been set, assume we segued from a tabviewcontroller and set up predicate
+    if (self.selectedRegion) {
+        self.majorPredicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", [self.appDelegate fixCategory:self.selectedRegion]];
+    }
+    
     // load up table if MOC available, otherwise setup notification
     if (self.appDelegate.parentMOC) {
         NSLog(@"MOC available, using");
@@ -45,19 +67,8 @@
         [self setupDBOpenedNotification];
     }
     
-    // support for change of perferred text font and size
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
-
     // set the title
-    [self updateContext:@"Our Italian Table"];
-    
-    // set the index button
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Index" style:UIBarButtonItemStylePlain target:self action:@selector(showTOC:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    
-    // set the refresh buttom
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshView:)];
-    self.navigationItem.leftBarButtonItem = leftButton;
+    self.contextTitle = nil;;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -84,22 +95,16 @@
     [self.refreshControl endRefreshing];
     
     // reset context label
-    [self updateContext:@"Our Italian Table"];
+    self.contextTitle = nil;;
     
     // reset fetch controller
-    [self setupFetchedResultsControllerWithPredicate:self.majorPredicate];
+    [self setupFetchedResultsControllerWithPredicate:nil];
     
     // if on an ipad, reset right side too
     [self resetDetailView];
     
     // reset table view to top (0,0) & reload table
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-}
-
-// update context at bottom of tableviewcontroller
--(void)updateContext:(NSString *)detail
-{
-    self.navigationItem.title = detail;
 }
 
 #pragma mark - Update UITableView when UIRefreshControl pull down
@@ -250,7 +255,15 @@
     request.sortDescriptors = self.sortDescriptors;
     
     // setup the predicate
-    request.predicate = predicate;
+    NSMutableArray *predicateArray = [NSMutableArray arrayWithCapacity:2];
+    
+    if (self.majorPredicate)
+        [predicateArray addObject:self.majorPredicate];
+    
+    if (predicate)
+        [predicateArray addObject:predicate];
+    
+    request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:[predicateArray copy]];
     
     // setup controller
     [self.appDelegate.parentMOC performBlockAndWait:^{
@@ -326,14 +339,13 @@
     [searchBar resignFirstResponder];
     
     // set the context field
-    [self updateContext:searchBar.text];
+    self.contextTitle = searchBar.text;
     
     // setup fetch predicate
-    NSPredicate *seachPredicate = [NSPredicate predicateWithFormat:@"(postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@)", searchBar.text, searchBar.text, searchBar.text];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[self.majorPredicate, seachPredicate]];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"(postHTML contains[cd] %@) OR (ANY whichTags.tagString contains[cd] %@) OR (postName contains[cd] %@)", searchBar.text, searchBar.text, searchBar.text];
     
     // setup NSFetchedResultsController
-    [self setupFetchedResultsControllerWithPredicate:predicate];
+    [self setupFetchedResultsControllerWithPredicate:searchPredicate];
     
     // clear out search bar
     searchBar.text = nil;
@@ -369,7 +381,7 @@
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     // update context field at top of screen
-    [self updateContext:[self.tableView.dataSource tableView:self.tableView titleForHeaderInSection:section]];
+    self.contextTitle = [self.tableView.dataSource tableView:self.tableView titleForHeaderInSection:section];
 }
 
 #pragma mark - PostsDetailViewControllerDelegate method call back
@@ -384,7 +396,7 @@
     [self setupFetchedResultsControllerWithPredicate:predicate];
     
     // update context at top of view
-    [self updateContext:tag];
+    self.contextTitle = tag;
     
     // force the root controller on screen (should not be on screen now because last selection was detailed popover)
     // suppress ARC warning about memory leak - not an issue
@@ -402,6 +414,20 @@
     else {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+-(IBAction)unwindFromPostDetail:(UIStoryboardSegue *)segue {
+    
+    PostDetailViewController *postDetailVC = [segue sourceViewController];
+    
+    // setup search predicate
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"(ANY whichTags.tagString =[cd] %@)", postDetailVC.clickedTag];
+    
+    // setup new controller, fetch and reload data
+    [self setupFetchedResultsControllerWithPredicate:searchPredicate];
+    
+    // update context at top of view
+    self.contextTitle = postDetailVC.clickedTag;
 }
 
 #pragma mark - TOCViewController unwind
@@ -431,11 +457,11 @@
         
         // update context at top of view
         if (TOCvc.pickedPostType)
-            [self updateContext:[TOCvc.pickedPostType capitalizedString]];
+            self.contextTitle = TOCvc.pickedPostType;
         else if (TOCvc.pickedGeo)
-            [self updateContext:[TOCvc.pickedGeo capitalizedString]];
+            self.contextTitle = TOCvc.pickedGeo;
         else if (TOCvc.pickedFoodType)
-            [self updateContext:[TOCvc.pickedFoodType capitalizedString]];
+            self.contextTitle = TOCvc.pickedFoodType;
     }
 }
 
