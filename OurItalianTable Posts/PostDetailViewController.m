@@ -83,6 +83,7 @@
         
         // set initial button state
         UIButton *tagButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        tagButton.showsTouchWhenHighlighted = YES;
         
         // determine the size of this button and it it will fit on the current line, if not move to next line
         [[tagButton titleLabel] setFont:font];
