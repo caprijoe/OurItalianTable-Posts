@@ -8,6 +8,10 @@
 
 #import "PostDetailViewController.h"
 
+@interface PostDetailViewController ()
+@property (nonatomic, strong) NSString *clickedTag;     // selected tag
+@end
+
 @implementation PostDetailViewController
 
 #pragma mark - View lifecycle
@@ -115,24 +119,19 @@
     self.tagsText.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 }
 
-- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
-    
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification
+{
     // override from abstract class
     [self setupFonts];
     [self draw2DTagCloud];
     [self.view setNeedsLayout];
-    
 }
 
 #pragma mark - Selector for custom button
 -(void)takeAction:(UIButton *)button
 {
-        
-    // set the text in the public property
-    self.clickedTag = button.titleLabel.text;
-    
-    // perform unwind segue
-    [self performSegueWithIdentifier:@"unwindFromPostDetail" sender:self];
+    // call back with button pressed
+    [self.delegate didClickTag:button.titleLabel.text];
 }
 
 @end

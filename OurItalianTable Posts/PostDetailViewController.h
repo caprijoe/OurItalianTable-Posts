@@ -6,17 +6,21 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "OITViewController.h"
-#import "GeneralizedPostsTableViewController.h"
 #import "Post.h"
 #import "Tag.h"
 
+@protocol PostsDetailViewControllerDelegate <NSObject>
+-(void)didClickTag:(NSString *)tag;
+@end
+
 @interface PostDetailViewController : OITViewController
+
+// delegate to pass along call back from detail controller
+@property (nonatomic, weak) id <PostsDetailViewControllerDelegate> delegate;
 
 // public properties
 @property (nonatomic, strong) Post *postDetail;         // post for which detail will be displayed
-@property (nonatomic, strong) NSString *clickedTag;     // selected tag
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UIImageView *authorPicture;
