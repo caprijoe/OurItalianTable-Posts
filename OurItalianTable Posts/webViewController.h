@@ -1,5 +1,5 @@
 //
-//  webViewController.h
+//  WebViewController.h
 //  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 12/29/11.
@@ -11,20 +11,24 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import <Twitter/Twitter.h>
-#import "OITSplitDetailViewController.h"
-#import "Post.h"
+#import "SplitViewBarButtonItemPresenter.h"
+#import "PostDetailViewController.h"
 
-@protocol WebViewControllerDelegate
--(void)didClickTag:(NSString *)tag;
+@protocol WebViewControllerDelegate <NSObject>
+-(void)didClickTag:(NSString *)string;
 @end
 
-@interface WebViewController : OITSplitDetailViewController
+@interface WebViewController : UIViewController <PostsDetailViewControllerDelegate, SplitViewBarButtonItemPresenter>
+
+// public delegate
+@property (nonatomic, weak) id<WebViewControllerDelegate> delegate;
 
 // outlets
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *infoButton;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *mapButton;
 
 // public properties
 @property (nonatomic, strong) Post *thisPost;                                   // post to be displayed
-@property (nonatomic, strong) id <WebViewControllerDelegate> delegate;          // delegate call back for TAG button
 
 @end

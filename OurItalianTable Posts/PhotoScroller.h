@@ -1,5 +1,5 @@
 //
-//  NewPhotoScroller.h
+//  hotoScroller.h
 //  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 12/1/13.
@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OITSplitDetailViewController.h"
+
 #import "PageContentViewController.h"
 #import "SplitViewBarButtonItemPresenter.h"
 
-@interface PhotoScroller : OITSplitDetailViewController <UIPageViewControllerDataSource, SplitViewBarButtonItemPresenter>
+@interface PhotoScroller : UIViewController <UIPageViewControllerDataSource, SplitViewBarButtonItemPresenter>
+
+// outlets
 @property (weak, nonatomic) IBOutlet UIView *mainView;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end

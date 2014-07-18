@@ -1,5 +1,5 @@
 //
-//  NewPhotoScroller.m
+//  PhotoScroller.m
 //  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 12/1/13.
@@ -14,6 +14,14 @@
 @end
 
 @implementation PhotoScroller
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+
+#pragma mark - Setters/Getters
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+    _splitViewBarButtonItem = barButtonItem;
+}
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
@@ -43,6 +51,10 @@
     [self addChildViewController:_pageViewController];
     [self.mainView addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+    
+    // support for change of perferred text font and size
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+
 }
 
 #pragma mark - Private methods
@@ -58,6 +70,12 @@
     pageContentViewController.pageIndex = index;
     
     return pageContentViewController;
+}
+
+#pragma mark - Dynamic type support
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification
+{
+    //
 }
 
 #pragma mark - UIPageViewControllerDataSourceDelegate methods
@@ -88,15 +106,5 @@
     }
     return [self viewControllerAtIndex:index];
 }
-
-/* #pragma mark - Rotation support
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
-    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
-    self.toolbar.items = toolbarsItems;
-    _splitViewBarButtonItem = barButtonItem;
-} */
 
 @end

@@ -7,11 +7,8 @@
 //
 
 #import "WebViewController.h"
-#import "PostDetailViewController.h"
 #import "LocationMapViewController.h"
-#import "SharedUserDefaults.h"
 
-#define FAVORITES_KEY       @"FAVORITES_KEY"
 #define CSS_IMPORT_FILENAME @"HTMLStyles"
 #define DOUBLE_QUOTE_CHAR   @"\""
 #define IMAGE_SCALE         .95
@@ -27,49 +24,39 @@
 @end
 
 @implementation WebViewController
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
+#pragma mark - Setters/Getters
 -(void)setThisPost:(Post *)thisPost
 {
     _thisPost = thisPost;
-    
-    // if we haven't loaded the css header, do it now...
-    if(!self.cssHTMLHeader) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:CSS_IMPORT_FILENAME ofType:@"html"];
-        NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
-        self.cssHTMLHeader = [[NSString alloc] initWithData: 
-                              [readHandle readDataToEndOfFile] encoding:NSASCIIStringEncoding]; 
-    }
+    (_thisPost) ? [self loadPost] : [self loadLogo];
+}
+
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+    _splitViewBarButtonItem = barButtonItem;
 }
 
 #pragma mark - View lifecycle support
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // configure buttons
-    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"42-info"] style:UIBarButtonItemStylePlain target:self action:@selector(showDetail:)];
-    UIBarButtonItem *forwardButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(sharePost:)];
-    UIBarButtonItem *bookmarksButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(addToFavorites:)];
-    UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"71-compass"] style:UIBarButtonItemStylePlain target:self action:@selector(showLocationMap)];
+    //
+    [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
+
+    // support for change of perferred text font and size
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
-    // if no coordinates in post, delete compass icon (last object)
-    if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0)
-        self.navigationItem.rightBarButtonItems = @[infoButton, forwardButton, bookmarksButton ];
-    else
-        self.navigationItem.rightBarButtonItems = @[infoButton, forwardButton, mapButton, bookmarksButton  ];
-    
-    // fix CRLFs & WP caption blocks so they show on in webview
-    NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.thisPost.postHTML]];
-            
-    // Load up the style list, and the title and append
-    NSString *titleTags = [NSString stringWithFormat:@"<h1>%@</h1>",self.thisPost.postName];
-    NSString *finalHTMLstring = [[self.cssHTMLHeader stringByAppendingString:titleTags] stringByAppendingString:modifiedHTML];
-    
-    //show webview
-    [self.webView loadHTMLString:finalHTMLstring baseURL:nil];
-    
-    // save final html in instance var for sharing button
-    self.loadedHTML = finalHTMLstring;                                  
+    // if the post is not-nil, load it; else just load the logo
+    self.thisPost ? [self loadPost] : [self loadLogo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -82,17 +69,69 @@
 }
 
 #pragma mark - Private methods for editing HTML
+-(void)loadPost
+{
+    // configure buttons in storyboard
+    self.infoButton.target = self;
+    self.infoButton.action = @selector(showDetail:);
+    self.mapButton.target = self;
+    self.mapButton.action = @selector(showLocationMap);
+    
+    // configure buttons without segues
+    UIBarButtonItem *forwardButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(sharePost:)];
+    UIBarButtonItem *bookmarksButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(addToFavorites:)];
+    
+    // if no coordinates in post, delete compass icon (last object)
+    if (self.thisPost.latitude == 0 && self.thisPost.longitude == 0)
+        self.navigationItem.rightBarButtonItems = @[self.infoButton, forwardButton, bookmarksButton ];
+    else
+        self.navigationItem.rightBarButtonItems = @[self.infoButton, forwardButton, self.mapButton, bookmarksButton  ];
+    
+    // if we haven't loaded the css header, do it now...
+    if(!self.cssHTMLHeader) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:CSS_IMPORT_FILENAME ofType:@"html"];
+        NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
+        self.cssHTMLHeader = [[NSString alloc] initWithData:
+                              [readHandle readDataToEndOfFile] encoding:NSASCIIStringEncoding];
+    }
+    
+    // fix CRLFs & WP caption blocks so they show on in webview
+    NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.thisPost.postHTML]];
+    
+    // Load up the style list, and the title and append
+    NSString *titleTags = [NSString stringWithFormat:@"<h1>%@</h1>",self.thisPost.postName];
+    NSString *finalHTMLstring = [[self.cssHTMLHeader stringByAppendingString:titleTags] stringByAppendingString:modifiedHTML];
+    
+    //show webview
+    [self.webView loadHTMLString:finalHTMLstring baseURL:nil];
+    
+    // save final html in instance var for sharing button
+    self.loadedHTML = finalHTMLstring;
+}
+
+-(void)loadLogo
+{
+    NSString *imageName = [[NSBundle mainBundle] pathForResource:@"ouritaliantable-original-transparent" ofType:@"gif"];
+	NSURL *imageURL = [NSURL fileURLWithPath: imageName];
+	NSURLRequest *imageRequest = [NSURLRequest requestWithURL: imageURL];
+    
+	// Load image in UIWebView
+	self.webView.scalesPageToFit = YES;
+	[self.webView loadRequest: imageRequest];
+    
+    self.navigationItem.rightBarButtonItem = nil;
+}
 
 -(NSString *)grabTextFrom:(NSString *)incomingText
-     viaRegularExpression:(NSString *)regexString {
-    
+     viaRegularExpression:(NSString *)regexString
+{
     NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:regexString options:NSRegularExpressionCaseInsensitive error:nil];
     NSTextCheckingResult *result = [regex firstMatchInString:incomingText options:NSMatchingReportProgress range:NSMakeRange(0, [incomingText length])];
     return [incomingText substringWithRange:result.range];
 }
 
--(NSString *)modifyCaptionBlock:(NSString *)originalCaptionBlock {
-    
+-(NSString *)modifyCaptionBlock:(NSString *)originalCaptionBlock
+{
     NSString *alignmentAttributeText;                                                   // location for storing "align=" value
     NSString *captionAttributeText;                                                     // location for storing "caption=" value
     NSString *captionText;                                                              // location for storing -></a>text[/caption]
@@ -108,8 +147,8 @@
     return [[NSString alloc] initWithFormat:@"<div class=\"%@ captionfont\" style=\"width:%@ px;text-align:center;\">%@<br>%@</div>", alignmentAttributeText, imageWidthOnTag, imageTag, ([captionAttributeText length] != 0) ? captionAttributeText : captionText];    
 }
 
--(NSString *)convertCRLFstoPtag:(NSString *)incomingText {
-    
+-(NSString *)convertCRLFstoPtag:(NSString *)incomingText
+{
     /* print string in hex
      
      NSMutableString *result = [[NSMutableString alloc] init];
@@ -124,10 +163,10 @@
     /*    return [incomingText stringByReplacingOccurrencesOfString:@"\n\n" withString:@"<p>\n"]; */
     
     return [incomingText stringByReplacingOccurrencesOfString:@"\x0D\x0A\x0D\x0A" withString:@"<p>\x0D\x0A"];
-    
 }
 
--(NSString *)modifyAllCaptionBlocks:(NSString *)incomingText {
+-(NSString *)modifyAllCaptionBlocks:(NSString *)incomingText
+{
     // captionScanner - edit the caption to true <div> structures; change WP to div. see example below
     
     /* [caption id="attachment_156" align="alignleft" width="300" caption="Zuppa Gallurese"]<a href="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg"><img class="size-medium wp-image-156" src="http://ouritaliantable.files.wordpress.com/2008/08/zuppagallurese-031.jpg?w=300" alt="Zuppa Gallurese" width="300" height="199" /></a>[/caption] */
@@ -157,8 +196,13 @@
     return accumulatedHTML;
 }
 
-#pragma mark - Action sheets
+#pragma mark - Dynamic type support
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification
+{
+    //
+}
 
+#pragma mark - Action sheets
 #define BOOKMARKS_TITLE @"Favorites"
 #define ADD_BUTTON      @"Add Favorite"
 #define REMOVE_BUTTON   @"Remove Favorite"
@@ -169,8 +213,8 @@
 #define SMS_BUTTON      @"Message"
 #define CANCEL_BUTTON   @"Cancel"
 
--(void)presentActionSheetforBookmarkFromBarButton:(UIBarButtonItem *)button {
-    
+-(void)presentActionSheetforBookmarkFromBarButton:(UIBarButtonItem *)button
+{
     // if bookmark sheet is up, dismiss it
     if (self.bookmarksActionSheet) {
         [self.bookmarksActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
@@ -196,8 +240,8 @@
     [self.bookmarksActionSheet showFromBarButtonItem:button animated:YES];
 }
 
--(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button {
-    
+-(void)presentActionSheetforSharingFromBarButton:(UIBarButtonItem *)button
+{
     // if sharing sheet is up, dismiss it
     if (self.sharingActionSheet) {
         [self.sharingActionSheet dismissWithClickedButtonIndex:-1 animated:YES];
@@ -216,8 +260,8 @@
     [self.sharingActionSheet showFromBarButtonItem:button animated:YES];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
     // record sheet being dismissed
     if (actionSheet == self.sharingActionSheet) {
         self.sharingActionSheet = nil;
@@ -226,8 +270,8 @@
     
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     if ([self.currentActionSheet isEqualToString:BOOKMARKS_TITLE]) {
         
         // get button pressed
@@ -259,7 +303,6 @@
 #pragma mark - Support for each sharing method
 -(void)showSimpleAlertWithTitle:(NSString *)title withMessage:(NSString *)message
 {
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                     message:message
                                                    delegate:nil
@@ -268,9 +311,7 @@
     [alert show];
 }
 
-
 #pragma mark - Share post via e-mail
-
 -(void)shareViaEmail {
     
     if ([MFMailComposeViewController canSendMail]) {
@@ -298,9 +339,8 @@
 }
 
 #pragma mark - Share post via Twitter
-
--(void)shareViaTweet {
-    
+-(void)shareViaTweet
+{
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
         SLComposeViewController *tweetController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         [tweetController setInitialText:self.thisPost.postName];
@@ -314,9 +354,8 @@
 }
 
 #pragma mark - Share post via Facebook
-
--(void)shareViaFacebook {
-    
+-(void)shareViaFacebook
+{
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
         SLComposeViewController *facebookController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         [facebookController setInitialText:self.thisPost.postName];
@@ -332,9 +371,8 @@
 }
 
 #pragma mark - Share post via Message (SMS)
-
--(void)shareViaMessage {
-    
+-(void)shareViaMessage
+{
     if ([MFMessageComposeViewController canSendText]) {
         MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
         messageController.body = [NSString stringWithFormat:@"%@ - %@",self.thisPost.postName, self.thisPost.postURLstring];
@@ -346,22 +384,22 @@
     }
 }
 
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - Location map support
-
 -(void)showLocationMap
 {
     [self performSegueWithIdentifier:@"Push Location Map" sender:self];
 }
 
 #pragma mark - Segue support
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Push Post Detail"]) {
         [segue.destinationViewController setPostDetail:self.thisPost];
+        [segue.destinationViewController setDelegate:self];
         
         // if we're segueing to a popover, save it in self and in the destination controller
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
@@ -377,8 +415,8 @@
     }
 }
 
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
     if ([identifier isEqualToString:@"Push Post Detail"]) {
         return self.detailPopover ? NO: YES;
     } else if ([identifier isEqualToString:@"Push Location Map"]) {
@@ -389,26 +427,25 @@
 }
 
 #pragma mark - IBActions
-- (IBAction)addToFavorites:(UIBarButtonItem *)sender {
+- (IBAction)addToFavorites:(UIBarButtonItem *)sender
+{
     [self presentActionSheetforBookmarkFromBarButton:sender];
 }
 
-- (IBAction)sharePost:(UIBarButtonItem *)sender {
+- (IBAction)sharePost:(UIBarButtonItem *)sender
+{
     [self presentActionSheetforSharingFromBarButton:sender];
 }
 
--(IBAction)showDetail:(id)sender {
+-(IBAction)showDetail:(id)sender
+{
     [self performSegueWithIdentifier:@"Push Post Detail" sender:self];
 }
 
-- (IBAction)fireBackButton:(UIBarButtonItem *)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - External Delegates
+#pragma mark - PostDetaiViewControllerDelegate call back
 -(void)didClickTag:(NSString *)tag
 {
     [self.delegate didClickTag:tag];
 }
+
 @end
