@@ -15,10 +15,12 @@
 @implementation MapViewController
 
 #pragma mark - View lifecycle
-
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // support for change of perferred text font and size
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     
     // setup the map type and set the UIMapView delegate
     self.mapView.mapType = MKMapTypeHybrid;
@@ -26,7 +28,6 @@
     
     // reset context label
     self.navigationItem.title = @"Our Italian Table";
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -40,6 +41,7 @@
     });
 }
 
+#pragma mark - Rotation support
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     // re-layout pins on rotation event
@@ -47,7 +49,6 @@
 }
 
 #pragma mark - Private methods
-
 -(void)addAnnotations
 {
     // setup the appdelegate to access the MOC
@@ -63,8 +64,7 @@
         
         // if there is annotation information, load into annotation object list
         NSArray *geoInfo = appDelegate.categoryDictionary[@"regions"][region[@"geo"]];
-
-        
+\
         if ([geoInfo count] > 2)
         {
             // create an annotation object with the coordinates
@@ -82,8 +82,13 @@
     [self.mapView showAnnotations:self.mapView.annotations animated:YES];
 }
 
-#pragma mark MKMapViewDelegate
+#pragma mark - Dynamic type support
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification
+{
+    //
+}
 
+#pragma mark - MKMapViewDelegate
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(RegionAnnotation *)annotation
 {
     static NSString *pinIdentifier = @"pinIdentifier";
@@ -128,12 +133,11 @@
 }
 
 #pragma mark - Segue support
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Show Region Posts"]) {
         [segue.destinationViewController setSelectedRegion:self.selectedRegion];
-//        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
+        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     }
 }
 

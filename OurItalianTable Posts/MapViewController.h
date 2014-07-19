@@ -9,13 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-#import "GeneralizedPostsTableViewController.h"
-#import "OITSplitDetailViewController.h"
+#import "UIViewController+SplitMasterVC.h"
 #import "AppDelegate.h"
 #import "Post+Query.h"
 #import "RegionAnnotation.h"
-#import "WebViewController.h"
-#import "RegionAnnotationView.h"
 
 @class MapViewController;
 
@@ -25,11 +22,10 @@
      sectionNumber:(NSInteger)section;
 @end
 
-@interface MapViewController : OITSplitDetailViewController <MKMapViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate>
 
 // outlets
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
-@property (nonatomic,weak) IBOutlet UIToolbar *toolbar;
 
 // public properties
 @property (nonatomic, strong) id<MapViewControllerDelegate> delegate;
