@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     
-    // set the button for portrait mode
+    // set button for initial startup (before rotation)
     [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
     
     // set window title

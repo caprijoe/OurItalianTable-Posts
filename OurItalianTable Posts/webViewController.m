@@ -44,7 +44,7 @@
 {
     [super viewDidLoad];
     
-    //
+    // set button for initial startup (before rotation)
     [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
 
     // support for change of perferred text font and size
@@ -94,6 +94,9 @@
         self.cssHTMLHeader = [[NSString alloc] initWithData:
                               [readHandle readDataToEndOfFile] encoding:NSASCIIStringEncoding];
     }
+    
+    // load title
+    self.navigationItem.title = self.thisPost.postName;
     
     // fix CRLFs & WP caption blocks so they show on in webview
     NSString *modifiedHTML = [self modifyAllCaptionBlocks:[self convertCRLFstoPtag:self.thisPost.postHTML]];
