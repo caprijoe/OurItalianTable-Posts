@@ -11,6 +11,7 @@
 
 @interface OITTabBarController : UITabBarController <UISplitViewControllerDelegate, UITabBarControllerDelegate>
 
+// public properties
 @property (nonatomic,strong) UIPopoverController *masterPopoverController;      // left master popover for dismissing by right as needed
 
 @end
