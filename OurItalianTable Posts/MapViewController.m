@@ -64,7 +64,7 @@
         
         // if there is annotation information, load into annotation object list
         NSArray *geoInfo = appDelegate.categoryDictionary[@"regions"][region[@"geo"]];
-\
+
         if ([geoInfo count] > 2)
         {
             // create an annotation object with the coordinates
@@ -137,7 +137,6 @@
 {
     if ([segue.identifier isEqualToString:@"Show Region Posts"]) {
         [segue.destinationViewController setSelectedRegion:self.selectedRegion];
-        [self transferSplitViewBarButtonItemToViewController:segue.destinationViewController];
     }
 }
 
