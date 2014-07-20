@@ -18,7 +18,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "OITSplitMasterViewController.h"
+
+#import "UIViewController+SplitMasterVC.h"
 
 @interface OITCoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate, UIScrollViewDelegate>
 
