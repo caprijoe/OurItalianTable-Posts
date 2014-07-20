@@ -13,7 +13,6 @@
 @interface GeneralizedPostsTableViewController ();
 @property (nonatomic, strong) Post *postRecord;
 @property (nonatomic, strong) AppDelegate *appDelegate;
-@property (nonatomic, strong) RemoteFillDatabaseFromXMLParser *thisRemoteDatabaseFiller;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
 @property (nonatomic, strong) NSString *contextTitle;
 @end
