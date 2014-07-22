@@ -17,7 +17,6 @@
 
 -(NSString *)subtitle 
 {
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterLongStyle];
         

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+
 #import "Post.h"
 
 @interface MapAnnotation : NSObject <MKAnnotation>
