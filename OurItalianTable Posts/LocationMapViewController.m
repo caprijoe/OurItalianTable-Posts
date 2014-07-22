@@ -12,7 +12,6 @@
 @implementation LocationMapViewController
 
 #pragma mark - View Lifecycle Methods
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -29,7 +28,7 @@
         [self.mapView showAnnotations:self.mapView.annotations animated:YES];
     }
     
-    // set title
+    // set title when in UINavVC
     self.navigationItem.title = self.locationRecord.postName;
 }
 
