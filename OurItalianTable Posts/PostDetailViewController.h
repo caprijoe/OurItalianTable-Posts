@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Our Italian Table. All rights reserved.
 //
 
-#import "OITViewController.h"
 #import "Post.h"
 #import "Tag.h"
 
@@ -14,7 +13,7 @@
 -(void)didClickTag:(NSString *)tag;
 @end
 
-@interface PostDetailViewController : OITViewController
+@interface PostDetailViewController : UIViewController
 
 // delegate to pass along call back from detail controller
 @property (nonatomic, weak) id <PostsDetailViewControllerDelegate> delegate;
