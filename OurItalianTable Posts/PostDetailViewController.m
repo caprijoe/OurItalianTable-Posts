@@ -21,6 +21,9 @@
     
     // setup fonts
     [self setupFonts];
+    
+    // support for change of perferred text font and size
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
