@@ -43,20 +43,12 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     // set button for initial startup (before rotation)
     [self setSplitViewBarButtonItem:self.splitViewBarButtonItem];
 
     // support for change of perferred text font and size
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    // if the post is not-nil, load it; else just load the logo
-    self.thisPost ? [self loadPost] : [self loadLogo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -68,14 +60,14 @@
     [self.locationPopover dismissPopoverAnimated:YES];
 }
 
-#pragma mark - Private methods for editing HTML
+#pragma mark - Private methods
 -(void)loadPost
 {
     // configure buttons in storyboard
     self.infoButton.target = self;
     self.infoButton.action = @selector(showDetail:);
     self.mapButton.target = self;
-    self.mapButton.action = @selector(showLocationMap);
+    self.mapButton.action = @selector(showLocationMap:);
     
     // configure buttons without segues
     UIBarButtonItem *forwardButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(sharePost:)];
@@ -114,15 +106,15 @@
 
 -(void)loadLogo
 {
-    NSString *imageName = [[NSBundle mainBundle] pathForResource:@"ouritaliantable-original-transparent" ofType:@"gif"];
-	NSURL *imageURL = [NSURL fileURLWithPath: imageName];
-	NSURLRequest *imageRequest = [NSURLRequest requestWithURL: imageURL];
     
-	// Load image in UIWebView
-	self.webView.scalesPageToFit = YES;
-	[self.webView loadRequest: imageRequest];
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:path];
+    NSString *htmlString = @"<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}html {display: table;}body {display: table-cell;vertical-align: middle;padding: 20px;text-align: center;-webkit-text-size-adjust: none;}</style></head><body><img src=\"ouritaliantable-original-transparent.gif\"></body></html>​";
     
-    self.navigationItem.rightBarButtonItem = nil;
+    [self.webView loadHTMLString:htmlString baseURL:baseURL];
+    
+    self.navigationItem.rightBarButtonItems = nil;
+    self.navigationItem.title = nil;
 }
 
 -(NSString *)grabTextFrom:(NSString *)incomingText
@@ -315,8 +307,8 @@
 }
 
 #pragma mark - Share post via e-mail
--(void)shareViaEmail {
-    
+-(void)shareViaEmail
+{
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         mailer.mailComposeDelegate = self;
@@ -392,14 +384,9 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma mark - Location map support
--(void)showLocationMap
-{
-    [self performSegueWithIdentifier:@"Push Location Map" sender:self];
-}
-
 #pragma mark - Segue support
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if ([segue.identifier isEqualToString:@"Push Post Detail"]) {
         [segue.destinationViewController setPostDetail:self.thisPost];
         [segue.destinationViewController setDelegate:self];
@@ -430,6 +417,11 @@
 }
 
 #pragma mark - IBActions
+-(IBAction)showLocationMap:(UIBarButtonItem *)sender
+{
+    [self performSegueWithIdentifier:@"Push Location Map" sender:self];
+}
+
 - (IBAction)addToFavorites:(UIBarButtonItem *)sender
 {
     [self presentActionSheetforBookmarkFromBarButton:sender];
@@ -448,7 +440,11 @@
 #pragma mark - PostDetaiViewControllerDelegate call back
 -(void)didClickTag:(NSString *)tag
 {
-    [self.delegate didClickTag:tag];
+    [self.delegate didClickTag:tag];                            // call back with tag
+    
+    // all nil if on an iphone if strictly a UINavVC
+    [self.detailPopover dismissPopoverAnimated:YES];            // dismiss the popover
+    self.detailPopover = nil;                                   // nil out the holder
 }
 
 @end
