@@ -8,10 +8,6 @@
 
 #import "PageContentViewController.h"
 
-@interface PageContentViewController ()
-
-@end
-
 @implementation PageContentViewController
 
 - (void)viewDidLoad
@@ -20,6 +16,9 @@
     
     // setup fonts
     [self setupFonts];
+    
+    // support for change of perferred text font and size
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     
     // setup the image and label on this page controller
     self.titleLabel.text = [self.imageFilename stringByDeletingPathExtension];

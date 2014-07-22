@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OITViewController.h"
 
-@interface PageContentViewController : OITViewController
+@interface PageContentViewController : UIViewController
 
 // outlets
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
