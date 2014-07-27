@@ -34,14 +34,8 @@
     
     // if we're in a split
     if (self.splitViewController) {
-        id detailVC = [self.splitViewController.viewControllers lastObject];
-        if ([detailVC isKindOfClass:[UINavigationController class]])
-            detailVC = ((UINavigationController *)detailVC).topViewController;
-        if (![detailVC isKindOfClass:[WebViewController class]])
-            [self performSegueWithIdentifier:@"Push Web View" sender:self];
-        else {
-            ((WebViewController *)detailVC).thisPost = nil;
-        }
+        [self performSegueWithIdentifier:@"Push Web View" sender:self];
     }
 }
+
 @end
