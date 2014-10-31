@@ -1,5 +1,5 @@
 //
-//  FoodTableViewController.h
+//  PostsTableViewController.h
 //  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 2/8/13.
@@ -9,5 +9,8 @@
 #import "GeneralizedPostsTableViewController.h"
 
 @interface PostsTableViewController : GeneralizedPostsTableViewController
+
+// outlets
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *indexButton;
 
 @end

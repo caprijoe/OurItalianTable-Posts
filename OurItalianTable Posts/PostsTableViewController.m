@@ -1,5 +1,5 @@
 //
-//  FoodTableViewController.m
+//  PostsTableViewController.m
 //  OurItalianTable Posts
 //
 //  Created by Joseph Becci on 2/8/13.
@@ -13,8 +13,6 @@
 
 -(void)viewDidLoad
 {
-    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
-    self.sectionKey = nil;
     self.majorPredicate = nil;
     self.defaultContextTitle = @"Our Italian Table";
     
@@ -24,8 +22,9 @@
 #pragma clang diagnostic ignored "-Wundeclared-selector"
     
     // set the index button
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Index" style:UIBarButtonItemStylePlain target:self action:@selector(showTOC:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+    self.indexButton.target = self;
+    self.indexButton.action = @selector(showTOC:);
+    self.navigationItem.rightBarButtonItem = self.indexButton;
     
     // set the refresh buttom
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshView:)];

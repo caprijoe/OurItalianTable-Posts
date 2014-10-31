@@ -39,10 +39,7 @@
 #pragma mark - Segue support
 -(void)resetDetailView
 {
-    id detailVC = [self.splitViewController.viewControllers lastObject];
-    if ([detailVC isKindOfClass:[UINavigationController class]])
-        detailVC = ((UINavigationController *)detailVC).topViewController;
-    if (![detailVC isKindOfClass:[PhotoScroller class]])
+    if (self.splitViewController)
         [self performSegueWithIdentifier:@"Push Family" sender:self];
 }
 

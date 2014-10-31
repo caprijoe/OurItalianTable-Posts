@@ -14,20 +14,9 @@
 #import "Post+Query.h"
 #import "RegionAnnotation.h"
 
-@class MapViewController;
-
-@protocol MapViewControllerDelegate
-
--(void)didMapClick:(MapViewController *)sender
-     sectionNumber:(NSInteger)section;
-@end
-
 @interface MapViewController : UIViewController <MKMapViewDelegate>
 
 // outlets
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
-
-// public properties
-@property (nonatomic, strong) id<MapViewControllerDelegate> delegate;
 
 @end

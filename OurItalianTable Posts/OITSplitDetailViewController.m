@@ -26,10 +26,7 @@
 
 -(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    NSMutableArray *toolbarsItems = [self.toolbar.items mutableCopy];
-    if (_splitViewBarButtonItem) [toolbarsItems removeObject:_splitViewBarButtonItem];
-    if(barButtonItem) [toolbarsItems insertObject:barButtonItem atIndex:0];
-    self.toolbar.items = toolbarsItems;
+    self.navigationItem.leftBarButtonItem = barButtonItem;
     _splitViewBarButtonItem = barButtonItem;
 }
 

@@ -51,7 +51,7 @@
     // support for change of perferred text font and size
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 
-    // if a region has been set, assume we segued from a tabviewcontroller and set up predicate
+    // if a region has been set, assume we segued from a tableviewcontroller and set up predicate
     if (self.selectedRegion) {
         self.majorPredicate = [NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", [self.appDelegate fixCategory:self.selectedRegion]];
     }
@@ -66,14 +66,6 @@
     }
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-    
-    // reset right side, confirm the correct VC is there and reset if needed
-    [self resetDetailView];
-}
-
 #pragma mark - Control presentation / reset to original state
 -(void)resetToAllEntries {
     
@@ -83,7 +75,8 @@
     // reset fetch controller
     [self setupFetchedResultsControllerWithPredicate:nil];
     
-    // if on an ipad, reset right side too
+    // if on an ipad, reset right side if needed
+    self.postRecord = nil;
     [self resetDetailView];
     
     // reset table view to top (0,0) & reload table
@@ -161,7 +154,6 @@
     
     [self resetToAllEntries];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
 }
 
 #pragma mark - NSFetchedResultsController setup
@@ -229,13 +221,10 @@
     self.postRecord = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // bring up web view on right with post detail
-    [self displayPost];
-    
-    // get rid of left side splitview
-    if (self.splitViewController) {
-        OITTabBarController *topVC = (OITTabBarController *)self.tabBarController;
-        [topVC.masterPopoverController dismissPopoverAnimated:YES];
-    }
+    [self resetDetailView];
+    // get rid of left side splitview when row is selected (all nil on iPhone)
+    OITTabBarController *topVC = (OITTabBarController *)self.tabBarController;
+    [topVC.masterPopoverController dismissPopoverAnimated:YES];
 }
 
 #pragma mark - UISearchBarDelegate
@@ -275,29 +264,6 @@
 
 #pragma mark - External delegates
 
-#pragma mark - MapViewControllerDelegate method call back
--(void)didMapClick:(MapViewController *)sender
-     sectionNumber:(NSInteger)section
-{
-    // force the root controller on screen (should not be on screen now because last selection was detailed popover)
-    // suppress ARC warning about memory leak - not an issue
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    
-    // get root view controllers popover button from left side and make it appear
-    UIBarButtonItem *rootPopoverButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem];
-    
-    [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
-#pragma clang diagnostic pop
-    
-    // scroll to correct position of table for region clicked
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    
-    // update context field at top of screen
-    self.contextTitle = [self.tableView.dataSource tableView:self.tableView titleForHeaderInSection:section];
-}
-
 #pragma mark - WebViewControllerDelegate method call back
 -(void)didClickTag:(NSString *)tag
 {
@@ -315,7 +281,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     
-    // pop back to top when tag clicked
+    // pop back to top when tag clicked (iphone in UINavVC)
     [self.navigationController popToRootViewControllerAnimated:YES];
     
     // get root view controllers popover button from left side and make it appear
@@ -323,11 +289,41 @@
     [rootPopoverButtonItem.target performSelector:rootPopoverButtonItem.action withObject:rootPopoverButtonItem];
 #pragma clang diagnostic pop
     
-    // reset detailed view controller
-    if (self.splitViewController)
-        [self resetDetailView];
-    else {
-        [self.navigationController popViewControllerAnimated:YES];
+    // reset detailed view controller, if needed
+    [self resetDetailView];
+}
+
+#pragma mark - TOCViewController unwind
+-(IBAction)unwindFromTOC:(UIStoryboardSegue *)segue {
+    
+    TOCViewController *TOCvc = [segue sourceViewController];
+    
+    NSMutableArray *predicateArray = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    if (TOCvc.pickedPostType) {
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", TOCvc.pickedPostType]];
+    }
+    
+    if (TOCvc.pickedGeo) {
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString contains[cd] %@)",[self.appDelegate fixCategory: TOCvc.pickedGeo]]];
+    }
+    
+    if (TOCvc.pickedFoodType) {
+        [predicateArray addObject:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString contains[cd] %@)",[self.appDelegate fixCategory: TOCvc.pickedFoodType]]];
+    }
+    
+    if ([predicateArray count]) {
+        
+        // setup new controller, fetch and reload data
+        [self setupFetchedResultsControllerWithPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:predicateArray]];
+        
+        // update context at top of view
+        if (TOCvc.pickedPostType)
+            self.contextTitle = TOCvc.pickedPostType;
+        else if (TOCvc.pickedGeo)
+            self.contextTitle = TOCvc.pickedGeo;
+        else if (TOCvc.pickedFoodType)
+            self.contextTitle = TOCvc.pickedFoodType;
     }
 }
 
@@ -343,21 +339,6 @@
 }
 
 #pragma mark - Segue support
-
--(void)displayPost
-{
-    // assume right side is a WebViewVC inside a NavVC at this point
-    
-    // if not in a splitVC, push
-    if (!self.splitViewController) {
-        [self performSegueWithIdentifier:@"Push Web View" sender:self];
-    } else {
-        UINavigationController *navVC = (UINavigationController *)self.splitViewController.viewControllers[1];
-        WebViewController *webVC = (WebViewController *)navVC.topViewController;
-        webVC.thisPost = self.postRecord;
-    }
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Push Web View"]) {

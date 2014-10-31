@@ -8,10 +8,12 @@
 
 #import "OITViewController.h"
 #import "SplitViewBarButtonItemPresenter.h"
+#import "WebViewController.h"
 
 @interface OITSplitMasterViewController : OITViewController
 
 -(id)splitViewDetailWithBarButtonItem;
 -(void)transferSplitViewBarButtonItemToViewController:(id)destinationViewController;
+-(void)resetDetailView;
 
 @end

@@ -44,7 +44,7 @@
 		69AD4891156054C9009976B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AD4890156054C9009976B8 /* Foundation.framework */; };
 		69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69AD4897156054C9009976B8 /* InfoPlist.strings */; };
 		69AD489B156054C9009976B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD489A156054C9009976B8 /* main.m */; };
-		69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48AE156056A9009976B8 /* OITLaunchViewController.m */; };
+		69AD48CC156056A9009976B8 /* FamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48AE156056A9009976B8 /* FamilyViewController.m */; };
 		69AD48D3156056A9009976B8 /* TOCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48BC156056A9009976B8 /* TOCViewController.m */; };
 		69AD48D6156056A9009976B8 /* MapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C2156056A9009976B8 /* MapAnnotation.m */; };
 		69AD48D7156056A9009976B8 /* SplashScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD48C4156056A9009976B8 /* SplashScreenController.m */; };
@@ -75,6 +75,8 @@
 		69AD49531560877F009976B8 /* Aunt Mary.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49411560877F009976B8 /* Aunt Mary.JPG */; };
 		69AD495C15622719009976B8 /* Dad and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD495B15622718009976B8 /* Dad and Joey.jpg */; };
 		69AD495D1569CC76009976B8 /* The Drago Grandparents.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49381560877D009976B8 /* The Drago Grandparents.jpg */; };
+		69AE8F1F1970C213008AED1C /* OLD iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69AE8F1E1970C213008AED1C /* OLD iPad.storyboard */; };
+		69AE8F261977BE8E008AED1C /* UIViewController+SplitMasterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AE8F251977BE8E008AED1C /* UIViewController+SplitMasterVC.m */; };
 		69B5AA6316A7D81B005B7F9C /* ouritaliantable-original-transparent.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */; };
 		69C9510A1628DB00001147D6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C951091628DB00001147D6 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		69C9510D1628DB0D001147D6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C9510C1628DB0D001147D6 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -172,8 +174,8 @@
 		69AD4898156054C9009976B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		69AD489A156054C9009976B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		69AD489C156054C9009976B8 /* OurItalianTable Posts-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OurItalianTable Posts-Prefix.pch"; sourceTree = "<group>"; };
-		69AD48AD156056A9009976B8 /* OITLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OITLaunchViewController.h; sourceTree = "<group>"; };
-		69AD48AE156056A9009976B8 /* OITLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OITLaunchViewController.m; sourceTree = "<group>"; };
+		69AD48AD156056A9009976B8 /* FamilyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyViewController.h; sourceTree = "<group>"; };
+		69AD48AE156056A9009976B8 /* FamilyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyViewController.m; sourceTree = "<group>"; };
 		69AD48BB156056A9009976B8 /* TOCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TOCViewController.h; sourceTree = "<group>"; };
 		69AD48BC156056A9009976B8 /* TOCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TOCViewController.m; sourceTree = "<group>"; };
 		69AD48BF156056A9009976B8 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -212,6 +214,9 @@
 		69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aunt Mary, Joey and Michele.JPG"; sourceTree = "<group>"; };
 		69AD49411560877F009976B8 /* Aunt Mary.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aunt Mary.JPG"; sourceTree = "<group>"; };
 		69AD495B15622718009976B8 /* Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dad and Joey.jpg"; sourceTree = "<group>"; };
+		69AE8F1E1970C213008AED1C /* OLD iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "OLD iPad.storyboard"; sourceTree = SOURCE_ROOT; };
+		69AE8F241977BE8E008AED1C /* UIViewController+SplitMasterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SplitMasterVC.h"; sourceTree = "<group>"; };
+		69AE8F251977BE8E008AED1C /* UIViewController+SplitMasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SplitMasterVC.m"; sourceTree = "<group>"; };
 		69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ouritaliantable-original-transparent.gif"; sourceTree = "<group>"; };
 		69C951091628DB00001147D6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		69C9510C1628DB0D001147D6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -278,17 +283,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		690E702A18550F3E002D6633 /* Home Tab Info Controllers */ = {
+		690E702A18550F3E002D6633 /* Master VC Subcontrollers */ = {
 			isa = PBXGroup;
 			children = (
-				699558DD15706A0800B25C6D /* AboutViewController.h */,
-				699558DE15706A0800B25C6D /* AboutViewController.m */,
-				6964B65B184C5A5F00207020 /* PhotoScroller.h */,
-				6964B65C184C5A5F00207020 /* PhotoScroller.m */,
-				6964B65E184C5D6800207020 /* PageContentViewController.h */,
-				6964B65F184C5D6800207020 /* PageContentViewController.m */,
+				69AE8F241977BE8E008AED1C /* UIViewController+SplitMasterVC.h */,
+				69AE8F251977BE8E008AED1C /* UIViewController+SplitMasterVC.m */,
+				69D33DB616BE4D5900B5AC00 /* OITTabBarController.h */,
+				69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */,
+				692C1F681734B142005F0804 /* Table View Controllers */,
+				693ED72818822BE100CD1528 /* Map VC */,
+				69862886197A3BE60007D3F3 /* Family VC */,
 			);
-			name = "Home Tab Info Controllers";
+			name = "Master VC Subcontrollers";
 			sourceTree = "<group>";
 		};
 		692C1F681734B142005F0804 /* Table View Controllers */ = {
@@ -310,17 +316,30 @@
 			name = "Table View Controllers";
 			sourceTree = "<group>";
 		};
-		693ED72818822BE100CD1528 /* Wanderings View Map */ = {
+		693ED72818822BE100CD1528 /* Map VC */ = {
 			isa = PBXGroup;
 			children = (
 				69AD48BF156056A9009976B8 /* MapViewController.h */,
 				69AD48C0156056A9009976B8 /* MapViewController.m */,
-				695BE03116462EB00009EBFE /* RegionAnnotationView.h */,
-				695BE03216462EB00009EBFE /* RegionAnnotationView.m */,
 				69DFEA2415C5EF8900CDABA1 /* RegionAnnotation.h */,
 				69DFEA2515C5EF8900CDABA1 /* RegionAnnotation.m */,
 			);
-			name = "Wanderings View Map";
+			name = "Map VC";
+			sourceTree = "<group>";
+		};
+		695821E3197E527D000EABC4 /* Utility Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6962483C16F2FCEE00909B9B /* SSZipArchive.h */,
+				6962483D16F2FCEE00909B9B /* SSZipArchive.m */,
+				695BB711179145A200BFD1D5 /* SharedUserDefaults.h */,
+				695BB712179145A200BFD1D5 /* SharedUserDefaults.m */,
+				690EA7E917B9C7760003B09E /* OHAlertView.h */,
+				690EA7EA17B9C7770003B09E /* OHAlertView.m */,
+				695BB71417936B9500BFD1D5 /* Reachability.h */,
+				695BB71517936B9500BFD1D5 /* Reachability.m */,
+			);
+			name = "Utility Classes";
 			sourceTree = "<group>";
 		};
 		6962483F16F2FCF900909B9B /* minizip */ = {
@@ -381,6 +400,28 @@
 			name = CoreDataInitialization;
 			sourceTree = "<group>";
 		};
+		6986288519789DBC0007D3F3 /* Photo Scroller Detail Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6964B65B184C5A5F00207020 /* PhotoScroller.h */,
+				6964B65C184C5A5F00207020 /* PhotoScroller.m */,
+				6964B65E184C5D6800207020 /* PageContentViewController.h */,
+				6964B65F184C5D6800207020 /* PageContentViewController.m */,
+			);
+			name = "Photo Scroller Detail Controllers";
+			sourceTree = "<group>";
+		};
+		69862886197A3BE60007D3F3 /* Family VC */ = {
+			isa = PBXGroup;
+			children = (
+				69AD48AD156056A9009976B8 /* FamilyViewController.h */,
+				69AD48AE156056A9009976B8 /* FamilyViewController.m */,
+				699558DD15706A0800B25C6D /* AboutViewController.h */,
+				699558DE15706A0800B25C6D /* AboutViewController.m */,
+			);
+			name = "Family VC";
+			sourceTree = "<group>";
+		};
 		69AD487F156054C9009976B8 = {
 			isa = PBXGroup;
 			children = (
@@ -427,36 +468,17 @@
 		69AD4894156054C9009976B8 /* OurItalianTable Posts */ = {
 			isa = PBXGroup;
 			children = (
-				69D71FBE184BD8AA00FD7E86 /* OITViewController.h */,
-				69D71FBF184BD8AA00FD7E86 /* OITViewController.m */,
-				6905154C18606FEA009F3BC4 /* OITSplitMasterViewController.h */,
-				6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */,
-				69CC84D31859397700B1F053 /* OITSplitDetailViewController.h */,
-				69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */,
-				69D33DB616BE4D5900B5AC00 /* OITTabBarController.h */,
-				69D33DB716BE4D5900B5AC00 /* OITTabBarController.m */,
+				69AE8F201977A6C8008AED1C /* Not Used */,
 				697111EE166DD927006D93DB /* AppDelegate.h */,
 				697111EF166DD927006D93DB /* AppDelegate.m */,
 				69711201166DE148006D93DB /* CoreDataInitialization */,
-				69AD48AD156056A9009976B8 /* OITLaunchViewController.h */,
-				69AD48AE156056A9009976B8 /* OITLaunchViewController.m */,
-				69AD48C3156056A9009976B8 /* SplashScreenController.h */,
-				69AD48C4156056A9009976B8 /* SplashScreenController.m */,
 				69AD48C5156056A9009976B8 /* SplitViewBarButtonItemPresenter.h */,
-				690E702A18550F3E002D6633 /* Home Tab Info Controllers */,
-				692C1F681734B142005F0804 /* Table View Controllers */,
+				690E702A18550F3E002D6633 /* Master VC Subcontrollers */,
 				69AD48BB156056A9009976B8 /* TOCViewController.h */,
 				69AD48BC156056A9009976B8 /* TOCViewController.m */,
-				693ED72818822BE100CD1528 /* Wanderings View Map */,
-				69CBAAB2187D42AF009223FE /* WebView Controllers */,
-				6962483C16F2FCEE00909B9B /* SSZipArchive.h */,
-				6962483D16F2FCEE00909B9B /* SSZipArchive.m */,
-				695BB711179145A200BFD1D5 /* SharedUserDefaults.h */,
-				695BB712179145A200BFD1D5 /* SharedUserDefaults.m */,
-				690EA7E917B9C7760003B09E /* OHAlertView.h */,
-				690EA7EA17B9C7770003B09E /* OHAlertView.m */,
-				695BB71417936B9500BFD1D5 /* Reachability.h */,
-				695BB71517936B9500BFD1D5 /* Reachability.m */,
+				69CBAAB2187D42AF009223FE /* WebView Detail Controllers */,
+				6986288519789DBC0007D3F3 /* Photo Scroller Detail Controllers */,
+				695821E3197E527D000EABC4 /* Utility Classes */,
 				697111EB166DD7D8006D93DB /* CoreData */,
 			);
 			path = "OurItalianTable Posts";
@@ -469,6 +491,7 @@
 				6982328B169963CB003D43AB /* iPhone.storyboard */,
 				69FDC456195F90920082CE4B /* OLD iPhone.storyboard */,
 				69D33DB416BA4A7F00B5AC00 /* iPad.storyboard */,
+				69AE8F1E1970C213008AED1C /* OLD iPad.storyboard */,
 				69D1D969168EA99800540CD9 /* HTMLStyles.html */,
 				69AD4896156054C9009976B8 /* OurItalianTable Posts-Info.plist */,
 				69AD4897156054C9009976B8 /* InfoPlist.strings */,
@@ -515,7 +538,24 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		69CBAAB2187D42AF009223FE /* WebView Controllers */ = {
+		69AE8F201977A6C8008AED1C /* Not Used */ = {
+			isa = PBXGroup;
+			children = (
+				69AD48C3156056A9009976B8 /* SplashScreenController.h */,
+				69AD48C4156056A9009976B8 /* SplashScreenController.m */,
+				6905154C18606FEA009F3BC4 /* OITSplitMasterViewController.h */,
+				6905154D18606FEA009F3BC4 /* OITSplitMasterViewController.m */,
+				69D71FBE184BD8AA00FD7E86 /* OITViewController.h */,
+				69D71FBF184BD8AA00FD7E86 /* OITViewController.m */,
+				695BE03116462EB00009EBFE /* RegionAnnotationView.h */,
+				695BE03216462EB00009EBFE /* RegionAnnotationView.m */,
+				69CC84D31859397700B1F053 /* OITSplitDetailViewController.h */,
+				69CC84D41859397700B1F053 /* OITSplitDetailViewController.m */,
+			);
+			name = "Not Used";
+			sourceTree = "<group>";
+		};
+		69CBAAB2187D42AF009223FE /* WebView Detail Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				699558E015706BE300B25C6D /* WebViewController.h */,
@@ -527,7 +567,7 @@
 				69AD48C8156056A9009976B8 /* PostDetailViewController.h */,
 				69AD48C9156056A9009976B8 /* PostDetailViewController.m */,
 			);
-			name = "WebView Controllers";
+			name = "WebView Detail Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,7 +598,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = oitPosts;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Our Italian Table";
 				TargetAttributes = {
 					69AD4889156054C9009976B8 = {
@@ -592,6 +632,7 @@
 				69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */,
 				69FDC457195F90920082CE4B /* OLD iPhone.storyboard in Resources */,
 				69AD48E2156056FC009976B8 /* NextImage.plist in Resources */,
+				69AE8F1F1970C213008AED1C /* OLD iPad.storyboard in Resources */,
 				69AD48E3156056FC009976B8 /* CategoryDictionary.plist in Resources */,
 				69AD48E4156056FC009976B8 /* bios.txt in Resources */,
 				69AD491915605805009976B8 /* mbecci.jpg in Resources */,
@@ -658,7 +699,7 @@
 				69CC84D51859397700B1F053 /* OITSplitDetailViewController.m in Sources */,
 				695BE0331646337C0009EBFE /* RegionAnnotationView.m in Sources */,
 				69AD489B156054C9009976B8 /* main.m in Sources */,
-				69AD48CC156056A9009976B8 /* OITLaunchViewController.m in Sources */,
+				69AD48CC156056A9009976B8 /* FamilyViewController.m in Sources */,
 				69AD48D3156056A9009976B8 /* TOCViewController.m in Sources */,
 				69AD48D6156056A9009976B8 /* MapAnnotation.m in Sources */,
 				6930A142186F6BC3001F8EF6 /* IconDownloader.m in Sources */,
@@ -691,6 +732,7 @@
 				6964B65D184C5A5F00207020 /* PhotoScroller.m in Sources */,
 				69FBB53817121DA9002F6E4D /* Category+CreateMany.m in Sources */,
 				69DF6B2B1759AF5500EA1289 /* OITPosts.xcdatamodel in Sources */,
+				69AE8F261977BE8E008AED1C /* UIViewController+SplitMasterVC.m in Sources */,
 				69DF6B2E1759BC3C00EA1289 /* Post.m in Sources */,
 				69DF6B311759BC3C00EA1289 /* Tag.m in Sources */,
 				69DF6B341759BC3C00EA1289 /* Category.m in Sources */,
@@ -717,16 +759,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -773,16 +818,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joseph Becci (GQXG2H989Q)";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -811,16 +859,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Joseph Becci (2TU4F86D2T)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joseph Becci (2TU4F86D2T)";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -25,4 +25,26 @@
     if (splitViewBarButtonItem) [destinationViewController setSplitViewBarButtonItem:splitViewBarButtonItem];
 }
 
+-(void)resetDetailView
+{
+    // reset logic for detail view controller
+    
+    // if we're in a split
+    if (self.splitViewController) {
+        
+        // assume the detail is always a navVC
+        UINavigationController *navVC = (UINavigationController *)self.splitViewController.viewControllers[1];
+        
+        // if the top VC is a webVC, reset the property to nil (will cause logo to reappear)
+        if ([[navVC topViewController] isKindOfClass:[WebViewController class]]) {
+            WebViewController *webVC = (WebViewController *)[navVC topViewController];
+            webVC.thisPost = nil;
+        } else {
+            
+            /// else reset the detail side with a new replace segue
+            [self performSegueWithIdentifier:@"Push Web View" sender:self];
+        }
+    }
+}
+
 @end

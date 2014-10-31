@@ -7,7 +7,7 @@
 //
 
 #import "SplashScreenController.h"
-#import "OITLaunchViewController.h"
+#import "FamilyViewController.h"
 
 @implementation SplashScreenController
 

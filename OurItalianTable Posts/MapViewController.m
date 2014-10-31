@@ -23,7 +23,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
     
     // setup the map type and set the UIMapView delegate
-    self.mapView.mapType = MKMapTypeHybrid;
+    self.mapView.mapType = MKMapTypeStandard;
     self.mapView.delegate = self;
     
     // reset context label
@@ -56,8 +56,8 @@
     
     // get the DISTINCT geo proporties in the DB, array is dictionaries of geo = <region>
     NSArray *geoObjects = [Post queryPostForDistinctProperty:@"geo"
-                                            withPredicate:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"wanderings"]
-                                   inManagedObjectContext:appDelegate.parentMOC];
+                                               withPredicate:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"wanderings"]
+                                      inManagedObjectContext:appDelegate.parentMOC];
     
     // load up annotations for geos found in DB, set section # for click back
     [geoObjects enumerateObjectsUsingBlock:^(id region, NSUInteger idx, BOOL *stop) {

@@ -10,9 +10,9 @@
 #import <CoreData/CoreData.h>
 
 #import "OITCoreDataTableViewController.h"
+#import "AppDelegate.h"
 #import "WebViewController.h"
 #import "TOCViewController.h"
-#import "MapViewController.h"
 #import "IconDownloader.h"
 #import "SharedUserDefaults.h"
 #import "OITTabBarController.h"

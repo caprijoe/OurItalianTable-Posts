@@ -13,8 +13,6 @@
 
 -(void)viewDidLoad
 {
-    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"postPubDate" ascending:NO]];
-    self.sectionKey = nil;
     self.majorPredicate = nil;
     self.defaultContextTitle = @"Map";
     
