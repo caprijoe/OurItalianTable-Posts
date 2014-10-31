@@ -75,7 +75,6 @@
 		69AD49531560877F009976B8 /* Aunt Mary.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49411560877F009976B8 /* Aunt Mary.JPG */; };
 		69AD495C15622719009976B8 /* Dad and Joey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD495B15622718009976B8 /* Dad and Joey.jpg */; };
 		69AD495D1569CC76009976B8 /* The Drago Grandparents.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69AD49381560877D009976B8 /* The Drago Grandparents.jpg */; };
-		69AE8F1F1970C213008AED1C /* OLD iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69AE8F1E1970C213008AED1C /* OLD iPad.storyboard */; };
 		69AE8F261977BE8E008AED1C /* UIViewController+SplitMasterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AE8F251977BE8E008AED1C /* UIViewController+SplitMasterVC.m */; };
 		69B5AA6316A7D81B005B7F9C /* ouritaliantable-original-transparent.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */; };
 		69C9510A1628DB00001147D6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C951091628DB00001147D6 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -102,7 +101,6 @@
 		69F7856016C73A0D0060AAE9 /* MapTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F7855F16C73A0D0060AAE9 /* MapTableViewController.m */; };
 		69FBB5351711279F002F6E4D /* Tag+CreateMany.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FBB5341711279E002F6E4D /* Tag+CreateMany.m */; };
 		69FBB53817121DA9002F6E4D /* Category+CreateMany.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FBB53717121DA9002F6E4D /* Category+CreateMany.m */; };
-		69FDC457195F90920082CE4B /* OLD iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69FDC456195F90920082CE4B /* OLD iPhone.storyboard */; };
 		69FDC459196274F80082CE4B /* PostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FDC458196274F80082CE4B /* PostsTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -214,7 +212,6 @@
 		69AD49401560877F009976B8 /* Aunt Mary, Joey and Michele.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aunt Mary, Joey and Michele.JPG"; sourceTree = "<group>"; };
 		69AD49411560877F009976B8 /* Aunt Mary.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aunt Mary.JPG"; sourceTree = "<group>"; };
 		69AD495B15622718009976B8 /* Dad and Joey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dad and Joey.jpg"; sourceTree = "<group>"; };
-		69AE8F1E1970C213008AED1C /* OLD iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "OLD iPad.storyboard"; sourceTree = SOURCE_ROOT; };
 		69AE8F241977BE8E008AED1C /* UIViewController+SplitMasterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SplitMasterVC.h"; sourceTree = "<group>"; };
 		69AE8F251977BE8E008AED1C /* UIViewController+SplitMasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SplitMasterVC.m"; sourceTree = "<group>"; };
 		69B5AA6216A7D81B005B7F9C /* ouritaliantable-original-transparent.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ouritaliantable-original-transparent.gif"; sourceTree = "<group>"; };
@@ -254,7 +251,6 @@
 		69FBB5341711279E002F6E4D /* Tag+CreateMany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tag+CreateMany.m"; sourceTree = "<group>"; };
 		69FBB53617121DA9002F6E4D /* Category+CreateMany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Category+CreateMany.h"; sourceTree = "<group>"; };
 		69FBB53717121DA9002F6E4D /* Category+CreateMany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CreateMany.m"; sourceTree = "<group>"; };
-		69FDC456195F90920082CE4B /* OLD iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "OLD iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
 		69FDC458196274F80082CE4B /* PostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsTableViewController.m; sourceTree = "<group>"; };
 		69FDC45A196275070082CE4B /* PostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsTableViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -489,9 +485,7 @@
 			children = (
 				695BB70F1791401100BFD1D5 /* Settings.bundle */,
 				6982328B169963CB003D43AB /* iPhone.storyboard */,
-				69FDC456195F90920082CE4B /* OLD iPhone.storyboard */,
 				69D33DB416BA4A7F00B5AC00 /* iPad.storyboard */,
-				69AE8F1E1970C213008AED1C /* OLD iPad.storyboard */,
 				69D1D969168EA99800540CD9 /* HTMLStyles.html */,
 				69AD4896156054C9009976B8 /* OurItalianTable Posts-Info.plist */,
 				69AD4897156054C9009976B8 /* InfoPlist.strings */,
@@ -630,9 +624,7 @@
 			files = (
 				69AD495D1569CC76009976B8 /* The Drago Grandparents.jpg in Resources */,
 				69AD4899156054C9009976B8 /* InfoPlist.strings in Resources */,
-				69FDC457195F90920082CE4B /* OLD iPhone.storyboard in Resources */,
 				69AD48E2156056FC009976B8 /* NextImage.plist in Resources */,
-				69AE8F1F1970C213008AED1C /* OLD iPad.storyboard in Resources */,
 				69AD48E3156056FC009976B8 /* CategoryDictionary.plist in Resources */,
 				69AD48E4156056FC009976B8 /* bios.txt in Resources */,
 				69AD491915605805009976B8 /* mbecci.jpg in Resources */,
