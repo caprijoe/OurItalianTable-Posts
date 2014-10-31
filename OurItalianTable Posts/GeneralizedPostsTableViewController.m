@@ -346,8 +346,8 @@
         if ([detailVC isKindOfClass:[UINavigationController class]])
             detailVC = ((UINavigationController *)detailVC).topViewController;
         if ([detailVC isKindOfClass:[WebViewController class]]) {
-            [detailVC setThisPost:self.postRecord];
-            [detailVC setDelegate:self];
+            [(WebViewController *)detailVC setThisPost:self.postRecord];
+            [(WebViewController *)detailVC setDelegate:self];
             [self transferSplitViewBarButtonItemToViewController:detailVC];
         }
     }

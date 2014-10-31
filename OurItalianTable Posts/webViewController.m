@@ -394,8 +394,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Push Post Detail"]) {
-        [segue.destinationViewController setPostDetail:self.thisPost];
-        [segue.destinationViewController setDelegate:self];
+        [(PostDetailViewController *)segue.destinationViewController setPostDetail:self.thisPost];
+        [(PostDetailViewController *)segue.destinationViewController setDelegate:self];
         
         // if we're segueing to a popover, save it in self and in the destination controller
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
