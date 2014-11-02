@@ -225,6 +225,8 @@
     // get rid of left side splitview when row is selected (all nil on iPhone)
     OITTabBarController *topVC = (OITTabBarController *)self.tabBarController;
     [topVC.masterPopoverController dismissPopoverAnimated:YES];
+    
+    [self performSegueWithIdentifier:@"Push Web View" sender:self];
 }
 
 #pragma mark - UISearchBarDelegate
