@@ -45,16 +45,23 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    id currentDetalVC = self.splitViewController.viewControllers[1];
+    if ([currentDetalVC isKindOfClass:[UINavigationController class]])
+         currentDetalVC = ((UINavigationController *)currentDetalVC).topViewController;
+
     if ([segue.identifier isEqualToString:@"Push Family"]) {
         
         id detailVC = segue.destinationViewController;
         if ([detailVC isKindOfClass:[UINavigationController class]])
             detailVC = ((UINavigationController *)detailVC).topViewController;
+        
         if ([detailVC isKindOfClass:[PhotoScroller class]]) {
             
-            // get rid of left side splitview, segue to photo scroller
-            OITTabBarController *splitMasterVC = (OITTabBarController *)self.splitViewController.viewControllers[0];
-            [splitMasterVC.masterPopoverController dismissPopoverAnimated:YES];
+            if (![currentDetalVC isKindOfClass:[PhotoScroller class]]) {
+                // get rid of left side splitview, segue to photo scroller
+                OITTabBarController *splitMasterVC = (OITTabBarController *)self.splitViewController.viewControllers[0];
+                [splitMasterVC.masterPopoverController dismissPopoverAnimated:YES];
+            }
             
             // transfer the bar button
             [self transferSplitViewBarButtonItemToViewController:detailVC];
