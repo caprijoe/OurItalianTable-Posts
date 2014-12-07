@@ -19,8 +19,8 @@
 @property (nonatomic,strong) NSString *currentActionSheet;          // current sheet to figure clicked button
 @property (nonatomic,strong) UIActionSheet *bookmarksActionSheet;
 @property (nonatomic,strong) UIActionSheet *sharingActionSheet;
-@property (nonatomic,weak)   UIPopoverController *detailPopover;     // the info popover, if on screen
-@property (nonatomic,weak)   UIPopoverController *locationPopover;  // the location popover, if on screen
+@property (nonatomic,strong) UIPopoverController *detailPopover;     // the info popover, if on screen
+@property (nonatomic,strong) UIPopoverController *locationPopover;  // the location popover, if on screen
 @end
 
 @implementation WebViewController
