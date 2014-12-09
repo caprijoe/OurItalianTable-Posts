@@ -15,6 +15,7 @@
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property (nonatomic, strong) NSMutableDictionary *downloadControl;
 @property (nonatomic, strong) NSString *contextTitle;
+@property (nonatomic, strong) UIPopoverController *popover;
 @end
 
 @implementation GeneralizedPostsTableViewController
@@ -298,6 +299,12 @@
 #pragma mark - TOCViewController unwind
 -(IBAction)unwindFromTOC:(UIStoryboardSegue *)segue {
     
+    if (self.popover) {
+        [self.popover dismissPopoverAnimated:YES];
+        self.popover = nil;
+    }
+
+    
     TOCViewController *TOCvc = [segue sourceViewController];
     
     NSMutableArray *predicateArray = [[NSMutableArray alloc] initWithCapacity:2];
@@ -352,6 +359,9 @@
             [(WebViewController *)detailVC setDelegate:self];
             [self transferSplitViewBarButtonItemToViewController:detailVC];
         }
+    } else if ([segue.identifier isEqualToString:@"Show TOC Picker"]) {
+        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]])
+            self.popover = ((UIStoryboardPopoverSegue *)segue).popoverController;
     }
 }
 
