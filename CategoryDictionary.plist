@@ -2,40 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>food</key>
-	<dict>
-		<key></key>
-		<string></string>
-		<key>Antipasti</key>
-		<array/>
-		<key>Beverages</key>
-		<array/>
-		<key>Dolci</key>
-		<array/>
-		<key>Main Courses</key>
-		<array/>
-		<key>Pasta, Risotto, Breads</key>
-		<array/>
-		<key>Salads</key>
-		<array/>
-		<key>Soups, Stews</key>
-		<array/>
-		<key>Vegetables, Side Dishes</key>
-		<array/>
-	</dict>
 	<key>regions</key>
 	<dict>
-		<key></key>
-		<string></string>
 		<key>Abbruzzo</key>
 		<array>
 			<real>42.35</real>
 			<real>13.4</real>
+			<string>95px-Regione-Umbria-Stemma.svg</string>
 		</array>
 		<key>Basilicata</key>
 		<array>
 			<real>40.633333</real>
 			<real>15.8</real>
+			<string>121px-Regione-Basilicata-Stemma.svg</string>
 		</array>
 		<key>Calabria</key>
 		<array>
@@ -43,16 +22,17 @@
 			<real>16.6</real>
 			<string>200px-Coat_of_arms_of_Calabria.svg.png</string>
 		</array>
-		<key>Campania</key>
-		<array>
-			<real>40.833333</real>
-			<real>14.25</real>
-		</array>
 		<key>Capri</key>
 		<array>
 			<real>40.55</real>
 			<real>14.233333</real>
 			<string>100px-Capri-Stemma.png</string>
+		</array>
+		<key>Campania</key>
+		<array>
+			<real>40.833333</real>
+			<real>14.25</real>
+			<string>119px-Regione-Campania-Stemma.svg</string>
 		</array>
 		<key>Emilia-Romagna</key>
 		<array>
@@ -72,26 +52,29 @@
 			<real>12.716667</real>
 			<string>Lazio_Coat_of_Arms.svg.png</string>
 		</array>
-		<key>Lombardy</key>
-		<array>
-			<real>45.5856</real>
-			<real>9.930300000000001</real>
-		</array>
 		<key>Liguria</key>
 		<array>
 			<real>44.3</real>
 			<real>8.7347</real>
 			<string>250px-Coat_of_arms_of_Liguria.svg.png</string>
 		</array>
+		<key>Lombardy</key>
+		<array>
+			<real>45.5856</real>
+			<real>9.930300000000001</real>
+			<string>145px-Flag_of_Lombardy_square.svg</string>
+		</array>
 		<key>Le Marche</key>
 		<array>
 			<real>43.616944</real>
 			<real>13.516667</real>
+			<string>200px-Coat_of_arms_of_Marche.svg</string>
 		</array>
 		<key>Molise</key>
 		<array>
 			<real>41.566667</real>
 			<real>14.666667</real>
+			<string>138px-Regione-Molise-Stemma.svg</string>
 		</array>
 		<key>Pantelleria</key>
 		<array>
@@ -123,10 +106,23 @@
 			<integer>14</integer>
 			<string>Coat_of_arms_of_Sicily.svg.png</string>
 		</array>
+		<key>Valle d&apos;Aosta</key>
+		<array>
+			<real>45.7469</real>
+			<real>7.4392</real>
+			<string>50px-Valle_d&apos;Aosta-Stemma.svg.png</string>
+		</array>
+		<key>Veneto</key>
+		<array>
+			<real>45.4375</real>
+			<real>12.335833</real>
+			<string>140px-Veneto_Coat_of_Arms</string>
+		</array>
 		<key>Trentino-Alto Adige</key>
 		<array>
 			<real>46.066667</real>
 			<real>11.116667</real>
+			<string>117px-Coat_of_arms_of_Trentino-South_Tyrol.svg</string>
 		</array>
 		<key>Tuscany</key>
 		<array>
@@ -138,18 +134,27 @@
 		<array>
 			<real>43.112222</real>
 			<real>12.388889</real>
+			<string>95px-Regione-Umbria-Stemma.svg</string>
 		</array>
-		<key>Valle d&apos;Aosta</key>
-		<array>
-			<real>45.7469</real>
-			<real>7.4392</real>
-			<string>50px-Valle_d&apos;Aosta-Stemma.svg.png</string>
-		</array>
-		<key>Veneto</key>
-		<array>
-			<real>45.4375</real>
-			<real>12.335833</real>
-		</array>
+	</dict>
+	<key>food</key>
+	<dict>
+		<key>Antipasti</key>
+		<array/>
+		<key>Beverages</key>
+		<array/>
+		<key>Salads</key>
+		<array/>
+		<key>Vegetables, Side Dishes</key>
+		<array/>
+		<key>Main Courses</key>
+		<array/>
+		<key>Soups, Stews</key>
+		<array/>
+		<key>Dolci</key>
+		<array/>
+		<key>Pasta, Risotto, Breads</key>
+		<array/>
 	</dict>
 </dict>
 </plist>
