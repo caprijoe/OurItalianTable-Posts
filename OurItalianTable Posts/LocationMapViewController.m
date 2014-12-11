@@ -58,7 +58,9 @@
         pinView.annotation = annotation;
         
         // setup and load leftaccessory to hold flag/coat of arms
-        pinView.leftCalloutAccessoryView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:self.locationRecord.postIcon]];
+        UIImageView *tempView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:self.locationRecord.postIcon]];
+        tempView.contentMode = UIViewContentModeScaleAspectFit;
+        pinView.leftCalloutAccessoryView = tempView;
         
         return pinView;
     }
