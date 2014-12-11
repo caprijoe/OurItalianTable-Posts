@@ -56,7 +56,7 @@
     
     // get the DISTINCT geo proporties in the DB, array is dictionaries of geo = <region>
     NSArray *geoObjects = [Post queryPostForDistinctProperty:@"geo"
-                                               withPredicate:[NSPredicate predicateWithFormat:@"(ANY whichCategories.categoryString =[cd] %@) ", @"wanderings"]
+                                               withPredicate:nil
                                       inManagedObjectContext:appDelegate.parentMOC];
     
     // load up annotations for geos found in DB, set section # for click back
