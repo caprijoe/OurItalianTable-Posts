@@ -4,6 +4,8 @@
 <dict>
 	<key>regions</key>
 	<dict>
+		<key></key>
+		<string>This blank entry is required</string>
 		<key>Abbruzzo</key>
 		<array>
 			<real>42.35</real>
@@ -139,6 +141,8 @@
 	</dict>
 	<key>food</key>
 	<dict>
+		<key></key>
+		<string>This blank entry is required</string>
 		<key>Antipasti</key>
 		<array/>
 		<key>Beverages</key>
