@@ -284,8 +284,9 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     
-    // pop back to top when tag clicked (iphone in UINavVC)
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    // pop back to tableview when tag clicked (iphone in UINavVC)
+    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
     
     // get root view controllers popover button from left side and make it appear
     UIBarButtonItem *rootPopoverButtonItem = [[self splitViewDetailWithBarButtonItem] splitViewBarButtonItem];
